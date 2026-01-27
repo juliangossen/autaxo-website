@@ -2,41 +2,31 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  /* --- AUTAXO MARKENFARBEN (Korrigiert & Beruhigt) --- */
-  
-  /* Hauptfarbe: Ihr Original Autaxo-Rot (Kein Neon!) */
+  /* --- AUTAXO MARKENFARBEN --- */
   --color-primary: #b30018;
-  
-  /* Hover: Wir werden DUNKLER statt heller beim Drüberfahren (wirkt edler) */
   --color-primary-hover: #8a0012; 
-  
-  /* Akzent: Neutrales Weiß/Grau statt Blau */
   --color-secondary: #ffffff;
 
-  /* --- NEUE, RUHIGERE FARBPALETTE --- */
-  
-  /* Hintergrund: Tiefes Autaxo-Schwarz (aus Ihrer alten Seite) */
+  /* --- FARBPALETTE (Dark Mode) --- */
   --color-background: #0b0c10;
-  
-  /* Elemente: Ein sehr dunkles Grau, das sich sanft abhebt */
   --color-surface: #15171e;
-  
-  /* Rahmen: Sehr dezent, kaum sichtbar */
   --color-border: #21283a;
   
-  /* Text: Gebrochenes Weiß (angenehmer für die Augen als reines Weiß) */
   --color-text: #e9ecf3;       
-  --color-text-muted: #a0aab8; /* Helles Grau für Nebentexte */
+  --color-text-muted: #a0aab8; 
 
-  /* --- STATUS FARBEN (Blau entfernt!) --- */
-  --color-success: #4ade80; /* Grün (bleibt für Erfolg) */
-  --color-warning: #f59e0b; /* Gelb (bleibt für Warnung) */
-  --color-error: #b30018;   /* Fehler ist jetzt auch Autaxo-Rot */
-  --color-info: #a0aab8;    /* Info ist jetzt GRAU (vorher Blau) */
+  /* --- STATUS FARBEN --- */
+  --color-success: #4ade80;
+  --color-warning: #f59e0b;
+  --color-error: #b30018;
+  --color-info: #a0aab8;
 
-  /* Design-Variablen */
-  --radius-card: 12px;      /* Etwas weniger rund, wirkt technischer */
-  --radius-btn: 4px;        /* Klassische Buttons passend zu Autaxo */
+  /* --- DESIGN & ABSTÄNDE (Hier haben wir optimiert) --- */
+  --radius-card: 16px;      
+  --radius-btn: 6px;       
+  
+  /* Viel mehr Platz zwischen den Sektionen */
+  --spacing-section: 8rem;  /* War vorher kleiner, jetzt viel Luft */
   
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 }
@@ -51,35 +41,41 @@ body {
   font-family: var(--font-sans);
   background-color: var(--color-background);
   color: var(--color-text);
-  /* Ein sehr subtiler Verlauf, damit es nicht "tot" wirkt, aber nicht blendet */
   background-image: linear-gradient(to bottom, #0b0c10, #11141a);
   min-height: 100vh;
+  
+  /* WICHTIG: Text lesbarer machen */
+  line-height: 1.75;        /* Zieht die Textzeilen auseinander */
+  -webkit-font-smoothing: antialiased; /* Macht die Schrift dünner und schärfer */
 }
 
-/* --- GLOBALER SCHEIN (Entschärft) --- */
-/* Wir machen den Schein viel schwächer (Opacity 0.08), damit er nicht "beißt" */
+/* --- GLOBALER SCHEIN --- */
 body::before {
   content: "";
   position: fixed;
   top: 0;
   right: 0;
   width: 100%;
-  height: 600px;
+  height: 800px; /* Schein etwas größer */
   z-index: -1;
   pointer-events: none;
-  background: radial-gradient(circle at top right, rgba(179, 0, 24, 0.08), transparent 70%);
+  background: radial-gradient(circle at top right, rgba(179, 0, 24, 0.12), transparent 60%);
 }
 
-/* --- ELEMENTE ANPASSEN --- */
+/* --- ELEMENTE --- */
 
-/* Überschriften immer Weiß */
 h1, h2, h3, h4 {
   color: #ffffff;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   line-height: 1.2;
+  margin-bottom: 1rem; /* Mehr Platz unter Überschriften */
 }
 
-/* Links: Standardmäßig Weiß, bei Hover Rot (kein Blau!) */
+/* Sorgt dafür, dass Paragraphen nicht kleben */
+p {
+  margin-bottom: 1.5rem;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -87,12 +83,17 @@ a {
 }
 
 a:hover {
-  color: var(--color-primary); /* Wird rot beim Drüberfahren */
+  color: var(--color-primary);
 }
 
-/* Bilder responsive */
 img {
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+/* Utility: Extra Abstand für Container */
+.container {
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
