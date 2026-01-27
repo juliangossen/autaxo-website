@@ -1,15 +1,12 @@
 ---
 import { siteConfig } from '@/config';
-import { navigation } from '@/config'; // Wir laden direkt unsere neue Navigation
+import { navigation } from '@/config';
 import { Icon } from 'astro-icon/components';
 import ThemeToggle from '@ui/ThemeToggle.astro';
 
 const { header: headerNav } = navigation;
 
-// Wir nehmen einfach alle Menüpunkte, die wir in navigation.ts definiert haben
 const mainNavItems = headerNav.main;
-
-// Buttons trennen (Login vs. Testen)
 const ghostCTAs = headerNav.cta.filter((cta) => cta.variant === 'ghost');
 const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
 ---
@@ -21,9 +18,8 @@ const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
   <nav class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
     
     <div class="flex items-center gap-2">
-      <a href="/" class="flex items-center gap-2 font-bold text-xl tracking-tight text-text hover:opacity-80 transition-opacity">
+      <a href="/" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
         <img src="/logo.svg" alt="Autaxo Logo" class="h-8 w-auto" />
-        <span class="hidden sm:inline-block">Autaxo</span>
       </a>
     </div>
 
@@ -87,9 +83,8 @@ const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
   <div id="mobile-menu-backdrop" class="absolute inset-0 bg-background/80 backdrop-blur-sm"></div>
   <nav id="mobile-menu-panel" class="absolute inset-x-0 top-0 z-50 border-b border-border bg-background p-4 shadow-lg">
     <div class="flex items-center justify-between mb-4">
-        <a href="/" class="flex items-center gap-2 font-bold text-xl text-text">
+        <a href="/" class="flex items-center gap-2">
             <img src="/logo.svg" alt="Autaxo" class="h-8 w-auto" />
-            Autaxo
         </a>
         <button id="mobile-menu-close-btn" class="p-2 text-text-muted">
             <Icon name="lucide:x" class="h-6 w-6" />
@@ -132,7 +127,6 @@ const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
 </div>
 
 <script>
-  // Logik für das Mobile Menü (Öffnen/Schließen)
   const btn = document.getElementById('mobile-menu-button');
   const closeBtn = document.getElementById('mobile-menu-close-btn');
   const menu = document.getElementById('mobile-menu');
@@ -140,7 +134,7 @@ const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
 
   function toggleMenu() {
     menu?.classList.toggle('hidden');
-    document.body.classList.toggle('overflow-hidden'); // Verhindert Scrollen im Hintergrund
+    document.body.classList.toggle('overflow-hidden');
   }
 
   btn?.addEventListener('click', toggleMenu);
