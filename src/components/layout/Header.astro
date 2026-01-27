@@ -12,13 +12,13 @@ const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
 
 <header
   id="site-header"
-  class="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md"
+  class="sticky top-0 z-50 w-full border-b border-white/10 bg-[#0b0c10]/80 backdrop-blur-md"
 >
   <nav class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
     
     <div class="flex items-center gap-2">
       <a href="/" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
-        <img src="/logo.svg" alt="Autaxo Logo" class="h-8 w-auto" />
+        <img src="/logo.svg" alt="Autaxo" class="h-8 w-auto object-contain" />
       </a>
     </div>
 
@@ -28,18 +28,18 @@ const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
           item.items ? (
             /* DROPDOWN MENU */
             <div class="relative group">
-              <button class="flex items-center gap-1 text-sm font-medium text-text-muted transition-colors hover:text-primary focus:outline-none group-hover:text-primary py-4">
+              <button class="flex items-center gap-1 text-sm font-medium text-gray-300 transition-colors hover:text-white focus:outline-none group-hover:text-white py-4">
                 {item.label}
-                <Icon name="lucide:chevron-down" class="w-4 h-4 transition-transform group-hover:rotate-180" />
+                <Icon name="lucide:chevron-down" class="w-4 h-4 transition-transform group-hover:rotate-180 opacity-70" />
               </button>
               
-              {/* Dropdown Panel (visible on hover) */}
+              {/* Dropdown Panel */}
               <div class="absolute left-0 top-full w-56 pt-2 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 ease-out">
-                <div class="bg-surface border border-border rounded-lg shadow-xl p-2 flex flex-col gap-1">
+                <div class="bg-[#15171e] border border-white/10 rounded-lg shadow-xl p-2 flex flex-col gap-1">
                   {item.items.map((subItem) => (
                     <a
                       href={subItem.href}
-                      class="block px-3 py-2 text-sm text-text-muted hover:text-white hover:bg-white/5 rounded-md transition-colors"
+                      class="block px-3 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5 rounded-md transition-colors"
                     >
                       {subItem.label}
                     </a>
@@ -49,9 +49,10 @@ const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
             </div>
           ) : (
             /* STANDARD LINK */
+            /* WICHTIG: Auch hier exakt text-sm und font-medium */
             <a
               href={item.href}
-              class="text-sm font-medium text-text-muted transition-colors hover:text-primary"
+              class="text-sm font-medium text-gray-300 transition-colors hover:text-white"
             >
               {item.label}
             </a>
@@ -67,7 +68,7 @@ const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
         ghostCTAs.map((cta) => (
           <a
             href={cta.href}
-            class="text-sm font-medium text-text hover:text-primary transition-colors"
+            class="text-sm font-medium text-white hover:text-primary transition-colors"
           >
             {cta.label}
           </a>
@@ -78,7 +79,7 @@ const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
         primaryCTA && (
           <a
             href={primaryCTA.href}
-            class="rounded-md bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-primary/90 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            class="rounded-md bg-primary px-4 py-2 text-sm font-bold text-white shadow-sm hover:bg-primary-hover transition-colors"
           >
             {primaryCTA.label}
           </a>
@@ -91,9 +92,7 @@ const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
       <button
         id="mobile-menu-button"
         type="button"
-        class="inline-flex items-center justify-center rounded-md p-2 text-text-muted hover:bg-surface hover:text-text focus:outline-none"
-        aria-controls="mobile-menu"
-        aria-expanded="false"
+        class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-none"
       >
         <span class="sr-only">Menü öffnen</span>
         <Icon name="lucide:menu" id="menu-icon-open" class="h-6 w-6" />
@@ -104,19 +103,18 @@ const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
 </header>
 
 <div id="mobile-menu" class="fixed inset-0 z-40 hidden md:hidden" role="dialog" aria-modal="true">
-  <div id="mobile-menu-backdrop" class="absolute inset-0 bg-background/80 backdrop-blur-sm"></div>
-  <nav id="mobile-menu-panel" class="absolute inset-x-0 top-0 z-50 h-screen overflow-y-auto border-b border-border bg-background p-4 shadow-lg pb-24">
+  <div id="mobile-menu-backdrop" class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
+  <nav id="mobile-menu-panel" class="absolute inset-x-0 top-0 z-50 h-screen overflow-y-auto border-b border-white/10 bg-[#0b0c10] p-4 shadow-lg pb-24">
     <div class="flex items-center justify-between mb-6">
         <a href="/" class="flex items-center gap-2">
             <img src="/logo.svg" alt="Autaxo" class="h-8 w-auto" />
         </a>
-        <button id="mobile-menu-close-btn" class="p-2 text-text-muted">
+        <button id="mobile-menu-close-btn" class="p-2 text-gray-400 hover:text-white">
             <Icon name="lucide:x" class="h-6 w-6" />
         </button>
     </div>
     
     <div class="space-y-6">
-      {/* Mobile Links Loop */}
       <div class="flex flex-col gap-1">
         {
           mainNavItems.map((item) => (
@@ -125,9 +123,9 @@ const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
                 <div class="px-3 py-1 text-sm font-bold text-primary uppercase tracking-wider mb-2">
                   {item.label}
                 </div>
-                <div class="pl-4 border-l border-border ml-3 flex flex-col gap-1">
+                <div class="pl-4 border-l border-white/10 ml-3 flex flex-col gap-1">
                   {item.items.map((subItem) => (
-                    <a href={subItem.href} class="block px-3 py-2 text-base font-medium text-text-muted hover:bg-surface hover:text-text rounded-md">
+                    <a href={subItem.href} class="block px-3 py-3 text-base font-medium text-gray-400 hover:bg-white/5 hover:text-white rounded-md">
                       {subItem.label}
                     </a>
                   ))}
@@ -136,7 +134,7 @@ const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
             ) : (
               <a
                 href={item.href}
-                class="block rounded-md px-3 py-2 text-base font-bold text-text hover:bg-surface"
+                class="block rounded-md px-3 py-2 text-base font-bold text-white hover:bg-white/5"
               >
                 {item.label}
               </a>
@@ -145,13 +143,13 @@ const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
         }
       </div>
 
-      <div class="border-t border-border pt-6">
+      <div class="border-t border-white/10 pt-6">
         <div class="grid gap-3">
           {
             ghostCTAs.map((cta) => (
               <a
                 href={cta.href}
-                class="flex items-center justify-center w-full px-4 py-3 rounded-lg border border-border text-base font-medium text-text hover:bg-surface transition-colors"
+                class="flex items-center justify-center w-full px-4 py-3 rounded-lg border border-white/20 text-base font-medium text-white hover:bg-white/5 transition-colors"
               >
                 {cta.label}
               </a>
@@ -161,7 +159,7 @@ const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
             primaryCTA && (
               <a
                 href={primaryCTA.href}
-                class="flex items-center justify-center w-full px-4 py-3 rounded-lg bg-primary text-base font-medium text-white hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20"
+                class="flex items-center justify-center w-full px-4 py-3 rounded-lg bg-primary text-base font-bold text-white hover:bg-primary-hover transition-colors shadow-lg shadow-primary/20"
               >
                 {primaryCTA.label}
               </a>
@@ -184,7 +182,7 @@ const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
     document.body.classList.toggle('overflow-hidden');
   }
 
-  btn?.addEventListener('click', toggleMenu);
-  closeBtn?.addEventListener('click', toggleMenu);
-  backdrop?.addEventListener('click', toggleMenu);
+  if(btn) btn.addEventListener('click', toggleMenu);
+  if(closeBtn) closeBtn.addEventListener('click', toggleMenu);
+  if(backdrop) backdrop.addEventListener('click', toggleMenu);
 </script>
