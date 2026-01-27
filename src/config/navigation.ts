@@ -1,71 +1,69 @@
 /**
  * Navigation Configuration
- *
- * @description
- * Centralized navigation configuration for header and footer.
- * All navigation items are defined here for consistency and easy maintenance.
- *
- * Items with a `feature` property will only be shown if that feature is enabled
- * in the site config's feature flags.
+ * Angepasst an die neue deutsche Dateistruktur (src/pages).
  */
 
 import type { Navigation } from '../lib/types';
 
 export const navigation: Navigation = {
   /**
-   * Header Navigation
-   * - main: Primary navigation links
-   * - cta: Call-to-action buttons on the right
+   * Kopfzeile (Header)
    */
   header: {
     main: [
-      { label: 'Features', href: '/features' },
-      { label: 'Pricing', href: '/pricing' },
-      { label: 'Demo', href: '/dashboard' },
-      { label: 'Customers', href: '/customers' },
-      { label: 'Enterprise', href: '/enterprise' },
-      { label: 'Docs', href: '/docs', feature: 'docs' },
-      { label: 'Blog', href: '/blog', feature: 'blog' },
+      { label: 'Funktionen', href: '/funktionen' }, // zeigt auf src/pages/funktionen/index.astro
+      { label: 'Preise', href: '/preise' },         // zeigt auf src/pages/preise.astro
+      { label: 'Über uns', href: '/ueber-uns' },    // zeigt auf src/pages/ueber-uns.astro
+      { label: 'Partner', href: '/partnernetzwerk' }, // zeigt auf src/pages/partnernetzwerk.astro
+      { label: 'Blog', href: '/blog' },
     ],
     cta: [
-      { label: 'Login', href: '/login', variant: 'ghost' },
-      { label: 'Get Started', href: '/register', variant: 'primary' },
+      // Link zur existierenden Web-App
+      { label: 'Login', href: 'https://garage.autaxo.de', variant: 'ghost' },
+      // Link zur Registrierung
+      { label: 'Kostenlos testen', href: 'https://garage.autaxo.de/auth/sign-up', variant: 'primary' },
     ],
   },
 
   /**
-   * Footer Navigation
-   * Organized into 5 columns: Product, Solutions, Resources, Company, Legal
+   * Fußzeile (Footer)
    */
   footer: {
+    // Spalte 1: Produkt
     product: [
-      { label: 'Features', href: '/features' },
-      { label: 'Integrations', href: '/integrations' },
-      { label: 'Security', href: '/security' },
-      { label: 'Pricing', href: '/pricing' },
+      { label: 'Funktionen', href: '/funktionen' },
+      { label: 'Preise', href: '/preise' },
+      { label: 'Für Steuerberater', href: '/steuerberater' }, // Neu!
+      { label: 'Downloads', href: '/downloads' },             // Neu!
+    ],
+    
+    // Spalte 2: Ressourcen & Wissen (Habe ich zusammengefasst, da "Solutions" leer war)
+    solutions: [
+      { label: 'Blog', href: '/blog' },
+      { label: 'Training', href: '/training' },               // Neu!
+      { label: 'Hilfe', href: '/hilfe' },
       { label: 'FAQ', href: '/faq' },
     ],
-    solutions: [
-      { label: 'Enterprise', href: '/enterprise' },
-      { label: 'Customers', href: '/customers' },
-      { label: 'Request Demo', href: '/demo' },
-      { label: 'Status', href: '/status' },
-    ],
+    
+    // Spalte 3: (Wird im Theme oft "Resources" genannt, wir nutzen es hier nicht oder doppelt)
+    // Ich lasse es leer, damit der Footer nicht zu breit wird, oder wir packen hier Whitepaper rein
     resources: [
-      { label: 'Documentation', href: '/docs', feature: 'docs' },
-      { label: 'Blog', href: '/blog', feature: 'blog' },
-      { label: 'Changelog', href: '/changelog', feature: 'changelog' },
-      { label: 'Roadmap', href: '/roadmap', feature: 'roadmap' },
+        // Falls du eine Whitepaper Seite hast, könnte die hier hin:
+        // { label: 'Whitepaper', href: '/whitepaper' },
     ],
+    
+    // Spalte 4: Unternehmen
     company: [
-      { label: 'About', href: '/about' },
-      { label: 'Careers', href: '/careers' },
-      { label: 'Contact', href: '/contact' },
-      { label: 'Testimonials', href: '/testimonials', feature: 'testimonials' },
+      { label: 'Über uns', href: '/ueber-uns' },
+      { label: 'Partnernetzwerk', href: '/partnernetzwerk' },
+      { label: 'Kontakt', href: '/kontakt' },
     ],
+    
+    // Spalte 5: Rechtliches (Ganz wichtig: korrekte deutsche Pfade)
     legal: [
-      { label: 'Privacy', href: '/privacy' },
-      { label: 'Terms', href: '/terms' },
+      { label: 'Impressum', href: '/impressum' },
+      { label: 'Datenschutz', href: '/datenschutz' }, // War vorher /privacy
+      { label: 'AGB', href: '/agb' },                 // War vorher /terms
     ],
   },
 };
