@@ -2,36 +2,42 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  /* --- AUTAXO BRAND COLORS --- */
-  /* Wir nutzen das Rot, aber integrieren es in das neue Dark-Theme */
+  /* --- AUTAXO MARKENFARBEN (Korrigiert & Beruhigt) --- */
+  
+  /* Hauptfarbe: Ihr Original Autaxo-Rot (Kein Neon!) */
   --color-primary: #b30018;
-  --color-primary-hover: #cf001c; 
-  --color-secondary: #070203;
+  
+  /* Hover: Wir werden DUNKLER statt heller beim Drüberfahren (wirkt edler) */
+  --color-primary-hover: #8a0012; 
+  
+  /* Akzent: Neutrales Weiß/Grau statt Blau */
+  --color-secondary: #ffffff;
 
-  /* --- NEUE FARBPALETTE (Aus Ihrem Subpage-Code übernommen) --- */
-  /* Tiefes Anthrazit/Schwarz für den Hintergrund */
+  /* --- NEUE, RUHIGERE FARBPALETTE --- */
+  
+  /* Hintergrund: Tiefes Autaxo-Schwarz (aus Ihrer alten Seite) */
   --color-background: #0b0c10;
   
-  /* Etwas hellerer Ton für Karten/Container (aus .card übernommen) */
-  --color-surface: #111522; 
+  /* Elemente: Ein sehr dunkles Grau, das sich sanft abhebt */
+  --color-surface: #15171e;
   
-  /* Die Rahmenfarbe aus Ihrem Code */
+  /* Rahmen: Sehr dezent, kaum sichtbar */
   --color-border: #21283a;
   
-  /* Textfarben aus Ihrem Code */
-  --color-text: #e9ecf3;       /* Fast Weiß */
-  --color-text-muted: #a5aab7; /* Grau für Nebentexte */
+  /* Text: Gebrochenes Weiß (angenehmer für die Augen als reines Weiß) */
+  --color-text: #e9ecf3;       
+  --color-text-muted: #a0aab8; /* Helles Grau für Nebentexte */
 
-  /* Status Farben */
-  --color-success: #4ade80;
-  --color-warning: #f59e0b;
-  --color-error: #ef4444;
+  /* --- STATUS FARBEN (Blau entfernt!) --- */
+  --color-success: #4ade80; /* Grün (bleibt für Erfolg) */
+  --color-warning: #f59e0b; /* Gelb (bleibt für Warnung) */
+  --color-error: #b30018;   /* Fehler ist jetzt auch Autaxo-Rot */
+  --color-info: #a0aab8;    /* Info ist jetzt GRAU (vorher Blau) */
 
-  /* Design-Variablen aus Ihrem Code */
-  --radius-card: 18px;
-  --radius-btn: 999px;
+  /* Design-Variablen */
+  --radius-card: 12px;      /* Etwas weniger rund, wirkt technischer */
+  --radius-btn: 4px;        /* Klassische Buttons passend zu Autaxo */
   
-  /* Schriftart */
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
@@ -45,34 +51,35 @@ body {
   font-family: var(--font-sans);
   background-color: var(--color-background);
   color: var(--color-text);
-  /* Der lineare Verlauf aus Ihrem Code für Tiefe */
-  background-image: linear-gradient(180deg, #0b0c10, #0c1016 45%, #0b0c10 100%);
+  /* Ein sehr subtiler Verlauf, damit es nicht "tot" wirkt, aber nicht blendet */
+  background-image: linear-gradient(to bottom, #0b0c10, #11141a);
   min-height: 100vh;
-  position: relative;
 }
 
-/* --- DER GLOW-EFFEKT (Aus Ihrem Code, angepasst auf Rot) --- */
-/* Das erzeugt diesen coolen Lichtschein oben rechts */
+/* --- GLOBALER SCHEIN (Entschärft) --- */
+/* Wir machen den Schein viel schwächer (Opacity 0.08), damit er nicht "beißt" */
 body::before {
   content: "";
   position: fixed;
-  inset: 0;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 600px;
   z-index: -1;
   pointer-events: none;
-  /* Original war Blau (123,140,255), hier angepasst auf ein dezentes Autaxo-Rot-Scheinen */
-  background: radial-gradient(1100px 550px at 80% -10%, rgba(179, 0, 24, 0.15), transparent);
+  background: radial-gradient(circle at top right, rgba(179, 0, 24, 0.08), transparent 70%);
 }
 
-/* --- GLOBALE STILE FÜR ELEMENTE --- */
+/* --- ELEMENTE ANPASSEN --- */
 
-/* Überschriften */
+/* Überschriften immer Weiß */
 h1, h2, h3, h4 {
   color: #ffffff;
-  letter-spacing: -0.02em; /* Modernes Tracking */
-  line-height: 1.1;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
 }
 
-/* Links */
+/* Links: Standardmäßig Weiß, bei Hover Rot (kein Blau!) */
 a {
   color: inherit;
   text-decoration: none;
@@ -80,10 +87,10 @@ a {
 }
 
 a:hover {
-  color: var(--color-primary);
+  color: var(--color-primary); /* Wird rot beim Drüberfahren */
 }
 
-/* Bilder responsive machen */
+/* Bilder responsive */
 img {
   max-width: 100%;
   height: auto;
