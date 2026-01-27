@@ -3,12 +3,19 @@
  *
  * @description
  * TypeScript interfaces used across the site configuration.
- * These types are separated from config values for better maintainability.
+ * Updated to support nested navigation (dropdowns) and modern SaaS requirements.
  */
+
+/* =========================================
+   1. NAVIGATION SYSTEM (Updated for Dropdowns)
+   ========================================= */
 
 export interface NavigationItem {
   label: string;
-  href: string;
+  /** Link target (optional for parent items with dropdowns) */
+  href?: string;
+  /** Child items for dropdown menus */
+  items?: NavigationItem[];
   /** Feature flag key - item only shows if this feature is enabled */
   feature?: keyof FeatureFlags;
 }
@@ -20,7 +27,7 @@ export interface NavigationCTA {
 }
 
 export interface HeaderNavigation {
-  /** Main navigation items */
+  /** Main navigation items (can be nested) */
   main: NavigationItem[];
   /** CTA buttons on the right side */
   cta: NavigationCTA[];
@@ -31,12 +38,12 @@ export interface FooterNavigation {
   product: NavigationItem[];
   /** Solutions/use-case links */
   solutions: NavigationItem[];
-  /** Resources like docs, blog */
-  resources: NavigationItem[];
   /** Company info links */
   company: NavigationItem[];
   /** Legal links */
   legal: NavigationItem[];
+  /** Social links (optional separate section) */
+  social?: NavigationItem[];
 }
 
 export interface Navigation {
@@ -44,10 +51,17 @@ export interface Navigation {
   footer: FooterNavigation;
 }
 
+/* =========================================
+   2. SITE CONFIGURATION (General)
+   ========================================= */
+
 export interface SocialLinks {
   twitter?: string;
   github?: string;
   discord?: string;
+  linkedin?: string;
+  instagram?: string;
+  youtube?: string;
 }
 
 export interface Address {
@@ -62,19 +76,8 @@ export interface ContactInfo {
   email: string;
   supportEmail?: string;
   salesEmail?: string;
+  phone?: string;
   address: Address;
-}
-
-export interface ContactMethod {
-  icon: string;
-  label: string;
-  value: string;
-  href: string;
-}
-
-export interface ContactFAQ {
-  question: string;
-  answer: string;
 }
 
 export interface LegalConfig {
@@ -82,6 +85,10 @@ export interface LegalConfig {
   legalEmail: string;
   lastUpdated: string;
 }
+
+/* =========================================
+   3. FEATURES & FLAGS
+   ========================================= */
 
 export interface FeatureFlags {
   blog: boolean;
@@ -93,13 +100,17 @@ export interface FeatureFlags {
 
 export interface AnnouncementConfig {
   enabled: boolean;
-  id: string;
+  id: string; // Unique ID for local storage dismissal
   text: string;
   href?: string;
   linkText?: string;
   variant: 'primary' | 'secondary' | 'gradient';
   dismissible: boolean;
 }
+
+/* =========================================
+   4. CONTENT & STRINGS
+   ========================================= */
 
 export interface NewsletterStrings {
   title: string;
@@ -115,13 +126,17 @@ export interface ContentStrings {
   newsletter: NewsletterStrings;
 }
 
+/* =========================================
+   5. MASTER CONFIG INTERFACE
+   ========================================= */
+
 export interface SiteConfig {
   name: string;
   description: string;
   url: string;
   author: string;
-  logo: string;
-  ogImage: string;
+  logo: string; // Path to logo file
+  ogImage: string; // Open Graph image path
   contact: ContactInfo;
   legal: LegalConfig;
   social: SocialLinks;
@@ -131,29 +146,25 @@ export interface SiteConfig {
   content: ContentStrings;
 }
 
-/** Pricing plan configuration for PricingTable component */
+/* =========================================
+   6. PRICING MODELS
+   ========================================= */
+
 export interface PricingPlan {
-  /** Plan name (e.g., "Free", "Pro", "Enterprise") */
   name: string;
-  /** Monthly price in dollars (null for custom pricing) */
   monthlyPrice: number | null;
-  /** Custom price text for enterprise plans (e.g., "Custom", "Contact us") */
   customPrice?: string;
-  /** Short description of the plan */
   description: string;
-  /** List of features included in the plan */
   features: string[];
-  /** Whether to highlight this plan as recommended */
   highlighted?: boolean;
-  /** Badge text override (default: "Most Popular" for highlighted) */
   badge?: string;
-  /** Call-to-action button configuration */
   cta: { label: string; href: string };
 }
 
-/** Dashboard-specific type definitions */
+/* =========================================
+   7. DASHBOARD & APP MODELS
+   ========================================= */
 
-/** Project data model */
 export interface Project {
   id: string;
   name: string;
@@ -164,7 +175,6 @@ export interface Project {
   owner: string;
 }
 
-/** Team member data model */
 export interface TeamMember {
   id: string;
   name: string;
@@ -174,7 +184,6 @@ export interface TeamMember {
   joinedAt: Date;
 }
 
-/** Dashboard metric data model */
 export interface Metric {
   title: string;
   value: string | number;
@@ -186,7 +195,6 @@ export interface Metric {
   description?: string;
 }
 
-/** Chart data model for Chart.js */
 export interface ChartData {
   labels: string[];
   datasets: Array<{
@@ -196,14 +204,12 @@ export interface ChartData {
   }>;
 }
 
-/** User data model for dashboard */
 export interface DashboardUser {
   name: string;
   email: string;
   avatar?: string;
 }
 
-/** Billing plan data model */
 export interface BillingPlan {
   name: string;
   price: number;
@@ -212,7 +218,6 @@ export interface BillingPlan {
   nextBillingDate: Date;
 }
 
-/** Payment method data model */
 export interface PaymentMethod {
   type: 'card' | 'paypal' | 'bank';
   last4?: string;
@@ -221,7 +226,6 @@ export interface PaymentMethod {
   expiryYear?: number;
 }
 
-/** Billing history item data model */
 export interface BillingHistoryItem {
   id: string;
   date: Date;
