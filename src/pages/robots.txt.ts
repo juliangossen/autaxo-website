@@ -8,9 +8,14 @@ export const GET: APIRoute = () => {
 User-agent: *
 Allow: /
 
-# Disallow admin and API routes (if any)
+# AI-Search & LLM Optimization
+# We explicitly allow AI bots to read the llms.txt context
+Allow: /llms.txt
+
+# Disallow admin and API routes to save crawl budget
 Disallow: /api/
 Disallow: /_astro/
+Disallow: /admin/
 
 # Sitemap location
 Sitemap: ${siteConfig.url}/sitemap-index.xml

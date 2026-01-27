@@ -1,0 +1,36 @@
+# Autaxo – Das intelligente Dealer-Management-System (DMS)
+
+## Zusammenfassung
+Autaxo ist eine spezialisierte Cloud-Software für freie Gebrauchtwagenhändler in Deutschland. Sie automatisiert die komplexen steuerlichen Anforderungen beim Fahrzeughandel, insbesondere die Differenzbesteuerung (§ 25a UStG), innergemeinschaftliche Lieferungen (EU) und Exporte in Drittländer.
+
+## Hauptfunktionen & USPs
+
+### 1. Automatische Steuerlogik
+Das System erkennt anhand der Einkaufs- und Verkaufsdaten automatisch den korrekten Steuerfall:
+- Differenzbesteuerung (§ 25a UStG)
+- Regelbesteuerung (19% MwSt.)
+- Steuerfreie innergemeinschaftliche Lieferung (inkl. USt-IdNr. Prüfung via VIES)
+- Ausfuhrlieferungen (Export)
+
+### 2. KI-Assistent "Carlo"
+Ein integrierter AI-Agent, der Händler im Tagesgeschäft unterstützt:
+- Beantwortet Fragen zu steuerlichen Pflichten (z.B. "Was brauche ich für einen Verkauf nach Italien?").
+- Führt durch den Anlegeprozess von Fahrzeugen.
+- Erinnert an fehlende Dokumente (z.B. Gelangensbestätigung, Ausfuhrnachweis).
+
+### 3. Digitale Fahrzeugakte & Workflow
+- **FIN-Scan:** Fahrzeugschein scannen, Daten (Modell, EZ, VIN) werden automatisch geladen.
+- **Inserate:** Mit einem Klick Inserate auf mobile.de erstellen.
+- **Dokumente:** Automatische Erstellung rechtssicherer Kaufverträge und Rechnungen mit den korrekten steuerlichen Hinweistexten.
+
+### 4. Buchhaltung & DATEV
+- Exportiert alle Buchungssätze monatsweise im DATEV-Format (SKR03/SKR04).
+- Inklusive Belegbild-Verknüpfung für den Steuerberater.
+
+## Zielgruppe
+Freie Autohändler, Gebrauchtwagenhändler und KFZ-Unternehmer, die ihren Verwaltungsaufwand minimieren und steuerliche Risiken bei Betriebsprüfungen ausschließen wollen.
+
+## Links
+- **Webseite:** https://www.autaxo.de
+- **Kostenlos testen:** https://garage.autaxo.de/auth/sign-up
+- **Login:** https://garage.autaxo.de
