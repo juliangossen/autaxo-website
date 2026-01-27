@@ -3,60 +3,89 @@
 
 @theme {
   /* --- AUTAXO BRAND COLORS --- */
-  
-  /* Hauptfarbe: Seriöses Dunkelblau */
-  --color-primary: #003366;
-  /* Hover-Farbe: Ein noch dunkleres Blau für Buttons wenn man mit der Maus drüber fährt */
-  --color-primary-dark: #002244;
-  
-  /* Akzentfarbe: Autaxo Orange (für Highlights) */
-  --color-secondary: #FF9900; 
+  /* Wir nutzen das Rot, aber integrieren es in das neue Dark-Theme */
+  --color-primary: #b30018;
+  --color-primary-hover: #cf001c; 
+  --color-secondary: #070203;
 
-  /* --- Semantic Colors (Das Grundgerüst) --- */
-  /* Hintergrund weiß, Text dunkelgrau */
-  --color-background: #ffffff;
-  --color-surface: #f8fafc;
-  --color-text: #0f172a;
-  --color-text-muted: #64748b;
-  --color-border: #e2e8f0;
+  /* --- NEUE FARBPALETTE (Aus Ihrem Subpage-Code übernommen) --- */
+  /* Tiefes Anthrazit/Schwarz für den Hintergrund */
+  --color-background: #0b0c10;
+  
+  /* Etwas hellerer Ton für Karten/Container (aus .card übernommen) */
+  --color-surface: #111522; 
+  
+  /* Die Rahmenfarbe aus Ihrem Code */
+  --color-border: #21283a;
+  
+  /* Textfarben aus Ihrem Code */
+  --color-text: #e9ecf3;       /* Fast Weiß */
+  --color-text-muted: #a5aab7; /* Grau für Nebentexte */
 
-  /* Dashboard Status Farben (können wir so lassen oder später anpassen) */
-  --color-success: #10b981;
-  --color-success-bg: #d1fae5;
+  /* Status Farben */
+  --color-success: #4ade80;
   --color-warning: #f59e0b;
-  --color-warning-bg: #fef3c7;
   --color-error: #ef4444;
-  --color-error-bg: #fee2e2;
-  --color-info: #3b82f6;
-  --color-info-bg: #dbeafe;
 
-  /* Abstände & Radius (Design-Gefühl) */
-  --spacing-section: 6rem;
-  --spacing-content: 2rem;
-  --radius-sm: 0.375rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 1rem;
-}
-
-/* --- Dark Mode (Falls ein Besucher den dunklen Modus nutzt) --- */
-.dark {
-  --color-background: #020617; /* Sehr dunkles Blau/Schwarz */
-  --color-surface: #0f172a;
-  --color-text: #f1f5f9;       /* Helles Weiß */
-  --color-text-muted: #94a3b8;
-  --color-border: #1e293b;
+  /* Design-Variablen aus Ihrem Code */
+  --radius-card: 18px;
+  --radius-btn: 999px;
   
-  /* Im Dark Mode machen wir das Autaxo-Blau etwas heller, damit man es sieht */
-  --color-primary: #1a4d85; 
+  /* Schriftart */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
-/* --- Basis Einstellungen --- */
+/* --- GRUNDEINSTELLUNGEN --- */
 html {
   scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 body {
+  font-family: var(--font-sans);
   background-color: var(--color-background);
   color: var(--color-text);
-  font-family: system-ui, -apple-system, sans-serif;
+  /* Der lineare Verlauf aus Ihrem Code für Tiefe */
+  background-image: linear-gradient(180deg, #0b0c10, #0c1016 45%, #0b0c10 100%);
+  min-height: 100vh;
+  position: relative;
+}
+
+/* --- DER GLOW-EFFEKT (Aus Ihrem Code, angepasst auf Rot) --- */
+/* Das erzeugt diesen coolen Lichtschein oben rechts */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  /* Original war Blau (123,140,255), hier angepasst auf ein dezentes Autaxo-Rot-Scheinen */
+  background: radial-gradient(1100px 550px at 80% -10%, rgba(179, 0, 24, 0.15), transparent);
+}
+
+/* --- GLOBALE STILE FÜR ELEMENTE --- */
+
+/* Überschriften */
+h1, h2, h3, h4 {
+  color: #ffffff;
+  letter-spacing: -0.02em; /* Modernes Tracking */
+  line-height: 1.1;
+}
+
+/* Links */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--color-primary);
+}
+
+/* Bilder responsive machen */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
