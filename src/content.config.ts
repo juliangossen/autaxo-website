@@ -15,40 +15,5 @@ const blog = defineCollection({
   }),
 });
 
-const docs = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/docs' }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    order: z.number().default(0),
-    section: z.string(),
-    draft: z.boolean().default(false),
-  }),
-});
-
-const changelog = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/changelog' }),
-  schema: z.object({
-    version: z.string(),
-    date: z.coerce.date(),
-    title: z.string(),
-    type: z.enum(['major', 'minor', 'patch']),
-    draft: z.boolean().default(false),
-  }),
-});
-
-const testimonials = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/testimonials' }),
-  schema: z.object({
-    quote: z.string(),
-    author: z.string(),
-    role: z.string(),
-    company: z.string(),
-    avatar: z.string().optional(),
-    featured: z.boolean().default(false),
-    order: z.number().default(0),
-    draft: z.boolean().default(false),
-  }),
-});
-
-export const collections = { blog, docs, changelog, testimonials };
+// Wir exportieren nur noch den Blog, da der Rest gelöscht wurde.
+export const collections = { blog };
