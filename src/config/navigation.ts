@@ -45,7 +45,7 @@ export const navigation = {
         label: 'Hilfe', 
         href: '/hilfe',
         items: [
-          { label: 'Support Center', href: '/hilfe' },
+          { label: 'Support Center', href: '/kontakt' },
           { label: 'FAQ', href: '/faq' },
         ]
       },
