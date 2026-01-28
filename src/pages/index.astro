@@ -4,18 +4,21 @@ import { Icon } from 'astro-icon/components';
 
 const title = "Autaxo | Dealer-Management-System für §25a, EU & Export";
 const description =
-  "Die Autohandel-Software mit KI. Digitale Fahrzeugakte, automatische Steuerlogik (§25a/EU/Export) und DATEV-Export. Jetzt kostenlos testen.";
+  "Die Autohandel-Software mit KI: Digitale Fahrzeugakte, automatische Steuerlogik (§25a/EU/Export), Dokumente und DATEV-Export. Kostenlos testen.";
 
 const signupUrl = "https://garage.autaxo.de/auth/sign-up";
 const demoUrl =
   "https://calendar.google.com/calendar/appointments/schedules/AcZssZ0-xc9C7ft1ZGEy3HpR6hP8NyrHXyM_ikIgv0KEUx9tSnzjZGoQ1RNyF4X5WMjk0o4vg6A9ksjD?gv=true&mode=week";
+
+// Optional: wenn du eine echte Canonical-URL hast, die im Layout verwendet wird:
+const pageUrl = "https://autaxo.de/"; // <- ggf. anpassen
 
 const modules = [
   {
     id: "mod-akte",
     nav: "Fahrzeugakte",
     title: "Digitale Fahrzeugakte",
-    desc: "Alles am Fahrzeug: Status, Kosten, Dokumente, Nachweise – audit-ready.",
+    desc: "Status, Kosten, Dokumente und Nachweise zentral am Vorgang – audit-ready.",
     bullets: [
       "Revisionssichere Ablage am Vorgang",
       "Klare Statuslogik statt Excel & Ordner",
@@ -27,8 +30,8 @@ const modules = [
     id: "mod-vertraege",
     nav: "Dokumente",
     title: "Verträge & eSignatur",
-    desc: "PDFs in Sekunden – strukturiert, konsistent, rechtssicher.",
-    bullets: ["Kaufvertrag & Rechnung auf Knopfdruck", "Standardisiert + weniger Fehler"],
+    desc: "PDFs in Sekunden: strukturiert, konsistent und rechtssicher.",
+    bullets: ["Kaufvertrag & Rechnung per Klick", "Standardisiert – weniger Fehler"],
     href: "/funktionen/digitale-vertraege-esignatur",
     icon: "lucide:file-signature",
   },
@@ -45,7 +48,7 @@ const modules = [
     id: "mod-datev",
     nav: "DATEV",
     title: "Buchhaltung & DATEV",
-    desc: "Export-ready Daten, weniger Rückfragen, schneller Monatsabschluss.",
+    desc: "Export-ready Daten, weniger Rückfragen, schnellerer Monatsabschluss.",
     bullets: ["DATEV Export per Klick", "Struktur statt Nacharbeit"],
     href: "/funktionen/buchhaltung",
     icon: "lucide:calculator",
@@ -54,7 +57,7 @@ const modules = [
     id: "mod-carlo",
     nav: "Carlo",
     title: "KI-Assistent Carlo",
-    desc: "Plausibilitätschecks & Leitplanken direkt im Prozess.",
+    desc: "Plausibilitätschecks und Leitplanken direkt im Prozess.",
     bullets: ["Typische Fehler früh erkennen", "Hilft bei Fragen zu Steuerfällen"],
     href: "/funktionen/ki-assistent",
     icon: "lucide:bot",
@@ -69,8 +72,11 @@ const workflowSteps = [
     desc: "Stammdaten automatisch.",
     modalTitle: "Scannen statt Tippen.",
     modalText:
-      "Erfassen Sie ein Fahrzeug in unter 60 Sekunden. Einfach den Fahrzeugschein scannen – Autaxo liest die FIN automatisch aus, fragt die Stammdaten ab (Hersteller, Modell, EZ) und legt das Fahrzeug fehlerfrei an.",
-    media: { type: "video", src: "https://storage.googleapis.com/autaxo-website/GIFs%20for%20Website%20(1).mp4" },
+      "Ein Fahrzeug wird in unter 60 Sekunden erfasst: Fahrzeugschein scannen – Autaxo liest die FIN aus, fragt Stammdaten ab (Hersteller, Modell, EZ) und legt den Vorgang sauber an.",
+    media: {
+      type: "video",
+      src: "https://storage.googleapis.com/autaxo-website/GIFs%20for%20Website%20(1).mp4",
+    },
   },
   {
     id: "wf-2",
@@ -79,8 +85,11 @@ const workflowSteps = [
     desc: "VIES/USt-IdNr.",
     modalTitle: "Kauf korrekt erfassen.",
     modalText:
-      "Egal ob von Privat oder Unternehmen – erfassen Sie den Verkäufer digital. Bei EU-Geschäften wird die USt-IdNr. automatisch geprüft.",
-    media: { type: "video", src: "https://storage.googleapis.com/autaxo-website/GIFs%20for%20Website%20(2).mp4" },
+      "Verkäufer werden digital erfasst. Bei EU-Geschäften wird die USt-IdNr. automatisch geprüft (VIES).",
+    media: {
+      type: "video",
+      src: "https://storage.googleapis.com/autaxo-website/GIFs%20for%20Website%20(2).mp4",
+    },
   },
   {
     id: "wf-3",
@@ -89,8 +98,11 @@ const workflowSteps = [
     desc: "Rechnung/Upload.",
     modalTitle: "Ankaufsrechnung.",
     modalText:
-      "Erstellen Sie rechtssichere Ankaufsrechnungen (Gutschrift) oder laden Sie externe Belege einfach hoch. Alles digital.",
-    media: { type: "video", src: "https://storage.googleapis.com/autaxo-website/GIFs%20for%20Website%20(3).mp4" },
+      "Rechtssichere Ankaufsrechnungen (Gutschrift) werden automatisch erstellt oder externe Belege werden einfach hochgeladen – alles am Vorgang.",
+    media: {
+      type: "video",
+      src: "https://storage.googleapis.com/autaxo-website/GIFs%20for%20Website%20(3).mp4",
+    },
   },
   {
     id: "wf-4",
@@ -99,7 +111,7 @@ const workflowSteps = [
     desc: "Schnell online.",
     modalTitle: "Schneller inserieren.",
     modalText:
-      "Erstellen Sie mit einem Klick Verkaufsanzeigen auf bekannten Marktplätzen. Nach dem Verkauf wird das Inserat automatisch deaktiviert.",
+      "Verkaufsanzeigen werden mit einem Klick erstellt. Nach dem Verkauf wird das Inserat automatisch deaktiviert.",
     media: {
       type: "image",
       src: "https://storage.googleapis.com/autaxo-website/Homepage/Roadmap%20html%20block/Inserat%20Erstellen%20fu%CC%88r%20homepage%20(roadmap).png",
@@ -112,18 +124,24 @@ const workflowSteps = [
     desc: "PDFs + Hinweise.",
     modalTitle: "Dokumente auf Knopfdruck.",
     modalText:
-      "Erstellen Sie automatisch rechtssichere Kaufverträge und Rechnungen. Autaxo fügt die korrekten steuerlichen Hinweise automatisch hinzu.",
-    media: { type: "video", src: "https://storage.googleapis.com/autaxo-website/GIFs%20for%20Website%20(5).mp4" },
+      "Kaufverträge und Rechnungen werden automatisch erzeugt. Die korrekten steuerlichen Hinweise werden je Fall ergänzt.",
+    media: {
+      type: "video",
+      src: "https://storage.googleapis.com/autaxo-website/GIFs%20for%20Website%20(5).mp4",
+    },
   },
   {
     id: "wf-6",
     n: 6,
     title: "Steuerfall",
     desc: "Auto-Erkennung.",
-    modalTitle: "Steuerfälle? Erledigt.",
+    modalTitle: "Steuerfälle automatisiert.",
     modalText:
       "Autaxo erkennt automatisch: Differenzbesteuerung (§25a), Regelbesteuerung, innergemeinschaftliche Lieferung oder Export. Fehler werden minimiert.",
-    media: { type: "video", src: "https://storage.googleapis.com/autaxo-website/GIFs%20for%20Website%20(6).mp4" },
+    media: {
+      type: "video",
+      src: "https://storage.googleapis.com/autaxo-website/GIFs%20for%20Website%20(6).mp4",
+    },
   },
   {
     id: "wf-7",
@@ -132,24 +150,97 @@ const workflowSteps = [
     desc: "Pflichten im Blick.",
     modalTitle: "Sicher für die Prüfung.",
     modalText:
-      "Autaxo erinnert an Pflichten wie die Gelangensbestätigung bei steuerfreier igL und speichert diese direkt zum Vorgang ab.",
-    media: { type: "video", src: "https://storage.googleapis.com/autaxo-website/GIFs%20for%20Website%20(7).mp4" },
+      "Pflichten wie Gelangensbestätigung bei steuerfreier igL werden sichtbar gemacht und die Nachweise direkt zum Vorgang abgelegt.",
+    media: {
+      type: "video",
+      src: "https://storage.googleapis.com/autaxo-website/GIFs%20for%20Website%20(7).mp4",
+    },
   },
   {
     id: "wf-8",
     n: 8,
     title: "DATEV",
     desc: "Export per Klick.",
-    modalTitle: "Perfekt für den Steuerberater.",
+    modalTitle: "Für Steuerkanzlei & Monatsabschluss.",
     modalText:
-      "Am Monatsende exportieren Sie alle Buchungssätze mit einem Klick im DATEV-Format (SKR03/04). Kein Sortieren von Belegen mehr notwendig.",
-    media: { type: "video", src: "https://storage.googleapis.com/autaxo-website/GIFs%20for%20Website(8).mp4" },
+      "Buchungssätze werden zum Monatsende im DATEV-Format exportiert (SKR03/04). Weniger Sortieren, weniger Rückfragen.",
+    media: {
+      type: "video",
+      // BUGFIX: konsistente URL-Encoding-Form wie bei (1)-(7)
+      src: "https://storage.googleapis.com/autaxo-website/GIFs%20for%20Website%20(8).mp4",
+    },
   },
 ];
+
+// FAQ für SEO + GEO/LLM Readability (sichtbar + als FAQPage im JSON-LD)
+const faqs = [
+  {
+    q: "Was ist §25a (Differenzbesteuerung) im Autohandel?",
+    a: "§25a UStG regelt die Differenzbesteuerung für bestimmte Gebrauchtwaren (u. a. Gebrauchtfahrzeuge). Die Besteuerung bezieht sich dabei auf die Marge statt auf den gesamten Verkaufspreis (Details sind ein Steuer-/Rechts-Thema).",
+  },
+  {
+    q: "Welche Steuerfälle deckt Autaxo ab?",
+    a: "Der Fokus liegt auf Differenzbesteuerung (§25a), Regelbesteuerung, innergemeinschaftlichen Vorgängen (EU) und Export – inklusive Hinweisen und Nachweispflichten im Workflow.",
+  },
+  {
+    q: "Wie hilft Carlo (KI) konkret?",
+    a: "Carlo unterstützt mit Plausibilitätschecks im Prozess (z. B. typische Stolperfallen bei EU/Export/§25a) und liefert kontextbezogene Hinweise, bevor Fehler in Dokumente oder Buchhaltung wandern.",
+  },
+  {
+    q: "Wie funktioniert der DATEV-Export?",
+    a: "Buchungsdaten werden strukturiert im DATEV-kompatiblen Format exportiert, um Rückfragen zu reduzieren und den Monatsabschluss zu beschleunigen.",
+  },
+  {
+    q: "Wie schnell ist ein Fahrzeug erfasst?",
+    a: "Die Erfassung startet typischerweise über Scan/FIN: Stammdaten werden automatisiert übernommen, wodurch der Vorgang schneller und konsistenter angelegt wird.",
+  },
+  {
+    q: "Für wen ist Autaxo gedacht?",
+    a: "Für Autohändler, die Prozesse rund um Fahrzeugakte, Dokumente, Steuerlogik und Buchhaltung in einem System bündeln möchten – besonders relevant bei §25a, EU-Geschäften und Export.",
+  },
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${pageUrl}#org`,
+      "name": "Autaxo",
+      "url": pageUrl,
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": `${pageUrl}#app`,
+      "name": "Autaxo",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": description,
+      "url": pageUrl,
+      "publisher": { "@id": `${pageUrl}#org` },
+      "featureList": [
+        "Digitale Fahrzeugakte",
+        "Verträge & eSignatur",
+        "Steuerlogik (§25a/EU/Export)",
+        "DATEV-Export",
+        "KI-Assistent Carlo",
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${pageUrl}#faq`,
+      "mainEntity": faqs.map((f) => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": { "@type": "Answer", "text": f.a },
+      })),
+    },
+  ],
+};
 ---
 
 <MarketingLayout title={title} description={description}>
-  <div class="relative overflow-hidden" data-page data-spotlight>
+  <main class="relative overflow-hidden" data-page data-spotlight>
     <!-- Continuous background for the whole page -->
     <div class="pointer-events-none fixed inset-0 -z-10" aria-hidden="true">
       <div class="absolute inset-0 ax-mesh"></div>
@@ -161,36 +252,37 @@ const workflowSteps = [
     </div>
 
     <!-- HERO -->
-    <section class="pt-28 pb-12 lg:pt-44 lg:pb-14">
+    <header class="pt-28 pb-12 lg:pt-44 lg:pb-14">
       <div class="container mx-auto px-4">
         <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           <div class="lg:col-span-6">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/90 text-xs font-semibold tracking-wide">
-              <span class="relative flex h-2 w-2">
+              <span class="relative flex h-2 w-2" aria-hidden="true">
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                 <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
               </span>
               Live: KI-Assistent <span class="text-primary">Carlo</span>
             </div>
 
-            <h1 class="mt-6 text-5xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.02] text-balance">
-              Autohandel.{" "}
+            <h1 id="hero-title" class="mt-6 text-5xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.02] text-balance">
+              Autohandel.
               <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-red-400 to-fuchsia-400">
-                Automatisiert.
+                {" "}Automatisiert.
               </span>
             </h1>
 
             <p class="mt-6 text-lg lg:text-xl text-text-muted leading-relaxed max-w-xl text-balance">
-              Von der FIN zum Vertrag in 60 Sekunden. Steuerlogik (§25a/EU/Export), Dokumente und DATEV-Export – in einem Flow.
+              Autaxo bündelt Fahrzeugakte, Dokumente, Steuerlogik (§25a/EU/Export) und DATEV-Export in einem durchgängigen Workflow – vom Scan bis zum Vertrag.
             </p>
 
             <div class="mt-8 flex flex-col sm:flex-row gap-4">
               <a
                 href={signupUrl}
                 class="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary hover:bg-primary-hover text-white font-bold rounded-xl transition-all hover:-translate-y-0.5 shadow-xl shadow-primary/25"
+                aria-label="Autaxo kostenlos testen"
               >
                 Kostenlos testen
-                <Icon name="lucide:arrow-right" class="w-5 h-5 transition-transform group-hover:translate-x-0.5" />
+                <Icon name="lucide:arrow-right" class="w-5 h-5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
               </a>
 
               <a
@@ -198,36 +290,43 @@ const workflowSteps = [
                 target="_blank"
                 rel="noopener noreferrer"
                 class="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/5 border border-white/10 hover:border-primary/40 text-white font-semibold rounded-xl transition-colors"
+                aria-label="Demo-Termin im Kalender öffnen"
               >
-                <Icon name="lucide:calendar" class="w-5 h-5 text-primary" />
+                <Icon name="lucide:calendar" class="w-5 h-5 text-primary" aria-hidden="true" />
                 Demo buchen
               </a>
             </div>
 
-            <div class="mt-8 grid grid-cols-3 gap-3 max-w-lg" data-reveal>
-              <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
-                <p class="text-white text-xl font-extrabold">60s</p>
-                <p class="text-xs text-white/60 mt-1">FIN → Vertrag</p>
-              </div>
-              <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
-                <p class="text-white text-xl font-extrabold">§25a</p>
-                <p class="text-xs text-white/60 mt-1">EU & Export</p>
-              </div>
-              <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
-                <p class="text-white text-xl font-extrabold">DATEV</p>
-                <p class="text-xs text-white/60 mt-1">per Klick</p>
-              </div>
-            </div>
+            <!-- Quick facts (LLM/GEO-friendly) -->
+            <section class="mt-8" aria-label="Kurzfakten">
+              <dl class="grid grid-cols-3 gap-3 max-w-lg" data-reveal>
+                <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
+                  <dt class="text-xs text-white/60">Speed</dt>
+                  <dd class="text-white text-xl font-extrabold mt-1">60s</dd>
+                  <dd class="text-xs text-white/60 mt-1">FIN → Vertrag</dd>
+                </div>
+                <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
+                  <dt class="text-xs text-white/60">Steuerlogik</dt>
+                  <dd class="text-white text-xl font-extrabold mt-1">§25a</dd>
+                  <dd class="text-xs text-white/60 mt-1">EU & Export</dd>
+                </div>
+                <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
+                  <dt class="text-xs text-white/60">Buchhaltung</dt>
+                  <dd class="text-white text-xl font-extrabold mt-1">DATEV</dd>
+                  <dd class="text-xs text-white/60 mt-1">per Klick</dd>
+                </div>
+              </dl>
+            </section>
           </div>
 
           <!-- Right: product window -->
           <div class="lg:col-span-6" data-reveal>
             <div class="relative">
-              <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-primary/35 via-fuchsia-500/20 to-cyan-400/20 blur-xl opacity-70"></div>
+              <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-primary/35 via-fuchsia-500/20 to-cyan-400/20 blur-xl opacity-70" aria-hidden="true"></div>
 
               <div class="relative rounded-3xl border border-white/10 bg-[#0b0c10]/70 backdrop-blur-xl overflow-hidden shadow-2xl">
                 <div class="flex items-center justify-between px-5 py-4 border-b border-white/10 bg-white/5">
-                  <div class="flex items-center gap-2">
+                  <div class="flex items-center gap-2" aria-hidden="true">
                     <span class="h-2.5 w-2.5 rounded-full bg-red-500/70"></span>
                     <span class="h-2.5 w-2.5 rounded-full bg-yellow-500/70"></span>
                     <span class="h-2.5 w-2.5 rounded-full bg-green-500/70"></span>
@@ -241,12 +340,13 @@ const workflowSteps = [
                       <div class="absolute inset-0 ax-shine opacity-60" aria-hidden="true"></div>
                       <img
                         src="/screenshots/dark-mode.webp"
-                        alt="Autaxo Dashboard (Dark Mode)"
+                        alt="Autaxo Dashboard mit digitaler Fahrzeugakte und Statusübersicht"
                         class="w-full h-[260px] sm:h-full object-cover object-top"
                         loading="eager"
                         decoding="async"
+                        fetchpriority="high"
                       />
-                      <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+                      <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between" aria-hidden="true">
                         <span class="text-[11px] text-white/70 bg-black/40 border border-white/10 px-2.5 py-1 rounded-full">
                           Dashboard
                         </span>
@@ -260,8 +360,8 @@ const workflowSteps = [
                       <div class="absolute inset-0 ax-scanline" aria-hidden="true"></div>
                       <div class="p-4">
                         <div class="flex items-center gap-2">
-                          <div class="h-9 w-9 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center">
-                            <Icon name="lucide:bot" class="w-4 h-4 text-primary" />
+                          <div class="h-9 w-9 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center" aria-hidden="true">
+                            <Icon name="lucide:bot" class="w-4 h-4 text-primary" aria-hidden="true" />
                           </div>
                           <div>
                             <p class="text-sm font-bold text-white leading-tight">Carlo</p>
@@ -274,18 +374,18 @@ const workflowSteps = [
                             „Italien netto – was beachten?“
                           </div>
                           <div class="rounded-2xl bg-primary/10 border border-primary/20 px-3 py-2 text-white">
-                            „igE erkannt. VIES prüfen, Erwerbsteuer abführen/ziehen.“
+                            „EU-Fall erkannt: VIES prüfen, korrekte Hinweise & Pflichten im Vorgang.“
                           </div>
                         </div>
 
                         <a href="/funktionen/ki-assistent" class="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-white/80 hover:text-white">
-                          Mehr zu Carlo <Icon name="lucide:arrow-right" class="w-4 h-4 text-primary" />
+                          Mehr zu Carlo <Icon name="lucide:arrow-right" class="w-4 h-4 text-primary" aria-hidden="true" />
                         </a>
                       </div>
                     </div>
                   </div>
 
-                  <div class="mt-4 flex flex-wrap gap-2">
+                  <div class="mt-4 flex flex-wrap gap-2" aria-label="Kernmodule">
                     <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white/70">Fahrzeugakte</span>
                     <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white/70">§25a/EU/Export</span>
                     <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white/70">DATEV</span>
@@ -298,26 +398,26 @@ const workflowSteps = [
           </div>
         </div>
       </div>
-    </section>
+    </header>
 
-    <!-- MODULE NAV + SCROLLSPY (overview + auto active) -->
-    <section class="pb-24">
+    <!-- MODULE NAV + SCROLLSPY -->
+    <section class="pb-24" aria-labelledby="modules-title">
       <div class="container mx-auto px-4">
         <div class="grid lg:grid-cols-12 gap-10 lg:gap-12">
           <!-- Sticky Navigator -->
           <div class="lg:col-span-4">
             <div class="lg:sticky lg:top-28">
               <div class="inline-flex items-center gap-2 text-primary font-bold tracking-wider uppercase text-sm" data-reveal>
-                <Icon name="lucide:layers" class="w-4 h-4" />
+                <Icon name="lucide:layers" class="w-4 h-4" aria-hidden="true" />
                 Überblick
               </div>
 
-              <h2 class="mt-3 text-3xl lg:text-4xl font-extrabold text-white text-balance" data-reveal>
+              <h2 id="modules-title" class="mt-3 text-3xl lg:text-4xl font-extrabold text-white text-balance" data-reveal>
                 Ein System. <span class="text-primary">Ein Flow.</span>
               </h2>
 
               <p class="mt-4 text-text-muted" data-reveal>
-                Scrollen Sie durch die Module – links wird automatisch das aktive Modul markiert.
+                Beim Scrollen wird das aktive Modul automatisch markiert. Module sind auch direkt verlinkt.
               </p>
 
               <nav class="mt-6 grid gap-2" aria-label="Module Navigator" data-reveal>
@@ -327,14 +427,14 @@ const workflowSteps = [
                     data-mod-link={m.id}
                     class="ax-nav-item rounded-2xl border border-white/10 bg-white/5 px-4 py-3 flex items-center gap-3 hover:border-primary/40 transition-colors"
                   >
-                    <div class="h-9 w-9 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
-                      <Icon name={m.icon} class="w-5 h-5" />
+                    <div class="h-9 w-9 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary" aria-hidden="true">
+                      <Icon name={m.icon} class="w-5 h-5" aria-hidden="true" />
                     </div>
                     <div class="flex-1">
                       <p class="text-white font-bold leading-tight">{m.nav}</p>
                       <p class="text-xs text-white/50 mt-0.5">{m.title}</p>
                     </div>
-                    <Icon name="lucide:chevron-right" class="w-4 h-4 text-white/40" />
+                    <Icon name="lucide:chevron-right" class="w-4 h-4 text-white/40" aria-hidden="true" />
                   </a>
                 ))}
               </nav>
@@ -345,7 +445,7 @@ const workflowSteps = [
                   class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-primary hover:bg-primary-hover text-white font-bold rounded-xl transition-all hover:-translate-y-0.5 shadow-xl shadow-primary/20"
                 >
                   Kostenlos testen
-                  <Icon name="lucide:arrow-right" class="w-5 h-5" />
+                  <Icon name="lucide:arrow-right" class="w-5 h-5" aria-hidden="true" />
                 </a>
                 <a
                   href="/preise"
@@ -354,10 +454,14 @@ const workflowSteps = [
                   Preise
                 </a>
               </div>
+
+              <div class="mt-6 text-xs text-white/50">
+                Weitere Inhalte: <a class="underline hover:text-white" href="#workflow">Workflow</a> · <a class="underline hover:text-white" href="#faq">FAQ</a>
+              </div>
             </div>
           </div>
 
-          <!-- Module Story (scroll target sections) -->
+          <!-- Module Story -->
           <div class="lg:col-span-8">
             <div class="grid gap-6">
               {modules.map((m) => (
@@ -368,24 +472,24 @@ const workflowSteps = [
                   data-reveal
                 >
                   <div class="flex items-start gap-4">
-                    <div class="h-12 w-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
-                      <Icon name={m.icon} class="w-6 h-6" />
+                    <div class="h-12 w-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary" aria-hidden="true">
+                      <Icon name={m.icon} class="w-6 h-6" aria-hidden="true" />
                     </div>
                     <div class="flex-1">
                       <h3 class="text-white font-extrabold text-xl">{m.title}</h3>
                       <p class="mt-2 text-text-muted">{m.desc}</p>
 
-                      <ul class="mt-4 grid sm:grid-cols-2 gap-3 text-sm">
+                      <ul class="mt-4 grid sm:grid-cols-2 gap-3 text-sm" aria-label={`Vorteile: ${m.title}`}>
                         {m.bullets.map((b) => (
                           <li class="flex items-start gap-2 text-white/75">
-                            <Icon name="lucide:check" class="w-4 h-4 text-primary mt-0.5" />
+                            <Icon name="lucide:check" class="w-4 h-4 text-primary mt-0.5" aria-hidden="true" />
                             <span>{b}</span>
                           </li>
                         ))}
                       </ul>
 
                       <a href={m.href} class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white/80 hover:text-white">
-                        Details öffnen <Icon name="lucide:arrow-right" class="w-4 h-4 text-primary" />
+                        Details öffnen <Icon name="lucide:arrow-right" class="w-4 h-4 text-primary" aria-hidden="true" />
                       </a>
                     </div>
                   </div>
@@ -399,18 +503,18 @@ const workflowSteps = [
       </div>
     </section>
 
-    <!-- WORKFLOW DEMOS (compact overview grid) -->
-    <section id="workflow" class="pb-24">
+    <!-- WORKFLOW DEMOS -->
+    <section id="workflow" class="pb-24" aria-labelledby="workflow-title">
       <div class="container mx-auto px-4">
         <div class="rounded-3xl border border-white/10 bg-white/5 p-8 lg:p-10" data-reveal>
           <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
             <div>
               <span class="text-primary font-bold tracking-wider uppercase text-sm block">Workflow</span>
-              <h2 class="mt-2 text-3xl lg:text-4xl font-extrabold text-white text-balance">
+              <h2 id="workflow-title" class="mt-2 text-3xl lg:text-4xl font-extrabold text-white text-balance">
                 8 Schritte. Ein Prozess.
               </h2>
               <p class="mt-3 text-text-muted">
-                Kacheln anklicken → Demo öffnet sich. Videos laden erst beim Öffnen.
+                Ein Klick auf eine Kachel öffnet die Demo. Videos laden erst beim Öffnen (Performance).
               </p>
             </div>
 
@@ -419,7 +523,7 @@ const workflowSteps = [
               class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary hover:bg-primary-hover text-white font-bold rounded-xl transition-all hover:-translate-y-0.5 shadow-xl shadow-primary/20"
             >
               Starten
-              <Icon name="lucide:arrow-right" class="w-5 h-5" />
+              <Icon name="lucide:arrow-right" class="w-5 h-5" aria-hidden="true" />
             </a>
           </div>
 
@@ -428,18 +532,53 @@ const workflowSteps = [
               <button
                 type="button"
                 data-open-modal={s.id}
+                aria-controls={s.id}
+                aria-haspopup="dialog"
                 class="group text-left rounded-2xl border border-white/10 bg-[#0b0c10]/60 hover:border-primary/40 transition-colors p-4"
               >
                 <div class="flex items-center justify-between">
-                  <span class="h-8 w-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 font-bold text-xs">
+                  <span class="h-8 w-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 font-bold text-xs" aria-hidden="true">
                     {s.n}
                   </span>
-                  <Icon name="lucide:play" class="w-4 h-4 text-white/40 group-hover:text-primary transition-colors" />
+                  <Icon name="lucide:play" class="w-4 h-4 text-white/40 group-hover:text-primary transition-colors" aria-hidden="true" />
                 </div>
                 <p class="mt-3 text-white font-bold">{s.title}</p>
                 <p class="mt-1 text-xs text-white/60">{s.desc}</p>
               </button>
             ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ (SEO/GEO/LLM) -->
+    <section id="faq" class="pb-24" aria-labelledby="faq-title">
+      <div class="container mx-auto px-4 max-w-5xl">
+        <div class="rounded-3xl border border-white/10 bg-[#0b0c10]/70 backdrop-blur-xl p-8 lg:p-10" data-reveal>
+          <h2 id="faq-title" class="text-3xl lg:text-4xl font-extrabold text-white text-balance">
+            FAQ: §25a, EU, Export & DATEV
+          </h2>
+          <p class="mt-3 text-text-muted">
+            Kurze Antworten für schnelle Orientierung (keine Steuer- oder Rechtsberatung).
+          </p>
+
+          <div class="mt-8 grid gap-4">
+            {faqs.map((f) => (
+              <details class="rounded-2xl border border-white/10 bg-white/5 px-5 py-4">
+                <summary class="cursor-pointer text-white font-semibold">
+                  {f.q}
+                </summary>
+                <p class="mt-3 text-text-muted leading-relaxed">
+                  {f.a}
+                </p>
+              </details>
+            ))}
+          </div>
+
+          <div class="mt-8 ax-divider" aria-hidden="true"></div>
+
+          <div class="mt-6 text-sm text-white/70">
+            Mehr: <a class="underline hover:text-white" href="/funktionen">Funktionen</a> · <a class="underline hover:text-white" href="/preise">Preise</a>
           </div>
         </div>
       </div>
@@ -451,7 +590,7 @@ const workflowSteps = [
         <div class="rounded-3xl border border-white/10 bg-[#0b0c10]/70 backdrop-blur-xl p-10 lg:p-14 text-center relative overflow-hidden" data-reveal>
           <div class="absolute -top-32 left-1/2 -translate-x-1/2 h-[420px] w-[420px] rounded-full bg-primary/20 blur-3xl" aria-hidden="true"></div>
           <h2 class="text-3xl lg:text-5xl font-extrabold text-white text-balance">
-            Kostenlos testen. In 2 Minuten produktiv.
+            Kostenlos testen. In wenigen Minuten einsatzbereit.
           </h2>
           <p class="mt-5 text-lg text-text-muted max-w-2xl mx-auto">
             Keine Kreditkarte erforderlich. Jederzeit kündbar.
@@ -462,7 +601,7 @@ const workflowSteps = [
               class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary hover:bg-primary-hover text-white font-bold rounded-xl transition-all hover:-translate-y-0.5 shadow-xl shadow-primary/20"
             >
               Kostenlos starten
-              <Icon name="lucide:arrow-right" class="w-5 h-5" />
+              <Icon name="lucide:arrow-right" class="w-5 h-5" aria-hidden="true" />
             </a>
             <a
               href={demoUrl}
@@ -478,59 +617,69 @@ const workflowSteps = [
     </section>
 
     {/* MODALS */}
-    {workflowSteps.map((s) => (
-      <dialog
-        id={s.id}
-        class="bg-transparent p-0 w-full max-w-7xl backdrop:bg-black/80 backdrop:backdrop-blur-sm rounded-2xl shadow-2xl border border-white/10 m-auto"
-      >
-        <div class="bg-[#15171e] rounded-2xl overflow-hidden relative">
-          <button
-            type="button"
-            data-close-modal
-            class="absolute top-4 right-4 z-50 p-2 bg-black/50 hover:bg-primary text-white rounded-full transition-colors"
-            aria-label="Dialog schließen"
-          >
-            <Icon name="lucide:x" class="w-6 h-6" />
-          </button>
+    {workflowSteps.map((s) => {
+      const titleId = `${s.id}-title`;
+      const descId = `${s.id}-desc`;
+      return (
+        <dialog
+          id={s.id}
+          class="ax-dialog bg-transparent p-0 w-full max-w-7xl backdrop:bg-black/80 backdrop:backdrop-blur-sm rounded-2xl shadow-2xl border border-white/10 m-auto"
+          aria-labelledby={titleId}
+          aria-describedby={descId}
+        >
+          <div class="bg-[#15171e] rounded-2xl overflow-hidden relative">
+            <button
+              type="button"
+              data-close-modal
+              class="absolute top-4 right-4 z-50 p-2 bg-black/50 hover:bg-primary text-white rounded-full transition-colors"
+              aria-label="Dialog schließen"
+            >
+              <Icon name="lucide:x" class="w-6 h-6" aria-hidden="true" />
+            </button>
 
-          <div class="grid lg:grid-cols-5 h-full">
-            <div class="lg:col-span-3 bg-black flex items-center justify-center aspect-video lg:aspect-auto h-[40vh] lg:h-[70vh]">
-              {s.media.type === "video" ? (
-                <video
-                  controls
-                  preload="none"
-                  class="w-full h-full object-contain"
-                  data-video
-                  data-src={s.media.src}
-                />
-              ) : (
-                <img
-                  src={s.media.src}
-                  alt={`Workflow Demo: ${s.title}`}
-                  class="w-full h-full object-contain"
-                  loading="lazy"
-                  decoding="async"
-                />
-              )}
-            </div>
+            <div class="grid lg:grid-cols-5 h-full">
+              <div class="lg:col-span-3 bg-black flex items-center justify-center aspect-video lg:aspect-auto h-[40vh] lg:h-[70vh]">
+                {s.media.type === "video" ? (
+                  <video
+                    controls
+                    preload="none"
+                    playsinline
+                    class="w-full h-full object-contain"
+                    data-video
+                    data-src={s.media.src}
+                  />
+                ) : (
+                  <img
+                    src={s.media.src}
+                    alt={`Workflow Demo: ${s.title}`}
+                    class="w-full h-full object-contain"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                )}
+              </div>
 
-            <div class="lg:col-span-2 p-8 lg:p-12 flex flex-col justify-center bg-[#15171e]">
-              <h3 class="text-2xl lg:text-3xl font-bold text-white mb-6">{s.modalTitle}</h3>
-              <p class="text-text-muted text-lg leading-relaxed mb-8">{s.modalText}</p>
+              <div class="lg:col-span-2 p-8 lg:p-12 flex flex-col justify-center bg-[#15171e]">
+                <h3 id={titleId} class="text-2xl lg:text-3xl font-bold text-white mb-6">{s.modalTitle}</h3>
+                <p id={descId} class="text-text-muted text-lg leading-relaxed mb-8">{s.modalText}</p>
 
-              <button
-                type="button"
-                data-close-modal
-                class="self-start px-8 py-3 border border-white/20 hover:bg-white/10 text-white rounded-lg transition-colors"
-              >
-                Schließen
-              </button>
+                <button
+                  type="button"
+                  data-close-modal
+                  class="self-start px-8 py-3 border border-white/20 hover:bg-white/10 text-white rounded-lg transition-colors"
+                >
+                  Schließen
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      </dialog>
-    ))}
-  </div>
+        </dialog>
+      );
+    })}
+
+    <!-- JSON-LD (works even if Layout doesn't expose head slots) -->
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  </main>
 </MarketingLayout>
 
 <style>
@@ -548,6 +697,7 @@ const workflowSteps = [
       linear-gradient(to bottom, rgba(255,255,255,.07) 1px, transparent 1px);
     background-size: 48px 48px;
     mask-image: radial-gradient(70% 60% at 50% 25%, #000 0%, transparent 68%);
+    -webkit-mask-image: radial-gradient(70% 60% at 50% 25%, #000 0%, transparent 68%); /* Safari fix */
   }
   .ax-spotlight{
     background: radial-gradient(650px 420px at var(--mx, 50%) var(--my, 30%), rgba(255,255,255,.10), transparent 60%);
@@ -557,6 +707,9 @@ const workflowSteps = [
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
   }
+
+  /* Scroll anchor offset (fix: anchors hidden under sticky header) */
+  [data-mod-section] { scroll-margin-top: 120px; }
 
   /* Floating glows */
   @keyframes axFloat { 0%,100%{ transform:translate3d(0,0,0)} 50%{ transform:translate3d(0,-18px,0)} }
@@ -602,6 +755,9 @@ const workflowSteps = [
   .ax-nav-item.is-active p:first-child{
     color: rgba(255,255,255,1);
   }
+
+  /* Dialog fallback (if showModal unsupported) */
+  .ax-dialog[open] { max-height: 92vh; }
 
   /* Reduced motion */
   @media (prefers-reduced-motion: reduce){
@@ -656,11 +812,9 @@ const workflowSteps = [
     });
   }
 
-  // Default active = first
   if (sections[0]) setActive(sections[0].getAttribute('data-mod-section'));
 
   const spy = new IntersectionObserver((entries) => {
-    // pick most visible intersecting section
     const visible = entries
       .filter((e) => e.isIntersecting)
       .sort((a, b) => (b.intersectionRatio || 0) - (a.intersectionRatio || 0))[0];
@@ -670,14 +824,13 @@ const workflowSteps = [
       if (id) setActive(id);
     }
   }, {
-    // keep the “active” region around the middle of viewport
     rootMargin: "-35% 0px -55% 0px",
     threshold: [0.12, 0.2, 0.35, 0.5, 0.7],
   });
 
   sections.forEach((s) => spy.observe(s));
 
-  // Modals + lazy video attach
+  // Modals + lazy video attach (BUGFIX: call video.load() after adding source)
   const openButtons = document.querySelectorAll('[data-open-modal]');
   const closeButtons = document.querySelectorAll('[data-close-modal]');
 
@@ -685,6 +838,7 @@ const workflowSteps = [
     const video = dialog.querySelector('video[data-video]');
     if (!video) return;
     if (video.dataset.loaded === '1') return;
+
     const src = video.getAttribute('data-src');
     if (!src) return;
 
@@ -693,11 +847,14 @@ const workflowSteps = [
     source.type = 'video/mp4';
     video.appendChild(source);
     video.dataset.loaded = '1';
+
+    try { video.load(); } catch (_) {}
   }
 
   function playVideo(dialog) {
     const video = dialog.querySelector('video[data-video]');
     if (!video) return;
+    // Autoplay kann blockiert werden; try/catch ist ok.
     try { video.play(); } catch (_) {}
   }
 
@@ -710,15 +867,25 @@ const workflowSteps = [
   function openModalById(id) {
     const dialog = document.getElementById(id);
     if (!dialog) return;
-    dialog.showModal();
+
+    // Robust: attach before open
     attachVideoSource(dialog);
+
+    // Native dialog supported?
+    if (typeof dialog.showModal === 'function') {
+      if (!dialog.open) dialog.showModal();
+    } else {
+      dialog.setAttribute('open', '');
+    }
+
     playVideo(dialog);
   }
 
   function closeModal(dialog) {
     if (!dialog) return;
     pauseVideo(dialog);
-    dialog.close();
+    if (typeof dialog.close === 'function' && dialog.open) dialog.close();
+    else dialog.removeAttribute('open');
   }
 
   openButtons.forEach((btn) => {
@@ -736,9 +903,17 @@ const workflowSteps = [
   });
 
   document.querySelectorAll('dialog').forEach((dialog) => {
+    // Close on backdrop click (browser-dependent, but widely works)
     dialog.addEventListener('click', (e) => {
       if (e.target === dialog) closeModal(dialog);
     });
+
+    // Ensure we pause on ESC/cancel (BUGFIX: cancel not always triggers our close handler)
+    dialog.addEventListener('cancel', (e) => {
+      e.preventDefault();
+      closeModal(dialog);
+    });
+
     dialog.addEventListener('close', () => pauseVideo(dialog));
   });
 </script>
