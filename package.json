@@ -1,21 +1,19 @@
 {
-  "name": "virex-astro",
+  "name": "autaxo-website",
   "type": "module",
-  "version": "1.4.1",
-  "description": "A production-ready SaaS theme for Astro. Built for those who want to go from zero to launch quickly.",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Autaxo – Das intelligente Dealer-Management-System für Autohändler.",
   "keywords": [
+    "autaxo",
+    "autohandel",
+    "software",
+    "dms",
     "astro",
-    "theme",
-    "saas",
-    "landing-page",
     "tailwindcss"
   ],
-  "author": "Erland <hello@erland.me>",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/erlandv/virex.git"
-  },
-  "homepage": "https://virex.erland.me",
+  "author": "GOBERU Solutions UG (haftungsbeschränkt)",
+  "homepage": "https://www.autaxo.de",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",

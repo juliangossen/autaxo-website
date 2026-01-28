@@ -1,0 +1,44 @@
+# ==========================================
+# Autaxo Robots Configuration
+# Optimized for SEO & LLM (AI) Accessibility
+# ==========================================
+
+# 1. Global Rules
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
+Disallow: /auth/
+
+# 2. Google & Bing (SEO)
+User-agent: Googlebot
+Allow: /
+Allow: /_astro/
+Allow: /assets/
+
+User-agent: Bingbot
+Allow: /
+
+# 3. AI Bots & LLM Crawlers (LLMO Strategy)
+# Wir erlauben diesen Bots explizit den Zugriff, damit
+# Autaxo in den Wissensdatenbanken von KI-Modellen landet.
+
+# OpenAI (ChatGPT)
+User-agent: GPTBot
+Allow: /
+
+# Anthropic (Claude)
+User-agent: ClaudeBot
+Allow: /
+
+# Common Crawl (Trainingsdaten für viele KIs)
+User-agent: CCBot
+Allow: /
+
+# Google Extended (Bard/Gemini Training)
+User-agent: Google-Extended
+Allow: /
+
+# 4. Sitemap Location
+Sitemap: https://www.autaxo.de/sitemap-index.xml
