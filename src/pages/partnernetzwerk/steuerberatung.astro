@@ -1,0 +1,127 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import { Icon } from 'astro-icon/components';
+
+const title = "Autaxo Steuerberater | Experten für den KFZ-Handel";
+const description = "Zertifizierte Steuerberater für Autohändler. Spezialisiert auf Differenzbesteuerung (§25a), EU-Export und GoBD-konforme Buchhaltung mit Autaxo.";
+
+// Hier pflegst du deine Partner ein
+const partners = [
+  {
+    name: "Beispielkanzlei Essen",
+    location: "Essen, NRW",
+    status: "Zertifiziert",
+    specialties: ["§25a UStG", "DATEV", "GmbH & Co. KG"],
+    image: "https://unicorn-images.b-cdn.net/383349b3-0799-4413-8e40-918e8f2e851e?optimizer=gif&width=400",
+    link: "#", // Hier später echte URL
+    isLive: false // Aktuell "in Arbeit"
+  },
+  {
+    name: "Steuerberatung Köln",
+    location: "Köln, NRW",
+    status: "Zertifiziert",
+    specialties: ["EU-Export", "Lohnbuchhaltung", "Startups"],
+    image: "https://unicorn-images.b-cdn.net/415007de-44eb-47ce-a2de-0f82694290a6?optimizer=gif&width=400",
+    link: "#",
+    isLive: false
+  },
+  {
+    name: "Kanzlei Nord (Hamburg)",
+    location: "Hamburg",
+    status: "Zertifiziert",
+    specialties: ["Import/Export", "Betriebsprüfung", "Digitalisierung"],
+    image: "https://unicorn-images.b-cdn.net/d6a56c6e-8abe-4eaf-81e5-954eff814092?optimizer=gif&width=400",
+    link: "#",
+    isLive: false
+  }
+];
+---
+
+<MarketingLayout title={title} description={description}>
+
+  <section class="relative pt-32 pb-16 bg-[#0b0c10]">
+    <div class="container mx-auto px-4 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-medium mb-6">
+        <Icon name="lucide:scale" class="w-4 h-4" />
+        Partnernetzwerk: Steuerberatung
+      </div>
+      <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-6">
+        Steuerberater, die <br class="hidden md:block" />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">dein Geschäft verstehen.</span>
+      </h1>
+      <p class="text-text-muted max-w-2xl mx-auto text-lg">
+        Keine Erklärungen mehr, was Differenzbesteuerung ist. Unsere Partner arbeiten digital, nutzen Autaxo-Schnittstellen und kennen die Tücken des Fahrzeughandels.
+      </p>
+    </div>
+  </section>
+
+  <section class="pb-24 bg-[#0b0c10]">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        {partners.map((partner) => (
+          <div class="group bg-[#15171e] border border-white/10 rounded-2xl overflow-hidden hover:border-blue-500/30 transition-all hover:-translate-y-1">
+            
+            <div class="aspect-[4/3] overflow-hidden relative">
+              <img 
+                src={partner.image} 
+                alt={partner.name} 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0"
+              />
+              <div class="absolute top-4 right-4 bg-black/60 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded-full border border-white/10">
+                {partner.status}
+              </div>
+            </div>
+
+            <div class="p-6">
+              <div class="flex items-center gap-2 text-text-muted text-sm mb-3">
+                <Icon name="lucide:map-pin" class="w-4 h-4" />
+                {partner.location}
+              </div>
+              
+              <h3 class="text-xl font-bold text-white mb-4 group-hover:text-blue-400 transition-colors">
+                {partner.name}
+              </h3>
+
+              <div class="flex flex-wrap gap-2 mb-6">
+                {partner.specialties.map((tag) => (
+                  <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400 border border-white/5">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {partner.isLive ? (
+                <a href={partner.link} target="_blank" class="flex items-center justify-center gap-2 w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold transition-colors">
+                  Kanzlei profil ansehen
+                  <Icon name="lucide:arrow-right" class="w-4 h-4" />
+                </a>
+              ) : (
+                <button disabled class="flex items-center justify-center gap-2 w-full py-3 bg-white/5 text-gray-500 rounded-lg font-medium cursor-not-allowed border border-white/5">
+                  <Icon name="lucide:clock" class="w-4 h-4" />
+                  Profil in Arbeit
+                </button>
+              )}
+            </div>
+          </div>
+        ))}
+
+        <div class="bg-gradient-to-br from-blue-900/20 to-[#15171e] border border-blue-500/20 border-dashed rounded-2xl p-8 flex flex-col justify-center items-center text-center">
+          <div class="w-16 h-16 bg-blue-500/10 rounded-full flex items-center justify-center mb-6 text-blue-400">
+            <Icon name="lucide:plus" class="w-8 h-8" />
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">Deine Kanzlei hier?</h3>
+          <p class="text-text-muted text-sm mb-6">
+            Wir suchen spezialisierte Steuerberater für unser wachsendes Netzwerk.
+          </p>
+          <a href="/kontakt" class="text-blue-400 font-bold hover:text-blue-300 transition-colors flex items-center gap-2">
+            Partner werden
+            <Icon name="lucide:arrow-right" class="w-4 h-4" />
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</MarketingLayout>

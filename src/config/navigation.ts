@@ -16,9 +16,9 @@ export const navigation = {
         items: [
           { label: 'Alle Funktionen', href: '/funktionen' },
           { label: 'Verträge & E-Signatur', href: '/funktionen/digitale-vertraege-esignatur' },
-          { label: 'Buchhaltung', href: '/funktionen/buchhaltung' },
+          { label: 'Buchhaltung & DATEV', href: '/funktionen/buchhaltung-und-steuerlogik' },
           { label: 'Steuerlogik (§25a)', href: '/funktionen/differenzbesteuerung-25a-ustg' },
-          { label: 'KI-Assistent Carlo', href: '/funktionen/ki-assistent' },
+          { label: 'KI-Assistent Carlo', href: '/funktionen/ki-assistent-carlo' },
         ]
       },
       
@@ -35,7 +35,7 @@ export const navigation = {
         items: [
           { label: 'Training & Videos', href: '/training' },
           { label: 'Downloads & Vorlagen', href: '/downloads' },
-          { label: 'Software-Vergleich', href: '/vergleich' }, // Neu dazu
+          { label: 'Software-Vergleich', href: '/vergleich' },
           { label: 'Blog', href: '/blog' },
         ]
       },
@@ -43,24 +43,25 @@ export const navigation = {
       // 4. Support
       { 
         label: 'Hilfe', 
-        href: '/hilfe', // Fallback Link
+        href: '/hilfe',
         items: [
           { label: 'Support Center', href: '/hilfe' },
           { label: 'FAQ', href: '/faq' },
         ]
       },
 
-      // 5. Unternehmen (Trust & Netzwerk) - HIER IST DIE ÄNDERUNG
+      // 5. Unternehmen & Netzwerk
       { 
         label: 'Unternehmen', 
         href: '#', 
         items: [
-          { label: 'Über uns (Die Story)', href: '/ueber-uns' }, // Dein Trust-Booster
-          { label: 'Partnernetzwerk', href: '/partnernetzwerk' },
+          { label: 'Über uns (Die Story)', href: '/ueber-uns' },
+          // Der Hub-Link im Header reicht, um das Menü schlank zu halten
+          { label: 'Partnernetzwerk', href: '/partnernetzwerk' }, 
         ]
       },
       
-      // 6. Kontakt - Bleibt direkt für schnelle Erreichbarkeit
+      // 6. Kontakt
       { 
         label: 'Kontakt', 
         href: '/kontakt' 
@@ -74,24 +75,30 @@ export const navigation = {
     ],
   },
 
-  // Footer - Hier war es schon fast perfekt, nur Vergleich ergänzt
+  // FOOTER: Hier gehen wir in die Tiefe (SEO & Navigation)
   footer: {
     product: [
       { label: 'Funktionen', href: '/funktionen' },
       { label: 'Preise', href: '/preise' },
-      { label: 'Für Steuerberater', href: '/steuerberater' },
-      { label: 'Software-Vergleich', href: '/vergleich' }, // Neu
+      { label: 'Software-Vergleich', href: '/vergleich' },
+      { label: 'Für Steuerberater', href: '/steuerberater' }, // Falls diese Seite noch existiert, sonst entfernen
     ],
     solutions: [
-      { label: 'Blog', href: '/blog' },
-      { label: 'Training', href: '/training' },
-      { label: 'Downloads (PDF)', href: '/downloads' }, // Neu
+      { label: 'Training & Academy', href: '/training' },
+      { label: 'Downloads (PDF)', href: '/downloads' },
       { label: 'Hilfe & FAQ', href: '/faq' },
+      { label: 'Blog', href: '/blog' },
     ],
+    // NEU: Eigener Bereich oder Integration für das Netzwerk
+    // Wir integrieren es intelligent in "Company" oder erweitern die Liste, 
+    // um die Struktur sauber zu halten. Hier: Erweiterung von "Company".
     company: [
       { label: 'Über uns', href: '/ueber-uns' },
-      { label: 'Partnernetzwerk', href: '/partnernetzwerk' },
       { label: 'Kontakt', href: '/kontakt' },
+      // Die Deep-Links zum Netzwerk für SEO
+      { label: 'Partner: Steuerberatung', href: '/partnernetzwerk/steuerberatung' },
+      { label: 'Partner: Buchhaltung', href: '/partnernetzwerk/buchhaltung' },
+      { label: 'Partner: Digitalisierung', href: '/partnernetzwerk/digitalisierung' },
     ],
     legal: [
       { label: 'Impressum', href: '/impressum' },
