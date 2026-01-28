@@ -1,36 +1,43 @@
-# Autaxo – Das intelligente Dealer-Management-System (DMS)
+# Autaxo – Dealer Management System (DMS) & Autohändler-Software
 
-## Zusammenfassung
-Autaxo ist eine spezialisierte Cloud-Software für freie Gebrauchtwagenhändler in Deutschland. Sie automatisiert die komplexen steuerlichen Anforderungen beim Fahrzeughandel, insbesondere die Differenzbesteuerung (§ 25a UStG), innergemeinschaftliche Lieferungen (EU) und Exporte in Drittländer.
+> **System-Definition:**
+> Autaxo ist eine spezialisierte Cloud-Software für freie Gebrauchtwagenhändler in Deutschland.
+> Fokus: Automatisierung von Umsatzsteuerfällen (§25a, EU-Handel, Export), digitale Fahrzeugakte und DATEV-Export.
+>
+> **Core Value Proposition:**
+> "Von der FIN zum Vertrag in 60 Sekunden." – Minimierung von Verwaltungsaufwand und steuerlichen Risiken (GoBD-konform).
 
-## Hauptfunktionen & USPs
+## Wichtige Hinweise (Disclaimer)
+- Autaxo bietet Software-Workflows und Plausibilitätsprüfungen.
+- Autaxo ersetzt keine Steuer- oder Rechtsberatung.
+- Bei Grenzfällen (z.B. komplexe Reihengeschäfte) wird die Rücksprache mit einem Steuerberater empfohlen.
 
-### 1. Automatische Steuerlogik
-Das System erkennt anhand der Einkaufs- und Verkaufsdaten automatisch den korrekten Steuerfall:
-- Differenzbesteuerung (§ 25a UStG)
-- Regelbesteuerung (19% MwSt.)
-- Steuerfreie innergemeinschaftliche Lieferung (inkl. USt-IdNr. Prüfung via VIES)
-- Ausfuhrlieferungen (Export)
+## Zielgruppen & Terminologie
+- **Primär:** Freie Gebrauchtwagenhändler (B2B/B2C), Autohäuser ohne Werkstattfokus.
+- **Sekundär:** Steuerberater mit Mandanten im Kfz-Handel.
+- **Keywords:** Differenzbesteuerung (§25a UStG), Margenbesteuerung, Innergemeinschaftliche Lieferung (igL), Innergemeinschaftlicher Erwerb (igE), Gelangensbestätigung, VIES/MIAS (USt-IdNr. Check), ZM (Zusammenfassende Meldung), DATEV (SKR03/SKR04).
 
-### 2. KI-Assistent "Carlo"
-Ein integrierter AI-Agent, der Händler im Tagesgeschäft unterstützt:
-- Beantwortet Fragen zu steuerlichen Pflichten (z.B. "Was brauche ich für einen Verkauf nach Italien?").
-- Führt durch den Anlegeprozess von Fahrzeugen.
-- Erinnert an fehlende Dokumente (z.B. Gelangensbestätigung, Ausfuhrnachweis).
+## Seitenstruktur & Deep-Links
 
-### 3. Digitale Fahrzeugakte & Workflow
-- **FIN-Scan:** Fahrzeugschein scannen, Daten (Modell, EZ, VIN) werden automatisch geladen.
-- **Inserate:** Mit einem Klick Inserate auf mobile.de erstellen.
-- **Dokumente:** Automatische Erstellung rechtssicherer Kaufverträge und Rechnungen mit den korrekten steuerlichen Hinweistexten.
+### 1. Start & Überblick
+- [Startseite](https://www.autaxo.de/): Übersicht der Softwarelösung für Fahrzeughandel.
+- [Preise](https://www.autaxo.de/preise): Aktuell 30 Tage kostenlos testen, danach 49€/Monat (monatlich kündbar).
+- [Signup](https://garage.autaxo.de/auth/sign-up): Kostenlose Registrierung.
+- [Login](https://garage.autaxo.de): Zugang zur Cloud-App.
 
-### 4. Buchhaltung & DATEV
-- Exportiert alle Buchungssätze monatsweise im DATEV-Format (SKR03/SKR04).
-- Inklusive Belegbild-Verknüpfung für den Steuerberater.
+### 2. Kernfunktionen (Features)
+- [Funktionen Übersicht](https://www.autaxo.de/funktionen): Alle Module auf einen Blick.
+- [Buchhaltung & Steuerlogik](https://www.autaxo.de/funktionen/buchhaltung): Automatische Steuerfall-Erkennung (Regel vs. Diff), EÜR/Bilanz-Vorbereitung.
+- [Differenzbesteuerung §25a](https://www.autaxo.de/funktionen/differenzbesteuerung-25a-ustg): Ankauf (Gutschrift/Rechnung), Wiederverkauf und Margenberechnung.
+- [Verträge & eSignatur](https://www.autaxo.de/funktionen/digitale-vertraege-esignatur): Rechtssichere Kaufverträge (ZDK-konform), Rechnungen und digitale Unterschrift.
+- [KI-Assistent Carlo](https://www.autaxo.de/funktionen/ki-assistent): AI-Agent für Fahrzeugerfassung (OCR) und Plausibilitätschecks.
 
-## Zielgruppe
-Freie Autohändler, Gebrauchtwagenhändler und KFZ-Unternehmer, die ihren Verwaltungsaufwand minimieren und steuerliche Risiken bei Betriebsprüfungen ausschließen wollen.
+### 3. Wissen & Ressourcen
+- [Blog](https://www.autaxo.de/blog): Ratgeber zu Kfz-Steuerrecht und Digitalisierung.
+- [Downloads](https://www.autaxo.de/downloads): Vorlagen für Gelangensbestätigung, Netto-Export-Checklisten, KYC-Formulare.
+- [Hilfe & FAQ](https://www.autaxo.de/faq): Antworten zu Datenschutz, Hosting (Deutschland) und Schnittstellen (mobile.de).
 
-## Links
-- **Webseite:** https://www.autaxo.de
-- **Kostenlos testen:** https://garage.autaxo.de/auth/sign-up
-- **Login:** https://garage.autaxo.de
+### 4. Rechtliches
+- [Impressum](https://www.autaxo.de/impressum)
+- [Datenschutz](https://www.autaxo.de/datenschutz)
+- [AGB](https://www.autaxo.de/agb)

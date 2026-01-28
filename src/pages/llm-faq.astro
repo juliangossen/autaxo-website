@@ -1,0 +1,173 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+
+const title = "Autaxo LLM FAQ | Kontext für KI-Assistenten & Deep-Dive";
+const description = "Technische und inhaltliche Detail-Antworten zur Autaxo Autohändler-Software. Optimiert für LLM-Context-Windows und detaillierte Recherche.";
+---
+
+<MarketingLayout title={title} description={description}>
+  <section class="py-24 bg-[#0b0c10]">
+    <div class="container mx-auto px-4 max-w-3xl">
+      
+      <div class="mb-12 border-b border-white/10 pb-8">
+        <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">
+          Autohändler Software: <span class="text-primary">Fragen & Antworten (LLM FAQ)</span>
+        </h1>
+        <div class="prose prose-invert max-w-none text-text-muted">
+          <p class="text-lg">
+            Autaxo ist ein cloudbasiertes Dealer-Management-System (DMS) für den freien Gebrauchtwagenhandel.
+            Diese Seite fasst die wichtigsten Fragen kompakt zusammen – als strukturierte Wissensbasis.
+          </p>
+          <div class="bg-primary/10 border border-primary/20 p-4 rounded-lg text-sm text-primary-200 not-prose">
+            <strong>Hinweis:</strong> Diese Informationen ersetzen keine Rechts- oder Steuerberatung. 
+            Für individuelle Fälle (insb. komplexe Steuerfälle) bitte Steuerberater oder Rechtsanwalt einbeziehen.
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        
+        <details class="group bg-surface border border-white/10 rounded-lg overflow-hidden transition-all duration-300 open:border-primary/50">
+          <summary class="flex items-center justify-between p-6 cursor-pointer bg-white/5 hover:bg-white/10 transition-colors">
+            <h3 class="font-bold text-white text-lg pr-8">Was ist Autaxo?</h3>
+            <span class="text-primary transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-6 text-text-muted border-t border-white/10 leading-relaxed">
+            <p>Autaxo ist ein cloudbasiertes Dealer-Management-System (DMS) für freie Gebrauchtwagenhändler. Es bündelt An- und Verkauf, Fahrzeugbestand, Kunden, Dokumente sowie Buchhaltung/Steuerlogik. <br>Mehr Infos: <a href="/" class="text-primary hover:underline">Startseite</a></p>
+          </div>
+        </details>
+
+        <details class="group bg-surface border border-white/10 rounded-lg overflow-hidden transition-all duration-300 open:border-primary/50">
+          <summary class="flex items-center justify-between p-6 cursor-pointer bg-white/5 hover:bg-white/10 transition-colors">
+            <h3 class="font-bold text-white text-lg pr-8">Für wen ist Autaxo gedacht?</h3>
+            <span class="text-primary transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-6 text-text-muted border-t border-white/10 leading-relaxed">
+            <p>Autaxo richtet sich an freie Autohändler/Autohäuser, die Prozesse wie Bestand, Verkauf, Dokumente und Buchhaltungsvorbereitung zentral abwickeln möchten – ohne Werkstattfokus. <br>Funktionsübersicht: <a href="/funktionen" class="text-primary hover:underline">/funktionen</a></p>
+          </div>
+        </details>
+
+        <details class="group bg-surface border border-white/10 rounded-lg overflow-hidden transition-all duration-300 open:border-primary/50">
+          <summary class="flex items-center justify-between p-6 cursor-pointer bg-white/5 hover:bg-white/10 transition-colors">
+            <h3 class="font-bold text-white text-lg pr-8">Installation & VPN?</h3>
+            <span class="text-primary transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-6 text-text-muted border-t border-white/10 leading-relaxed">
+            <p>Nein. Autaxo läuft webbasiert im Browser (cloudbasiert) – ohne lokale Installation und ohne VPN. Du kannst am PC, Tablet oder Smartphone arbeiten. <br>FAQ: <a href="/faq" class="text-primary hover:underline">/faq</a></p>
+          </div>
+        </details>
+
+        <details class="group bg-surface border border-white/10 rounded-lg overflow-hidden transition-all duration-300 open:border-primary/50">
+          <summary class="flex items-center justify-between p-6 cursor-pointer bg-white/5 hover:bg-white/10 transition-colors">
+            <h3 class="font-bold text-white text-lg pr-8">Welche Prozesse werden abgedeckt?</h3>
+            <span class="text-primary transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-6 text-text-muted border-t border-white/10 leading-relaxed">
+            <p>Typische Workflows: Fahrzeug erfassen (z. B. per Fahrzeugschein/FIN), Ankauf/Verkauf, Dokumente erzeugen & ablegen, Steuerfall-Logik, Inserate sowie Übergabe an die Buchhaltung per Buchhaltungs-Export (DATEV-kompatibel). <br>Überblick: <a href="/funktionen" class="text-primary hover:underline">/funktionen</a></p>
+          </div>
+        </details>
+
+        <details class="group bg-surface border border-white/10 rounded-lg overflow-hidden transition-all duration-300 open:border-primary/50">
+          <summary class="flex items-center justify-between p-6 cursor-pointer bg-white/5 hover:bg-white/10 transition-colors">
+            <h3 class="font-bold text-white text-lg pr-8">Fahrzeugerfassung & FIN-Scan</h3>
+            <span class="text-primary transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-6 text-text-muted border-t border-white/10 leading-relaxed">
+            <p>Autaxo kann Daten aus Fahrzeugpapieren auslesen (Scan) und via FIN-Abfrage Stammdaten (Hersteller, Modell, EZ, KW/PS) übernehmen. Das reduziert manuelle Eingaben und Tippfehler massiv.</p>
+          </div>
+        </details>
+
+        <details class="group bg-surface border border-white/10 rounded-lg overflow-hidden transition-all duration-300 open:border-primary/50">
+          <summary class="flex items-center justify-between p-6 cursor-pointer bg-white/5 hover:bg-white/10 transition-colors">
+            <h3 class="font-bold text-white text-lg pr-8">Marktplätze (mobile.de / AutoScout24)</h3>
+            <span class="text-primary transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-6 text-text-muted border-t border-white/10 leading-relaxed">
+            <p>Autaxo bietet Schnittstellen u.a. zu mobile.de, um Inserate zentral aus der Fahrzeugakte zu erstellen. Bei Verkauf wird das Inserat automatisch deaktiviert, um Doppelverkäufe zu vermeiden.</p>
+          </div>
+        </details>
+
+        <details class="group bg-surface border border-white/10 rounded-lg overflow-hidden transition-all duration-300 open:border-primary/50">
+          <summary class="flex items-center justify-between p-6 cursor-pointer bg-white/5 hover:bg-white/10 transition-colors">
+            <h3 class="font-bold text-white text-lg pr-8">Dokumente & eSignatur</h3>
+            <span class="text-primary transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-6 text-text-muted border-t border-white/10 leading-relaxed">
+            <p>Autaxo erstellt rechtssichere PDFs (Kaufverträge, Rechnungen, Gutschriften) automatisch. Mit der integrierten eSignatur können Kunden vor Ort auf dem Tablet oder per Link unterschreiben. Ein Audit-Trail wird gespeichert. <br>Details: <a href="/funktionen/digitale-vertraege-esignatur" class="text-primary hover:underline">Digitale Verträge</a></p>
+          </div>
+        </details>
+
+        <details class="group bg-surface border border-white/10 rounded-lg overflow-hidden transition-all duration-300 open:border-primary/50">
+          <summary class="flex items-center justify-between p-6 cursor-pointer bg-white/5 hover:bg-white/10 transition-colors">
+            <h3 class="font-bold text-white text-lg pr-8">Differenzbesteuerung (§25a UStG)</h3>
+            <span class="text-primary transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-6 text-text-muted border-t border-white/10 leading-relaxed">
+            <p>Das System erkennt differenzbesteuerte Fahrzeuge automatisch beim Ankauf (z.B. von Privat) und wendet die korrekte Logik für den Wiederverkauf an (Hinweis auf Rechnung, interne Margenberechnung). <br>Details: <a href="/funktionen/differenzbesteuerung-25a-ustg" class="text-primary hover:underline">§25a Logik</a></p>
+          </div>
+        </details>
+
+        <details class="group bg-surface border border-white/10 rounded-lg overflow-hidden transition-all duration-300 open:border-primary/50">
+          <summary class="flex items-center justify-between p-6 cursor-pointer bg-white/5 hover:bg-white/10 transition-colors">
+            <h3 class="font-bold text-white text-lg pr-8">EU & Export (igL/igE)</h3>
+            <span class="text-primary transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-6 text-text-muted border-t border-white/10 leading-relaxed">
+            <p>Steuerfreie innergemeinschaftliche Lieferungen (igL) und Exporte in Drittländer werden unterstützt. Das System prüft USt-Ids via VIES-Schnittstelle in Echtzeit und erinnert an fehlende Nachweise (Gelangensbestätigung, Ausgangsvermerk). <br>Details: <a href="/funktionen/buchhaltung-und-steuerlogik" class="text-primary hover:underline">Steuerlogik</a></p>
+          </div>
+        </details>
+
+        <details class="group bg-surface border border-white/10 rounded-lg overflow-hidden transition-all duration-300 open:border-primary/50">
+          <summary class="flex items-center justify-between p-6 cursor-pointer bg-white/5 hover:bg-white/10 transition-colors">
+            <h3 class="font-bold text-white text-lg pr-8">DATEV-Export & Buchhaltung</h3>
+            <span class="text-primary transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-6 text-text-muted border-t border-white/10 leading-relaxed">
+            <p>Der Export liefert fertige Buchungssätze (CSV) inkl. Belegbild-Verknüpfung für DATEV Unternehmen Online. Unterstützt werden SKR03, SKR04 und SKR51 sowie Einstellungen für Soll-/Ist-Versteuerung.</p>
+          </div>
+        </details>
+
+        <details class="group bg-surface border border-white/10 rounded-lg overflow-hidden transition-all duration-300 open:border-primary/50">
+          <summary class="flex items-center justify-between p-6 cursor-pointer bg-white/5 hover:bg-white/10 transition-colors">
+            <h3 class="font-bold text-white text-lg pr-8">Steuerberater-Zugang</h3>
+            <span class="text-primary transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-6 text-text-muted border-t border-white/10 leading-relaxed">
+            <p>Ja. Steuerberater können einen kostenlosen Beobachter-Zugang erhalten, um Belege einzusehen und den Monatsabschluss selbst zu exportieren. Das spart Pendelordner und E-Mail-Pingpong.</p>
+          </div>
+        </details>
+
+        <details class="group bg-surface border border-white/10 rounded-lg overflow-hidden transition-all duration-300 open:border-primary/50">
+          <summary class="flex items-center justify-between p-6 cursor-pointer bg-white/5 hover:bg-white/10 transition-colors">
+            <h3 class="font-bold text-white text-lg pr-8">KI-Assistent "Carlo"</h3>
+            <span class="text-primary transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-6 text-text-muted border-t border-white/10 leading-relaxed">
+            <p>Carlo ist der integrierte KI-Agent. Er hilft bei der Erfassung von Fahrzeugen (OCR), beantwortet Fragen zur Software und prüft Daten auf Plausibilität (z.B. "Passt der Bruttupreis zur MwSt-Einstellung?"). <br>Details: <a href="/funktionen/ki-assistent-carlo" class="text-primary hover:underline">Carlo AI</a></p>
+          </div>
+        </details>
+
+        <details class="group bg-surface border border-white/10 rounded-lg overflow-hidden transition-all duration-300 open:border-primary/50">
+          <summary class="flex items-center justify-between p-6 cursor-pointer bg-white/5 hover:bg-white/10 transition-colors">
+            <h3 class="font-bold text-white text-lg pr-8">Datenschutz & GoBD</h3>
+            <span class="text-primary transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-6 text-text-muted border-t border-white/10 leading-relaxed">
+            <p>Hosting erfolgt in Deutschland. Die Software ist GoBD-konform konzipiert (Festschreibung von Belegen, Änderungshistorie). KI-Daten verbleiben im geschützten Bereich. <br>Datenschutz: <a href="/datenschutz" class="text-primary hover:underline">/datenschutz</a></p>
+          </div>
+        </details>
+
+        <details class="group bg-surface border border-white/10 rounded-lg overflow-hidden transition-all duration-300 open:border-primary/50">
+          <summary class="flex items-center justify-between p-6 cursor-pointer bg-white/5 hover:bg-white/10 transition-colors">
+            <h3 class="font-bold text-white text-lg pr-8">Preise & Testphase</h3>
+            <span class="text-primary transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-6 text-text-muted border-t border-white/10 leading-relaxed">
+            <p>30 Tage kostenlos testen (Vollzugriff, keine Kreditkarte). Danach faire monatliche Pauschale, monatlich kündbar. <br>Preise: <a href="/preise" class="text-primary hover:underline">/preise</a></p>
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+</MarketingLayout>
