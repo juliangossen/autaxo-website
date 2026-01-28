@@ -1,14 +1,16 @@
 ---
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
 import { Icon } from 'astro-icon/components';
+// NEU: Import für das Bild
+import { Image } from 'astro:assets';
+// NEU: Das Bild laden (Pfad relativ von src/pages zu src/assets)
+import dashboardImg from '../assets/dashboard.png';
 
 const title = "Autaxo | Dealer-Management-System für §25a, EU & Export";
 const description =
   "Die Autohandel-Software mit KI: Digitale Fahrzeugakte, automatische Steuerlogik (§25a/EU/Export), Dokumente und DATEV-Export. Kostenlos testen.";
 
 const signupUrl = "https://garage.autaxo.de/auth/sign-up";
-const demoUrl =
-  "https://calendar.google.com/calendar/appointments/schedules/AcZssZ0-xc9C7ft1ZGEy3HpR6hP8NyrHXyM_ikIgv0KEUx9tSnzjZGoQ1RNyF4X5WMjk0o4vg6A9ksjD?gv=true&mode=week";
 
 /** Robust canonical (nutzt Astro.site, fällt sonst auf autaxo.de zurück) */
 const canonicalUrl = (() => {
@@ -205,11 +207,6 @@ const faqs = [
   },
 ];
 
-/**
- * JSON-LD:
- * BaseLayout liefert bereits Organization/WebSite.
- * Hier ergänzen wir SoftwareApplication + FAQPage (ohne Organization-Doppelung).
- */
 const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
@@ -254,7 +251,6 @@ const structuredData = {
   </Fragment>
 
   <div class="relative overflow-hidden" data-page data-spotlight>
-    <!-- Continuous background for the whole page -->
     <div class="pointer-events-none fixed inset-0 -z-10" aria-hidden="true">
       <div class="absolute inset-0 ax-mesh"></div>
       <div class="absolute inset-0 ax-grid-mask opacity-[0.55]"></div>
@@ -264,10 +260,8 @@ const structuredData = {
       <div class="absolute inset-0 ax-spotlight"></div>
     </div>
 
-    <!-- HERO -->
     <header class="pt-28 pb-12 lg:pt-44 lg:pb-14">
       <div class="container mx-auto px-4">
-        <!-- FIX: items-start statt items-center => rechter Container kann oben/unten sauber “mitlaufen” -->
         <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
           <div class="lg:col-span-6">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/90 text-xs font-semibold tracking-wide">
@@ -289,7 +283,7 @@ const structuredData = {
               Autaxo bündelt Fahrzeugakte, Dokumente, Steuerlogik (§25a/EU/Export) und DATEV-Export in einem durchgängigen Workflow – vom Scan bis zum Vertrag.
             </p>
 
-            <div class="mt-8 flex flex-col sm:flex-row gap-4">
+            <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <a
                 href={signupUrl}
                 class="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary hover:bg-primary-hover text-white font-bold rounded-xl transition-all hover:-translate-y-0.5 shadow-xl shadow-primary/25"
@@ -300,18 +294,14 @@ const structuredData = {
               </a>
 
               <a
-                href={demoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/preise"
                 class="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/5 border border-white/10 hover:border-primary/40 text-white font-semibold rounded-xl transition-colors"
-                aria-label="Demo-Termin im Kalender öffnen"
+                aria-label="Zu den Preisen"
               >
-                <Icon name="lucide:calendar" class="w-5 h-5 text-primary" aria-hidden="true" />
-                Demo buchen
+                Preise
               </a>
             </div>
 
-            <!-- Quick facts (LLM/GEO-friendly) -->
             <section class="mt-8" aria-label="Kurzfakten">
               <dl class="grid grid-cols-3 gap-3 max-w-lg" data-reveal>
                 <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
@@ -333,12 +323,10 @@ const structuredData = {
             </section>
           </div>
 
-          <!-- Right: product window -->
           <div class="lg:col-span-6 self-stretch" data-reveal>
             <div class="relative h-full">
               <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-primary/35 via-fuchsia-500/20 to-cyan-400/20 blur-xl opacity-70" aria-hidden="true"></div>
 
-              <!-- FIX: h-full + flex => Container kann auf Höhe der linken Spalte wachsen -->
               <div class="relative rounded-3xl border border-white/10 bg-[#0b0c10]/70 backdrop-blur-xl overflow-hidden shadow-2xl h-full flex flex-col">
                 <div class="flex items-center justify-between px-5 py-4 border-b border-white/10 bg-white/5">
                   <div class="flex items-center gap-2" aria-hidden="true">
@@ -353,14 +341,16 @@ const structuredData = {
                   <div class="grid sm:grid-cols-2 gap-4">
                     <div class="relative rounded-2xl border border-white/10 bg-white/5 overflow-hidden h-full">
                       <div class="absolute inset-0 ax-shine opacity-60" aria-hidden="true"></div>
-                      <img
-                        src="./assets/dashboard.png"
+                      
+                      <Image
+                        src={dashboardImg}
                         alt="Autaxo Dashboard mit digitaler Fahrzeugakte und Statusübersicht"
                         class="w-full h-[260px] sm:h-full object-cover object-top"
                         loading="eager"
                         decoding="async"
                         fetchpriority="high"
                       />
+                      
                       <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between" aria-hidden="true">
                         <span class="text-[11px] text-white/70 bg-black/40 border border-white/10 px-2.5 py-1 rounded-full">
                           Dashboard
@@ -371,7 +361,6 @@ const structuredData = {
                       </div>
                     </div>
 
-                    <!-- Carlo Card (FIX: oben zentriert + CTA Button centered) -->
                     <div class="relative rounded-2xl border border-white/10 bg-white/5 overflow-hidden h-full">
                       <div class="absolute inset-0 ax-scanline" aria-hidden="true"></div>
                       <div class="p-4 h-full flex flex-col">
@@ -418,11 +407,9 @@ const structuredData = {
       </div>
     </header>
 
-    <!-- MODULE NAV + (NEU) ACCORDION -->
     <section class="pb-24" aria-labelledby="modules-title">
       <div class="container mx-auto px-4">
         <div class="grid lg:grid-cols-12 gap-10 lg:gap-12">
-          <!-- Sticky Navigator -->
           <div class="lg:col-span-4">
             <div class="lg:sticky lg:top-28">
               <div class="inline-flex items-center gap-2 text-primary font-bold tracking-wider uppercase text-sm" data-reveal>
@@ -469,7 +456,6 @@ const structuredData = {
                 </a>
               </div>
 
-              <!-- FIX: “Weitere Inhalte” als sichtbare Buttons, zentriert -->
               <div class="mt-6" data-reveal>
                 <p class="text-xs text-white/50 text-center mb-2">Weitere Inhalte</p>
                 <div class="flex items-center justify-center gap-2">
@@ -492,7 +478,6 @@ const structuredData = {
             </div>
           </div>
 
-          <!-- Right: Accordion Modules (eingeklappt) -->
           <div class="lg:col-span-8">
             <div class="grid gap-4">
               {modules.map((m) => (
@@ -564,7 +549,6 @@ const structuredData = {
       </div>
     </section>
 
-    <!-- WORKFLOW DEMOS -->
     <section id="workflow" class="pb-24" aria-labelledby="workflow-title">
       <div class="container mx-auto px-4">
         <div class="rounded-3xl border border-white/10 bg-white/5 p-8 lg:p-10" data-reveal>
@@ -612,7 +596,6 @@ const structuredData = {
       </div>
     </section>
 
-    <!-- FAQ (SEO/GEO/LLM) -->
     <section id="faq" class="pb-24" aria-labelledby="faq-title">
       <div class="container mx-auto px-4 max-w-5xl">
         <div class="rounded-3xl border border-white/10 bg-[#0b0c10]/70 backdrop-blur-xl p-8 lg:p-10" data-reveal>
@@ -645,7 +628,6 @@ const structuredData = {
       </div>
     </section>
 
-    <!-- FINAL CTA -->
     <section class="pb-28">
       <div class="container mx-auto px-4 max-w-5xl">
         <div class="rounded-3xl border border-white/10 bg-[#0b0c10]/70 backdrop-blur-xl p-10 lg:p-14 text-center relative overflow-hidden" data-reveal>
