@@ -1,6 +1,6 @@
 # ==========================================
 # Autaxo Robots Configuration
-# Optimized for SEO & LLM (AI) Accessibility
+# Optimized for SEO & GEO/LLMO Accessibility
 # ==========================================
 
 # 1. Global Rules
@@ -12,6 +12,7 @@ Disallow: /private/
 Disallow: /auth/
 
 # 2. Google & Bing (SEO)
+# Google needs access to resources for rendering; do not block essential assets.
 User-agent: Googlebot
 Allow: /
 Allow: /_astro/
@@ -20,11 +21,12 @@ Allow: /assets/
 User-agent: Bingbot
 Allow: /
 
-# 3. AI Bots & LLM Crawlers (LLMO Strategy)
-# Wir erlauben diesen Bots explizit den Zugriff, damit
-# Autaxo in den Wissensdatenbanken von KI-Modellen landet.
+# 3. AI Bots & LLM Crawlers (GEO/LLMO Strategy)
+# OpenAI Search (ChatGPT Search visibility)
+User-agent: OAI-SearchBot
+Allow: /
 
-# OpenAI (ChatGPT)
+# OpenAI Training (model training)
 User-agent: GPTBot
 Allow: /
 
@@ -32,11 +34,11 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
-# Common Crawl (Trainingsdaten für viele KIs)
+# Common Crawl (used by many AI systems)
 User-agent: CCBot
 Allow: /
 
-# Google Extended (Bard/Gemini Training)
+# Google Extended (Gemini training opt-out/opt-in control)
 User-agent: Google-Extended
 Allow: /
 
