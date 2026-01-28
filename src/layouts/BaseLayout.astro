@@ -1,4 +1,6 @@
 ---
+import '../styles/global.css';
+
 interface Props {
   title: string;
   description: string;
@@ -31,14 +33,14 @@ const SITE_NAME = "Autaxo";
 const LOCALE = "de_DE";
 const THEME_BG = "#0b0c10";
 
+// Canonical: lieber NICHT raten (localhost wäre SEO-giftig)
+// -> nur setzen, wenn canonicalUrlProp oder Astro.site vorhanden ist
 const canonicalUrl = (() => {
   if (canonicalUrlProp) return canonicalUrlProp;
   try {
     if (Astro.site) return new URL(Astro.url.pathname, Astro.site).toString();
-    return new URL(Astro.url.pathname, Astro.url.origin).toString();
-  } catch {
-    return undefined;
-  }
+  } catch (_) {}
+  return undefined;
 })();
 
 function toAbsoluteUrl(maybeUrl?: string) {
@@ -77,13 +79,13 @@ const jsonLdBase = {
       "@type": "Organization",
       "@id": (canonicalUrl ? `${canonicalUrl}#org` : "#org"),
       "name": SITE_NAME,
-      "url": canonicalUrl,
+      "url": canonicalUrl ?? undefined,
     },
     {
       "@type": "WebSite",
       "@id": (canonicalUrl ? `${canonicalUrl}#website` : "#website"),
       "name": SITE_NAME,
-      "url": canonicalUrl,
+      "url": canonicalUrl ?? undefined,
     },
   ],
 };
@@ -146,11 +148,8 @@ const jsonLdArticle =
     {type === "article" && modifiedIso && <meta property="article:modified_time" content={modifiedIso} />}
     {type === "article" && tags?.length ? tags.map((t) => <meta property="article:tag" content={t} />) : null}
 
-    <!-- Page head additions (JSON-LD, preload, etc.) -->
+    <!-- per-page head content (JSON-LD, preload...) -->
     <slot name="head" />
-
-    <!-- CRITICAL: Ohne Astro.head fehlen Styles/Skripte => Seite sieht aus wie dein Screenshot -->
-    <Astro.head />
 
     <!-- Base JSON-LD -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLdBase)} />
