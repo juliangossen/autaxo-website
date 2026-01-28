@@ -1,0 +1,167 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import { Icon } from 'astro-icon/components';
+
+// 1. METADATEN
+const title = "Digitale Kfz-Verträge & eSignatur | Autaxo DMS";
+const description = "Erstelle rechtssichere Kaufverträge in Minuten. Inklusive eSignatur, automatischer Befüllung und GoBD-konformer Archivierung.";
+
+// 2. FAQ DATEN (Spezifisch für Verträge)
+const faqs = [
+  {
+    question: "Sind die digitalen Unterschriften rechtssicher?",
+    answer: "Ja. Autaxo nutzt fortschrittliche elektronische Signaturen gemäß eIDAS-Verordnung. Jede Unterschrift wird mit einem Audit-Trail (Zeitstempel, IP-Adresse) dokumentiert, was maximale Beweiskraft vor Gericht sichert."
+  },
+  {
+    question: "Brauche ich ein spezielles Tablet?",
+    answer: "Nein. Die eSignatur funktioniert auf jedem Gerät mit Touchscreen (iPad, Android Tablet, Smartphone) oder sogar per Maus am PC. Du kannst den Link auch per SMS/E-Mail an den Kunden senden."
+  },
+  {
+    question: "Sind die Vertragsvorlagen aktuell?",
+    answer: "Ja. Wir stellen geprüfte Vorlagen bereit, die regelmäßig an die aktuelle Rechtsprechung (z.B. Gewährleistungsrecht) angepasst werden."
+  },
+  {
+    question: "Was passiert mit dem Übergabeprotokoll?",
+    answer: "Das Protokoll wird digital erstellt (inkl. Fotos von Mängeln) und direkt mit dem Kaufvertrag verknüpft. Beides wird als unveränderbares PDF im Archiv abgelegt."
+  }
+];
+
+// 3. FEATURE STEPS (Aus deiner alten Seite übernommen & verfeinert)
+const steps = [
+  {
+    step: "01",
+    title: "Rechtssichere Vorlagen",
+    text: "Autaxo stellt geprüfte Vertragsvorlagen bereit (ZDK-konform). Alle Änderungen werden versioniert gespeichert. So bist du auch bei Streitfällen oder Prüfungen immer auf der sicheren Seite.",
+    icon: "lucide:file-check"
+  },
+  {
+    step: "02",
+    title: "Integrierte eSignatur",
+    text: "Kunden unterschreiben direkt digital – per Link, Tablet oder Smartphone. Der vollständige Audit-Trail (Zeitstempel, IP) sorgt für maximale rechtliche Sicherheit nach eIDAS-Standard.",
+    icon: "lucide:pen-tool"
+  },
+  {
+    step: "03",
+    title: "Automatisches Ausfüllen",
+    text: "Vertragsdaten werden direkt aus dem Fahrzeug- und Kundenbestand übernommen. Tippfehler und doppelte Arbeit entfallen. In Sekunden ist der Vertrag unterschriftsreif.",
+    icon: "lucide:wand-2"
+  },
+  {
+    step: "04",
+    title: "Digitale Übergabeprotokolle",
+    text: "Dokumentiere die Fahrzeugübergabe vollständig digital – inklusive Fotos und Checklisten. Das Protokoll wird automatisch mit dem Vertrag verknüpft und archiviert.",
+    icon: "lucide:clipboard-check"
+  },
+  {
+    step: "05",
+    title: "GoBD-Archivierung",
+    text: "Alle Verträge und Protokolle landen automatisch in der revisionssicheren Autaxo-Ablage. Durchsuchbar, versioniert und papierlos. Nie wieder Aktenordner suchen.",
+    icon: "lucide:archive"
+  }
+];
+---
+
+<MarketingLayout title={title} description={description}>
+
+  <section class="relative pt-32 pb-20 bg-[#0b0c10] overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-[#0b0c10] to-[#0b0c10]"></div>
+    
+    <div class="container mx-auto px-4 relative z-10 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider mb-6">
+        Papierlos & Sicher
+      </div>
+      <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight text-balance">
+        Digitale Kfz-Verträge <br/>
+        <span class="text-primary">rechtssicher mit eSignatur</span>
+      </h1>
+      <p class="text-xl text-text-muted max-w-3xl mx-auto leading-relaxed mb-10 text-balance">
+        Erstelle Kaufverträge in Minuten – mit geprüften Vorlagen, eSignatur und revisionssicherer Ablage. Spart Papierkram und vermeidet Formfehler.
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="https://garage.autaxo.de/auth/sign-up" class="px-8 py-4 bg-primary hover:bg-primary-hover text-white font-bold rounded-lg transition-all shadow-lg shadow-primary/20">
+          Kostenlos testen
+        </a>
+        <a href="#details" class="px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-medium rounded-lg border border-white/10 transition-all">
+          So funktioniert's
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="details" class="py-24 bg-[#0b0c10]">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto text-center mb-16">
+        <h2 class="text-3xl font-bold text-white mb-4">5 Schritte zum digitalen Vertrag</h2>
+        <p class="text-text-muted">Von der Erstellung bis zur Archivierung – alles in einem Workflow.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {steps.map((item) => (
+          <div class="relative p-8 rounded-2xl bg-[#15171e] border border-white/10 hover:border-primary/30 transition-all duration-300 group">
+            
+            <div class="flex items-start justify-between mb-6">
+              <div class="w-12 h-12 rounded-lg bg-white/5 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                <Icon name={item.icon} class="w-6 h-6" />
+              </div>
+              <span class="text-4xl font-bold text-white/5 font-mono group-hover:text-white/10 transition-colors">
+                {item.step}
+              </span>
+            </div>
+
+            <h3 class="text-xl font-bold text-white mb-3">{item.title}</h3>
+            <p class="text-text-muted text-sm leading-relaxed">
+              {item.text}
+            </p>
+          </div>
+        ))}
+
+        <div class="relative p-8 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20 flex flex-col justify-center items-center text-center">
+          <h3 class="text-xl font-bold text-white mb-4">Schluss mit Papierchaos?</h3>
+          <p class="text-white/80 text-sm mb-6">Digitalisiere deinen Verkaufsprozess noch heute.</p>
+          <a href="https://garage.autaxo.de/auth/sign-up" class="px-6 py-2 bg-white text-black font-bold rounded hover:bg-gray-200 transition-colors w-full">
+            Vertrag erstellen
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-surface border-t border-white/5">
+    <div class="container mx-auto px-4 max-w-3xl">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl font-bold text-white mb-4">Fragen zu Verträgen & eSignatur</h2>
+        <div class="w-16 h-1 bg-primary mx-auto rounded-full"></div>
+      </div>
+      
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <details class="group bg-[#0b0c10] border border-white/10 rounded-lg overflow-hidden transition-colors hover:border-white/20">
+            <summary class="flex items-center justify-between p-5 cursor-pointer select-none">
+              <h3 class="font-medium text-white pr-4">{faq.question}</h3>
+              <span class="text-primary transition-transform duration-300 group-open:rotate-180">
+                <Icon name="lucide:chevron-down" class="w-5 h-5" />
+              </span>
+            </summary>
+            <div class="p-5 pt-0 text-text-muted text-sm leading-relaxed border-t border-white/5 mt-2">
+              {faq.answer}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 text-center bg-[#0b0c10]">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-white mb-6">Der erste Vertrag ist in 2 Minuten fertig.</h2>
+      <p class="text-text-muted mb-8 max-w-xl mx-auto">
+        Testen Sie Autaxo 30 Tage kostenlos. Keine Kreditkarte, keine Verpflichtung.
+      </p>
+      <a href="https://garage.autaxo.de/auth/sign-up" class="inline-block px-8 py-4 bg-primary hover:bg-primary-hover text-white font-bold rounded-lg transition-colors shadow-lg shadow-primary/20">
+        Jetzt starten
+      </a>
+    </div>
+  </section>
+
+</MarketingLayout>
