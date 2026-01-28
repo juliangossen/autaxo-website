@@ -1,7 +1,10 @@
 ---
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
 import { Icon } from 'astro-icon/components';
-// Falls du ein Bild hast, hier importieren. Sonst nutzen wir einen Platzhalter.
+// WICHTIG: Damit Bilder optimiert werden, brauchen wir diese Komponente:
+import { Image } from 'astro:assets';
+
+// Dein Bild-Import (Pfad muss exakt stimmen!)
 import julianImage from '@/public/images/team/julian-gossen.png'; 
 
 const title = "Über Autaxo & Julian Goßen | Aus der Praxis für Händler";
@@ -20,10 +23,9 @@ const schema = {
   },
   "alumniOf": [
     {
-      "@type": "Hochschule Duesseldorf",
-      "name": "Bachelor of Arts (B.A.) - Steuerrecht", // Annahme Titel, ggf. anpassen
-      "startDate": "2019",
-      "endDate": "2024"
+      "@type": "EducationalOrganization", // Habe den Typ angepasst, damit es valide ist
+      "name": "Hochschule Düsseldorf",
+      "sameAs": "https://www.hs-duesseldorf.de/" 
     }
   ],
   "knowsAbout": ["Steuerrecht", "Kfz-Handel", "Differenzbesteuerung", "GoBD", "Betriebsprüfung"]
@@ -59,9 +61,12 @@ const schema = {
         
         <div class="relative">
           <div class="aspect-[4/5] rounded-2xl overflow-hidden border border-white/10 bg-[#15171e] shadow-2xl relative group">
-             <div class="absolute inset-0 flex items-center justify-center bg-white/5">
-                <span class="text-text-muted text-sm">(Hier Foto von Julian einfügen)</span>
-             </div>
+             
+             <Image 
+                src={julianImage} 
+                alt="Julian Goßen - Geschäftsführer Autaxo" 
+                class="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-500" 
+             />
              
              <div class="absolute bottom-6 left-6 right-6 bg-[#0b0c10]/90 backdrop-blur border border-white/10 p-4 rounded-xl">
                <div class="text-white font-bold text-lg">Julian Goßen</div>
