@@ -1,133 +1,225 @@
 ---
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
-import Pagination from '@ui/Pagination.astro';
 import { Icon } from 'astro-icon/components';
-import { getCollection, type CollectionEntry } from 'astro:content';
-import { siteConfig } from '@/config';
-import { calculateReadingTime } from '@/lib/utils';
 
-type BlogPost = CollectionEntry<'blog'>;
+const title = "Autaxo Blog – Praxiswissen rund um Steuern für den Autohandel";
+const description =
+  "Praxiswissen für Gebrauchtwagenhändler: Differenzbesteuerung (§25a), EU/Export, DATEV, GoBD, Prozesse & Marge – kompakt erklärt.";
 
-const POSTS_PER_PAGE = 6;
+/** Robust canonical (nutzt Astro.site, fällt sonst auf autaxo.de zurück) */
+const canonicalUrl = (() => {
+  try {
+    if (Astro.site) return new URL(Astro.url.pathname, Astro.site).toString();
+  } catch (_) {}
+  return "https://www.autaxo.de/blog/";
+})();
+const pageUrl = canonicalUrl.endsWith("/") ? canonicalUrl : `${canonicalUrl}/`;
 
-const posts = await getCollection('blog', ({ data }: { data: BlogPost['data'] }) => !data.draft);
-const sortedPosts = [...posts].sort(
-  (a: BlogPost, b: BlogPost) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime()
-);
+/**
+ * Blog-Posts (manuell pflegbar)
+ * Wenn ihr später automatisieren wollt: Astro Content Collections / getCollection(...) statt Array.
+ */
+const posts = [
+  {
+    slug: "/blog/reverse-charge-im-kfz-handel-meist-nicht-ss13b-innergemeinschaftliche-lieferung-gelangensbestatigung/",
+    title:
+      "Reverse-Charge im Kfz-Handel? (Meist nicht §13b) – Innergemeinschaftliche Lieferung & Gelangensbestätigung",
+    excerpt:
+      "Wann Reverse-Charge wirklich greift – und welche Nachweise du für EU-Fälle sauber führen musst.",
+    date: "2025-12-22",
+    image: null,
+    tags: ["EU", "Export", "USt", "Nachweise"],
+  },
+  {
+    slug: "/blog/steuertipps/",
+    title: "Differenzbesteuerung § 25a im Kfz-Handel – mit Beispiel & Checkliste",
+    excerpt:
+      "Praxisnah erklärt: Voraussetzungen, typische Fehler und eine kompakte Checkliste für §25a im Händleralltag.",
+    date: "2025-09-02",
+    image: "https://unicorn-images.b-cdn.net/faab84a4-aa04-4bc6-832b-23346c1792a7?optimizer=gif",
+    tags: ["§25a", "Differenzbesteuerung"],
+  },
+  {
+    slug: "/blog/vin-zu-vertrag/",
+    title: "Einkauf & Verkauf: FIN scan statt manuell – so beschleunigst du Einkauf & Verkauf",
+    excerpt:
+      "Von FIN/Scan bis Vertrag: weniger Tipparbeit, weniger Fehler, schnellerer Workflow.",
+    date: "2025-09-02",
+    image: "https://unicorn-images.b-cdn.net/55e5cbf8-3ee6-4ed0-9bb1-373a4ebe5241?optimizer=gif",
+    tags: ["Workflow", "FIN", "Prozess"],
+  },
+  {
+    slug: "/blog/buchhaltung-datev/",
+    title: "Buchhaltung & DATEV – DATEV-Export im Autohaus: SKR04-Buchungsstapel ohne Nacharbeit",
+    excerpt:
+      "So erwartet es das Steuerbüro: vollständige Belege, konsistente Daten und ein sauberer Export.",
+    date: "2025-09-02",
+    image: "https://unicorn-images.b-cdn.net/4aa56595-7aed-4afc-a812-0ea080c65d90?optimizer=gif",
+    tags: ["DATEV", "Buchhaltung"],
+  },
+];
 
-// Get current page from URL
-const currentPage = 1;
-const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE);
-const paginatedPosts: BlogPost[] = sortedPosts.slice(0, POSTS_PER_PAGE);
+const fallbackImage = "/og/autaxo-og.png";
 
-// Get all unique tags
-const allTags = [...new Set(posts.flatMap((post: BlogPost) => post.data.tags))].sort();
-
-// Helper to get typed tags
-const getTypedTags = (tags: string[]) => tags.slice(0, 3);
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": title,
+  "description": description,
+  "url": pageUrl,
+  "blogPost": posts.map((p) => ({
+    "@type": "BlogPosting",
+    "headline": p.title,
+    "description": p.excerpt,
+    "datePublished": p.date,
+    "image": p.image || fallbackImage,
+    "url": `https://www.autaxo.de${p.slug}`,
+  })),
+};
 ---
 
-<MarketingLayout
-  title={`Blog - ${siteConfig.name}`}
-  description={`Latest news, updates, and insights from the ${siteConfig.name} team.`}
->
-  <section class="py-section">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h1 class="text-4xl sm:text-5xl font-bold text-text">Blog</h1>
-        <p class="mt-4 text-lg text-text-muted max-w-2xl mx-auto">
-          Latest news, updates, and insights from the {siteConfig.name} team.
-        </p>
+<MarketingLayout title={title} description={description} canonicalUrl={canonicalUrl} image={fallbackImage}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(schema)} />
+
+  {/* HERO */}
+  <section class="relative pt-32 pb-16 bg-[#0b0c10] overflow-hidden">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[520px] bg-primary/10 blur-[140px] rounded-full pointer-events-none -z-10"></div>
+
+    <div class="container mx-auto px-4 max-w-4xl text-center relative">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-primary text-sm font-medium mb-6">
+        <Icon name="lucide:book-open" class="w-4 h-4" />
+        Autaxo Blog
       </div>
 
-      <!-- Tags Filter -->
-      {
-        allTags.length > 0 && (
-          <div class="mb-10">
-            <div class="flex flex-wrap items-center gap-2">
-              <span class="text-sm font-medium text-text-muted mr-2">Filter by tag:</span>
-              <a
-                href="/blog"
-                class="px-3 py-1.5 text-sm font-medium rounded-md bg-primary text-white"
-              >
-                All
-              </a>
-              {allTags.map((tag) => (
-                <a
-                  href={`/blog/tag/${tag}`}
-                  class="px-3 py-1.5 text-sm font-medium rounded-md bg-surface text-text-muted hover:bg-primary/10 hover:text-primary transition-colors"
-                >
-                  {tag}
-                </a>
-              ))}
-            </div>
-          </div>
-        )
-      }
+      <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight leading-tight">
+        Praxiswissen für <br class="hidden md:block" />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-400">
+          Steuern im Autohandel.
+        </span>
+      </h1>
 
-      <!-- Posts Grid -->
-      <div class="space-y-10">
-        {
-          paginatedPosts.map((post) => (
-            <article class="group">
-              <a href={`/blog/${post.id}`} class="block">
-                <div class="flex flex-col sm:flex-row gap-6">
-                  <div class="sm:w-48 sm:h-32 shrink-0 rounded-lg overflow-hidden bg-surface">
-                    {post.data.image ? (
-                      <img
-                        src={post.data.image}
-                        alt={post.data.title}
-                        class="w-full h-32 sm:h-full object-cover"
-                      />
-                    ) : (
-                      <div class="w-full h-32 sm:h-full bg-primary/10 flex items-center justify-center">
-                        <Icon name="lucide:image" class="w-12 h-12 text-primary/40" />
-                      </div>
-                    )}
-                  </div>
-                  <div class="flex-1">
-                    <div class="flex flex-wrap items-center gap-3 text-sm text-text-muted mb-2">
-                      <span>
-                        {post.data.publishedDate.toLocaleDateString('en-US', {
-                          year: 'numeric',
-                          month: 'long',
-                          day: 'numeric',
-                        })}
-                      </span>
-                      <span>·</span>
-                      <span>{calculateReadingTime(post.body || '')} min read</span>
-                    </div>
-                    <h2 class="text-xl font-bold text-text group-hover:text-primary transition-colors">
-                      {post.data.title}
-                    </h2>
-                    <p class="mt-2 text-text-muted line-clamp-2">{post.data.description}</p>
-                    {post.data.tags.length > 0 && (
-                      <div class="flex flex-wrap gap-2 mt-3">
-                        {getTypedTags(post.data.tags).map((tag) => (
-                          <span class="px-2 py-0.5 text-xs font-medium bg-surface text-text-muted rounded">
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </a>
-            </article>
-          ))
-        }
+      <p class="text-lg md:text-xl text-white/70 leading-relaxed max-w-3xl mx-auto">
+        Kompakte Artikel zu §25a, EU/Export, DATEV, GoBD und Prozessen – geschrieben für den Händleralltag.
+      </p>
+
+      {/* Suche */}
+      <div class="mt-10 max-w-xl mx-auto">
+        <div class="relative">
+          <Icon name="lucide:search" class="w-5 h-5 text-white/40 absolute left-4 top-1/2 -translate-y-1/2" />
+          <input
+            id="blog-search"
+            type="text"
+            placeholder="Artikel durchsuchen (z. B. §25a, DATEV, Export)…"
+            class="w-full pl-12 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-white/40 focus:outline-none focus:border-primary/50"
+          />
+        </div>
+        <p class="mt-3 text-xs text-white/50">Hinweis: Suche filtert lokal auf dieser Seite.</p>
       </div>
-
-      {
-        sortedPosts.length === 0 && (
-          <div class="text-center py-12">
-            <p class="text-text-muted">No blog posts yet. Check back soon!</p>
-          </div>
-        )
-      }
-
-      <!-- Pagination -->
-      <Pagination currentPage={currentPage} totalPages={totalPages} basePath="/blog" />
     </div>
   </section>
+
+  {/* GRID */}
+  <section class="pb-24 bg-[#0b0c10]">
+    <div class="container mx-auto px-4">
+      <div class="grid lg:grid-cols-3 gap-8" id="blog-grid">
+        {posts.map((post, idx) => (
+          <a
+            href={post.slug}
+            class={`group relative rounded-2xl bg-[#15171e] border border-white/10 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 overflow-hidden flex flex-col ${
+              idx === 0 ? "lg:col-span-2" : ""
+            }`}
+            data-post-card
+            data-title={post.title.toLowerCase()}
+            data-tags={(post.tags || []).join(" ").toLowerCase()}
+          >
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+              <div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/10 blur-[70px] rounded-full"></div>
+            </div>
+
+            <div class={`relative w-full ${idx === 0 ? "aspect-[16/7]" : "aspect-[16/9]"} bg-black/40`}>
+              <img
+                src={post.image || fallbackImage}
+                alt={post.title}
+                loading={idx === 0 ? "eager" : "lazy"}
+                decoding="async"
+                class="w-full h-full object-cover object-center opacity-90 group-hover:opacity-100 transition-opacity"
+              />
+              <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between gap-3">
+                <span class="text-[11px] text-white/80 bg-black/40 border border-white/10 px-2.5 py-1 rounded-full">
+                  {new Date(post.date).toLocaleDateString("de-DE", { year: "numeric", month: "long", day: "2-digit" })}
+                </span>
+                <span class="text-[11px] text-white/80 bg-black/40 border border-white/10 px-2.5 py-1 rounded-full">
+                  {post.tags?.[0] ?? "Praxis"}
+                </span>
+              </div>
+            </div>
+
+            <div class="p-7 flex-1 flex flex-col">
+              <h2 class="text-xl font-extrabold text-white leading-tight group-hover:text-primary transition-colors">
+                {post.title}
+              </h2>
+
+              <p class="mt-3 text-text-muted leading-relaxed text-sm flex-1">
+                {post.excerpt}
+              </p>
+
+              <div class="mt-5 flex flex-wrap gap-2">
+                {(post.tags || []).slice(0, 3).map((t) => (
+                  <span class="text-[11px] font-semibold text-white/70 bg-white/5 border border-white/10 px-2.5 py-1 rounded-full">
+                    {t}
+                  </span>
+                ))}
+              </div>
+
+              <div class="mt-6 inline-flex items-center gap-2 text-primary font-bold text-sm">
+                Artikel lesen
+                <Icon name="lucide:arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      {/* CTA */}
+      <div class="mt-20 bg-gradient-to-br from-[#1a1d26] to-[#15171e] border border-white/10 rounded-2xl p-8 md:p-12 text-center relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-72 h-72 bg-primary/10 blur-[90px] rounded-full pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-3xl mx-auto">
+          <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">
+            Weniger Fehler. Weniger Nacharbeit.
+          </h3>
+          <p class="text-white/70 text-lg mb-8">
+            Autaxo bündelt Fahrzeugakte, Dokumente, Steuerlogik (§25a/EU/Export) und DATEV-Export in einem Workflow.
+          </p>
+          <a
+            href="https://garage.autaxo.de/auth/sign-up"
+            class="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white font-bold rounded-xl hover:bg-primary-hover transition-all shadow-lg shadow-primary/25"
+          >
+            Kostenlos testen
+            <Icon name="lucide:arrow-right" class="w-5 h-5" />
+          </a>
+          <p class="mt-4 text-xs text-white/50">30 Tage kostenlos. Keine Kreditkarte erforderlich.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Client-side Search */}
+  <script is:inline>
+    const input = document.getElementById('blog-search');
+    const cards = Array.from(document.querySelectorAll('[data-post-card]'));
+
+    function normalize(s){ return (s || '').toLowerCase().trim(); }
+
+    function filter(){
+      const q = normalize(input.value);
+      cards.forEach((c) => {
+        const hay = (c.getAttribute('data-title') || '') + ' ' + (c.getAttribute('data-tags') || '');
+        const show = !q || hay.includes(q);
+        c.style.display = show ? '' : 'none';
+      });
+    }
+
+    input?.addEventListener('input', filter);
+  </script>
 </MarketingLayout>
