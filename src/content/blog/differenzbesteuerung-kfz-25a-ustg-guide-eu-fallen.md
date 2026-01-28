@@ -1,6 +1,6 @@
 ---
 slug: differenzbesteuerung-kfz-25a-ustg-guide-eu-fallen
-title: "Differenzbesteuerung im Autohandel (§ 25a UStG) – Technischer Leitfaden"
+title: "Differenzbesteuerung im Autohandel (§ 25a UStG) – Ein technischer Leitfaden"
 seoTitle: "Differenzbesteuerung Kfz: § 25a UStG Guide & EU-Fallen"
 metaDescription: "Praxis-Guide zur Differenzbesteuerung (§ 25a UStG): Berechnung, Rechnungsvorschriften und das strategische Risiko beim EU-Verkauf (igL vs. Marge)."
 excerpt: "Technischer Leitfaden zur Differenzbesteuerung (§ 25a UStG): Voraussetzungen, Berechnung, Rechnungspflichten, GoBD-Dokumentation und das EU-Dilemma (igL vs. Marge)."
