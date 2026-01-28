@@ -1,7 +1,7 @@
 ---
-import MarketingLayout from '@/layouts/MarketingLayout.astro';
-import { Icon } from 'astro-icon/components';
-import { getCollection } from 'astro:content';
+import MarketingLayout from "@/layouts/MarketingLayout.astro";
+import { Icon } from "astro-icon/components";
+import { getCollection } from "astro:content";
 
 const title = "Autaxo Blog: §25a, DATEV, GoBD & EU/Export im Gebrauchtwagenhandel";
 const description =
@@ -9,72 +9,56 @@ const description =
 
 const fallbackImage = "/og/autaxo-og.png";
 
-/** Base URL robust (für Prod + Preview) */
-const baseUrl = (() => {
+/** Robust canonical */
+const canonicalUrl = (() => {
   try {
-    if (Astro.site) return Astro.site.toString().replace(/\/$/, "");
+    if (Astro.site) return new URL(Astro.url.pathname, Astro.site).toString();
   } catch (_) {}
-  return "https://www.autaxo.de";
+  return "https://www.autaxo.de/blog/";
 })();
+const pageUrl = canonicalUrl.endsWith("/") ? canonicalUrl : `${canonicalUrl}/`;
 
-const canonicalUrl = `${baseUrl}/blog/`;
-const pageUrl = canonicalUrl;
+/** Posts aus Content Collection */
+const entries = await getCollection("blog");
 
-const toISODate = (value) => {
-  const d = new Date(String(value || ""));
-  return Number.isNaN(d.getTime()) ? "1970-01-01" : d.toISOString().slice(0, 10);
-};
+// Helper: Datum robust
+function safeDate(value: unknown): Date {
+  const s = typeof value === "string" ? value : "";
+  const d = new Date(s);
+  return isNaN(d.getTime()) ? new Date("1970-01-01") : d;
+}
 
-const entries = await getCollection('blog');
-
-/**
- * WICHTIG: URL immer aus entry.slug bauen (Dateiname in src/content/blog)
- * => garantiert, dass es eine statische Route gibt.
- */
+// Normalisieren + sortieren
 const posts = entries
-  .map((entry) => {
-    const slug = entry.slug;                 // ✅ source of truth
-    const url = `/blog/${slug}/`;            // ✅ matcht [slug].astro
-    const date = toISODate(entry.data.datePublished);
-    const dateObj = new Date(date);
+  .map((p) => {
+    // ✅ ROUTING-SLUG immer aus Dateiname
+    const url = `/blog/${p.slug}/`;
 
-    const cover =
-      (entry.data.coverImage && String(entry.data.coverImage).trim().length > 0)
-        ? String(entry.data.coverImage).trim()
-        : null;
-
-    const excerpt =
-      (entry.data.excerpt && String(entry.data.excerpt).trim())
-        ? String(entry.data.excerpt).trim()
-        : (entry.data.metaDescription && String(entry.data.metaDescription).trim())
-          ? String(entry.data.metaDescription).trim()
-          : "";
-
-    const tags = Array.isArray(entry.data.tags) ? entry.data.tags : [];
+    const dateObj = safeDate(p.data.datePublished);
+    const dateIso = typeof p.data.datePublished === "string" ? p.data.datePublished : "1970-01-01";
 
     return {
-      slug,
       url,
-      title: entry.data.title,
-      excerpt,
-      date,
+      slug: p.slug,
+      title: p.data.title,
+      excerpt: p.data.excerpt ?? p.data.metaDescription ?? "",
+      date: dateIso,
       dateObj,
-      image: cover,
-      tags,
+      image: (p.data.coverImage && String(p.data.coverImage).length > 0) ? p.data.coverImage : null,
+      tags: Array.isArray(p.data.tags) ? p.data.tags : [],
     };
   })
   .sort((a, b) => (a.dateObj < b.dateObj ? 1 : -1));
 
+/** Themen (Filter-Chips + Link zu /blog/themen) */
 const topics = [
-  { label: "§25a", key: "25a", tokens: ["§25a", "differenzbesteuerung", "25a", "ustg"] },
+  { label: "§25a", key: "25a", tokens: ["§25a", "differenzbesteuerung", "ustg"] },
   { label: "DATEV", key: "datev", tokens: ["datev", "skr03", "skr04", "buchhaltung"] },
   { label: "GoBD", key: "gobd", tokens: ["gobd", "dokumentation", "aufbewahrung"] },
   { label: "EU/Export", key: "eu-export", tokens: ["eu", "export", "igl", "vies", "gelangens"] },
   { label: "Nachweise", key: "nachweise", tokens: ["nachweis", "gelangens", "beleg", "dokument"] },
   { label: "Workflow", key: "workflow", tokens: ["workflow", "fin", "scan", "prozess"] },
 ];
-
-const abs = (path) => `${baseUrl}${path}`;
 
 /** Structured data */
 const schema = {
@@ -84,7 +68,7 @@ const schema = {
       "@type": "BreadcrumbList",
       "@id": `${pageUrl}#breadcrumb`,
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": `${baseUrl}/` },
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.autaxo.de/" },
         { "@type": "ListItem", "position": 2, "name": "Blog", "item": pageUrl }
       ]
     },
@@ -103,14 +87,14 @@ const schema = {
       "itemListElement": posts.map((p, i) => ({
         "@type": "ListItem",
         "position": i + 1,
-        "url": abs(p.url),
+        "url": `https://www.autaxo.de${p.url}`,
         "item": {
           "@type": "BlogPosting",
           "headline": p.title,
           "description": p.excerpt,
           "datePublished": p.date,
-          "image": p.image ? p.image : abs(fallbackImage),
-          "mainEntityOfPage": abs(p.url)
+          "image": p.image ? p.image : `https://www.autaxo.de${fallbackImage}`,
+          "mainEntityOfPage": `https://www.autaxo.de${p.url}`
         }
       }))
     }
@@ -159,7 +143,6 @@ const schema = {
           type="button"
           class="ax-topic-chip is-active inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-white/80 hover:text-white hover:border-primary/40 transition-colors text-sm"
           data-topic="all"
-          data-tokens=""
         >
           <Icon name="lucide:layers" class="w-4 h-4 text-primary" />
           Alle Themen
@@ -185,28 +168,6 @@ const schema = {
           Themenübersicht
         </a>
       </div>
-
-      <div class="mt-10 max-w-4xl mx-auto text-left rounded-2xl border border-white/10 bg-[#15171e] p-6">
-        <div class="flex items-center gap-2 mb-3">
-          <Icon name="lucide:info" class="w-5 h-5 text-primary" />
-          <h2 class="text-white font-bold text-lg m-0">Was du hier findest</h2>
-        </div>
-        <ul class="list-disc pl-5 text-white/70 space-y-2">
-          <li><strong>Umsatzsteuer im Autohandel:</strong> §25a Differenzbesteuerung, Regelbesteuerung, Sonderfälle.</li>
-          <li><strong>EU/Export:</strong> Nachweise, Gelangensbestätigung, typische Prüfungsfallen.</li>
-          <li><strong>GoBD:</strong> Dokumentation, Belegführung, nachvollziehbare Prozesse für Betriebsprüfungen.</li>
-          <li><strong>DATEV:</strong> Export-Logik, saubere Datenübergabe, weniger Rückfragen aus der Kanzlei.</li>
-        </ul>
-
-        <div class="mt-4 text-sm text-white/70">
-          Passende Produktseiten:{" "}
-          <a class="underline hover:text-white" href="/funktionen/differenzbesteuerung-25a-ustg">§25a</a>{" "}
-          ·{" "}
-          <a class="underline hover:text-white" href="/funktionen/buchhaltung">Buchhaltung/DATEV</a>{" "}
-          ·{" "}
-          <a class="underline hover:text-white" href="/downloads">Downloads & Vorlagen</a>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -214,11 +175,7 @@ const schema = {
     <div class="container mx-auto px-4 max-w-5xl">
       <ol class="space-y-4" id="blog-list" aria-label="Blogartikel">
         {posts.map((post) => (
-          <li
-            data-post-row
-            data-title={post.title.toLowerCase()}
-            data-tags={(post.tags || []).join(" ").toLowerCase()}
-          >
+          <li data-post-row data-title={post.title.toLowerCase()} data-tags={(post.tags || []).join(" ").toLowerCase()}>
             <article class="group rounded-2xl border border-white/10 bg-[#15171e] hover:border-primary/50 transition-all overflow-hidden">
               <a href={post.url} class="block">
                 <div class="grid md:grid-cols-12 gap-0 md:gap-6">
@@ -236,7 +193,7 @@ const schema = {
                     <div class="flex flex-wrap items-center gap-2 text-xs mb-3">
                       <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white/70">
                         <Icon name="lucide:calendar" class="w-3.5 h-3.5 text-white/40" />
-                        {new Date(post.date).toLocaleDateString("de-DE", { year: "numeric", month: "long", day: "2-digit" })}
+                        {new Date(post.dateObj).toLocaleDateString("de-DE", { year: "numeric", month: "long", day: "2-digit" })}
                       </span>
 
                       {(post.tags || []).slice(0, 3).map((t) => (
@@ -251,11 +208,7 @@ const schema = {
                       {post.title}
                     </h3>
 
-                    {post.excerpt && (
-                      <p class="mt-3 text-text-muted leading-relaxed">
-                        {post.excerpt}
-                      </p>
-                    )}
+                    {post.excerpt && <p class="mt-3 text-text-muted leading-relaxed">{post.excerpt}</p>}
 
                     <div class="mt-4 inline-flex items-center gap-2 text-primary font-bold">
                       Weiterlesen
@@ -276,13 +229,16 @@ const schema = {
     const rows = Array.from(document.querySelectorAll('[data-post-row]'));
     const chips = Array.from(document.querySelectorAll('.ax-topic-chip'));
 
+    let activeTopic = 'all';
     let activeTokens = '';
 
     function normalize(s){ return (s || '').toLowerCase().trim(); }
 
-    function setActiveChip(el){
-      chips.forEach((c) => c.classList.remove('is-active'));
-      el.classList.add('is-active');
+    function setActiveChip(key){
+      chips.forEach((c) => {
+        const k = c.getAttribute('data-topic');
+        c.classList.toggle('is-active', k === key);
+      });
     }
 
     function tokenMatch(hay, tokens){
@@ -299,7 +255,7 @@ const schema = {
         const hay = (title + ' ' + tags);
 
         const qOk = (!q || hay.includes(q));
-        const topicOk = tokenMatch(hay, activeTokens);
+        const topicOk = (activeTopic === 'all') ? true : tokenMatch(hay, activeTokens);
 
         r.style.display = (qOk && topicOk) ? '' : 'none';
       });
@@ -307,13 +263,16 @@ const schema = {
 
     chips.forEach((c) => {
       c.addEventListener('click', () => {
+        activeTopic = (c.getAttribute('data-topic') || 'all');
         activeTokens = (c.getAttribute('data-tokens') || '');
-        setActiveChip(c);
+        setActiveChip(activeTopic);
         apply();
       });
     });
 
     search?.addEventListener('input', apply);
+
+    setActiveChip('all');
     apply();
   </script>
 

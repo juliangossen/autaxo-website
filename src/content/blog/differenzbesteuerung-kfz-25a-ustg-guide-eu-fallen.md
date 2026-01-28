@@ -1,15 +1,13 @@
 ---
-slug: differenzbesteuerung-kfz-25a-ustg-guide-eu-fallen
+slug: "differenzbesteuerung-kfz-25a-ustg-guide-eu-fallen"
 title: "Differenzbesteuerung im Autohandel (§ 25a UStG) – Ein technischer Leitfaden"
-description: "Praxis-Guide zur Differenzbesteuerung (§ 25a UStG): Voraussetzungen, Berechnung, Rechnungsvorschriften, GoBD-Dokumentation und das EU-Dilemma (igL vs. Marge)."
-author: "Julian Goßen"
-publishedDate: 2026-01-28
-# optional:
 seoTitle: "Differenzbesteuerung Kfz: § 25a UStG Guide & EU-Fallen"
 metaDescription: "Praxis-Guide zur Differenzbesteuerung (§ 25a UStG): Berechnung, Rechnungsvorschriften und das strategische Risiko beim EU-Verkauf (igL vs. Marge)."
 excerpt: "Technischer Leitfaden zur Differenzbesteuerung (§ 25a UStG) inkl. EU-Dilemma, Rechnungspflichten und GoBD-Nachweisen."
+datePublished: "2026-01-28"
+author: "Julian Goßen"
 tags: ["§25a", "Differenzbesteuerung", "UStG", "EU", "Export", "GoBD", "DATEV"]
-coverImage: ""
+coverImage: "/og/autaxo-og.png"
 shortDefinition: "Die Differenzbesteuerung (nach § 25a UStG) ist eine umsatzsteuerliche Sonderregelung für Wiederverkäufer von Gebrauchtwagen. Besteuert wird nur die Marge zwischen Ein- und Verkaufspreis, sofern der Ankauf ohne Vorsteuerabzug erfolgte."
 ---
 
