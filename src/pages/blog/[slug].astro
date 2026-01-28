@@ -6,7 +6,7 @@ import { getCollection } from "astro:content";
 export async function getStaticPaths() {
   const entries = await getCollection("blog");
 
-  // ✅ IMMER entry.slug verwenden (Dateiname) -> kann nicht fehlen
+  // WICHTIG: für params.slug ausschließlich entry.slug verwenden (kommt immer aus dem Dateisystem)
   return entries.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },
@@ -16,127 +16,121 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 
-const title = entry.data.seoTitle ?? entry.data.title;
-const description =
-  entry.data.metaDescription ??
-  entry.data.excerpt ??
-  "Fachbeitrag im Autaxo Blog (Autohandel, §25a, DATEV, GoBD, EU/Export).";
-
 const fallbackImage = "/og/autaxo-og.png";
-const image = entry.data.coverImage ?? fallbackImage;
 
-// Canonical sauber (Astro.site bevorzugen)
+// SEO
+const seoTitle = entry.data.seoTitle ?? entry.data.title;
+const metaDescription =
+  entry.data.metaDescription ?? entry.data.description ?? entry.data.excerpt ?? "";
+
+// Schema nutzt z.coerce.date() -> hier ist publishedDate ein Date-Objekt
+const publishedDate =
+  entry.data.publishedDate instanceof Date
+    ? entry.data.publishedDate
+    : new Date(entry.data.publishedDate);
+
+const isoPublished = isNaN(publishedDate.getTime())
+  ? undefined
+  : publishedDate.toISOString();
+
 const canonicalUrl = (() => {
   try {
-    if (Astro.site) return new URL(`/blog/${entry.slug}/`, Astro.site).toString();
+    if (Astro.site) return new URL(Astro.url.pathname, Astro.site).toString();
   } catch (_) {}
   return `https://www.autaxo.de/blog/${entry.slug}/`;
 })();
 
-const pageUrl = canonicalUrl;
+const coverImage =
+  (typeof entry.data.coverImage === "string" && entry.data.coverImage.trim())
+    ? entry.data.coverImage.trim()
+    : fallbackImage;
 
-// Schema.org
-const schema = {
+// JSON-LD (BlogPosting)
+const structuredData = {
   "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "BreadcrumbList",
-      "@id": `${pageUrl}#breadcrumb`,
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.autaxo.de/" },
-        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.autaxo.de/blog/" },
-        { "@type": "ListItem", "position": 3, "name": title, "item": pageUrl }
-      ]
-    },
-    {
-      "@type": "BlogPosting",
-      "@id": `${pageUrl}#post`,
-      "mainEntityOfPage": pageUrl,
-      "headline": title,
-      "name": title,
-      "description": description,
-      "datePublished": entry.data.datePublished,
-      ...(entry.data.dateModified ? { "dateModified": entry.data.dateModified } : {}),
-      "image": `https://www.autaxo.de${image}`,
-      ...(entry.data.author ? { "author": { "@type": "Person", "name": entry.data.author } } : {}),
-      "publisher": {
-        "@type": "Organization",
-        "name": "Autaxo",
-        "url": "https://www.autaxo.de/"
-      },
-      ...(Array.isArray(entry.data.tags) && entry.data.tags.length
-        ? { "keywords": entry.data.tags.join(", ") }
-        : {})
-    }
-  ]
+  "@type": "BlogPosting",
+  "headline": entry.data.title,
+  "description": entry.data.description,
+  "author": entry.data.author
+    ? { "@type": "Person", "name": entry.data.author }
+    : undefined,
+  "datePublished": isoPublished,
+  "image": coverImage.startsWith("http")
+    ? coverImage
+    : `https://www.autaxo.de${coverImage}`,
+  "mainEntityOfPage": canonicalUrl,
 };
 ---
 
 <MarketingLayout
-  title={title}
-  description={description}
+  title={seoTitle}
+  description={metaDescription}
   canonicalUrl={canonicalUrl}
-  image={image}
+  image={coverImage}
 >
-  <script type="application/ld+json" slot="head" set:html={JSON.stringify(schema)} />
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData)}
+    />
+  </Fragment>
 
   <main class="bg-[#0b0c10] pt-28 pb-24">
-    <div class="container mx-auto px-4 max-w-4xl">
+    <div class="container mx-auto px-4 max-w-3xl">
       <nav class="text-sm text-white/60 mb-6">
-        <a class="hover:text-white" href="/blog">Blog</a>
+        <a href="/blog/" class="hover:text-white underline">Blog</a>
         <span class="mx-2">/</span>
         <span class="text-white/80">{entry.data.title}</span>
       </nav>
 
-      <header class="mb-10">
-        <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
+      <header class="mb-8">
+        <h1 class="text-3xl md:text-4xl font-extrabold text-white leading-tight">
           {entry.data.title}
         </h1>
 
-        <div class="mt-4 flex flex-wrap items-center gap-2 text-xs">
-          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white/70">
-            <Icon name="lucide:calendar" class="w-3.5 h-3.5 text-white/40" />
-            {new Date(entry.data.datePublished).toLocaleDateString("de-DE", { year: "numeric", month: "long", day: "2-digit" })}
-          </span>
-
-          {entry.data.author && (
+        <div class="mt-4 flex flex-wrap gap-2 text-xs">
+          {isoPublished && (
             <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white/70">
-              <Icon name="lucide:user" class="w-3.5 h-3.5 text-white/40" />
-              {entry.data.author}
+              <Icon name="lucide:calendar" class="w-3.5 h-3.5 text-white/40" />
+              {publishedDate.toLocaleDateString("de-DE", {
+                year: "numeric",
+                month: "long",
+                day: "2-digit",
+              })}
             </span>
           )}
 
-          {(entry.data.tags ?? []).slice(0, 6).map((t) => (
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white/70">
-              <Icon name="lucide:tag" class="w-3.5 h-3.5 text-white/40" />
-              {t}
-            </span>
-          ))}
+          {Array.isArray(entry.data.tags) &&
+            entry.data.tags.slice(0, 6).map((t) => (
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white/70">
+                <Icon name="lucide:tag" class="w-3.5 h-3.5 text-white/40" />
+                {t}
+              </span>
+            ))}
         </div>
 
         {entry.data.shortDefinition && (
-          <div class="mt-6 rounded-2xl border border-white/10 bg-[#15171e] p-5">
+          <div class="mt-6 rounded-2xl border border-white/10 bg-[#15171e] p-5 text-white/75">
             <div class="flex items-center gap-2 mb-2">
-              <Icon name="lucide:bookmark" class="w-5 h-5 text-primary" />
-              <p class="m-0 text-white font-bold">Kurzdefinition</p>
+              <Icon name="lucide:info" class="w-4 h-4 text-primary" />
+              <p class="m-0 font-bold text-white">Kurzdefinition</p>
             </div>
-            <p class="m-0 text-white/70 leading-relaxed">{entry.data.shortDefinition}</p>
+            <p class="m-0 leading-relaxed">{entry.data.shortDefinition}</p>
           </div>
         )}
       </header>
 
-      <article class="prose prose-invert max-w-none prose-headings:scroll-mt-28 prose-a:text-primary prose-a:no-underline hover:prose-a:underline">
+      <article class="prose prose-invert max-w-none">
         <Content />
       </article>
 
-      <div class="mt-14 border-t border-white/10 pt-8 flex flex-col sm:flex-row gap-3 justify-between">
-        <a href="/blog" class="inline-flex items-center gap-2 text-white/80 hover:text-white">
+      <div class="mt-10 pt-8 border-t border-white/10">
+        <a
+          href="/blog/"
+          class="inline-flex items-center gap-2 text-primary font-bold hover:opacity-90"
+        >
           <Icon name="lucide:arrow-left" class="w-4 h-4" />
-          Zur Übersicht
-        </a>
-        <a href="https://garage.autaxo.de/auth/sign-up" class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-bold rounded-xl hover:bg-primary-hover transition-colors">
-          Autaxo testen
-          <Icon name="lucide:arrow-right" class="w-4 h-4" />
+          Zurück zum Blog
         </a>
       </div>
     </div>
