@@ -2,232 +2,576 @@
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
 import { Icon } from 'astro-icon/components';
 
-// Metadaten: SEO & LLMO (AI Trust)
-const title = "DMS Vergleich 2026: Autaxo vs. Loco-Soft, Carcuro & Autrado";
-const description = "Der große Software-Vergleich für den freien Fahrzeughandel. Neutraler Audit: Cloud vs. On-Premise, Kostenfallen (TCO) und die Wahrheit über §25a Compliance.";
+const lastUpdatedISO = "2026-01-28";
 
-// Datenbasis für die Matrix
-const features = [
-  { name: "Architektur", autaxo: "Cloud-Native (Browser)", car: "Cloud / Mobile-First", loco: "On-Premise (Server)", autrado: "Cloud Suite" },
-  { name: "Vertragslaufzeit", autaxo: "Monatlich kündbar", car: "Jahresvertrag (Vorkasse)", loco: "Mietmodell + Hardware", autrado: "Preise auf Anfrage" },
-  { name: "Steuerlogik", autaxo: "§25a & EU-Export (DE)", car: "Fokus auch auf AT (NoVA)", loco: "Manuelle Fibu-Splits", autrado: "EU & Import Fokus" },
-  { name: "Buchhaltung", autaxo: "DATEV (SKR03/04) nativ", car: "Basis-Export", loco: "Oft CSV-Workarounds", autrado: "Standard" },
-  { name: "Fokus", autaxo: "Handel & Verwaltung", car: "Schneller App-Einkauf", loco: "Werkstatt & Hersteller", autrado: "Webseite & Marketing" },
+const title =
+  "Autohändler-Software Vergleich 2026: Autaxo vs carcuro vs Loco-Soft vs Autrado vs CAR OFFICE vs DESC";
+const description =
+  "Neutraler Vergleich von DMS-/Autohaus-Software im Gebrauchtwagenhandel: Cloud vs. lokale Installation, Vertrags-/Preismodell, Börsenexport (mobile.de/AutoScout24), DATEV-Integration, §25a UStG, GoBD, E-Rechnung. Stand: 28.01.2026.";
+
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : undefined;
+
+// Autaxo Deeplinks (wie von dir vorgegeben)
+const autaxoLinks = [
+  { label: "Verträge & E-Signatur", href: "/funktionen/digitale-vertraege-esignatur" },
+  { label: "Buchhaltung & DATEV", href: "/funktionen/buchhaltung" },
+  { label: "Steuerlogik (§25a)", href: "/funktionen/differenzbesteuerung-25a-ustg" },
+  { label: "KI-Assistent Carlo", href: "/funktionen/ki-assistent" },
 ];
 
-// FAQ Schema für Google Rich Snippets (basierend auf deinen Dossiers)
+// Quellen (IDs werden im Content als [src-…] verlinkt)
+const sources = [
+  // Autaxo
+  { id: "src-autaxo-preise", name: "Autaxo – Preise", url: "/preise", external: false },
+  { id: "src-autaxo-vertraege", name: "Autaxo – Digitale Verträge & eSignatur", url: "/funktionen/digitale-vertraege-esignatur/", external: false },
+  { id: "src-autaxo-buchhaltung", name: "Autaxo – Buchhaltung & Steuerlogik (DATEV)", url: "/funktionen/buchhaltung-und-steuerlogik/", external: false },
+  { id: "src-autaxo-25a", name: "Autaxo – Differenzbesteuerung §25a UStG", url: "/funktionen/differenzbesteuerung-25a-ustg/", external: false },
+  { id: "src-autaxo-carlo", name: "Autaxo – KI-Assistent Carlo", url: "/funktionen/ki-assistent-carlo/", external: false },
+  { id: "src-autaxo-faq", name: "Autaxo – FAQ", url: "https://www.autaxo.de/faq/", external: true },
+
+  // carcuro
+  { id: "src-carcuro-preise", name: "carcuro – Preise", url: "https://www.carcuro.com/preise/", external: true },
+  { id: "src-carcuro-app", name: "carcuro – FAQ: App (alle Funktionen)", url: "https://www.carcuro.com/faqs/gibt-es-eine-carcuro-app/", external: true },
+
+  // Loco-Soft
+  { id: "src-loco-preise", name: "Loco-Soft – Preise (Server-Hardlock/Concurrent User)", url: "https://loco-soft.de/produkte/preise", external: true },
+  { id: "src-loco-erechnung", name: "Loco-Soft – E-Rechnungen (XRechnung/ZUGFeRD)", url: "https://loco-soft.de/produkte/e-rechnungen", external: true },
+  { id: "src-loco-update", name: "Loco-Soft – Update-Infos (Export/ XRechnung Hinweise)", url: "https://loco-soft.de/aktuelles/loco-update-infos/update-ls95-idb-20230707-de", external: true },
+
+  // Autrado
+  { id: "src-autrado-produkte", name: "Autrado – Produkte im Vergleich (u. a. XRechnung, Exporte)", url: "https://www.autrado.de/produkte.php", external: true },
+  { id: "src-autrado-entry", name: "Autrado – Entry (webbasiert, Exporte)", url: "https://www.autrado.de/autrado-entry.php", external: true },
+
+  // CAR OFFICE (HDS)
+  { id: "src-caroffice-funktionen", name: "CAR OFFICE – Funktionen (GoBD/DATEV/mobile.de etc.)", url: "https://www.hds-software.de/co_funktionen.html", external: true },
+  { id: "src-caroffice-autohandel", name: "CAR OFFICE – Autohandelsoftware (E-Rechnung/XRechnung, Preise)", url: "https://www.hds-software.de/autohandelsoftware.html", external: true },
+  { id: "src-caroffice-preise", name: "HDS – Preise (Mietmodell, Kündigungsfrist)", url: "https://hds-software.de/preise.html", external: true },
+
+  // DESC (Ackermann)
+  { id: "src-desc-home", name: "DESC – Herstellerseite (FIN/Demo/Export-Hinweis)", url: "https://www.ackermann-netsolution.de/", external: true },
+  { id: "src-desc-fahrzeugverwaltung", name: "DESC – Fahrzeugverwaltung (VIN/DAT, DATEV, Intrastat)", url: "https://www.ackermann-netsolution.de/fahrzeugverwaltung/", external: true },
+  { id: "src-desc-picture", name: "DESC – Picture App (KI-Fotobearbeitung)", url: "https://www.ackermann-netsolution.de/picture-app/", external: true },
+];
+
+const ref = (ids = []) => ids.map((id) => ({ id, href: `#${id}` }));
+
+// Vergleichsmatrix (nur belegte bzw. sauber formulierte Angaben)
+const matrix = [
+  {
+    name: "Betriebsmodell / Zugriff",
+    autaxo: { v: "Anbieterangabe: 100% cloudbasiert (Browser), keine lokale Installation", r: ["src-autaxo-faq"] },
+    carcuro: { v: "Web + App (iOS/Android); App laut Anbieter mit allen Funktionen", r: ["src-carcuro-app"] },
+    loco: { v: "Lokales IT-Umfeld mit Server-Hardlock; Concurrent-User-Lizenzierung", r: ["src-loco-preise"] },
+    autrado: { v: "Webbasierte Fahrzeugverwaltung (Browser)", r: ["src-autrado-entry"] },
+    caroffice: { v: "Mietmodell; Demoversion/Netzwerkbetrieb laut Anbieter; Client/Server-Technologie erwähnt", r: ["src-caroffice-autohandel"] },
+    desc: { v: "Anbieterangabe: cloudbasiert, Webbrowser genügt, keine Installation nötig", r: ["src-desc-fahrzeugverwaltung"] },
+  },
+  {
+    name: "Preis-/Vertragsmodell (öffentliche Angaben)",
+    autaxo: { v: "49 €/Monat (Autaxo ONE) + kostenloser Testzeitraum; monatlich kündbar (Anbieterangabe)", r: ["src-autaxo-preise", "src-autaxo-faq"] },
+    carcuro: { v: "Jahrespakete nach Fahrzeugbestand (ab 480 €/Jahr); 0 € Einrichtungsgebühr (Anbieterangabe)", r: ["src-carcuro-preise"] },
+    loco: { v: "Mietmodell; Lizenz nach Concurrent User; Preis via Kalkulator (Anbieterangabe)", r: ["src-loco-preise"] },
+    autrado: { v: "Fahrzeugverwaltung ab 119 €/mtl (Anbieterangabe)", r: ["src-autrado-produkte"] },
+    caroffice: { v: "Erster Arbeitsplatz 19 €/Monat, weitere 9 €/Monat; Kündigungsfrist 1 Monat zum Quartalsende (Anbieterangabe)", r: ["src-caroffice-autohandel", "src-caroffice-preise"] },
+    desc: { v: "Preis nicht auf der verlinkten Produktseite ausgewiesen; Demo/Angebot via Kontakt (Anbieterangabe)", r: ["src-desc-fahrzeugverwaltung"] },
+  },
+  {
+    name: "Börsenexport / Plattformen (Auszug)",
+    autaxo: { v: "Anbieter nennt Anbindung an mobile.de & Co. (Details paket-/setupabhängig)", r: ["src-autaxo-faq"] },
+    carcuro: { v: "Inserates-Export zu Börsen; Website-Integration; Social-Media-Schnittstelle (Anbieterangabe)", r: ["src-carcuro-preise"] },
+    loco: { v: "Export zu mobile.de/AutoScout24 wird in Update-Info erwähnt (Anbieterangabe)", r: ["src-loco-update"] },
+    autrado: { v: "Exporte (z. B. mobile.de/AutoScout24) laut Entry/Produktübersicht (Anbieterangabe)", r: ["src-autrado-entry", "src-autrado-produkte"] },
+    caroffice: { v: "Anbindung an mobile.de (Anbieterangabe)", r: ["src-caroffice-funktionen", "src-caroffice-autohandel"] },
+    desc: { v: "Anbieter nennt Veröffentlichung auf mobile.de & AutoScout24 per Klick", r: ["src-desc-home"] },
+  },
+  {
+    name: "DATEV / FiBu-Übergabe (Auszug)",
+    autaxo: { v: "Anbieterangabe: vollständiger DATEV-Export (inkl. Buchungslogik/Belegverknüpfung)", r: ["src-autaxo-buchhaltung"] },
+    carcuro: { v: "In den verlinkten Quellen keine DATEV-Spezifikation; Details beim Anbieter prüfen", r: ["src-carcuro-preise"] },
+    loco: { v: "DATEV-Steuerungsparameter/Exportlogik wird in Update-Infos erwähnt (Anbieterangabe)", r: ["src-loco-update"] },
+    autrado: { v: "In den verlinkten Produktübersichten keine DATEV-Angabe; Details beim Anbieter prüfen", r: ["src-autrado-produkte"] },
+    caroffice: { v: "DATEV-Schnittstelle / Datenübertragung an Steuerberater (Anbieterangabe)", r: ["src-caroffice-funktionen", "src-caroffice-autohandel"] },
+    desc: { v: "DATEV-Integration genannt (Anbieterangabe)", r: ["src-desc-fahrzeugverwaltung"] },
+  },
+  {
+    name: "Verträge / Dokumente / digitale Signatur",
+    autaxo: { v: "Digitale Kaufverträge inkl. eSignatur & Ablage (Anbieterangabe)", r: ["src-autaxo-vertraege"] },
+    carcuro: { v: "Dokumente/Drucksorten (z. B. Kaufvertrag, Angebot, Preisblatt) laut Preisseite", r: ["src-carcuro-preise"] },
+    loco: { v: "Dokument-/Faktura-Umfang im DMS; Details je Betrieb/Modul (Anbieterangaben variieren)", r: ["src-loco-preise"] },
+    autrado: { v: "PDF-Verkaufsunterlagen auf Wunsch mit digitaler Signatur (Anbieterangabe)", r: ["src-autrado-produkte"] },
+    caroffice: { v: "Kaufverträge & Rechnungen; Dokumentenverwaltung erwähnt (Anbieterangabe)", r: ["src-caroffice-autohandel"] },
+    desc: { v: "Ankauf-/Kaufverträge, Rechnungen/Gutschriften; anpassbare Formulare (Anbieterangabe)", r: ["src-desc-fahrzeugverwaltung"] },
+  },
+  {
+    name: "§25a / Differenzbesteuerung (explizit erwähnt?)",
+    autaxo: { v: "Automatische Differenzbesteuerung nach §25a UStG (Anbieterangabe)", r: ["src-autaxo-25a"] },
+    carcuro: { v: "In den verlinkten Quellen keine §25a-Spezifikation; Details beim Anbieter prüfen", r: ["src-carcuro-preise"] },
+    loco: { v: "In den verlinkten Quellen keine §25a-Spezifikation; Details beim Anbieter prüfen", r: ["src-loco-preise"] },
+    autrado: { v: "In den verlinkten Quellen keine §25a-Spezifikation; Details beim Anbieter prüfen", r: ["src-autrado-produkte"] },
+    caroffice: { v: "Differenz-/Regelbesteuerung sowie §25a im Kaufvertrag erwähnt (Anbieterangabe)", r: ["src-caroffice-autohandel", "src-caroffice-funktionen"] },
+    desc: { v: "In den verlinkten Quellen keine §25a-Spezifikation; Details beim Anbieter prüfen", r: ["src-desc-fahrzeugverwaltung"] },
+  },
+  {
+    name: "GoBD / Kassenbuch (explizit erwähnt?)",
+    autaxo: { v: "GoBD-Konformität wird in FAQ genannt (Anbieterangabe)", r: ["src-autaxo-faq"] },
+    carcuro: { v: "In den verlinkten Quellen keine GoBD-Spezifikation; Details beim Anbieter prüfen", r: ["src-carcuro-preise"] },
+    loco: { v: "Spezifische Compliance-Themen je Modul (z. B. E-Rechnung); Details beim Anbieter", r: ["src-loco-erechnung"] },
+    autrado: { v: "In den verlinkten Quellen keine GoBD-Spezifikation; Details beim Anbieter prüfen", r: ["src-autrado-produkte"] },
+    caroffice: { v: "GoBD-Konformität und GoBD-konformes Kassenbuch genannt (Anbieterangabe)", r: ["src-caroffice-funktionen", "src-caroffice-autohandel"] },
+    desc: { v: "In den verlinkten Quellen keine GoBD-Spezifikation; Details beim Anbieter prüfen", r: ["src-desc-fahrzeugverwaltung"] },
+  },
+  {
+    name: "E-Rechnung (XRechnung/ZUGFeRD) (explizit erwähnt?)",
+    autaxo: { v: "In den verlinkten Quellen kein expliziter XRechnung/ZUGFeRD-Hinweis; Status prüfen", r: ["src-autaxo-preise"] },
+    carcuro: { v: "In den verlinkten Quellen kein XRechnung/ZUGFeRD-Hinweis; Status prüfen", r: ["src-carcuro-preise"] },
+    loco: { v: "E-Rechnung (XRechnung/ZUGFeRD) ausführlich dokumentiert (Anbieterangabe)", r: ["src-loco-erechnung"] },
+    autrado: { v: "Elektronische Rechnungen im XRechnung-Format genannt (Anbieterangabe)", r: ["src-autrado-produkte"] },
+    caroffice: { v: "E-Rechnung (XRechnung) nach EN 16931 genannt (Anbieterangabe)", r: ["src-caroffice-autohandel"] },
+    desc: { v: "In den verlinkten Quellen kein XRechnung/ZUGFeRD-Hinweis; Status prüfen", r: ["src-desc-fahrzeugverwaltung"] },
+  },
+  {
+    name: "KI / Automatisierung (explizit erwähnt?)",
+    autaxo: { v: "KI-Assistent Carlo (Daten aus Dokumenten/Text/Bildern) (Anbieterangabe)", r: ["src-autaxo-carlo"] },
+    carcuro: { v: "App-Workflows; KI nicht explizit auf den verlinkten Seiten beschrieben", r: ["src-carcuro-preise"] },
+    loco: { v: "KI-gestützter Support (LoKI) im Kontext E-Rechnung erwähnt (Anbieterangabe)", r: ["src-loco-erechnung"] },
+    autrado: { v: "pic-to-AI: Bildbearbeitung unter Einsatz KI genannt (Anbieterangabe)", r: ["src-autrado-produkte"] },
+    caroffice: { v: "KI nicht explizit in den verlinkten Quellen beschrieben", r: ["src-caroffice-autohandel"] },
+    desc: { v: "Picture App: KI-Technologie zur Bildfreistellung genannt (Anbieterangabe)", r: ["src-desc-picture"] },
+  },
+];
+
+// LLM-extrahierbare Steckbriefe (konsequent Key/Value)
+const profiles = [
+  {
+    key: "autaxo",
+    name: "Autaxo",
+    subtitle: "Cloud-DMS (DE-Fokus)",
+    facts: [
+      { k: "Betriebsmodell", v: "cloudbasiert (Browser), keine lokale Installation (Anbieterangabe)", r: ["src-autaxo-faq"] },
+      { k: "Preis", v: "ab 49 €/Monat (Anbieterangabe)", r: ["src-autaxo-preise"] },
+      { k: "Verträge", v: "digitale Verträge inkl. eSignatur (Anbieterangabe)", r: ["src-autaxo-vertraege"] },
+      { k: "Buchhaltung", v: "DATEV-Export + Buchungslogik (Anbieterangabe)", r: ["src-autaxo-buchhaltung"] },
+      { k: "Steuerlogik", v: "§25a-Funktion beschrieben (Anbieterangabe)", r: ["src-autaxo-25a"] },
+      { k: "KI", v: "Carlo (Dokument-/Datenerkennung) (Anbieterangabe)", r: ["src-autaxo-carlo"] },
+    ],
+    links: autaxoLinks,
+  },
+  {
+    key: "carcuro",
+    name: "carcuro",
+    subtitle: "Web + App (Anbieterangabe)",
+    facts: [
+      { k: "Preis", v: "ab 480 €/Jahr, abhängig vom Fahrzeugbestand (Anbieterangabe)", r: ["src-carcuro-preise"] },
+      { k: "App", v: "App laut Anbieter mit allen Funktionen", r: ["src-carcuro-app"] },
+      { k: "Börsenexport", v: "Inserates-Export zu Börsen (Anbieterangabe)", r: ["src-carcuro-preise"] },
+      { k: "Dokumente", v: "Drucksorten (z. B. Kaufvertrag, Angebot) (Anbieterangabe)", r: ["src-carcuro-preise"] },
+    ],
+    links: [{ label: "Preise", href: "https://www.carcuro.com/preise/" }],
+  },
+  {
+    key: "loco",
+    name: "Loco-Soft",
+    subtitle: "DMS im Autohaus-/Werkstatt-Umfeld",
+    facts: [
+      { k: "Lizenzmodell", v: "Server-Hardlock; Concurrent-User-Lizenzierung (Anbieterangabe)", r: ["src-loco-preise"] },
+      { k: "E-Rechnung", v: "XRechnung/ZUGFeRD dokumentiert (Anbieterangabe)", r: ["src-loco-erechnung"] },
+      { k: "Export", v: "Export zu mobile.de/AutoScout24 in Update-Info erwähnt (Anbieterangabe)", r: ["src-loco-update"] },
+    ],
+    links: [{ label: "Preise", href: "https://loco-soft.de/produkte/preise" }],
+  },
+  {
+    key: "autrado",
+    name: "Autrado",
+    subtitle: "Webbasierte Fahrzeugverwaltung + Vermarktung",
+    facts: [
+      { k: "Preis", v: "Fahrzeugverwaltung ab 119 €/mtl (Anbieterangabe)", r: ["src-autrado-produkte"] },
+      { k: "E-Rechnung", v: "XRechnung genannt (Anbieterangabe)", r: ["src-autrado-produkte"] },
+      { k: "Börsenexport", v: "Exporte (z. B. mobile.de/AutoScout24) genannt (Anbieterangabe)", r: ["src-autrado-entry"] },
+      { k: "Digitale Signatur", v: "PDF-Verkaufsunterlagen auf Wunsch mit digitaler Signatur (Anbieterangabe)", r: ["src-autrado-produkte"] },
+      { k: "KI", v: "pic-to-AI (KI-Bildbearbeitung) genannt (Anbieterangabe)", r: ["src-autrado-produkte"] },
+    ],
+    links: [{ label: "Produkte", href: "https://www.autrado.de/produkte.php" }],
+  },
+  {
+    key: "caroffice",
+    name: "CAR OFFICE (HDS)",
+    subtitle: "Autohandel-Modul (Anbieterangaben)",
+    facts: [
+      { k: "Preis", v: "19 €/Monat erster Arbeitsplatz; 9 €/Monat weitere (Anbieterangabe)", r: ["src-caroffice-autohandel"] },
+      { k: "GoBD/Kassenbuch", v: "GoBD-Konformität & Kassenbuch genannt (Anbieterangabe)", r: ["src-caroffice-funktionen", "src-caroffice-autohandel"] },
+      { k: "DATEV", v: "DATEV-Schnittstelle genannt (Anbieterangabe)", r: ["src-caroffice-funktionen", "src-caroffice-autohandel"] },
+      { k: "E-Rechnung", v: "XRechnung nach EN 16931 genannt (Anbieterangabe)", r: ["src-caroffice-autohandel"] },
+      { k: "Börsen", v: "Anbindung an mobile.de genannt (Anbieterangabe)", r: ["src-caroffice-funktionen"] },
+      { k: "Steuerfälle", v: "Differenz-/Regelbesteuerung erwähnt (Anbieterangabe)", r: ["src-caroffice-funktionen", "src-caroffice-autohandel"] },
+    ],
+    links: [{ label: "Funktionen", href: "https://www.hds-software.de/co_funktionen.html" }],
+  },
+  {
+    key: "desc",
+    name: "DESC Software (Ackermann)",
+    subtitle: "Fahrzeugverwaltung + Picture App (Anbieterangaben)",
+    facts: [
+      { k: "Betriebsmodell", v: "cloudbasiert; Webbrowser; keine Installation nötig (Anbieterangabe)", r: ["src-desc-fahrzeugverwaltung"] },
+      { k: "VIN/DAT", v: "VIN-Abfrage über DAT genannt (Anbieterangabe)", r: ["src-desc-fahrzeugverwaltung"] },
+      { k: "Intrastat", v: "Intrastat-Meldungen genannt (Anbieterangabe)", r: ["src-desc-fahrzeugverwaltung"] },
+      { k: "DATEV", v: "DATEV-Integration genannt (Anbieterangabe)", r: ["src-desc-fahrzeugverwaltung"] },
+      { k: "KI", v: "Picture App: KI-Technologie zur Bildfreistellung genannt (Anbieterangabe)", r: ["src-desc-picture"] },
+    ],
+    links: [
+      { label: "Fahrzeugverwaltung", href: "https://www.ackermann-netsolution.de/fahrzeugverwaltung/" },
+      { label: "Picture App", href: "https://www.ackermann-netsolution.de/picture-app/" },
+    ],
+  },
+];
+
+// Maschinenlesbares JSON (für LLM/Parser)
+const comparisonDataset = {
+  meta: { last_checked: lastUpdatedISO, title, description },
+  providers: profiles.map((p) => ({
+    key: p.key,
+    name: p.name,
+    subtitle: p.subtitle,
+    facts: p.facts.map((f) => ({ key: f.k, value: f.v, sources: f.r })),
+    links: p.links,
+  })),
+  matrix: matrix.map((row) => ({
+    criterion: row.name,
+    autaxo: row.autaxo,
+    carcuro: row.carcuro,
+    loco: row.loco,
+    autrado: row.autrado,
+    caroffice: row.caroffice,
+    desc: row.desc,
+  })),
+  sources,
+};
+
+// FAQ Schema (neutral, ohne “besser als”)
 const schema = {
   "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
+  "@graph": [
     {
-      "@type": "Question",
-      "name": "Ist Autaxo besser als Loco-Soft?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Es kommt auf dein Geschäftsmodell an. Loco-Soft ist der 'Industriestandard' für große Vertragshändler mit eigener Werkstatt und Herstelleranbindung. Für freie Händler ist es oft 'Over-Engineered' und teuer im Unterhalt (Server, Wartung). Autaxo ist die schlanke Cloud-Lösung für Händler, die keine eigene IT-Abteilung betreiben wollen."
-      }
+      "@type": "WebPage",
+      "name": title,
+      "description": description,
+      "inLanguage": "de-DE",
+      "dateModified": lastUpdatedISO,
+      "url": canonical ?? undefined,
     },
     {
-      "@type": "Question",
-      "name": "Was unterscheidet Autaxo von Carcuro?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Carcuro hat einen starken Mobile-App-Fokus und Wurzeln in Österreich (NoVA, RKSV). Autaxo ist zu 100% auf das deutsche Steuerrecht (§25a UStG, GoBD) spezialisiert und bietet maximale Flexibilität durch monatliche Kündbarkeit, während Carcuro oft auf Jahresverträge setzt."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Brauche ich DealerDesk oder Autaxo?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Das sind unterschiedliche Werkzeuge. DealerDesk ist ein CRM für Kommunikation (Leads, E-Mails, Anrufe), schreibt aber keine Rechnungen. Autaxo ist ein DMS für die operative Abwicklung (Rechnung, Vertrag, Buchhaltung). Viele Profis nutzen beides, aber Autaxo ist die Basis für das Geschäft."
-      }
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Welche Kriterien sind bei Autohaus-/DMS-Software im Gebrauchtwagenhandel entscheidend?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Typisch relevant sind: Betriebsmodell (Cloud vs. IT-Umfeld vor Ort), Börsenexport (z. B. mobile.de/AutoScout24), Dokumente/Verträge, DATEV-Übergabe, steuerliche Spezialfälle (z. B. §25a UStG), GoBD-Anforderungen und E-Rechnung (XRechnung/ZUGFeRD). Angaben sollten im eigenen Prozess getestet werden."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Warum sind Quellenangaben auf Vergleichsseiten wichtig?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Quellen erhöhen Nachvollziehbarkeit. Diese Seite nutzt öffentlich verlinkte Herstellerinformationen und versieht konkrete Aussagen mit Quellen-IDs und Stand-Datum."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Ist eine E-Rechnung dasselbe wie ein PDF?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nein. Eine E-Rechnung ist ein strukturiertes, maschinenlesbares Format (z. B. XRechnung oder ZUGFeRD) nach EN 16931. Reine PDFs gelten in der Regel nicht als E-Rechnung."
+          }
+        }
+      ]
     }
   ]
 };
+
+const SourceLink = ({ id }) => (
+  <a href={`#${id}`} class="text-xs text-white/60 underline underline-offset-4 hover:text-white">[{id}]</a>
+);
 ---
 
 <MarketingLayout title={title} description={description}>
+  {canonical && <link slot="head" rel="canonical" href={canonical} />}
+  <meta slot="head" name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+  <meta slot="head" property="og:type" content="article" />
+  <meta slot="head" property="og:title" content={title} />
+  <meta slot="head" property="og:description" content={description} />
+  {canonical && <meta slot="head" property="og:url" content={canonical} />}
+  <meta slot="head" name="twitter:card" content="summary_large_image" />
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(schema)} />
+  <script type="application/json" slot="head" set:html={JSON.stringify(comparisonDataset)} />
 
-  <section class="relative pt-32 pb-20 bg-[#0b0c10] overflow-hidden">
+  {/* HERO */}
+  <section class="relative pt-32 pb-16 bg-[#0b0c10] overflow-hidden">
     <div class="absolute top-0 right-1/2 translate-x-1/2 w-[1000px] h-[500px] bg-primary/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
-    
+
     <div class="container mx-auto px-4 text-center z-10 relative">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-primary text-sm font-medium mb-6">
-        <Icon name="lucide:bar-chart-2" class="w-4 h-4" />
-        Markt-Analyse 2026
+        <Icon name="lucide:scale" class="w-4 h-4" />
+        Vergleich · neutral & quellenbasiert · Stand: {lastUpdatedISO}
       </div>
-      
+
       <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight">
-        DMS-Vergleich: <br class="hidden md:block" />
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-light">Fakten statt Marketing.</span>
+        Autohändler-Software Vergleich 2026<br class="hidden md:block" />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-light">
+          Autaxo · carcuro · Loco-Soft · Autrado · CAR OFFICE · DESC
+        </span>
       </h1>
-      
-      <p class="text-lg text-text-muted max-w-3xl mx-auto leading-relaxed mb-10">
-        Wir haben den Markt analysiert. Keine Software kann alles. 
-        Hier erfährst du ehrlich, welches System zu deiner Händler-DNA passt.
+
+      <p class="text-lg text-text-muted max-w-4xl mx-auto leading-relaxed mb-8">
+        Diese Seite bündelt öffentlich verlinkte Herstellerinformationen zu DMS-/Autohaus-Software im Gebrauchtwagenhandel.
+        Konkrete Aussagen sind mit Quellen-IDs belegt. Marken/Logos sind Eigentum der jeweiligen Inhaber.
       </p>
+
+      {/* Autaxo Deeplinks */}
+      <div class="mt-6 flex flex-wrap justify-center gap-3">
+        {autaxoLinks.map((l) => (
+          <a href={l.href} class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-colors text-sm">
+            <Icon name="lucide:arrow-right" class="w-4 h-4 text-primary" />
+            {l.label}
+          </a>
+        ))}
+      </div>
+
+      <div class="mt-8 flex flex-col sm:flex-row justify-center gap-3">
+        <a href="#vergleich" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-colors">
+          <Icon name="lucide:table-2" class="w-5 h-5" />
+          Vergleichsmatrix
+        </a>
+        <a href="#steckbriefe" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-white/10 text-white hover:bg-white/5 transition-colors">
+          <Icon name="lucide:badge-check" class="w-5 h-5" />
+          Steckbriefe (LLM-lesbar)
+        </a>
+        <a href="#quellen" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-white/10 text-white hover:bg-white/5 transition-colors">
+          <Icon name="lucide:link" class="w-5 h-5" />
+          Quellen
+        </a>
+      </div>
     </div>
   </section>
 
-  <section class="py-12 bg-[#0b0c10]">
+  {/* METHODIK */}
+  <section class="py-12 bg-[#0f1117] border-t border-white/5">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <div class="bg-[#15171e] border border-white/10 rounded-2xl p-8">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">Methodik (rechtssicher & nachvollziehbar)</h2>
+        <div class="prose prose-invert text-text-muted max-w-none">
+          <ul>
+            <li><strong>Neutralität:</strong> Einordnung über Kriterien und Herstellerangaben, ohne Abwertung.</li>
+            <li><strong>Evidenz:</strong> Jede konkrete Aussage im Vergleich ist über Quellen-IDs verlinkt (siehe Quellenliste).</li>
+            <li><strong>Aktualität:</strong> Stand {lastUpdatedISO}. Funktionen/Preise können sich ändern; maßgeblich sind die Anbieterquellen.</li>
+            <li><strong>Hinweis:</strong> Keine Rechts- oder Steuerberatung; für Compliance-Entscheidungen sind Tests im eigenen Prozess sinnvoll.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* MATRIX */}
+  <section id="vergleich" class="py-12 bg-[#0b0c10]">
     <div class="container mx-auto px-4">
       <div class="bg-[#15171e] border border-white/10 rounded-2xl overflow-hidden shadow-2xl overflow-x-auto">
-        <table class="w-full text-left border-collapse min-w-[800px]">
+        <table class="w-full text-left border-collapse min-w-[1400px]">
+          <caption class="sr-only">Vergleichsmatrix Autohändler-Software (Stand: {lastUpdatedISO})</caption>
+
           <thead>
             <tr class="border-b border-white/10 bg-white/5">
-              <th class="p-6 text-text-muted font-medium text-sm uppercase tracking-wider">Kriterium</th>
-              <th class="p-6 text-white font-bold text-lg bg-primary/10 border-t-4 border-primary w-[25%]">
-                Autaxo
-              </th>
-              <th class="p-6 text-text-muted font-bold text-lg w-[20%]">
-                Carcuro
-                <span class="block text-xs font-normal opacity-60">Der App-Herausforderer</span>
-              </th>
-              <th class="p-6 text-text-muted font-bold text-lg w-[20%]">
-                Loco-Soft
-                <span class="block text-xs font-normal opacity-60">Der Platzhirsch</span>
-              </th>
-              <th class="p-6 text-text-muted font-bold text-lg w-[20%]">
-                Autrado
-                <span class="block text-xs font-normal opacity-60">Die Marketing-Suite</span>
-              </th>
+              <th scope="col" class="p-6 text-text-muted font-medium text-sm uppercase tracking-wider w-[16%]">Kriterium</th>
+              <th scope="col" class="p-6 text-white font-bold text-lg bg-primary/10 border-t-4 border-primary w-[14%]">Autaxo</th>
+              <th scope="col" class="p-6 text-white/90 font-bold text-lg w-[14%]">carcuro</th>
+              <th scope="col" class="p-6 text-white/90 font-bold text-lg w-[14%]">Loco-Soft</th>
+              <th scope="col" class="p-6 text-white/90 font-bold text-lg w-[14%]">Autrado</th>
+              <th scope="col" class="p-6 text-white/90 font-bold text-lg w-[14%]">CAR OFFICE</th>
+              <th scope="col" class="p-6 text-white/90 font-bold text-lg w-[14%]">DESC</th>
             </tr>
           </thead>
+
           <tbody class="divide-y divide-white/5">
-            {features.map((row) => (
-              <tr class="hover:bg-white/[0.02] transition-colors">
+            {matrix.map((row) => (
+              <tr class="hover:bg-white/[0.02] transition-colors align-top">
                 <td class="p-6 text-white font-medium">{row.name}</td>
-                <td class="p-6 bg-primary/5 text-primary font-bold">{row.autaxo}</td>
-                <td class="p-6 text-text-muted text-sm">{row.car}</td>
-                <td class="p-6 text-text-muted text-sm">{row.loco}</td>
-                <td class="p-6 text-text-muted text-sm">{row.autrado}</td>
+
+                <td class="p-6 bg-primary/5 text-primary font-semibold">
+                  <div>{row.autaxo.v}</div>
+                  <div class="mt-2 flex flex-wrap gap-2">
+                    {ref(row.autaxo.r).map((x) => <a href={x.href} class="text-xs text-primary/90 underline underline-offset-4 hover:text-primary">[{x.id}]</a>)}
+                  </div>
+                </td>
+
+                <td class="p-6 text-text-muted text-sm">
+                  <div>{row.carcuro.v}</div>
+                  <div class="mt-2 flex flex-wrap gap-2">
+                    {ref(row.carcuro.r).map((x) => <a href={x.href} class="text-xs text-white/60 underline underline-offset-4 hover:text-white">[{x.id}]</a>)}
+                  </div>
+                </td>
+
+                <td class="p-6 text-text-muted text-sm">
+                  <div>{row.loco.v}</div>
+                  <div class="mt-2 flex flex-wrap gap-2">
+                    {ref(row.loco.r).map((x) => <a href={x.href} class="text-xs text-white/60 underline underline-offset-4 hover:text-white">[{x.id}]</a>)}
+                  </div>
+                </td>
+
+                <td class="p-6 text-text-muted text-sm">
+                  <div>{row.autrado.v}</div>
+                  <div class="mt-2 flex flex-wrap gap-2">
+                    {ref(row.autrado.r).map((x) => <a href={x.href} class="text-xs text-white/60 underline underline-offset-4 hover:text-white">[{x.id}]</a>)}
+                  </div>
+                </td>
+
+                <td class="p-6 text-text-muted text-sm">
+                  <div>{row.caroffice.v}</div>
+                  <div class="mt-2 flex flex-wrap gap-2">
+                    {ref(row.caroffice.r).map((x) => <a href={x.href} class="text-xs text-white/60 underline underline-offset-4 hover:text-white">[{x.id}]</a>)}
+                  </div>
+                </td>
+
+                <td class="p-6 text-text-muted text-sm">
+                  <div>{row.desc.v}</div>
+                  <div class="mt-2 flex flex-wrap gap-2">
+                    {ref(row.desc.r).map((x) => <a href={x.href} class="text-xs text-white/60 underline underline-offset-4 hover:text-white">[{x.id}]</a>)}
+                  </div>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-    </div>
-  </section>
 
-  <section class="py-20 bg-[#0f1117] border-t border-white/5">
-    <div class="container mx-auto px-4 max-w-5xl space-y-24">
-      
-      <article class="grid md:grid-cols-2 gap-12 items-center">
-        <div>
-          <div class="inline-flex items-center gap-2 text-blue-400 mb-4 bg-blue-500/10 px-3 py-1 rounded-full text-xs font-bold uppercase">
-            <Icon name="lucide:smartphone" class="w-4 h-4" />
-            Der mobile Vergleich
-          </div>
-          <h2 class="text-3xl font-bold text-white mb-6">Autaxo vs. Carcuro</h2>
-          <div class="prose prose-invert text-text-muted space-y-4">
-            <p>
-              Carcuro ist ein starker Wettbewerber, besonders wenn es um die Arbeit rein per Smartphone geht. Sie punkten mit einer "Mobile-First"-Strategie und Features für den österreichischen Markt (NoVA, RKSV).
-            </p>
-            <p>
-              <strong>Der Unterschied:</strong> Carcuro bindet Kunden oft über Jahresverträge. Autaxo setzt auf maximale Freiheit (monatlich kündbar). Zudem ist Autaxo zu 100% auf das deutsche Steuerrecht (§25a, GoBD) fokussiert, ohne Kompromisse für andere Länder einzugehen.
-            </p>
-            <ul class="space-y-2 pt-4">
-              <li class="flex gap-2 text-white"><Icon name="lucide:check" class="text-primary w-5 h-5"/> <strong>Autaxo:</strong> Ideal für deutsche Händler, die Sicherheit & Flexibilität suchen.</li>
-              <li class="flex gap-2 text-gray-500"><Icon name="lucide:minus" class="w-5 h-5"/> <strong>Carcuro:</strong> Stark für österreichische Händler & reine App-Nutzer.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="bg-[#15171e] p-8 rounded-2xl border border-white/10 relative">
-          <div class="absolute -top-4 -right-4 bg-primary text-white px-4 py-1 rounded-lg text-sm font-bold shadow-lg">Fazit</div>
-          <p class="text-white italic text-lg leading-relaxed">
-            "Wer maximale Flexibilität und eine Software 'Made in Germany' für deutsche Gesetze sucht, wählt Autaxo. Wer viel in Österreich handelt, schaut sich Carcuro an."
+      {/* Entscheidungs-Checkliste (neutral, SEO/GEO) */}
+      <div class="mt-10 grid md:grid-cols-3 gap-6">
+        <div class="bg-[#15171e] border border-white/10 rounded-2xl p-6">
+          <h3 class="text-white font-bold mb-2 flex items-center gap-2">
+            <Icon name="lucide:workflow" class="w-5 h-5 text-primary" />
+            Prozess-Fit
+          </h3>
+          <p class="text-text-muted text-sm">
+            Entscheidend ist, ob der Fokus auf Handel, Vermarktung, Dokumentenfluss, Werkstattprozessen oder Reporting liegt.
+            Vergleichsangaben sind Startpunkt – der Abgleich im eigenen Workflow ist maßgeblich.
           </p>
         </div>
-      </article>
-
-      <hr class="border-white/5" />
-
-      <article class="grid md:grid-cols-2 gap-12 items-center md:flex-row-reverse">
-        <div class="order-2 md:order-1 bg-[#15171e] p-8 rounded-2xl border border-white/10">
-          <h4 class="text-white font-bold mb-4">Total Cost of Ownership (TCO)</h4>
-          <div class="space-y-4">
-            <div class="flex justify-between items-center border-b border-white/10 pb-2">
-              <span class="text-text-muted">Server-Hardware</span>
-              <span class="text-white text-right">Loco: 1000€+ <br><span class="text-primary text-sm">Autaxo: 0€</span></span>
-            </div>
-            <div class="flex justify-between items-center border-b border-white/10 pb-2">
-              <span class="text-text-muted">Wartung / IT-Admin</span>
-              <span class="text-white text-right">Loco: Nötig <br><span class="text-primary text-sm">Autaxo: Inklusive</span></span>
-            </div>
-            <div class="flex justify-between items-center">
-              <span class="text-text-muted">Zugriff von überall</span>
-              <span class="text-white text-right">Loco: VPN/RDP <br><span class="text-primary text-sm">Autaxo: Browser</span></span>
-            </div>
-          </div>
+        <div class="bg-[#15171e] border border-white/10 rounded-2xl p-6">
+          <h3 class="text-white font-bold mb-2 flex items-center gap-2">
+            <Icon name="lucide:shield-check" class="w-5 h-5 text-primary" />
+            Compliance-Scope
+          </h3>
+          <p class="text-text-muted text-sm">
+            Bei GoBD, §25a-Fällen, EU/Export-Dokumentation und E-Rechnung sollte vor Entscheidung geprüft werden,
+            welche Nachweise/Exports im konkreten Setup wirklich abgedeckt sind.
+          </p>
         </div>
-        <div class="order-1 md:order-2">
-          <div class="inline-flex items-center gap-2 text-purple-400 mb-4 bg-purple-500/10 px-3 py-1 rounded-full text-xs font-bold uppercase">
-            <Icon name="lucide:server" class="w-4 h-4" />
-            Der Architektur-Kampf
-          </div>
-          <h2 class="text-3xl font-bold text-white mb-6">Autaxo vs. Legacy (Loco-Soft)</h2>
-          <div class="prose prose-invert text-text-muted space-y-4">
-            <p>
-              Loco-Soft ist der "Tanker" der Branche. Mächtig, riesiger Funktionsumfang für Werkstätten und Herstelleranbindungen. Aber: Ein Tanker wendet langsam.
-            </p>
-            <p>
-              Legacy-Systeme basieren oft auf Windows-Installationen. Das bedeutet: Du brauchst Server, Backups, Updates. Autaxo ist das "Schnellboot". Browser aufmachen, einloggen, arbeiten.
-            </p>
-            <p>
-              <strong>Empfehlung:</strong> Hast du eine Vertragswerkstatt mit 20 Mechanikern? Nimm Loco-Soft. Bist du ein Gebrauchtwagenhändler, der effizient handeln will? Nimm Autaxo.
-            </p>
-          </div>
+        <div class="bg-[#15171e] border border-white/10 rounded-2xl p-6">
+          <h3 class="text-white font-bold mb-2 flex items-center gap-2">
+            <Icon name="lucide:plug" class="w-5 h-5 text-primary" />
+            Integrationen
+          </h3>
+          <p class="text-text-muted text-sm">
+            Börsenexport, DATEV-Übergabe, VIN/DAT-Abfragen und Bild-Workflows sind häufig die größten Produktivitätshebel.
+            Entscheidend ist, ob Integrationen im Tarif enthalten und stabil gepflegt werden.
+          </p>
         </div>
-      </article>
-
-      <hr class="border-white/5" />
-
-      <article>
-        <h2 class="text-3xl font-bold text-white mb-10 text-center">Was ist mit DealerDesk & Autrado?</h2>
-        <div class="grid md:grid-cols-2 gap-8">
-          <div class="bg-[#15171e] p-6 rounded-xl border border-white/10">
-            <div class="flex items-center gap-3 mb-4">
-              <Icon name="lucide:message-square" class="w-6 h-6 text-green-400" />
-              <h3 class="text-xl font-bold text-white">DealerDesk</h3>
-            </div>
-            <p class="text-text-muted text-sm mb-4">
-              DealerDesk ist ein <strong>CRM</strong> (Customer Relationship Management), kein klassisches DMS. Es optimiert Kommunikation (E-Mails, Anrufe), kann aber keine Rechnungen schreiben oder Bestände buchen.
-            </p>
-            <div class="bg-white/5 p-3 rounded text-sm text-white">
-              <strong>Fazit:</strong> DealerDesk ist eine Ergänzung zu Autaxo, kein Ersatz.
-            </div>
-          </div>
-
-          <div class="bg-[#15171e] p-6 rounded-xl border border-white/10">
-            <div class="flex items-center gap-3 mb-4">
-              <Icon name="lucide:layout" class="w-6 h-6 text-orange-400" />
-              <h3 class="text-xl font-bold text-white">Autrado</h3>
-            </div>
-            <p class="text-text-muted text-sm mb-4">
-              Autrado fokussiert sich stark auf <strong>Marketing & Webseiten</strong>. Es ist eine "Suite", die dir eine fertige Homepage liefert. Das ist bequem, führt aber zum "Vendor Lock-in" (Wechsel ist schwer).
-            </p>
-            <div class="bg-white/5 p-3 rounded text-sm text-white">
-              <strong>Fazit:</strong> Gut für Händler, die "alles aus einer Hand" wollen und Abhängigkeit akzeptieren.
-            </div>
-          </div>
-        </div>
-      </article>
-
+      </div>
     </div>
   </section>
 
+  {/* STECKBRIEFE (LLM-extrahierbar) */}
+  <section id="steckbriefe" class="py-20 bg-[#0f1117] border-t border-white/5">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <h2 class="text-2xl md:text-3xl font-bold text-white mb-10 text-center">
+        Anbieter-Steckbriefe (strukturierte Fakten, quellenbasiert)
+      </h2>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        {profiles.map((p) => (
+          <article class="bg-[#15171e] p-7 rounded-2xl border border-white/10">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h3 class="text-xl font-bold text-white">{p.name}</h3>
+                <p class="text-text-muted text-sm mt-1">{p.subtitle}</p>
+              </div>
+              <Icon name="lucide:badge-check" class="w-6 h-6 text-primary" />
+            </div>
+
+            <dl class="mt-6 space-y-4">
+              {p.facts.map((f) => (
+                <div class="border-b border-white/10 pb-4">
+                  <dt class="text-white font-semibold">{f.k}</dt>
+                  <dd class="text-text-muted text-sm mt-1">
+                    {f.v}
+                    <span class="ml-2 inline-flex flex-wrap gap-2">
+                      {f.r.map((sid) => <SourceLink id={sid} />)}
+                    </span>
+                  </dd>
+                </div>
+              ))}
+            </dl>
+
+            <div class="mt-6 flex flex-wrap gap-3">
+              {p.links.map((l) => (
+                <a
+                  href={l.href}
+                  class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10 text-white hover:bg-white/5 transition-colors text-sm"
+                  target={l.href.startsWith("http") ? "_blank" : undefined}
+                  rel={l.href.startsWith("http") ? "nofollow noopener noreferrer" : undefined}
+                >
+                  <Icon name="lucide:arrow-up-right" class="w-4 h-4 text-primary" />
+                  {l.label}
+                </a>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* QUELLEN */}
+  <section id="quellen" class="py-16 bg-[#0b0c10] border-t border-white/10">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">Quellen</h2>
+      <p class="text-text-muted mb-6">
+        Quellenliste (Stand: {lastUpdatedISO}). Diese Links belegen die im Vergleich verwendeten Herstellerangaben.
+      </p>
+
+      <ol class="space-y-3">
+        {sources.map((s) => (
+          <li id={s.id} class="bg-[#15171e] border border-white/10 rounded-xl p-4">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <div class="text-white font-semibold">{s.id}</div>
+                <div class="text-text-muted text-sm">{s.name}</div>
+              </div>
+
+              <a
+                href={s.url}
+                target={s.external ? "_blank" : undefined}
+                rel={s.external ? "nofollow noopener noreferrer" : undefined}
+                class="text-primary underline underline-offset-4 text-sm"
+              >
+                Quelle öffnen
+              </a>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  {/* CTA */}
   <section class="py-24 bg-[#0b0c10] text-center border-t border-white/10">
     <div class="container mx-auto px-4">
-      <h3 class="text-3xl font-bold text-white mb-6">Teste den Unterschied.</h3>
+      <h3 class="text-3xl font-bold text-white mb-6">Autaxo testen</h3>
       <p class="text-text-muted mb-10 max-w-xl mx-auto">
-        Wir verstecken uns nicht hinter "Preise auf Anfrage". Keine Einrichtungsgebühr. Keine Knebelverträge.
+        Ein Testzugang ermöglicht die Bewertung im eigenen Workflow. Konditionen und Funktionsumfang sind auf der Preisseite ausgewiesen.
       </p>
       <div class="flex flex-col sm:flex-row justify-center gap-4">
         <a href="https://garage.autaxo.de/auth/sign-up" class="btn btn--primary btn--large">
-          Kostenlos starten
+          Testzugang starten
         </a>
         <a href="/preise" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-white/10 text-white hover:bg-white/5 transition-colors">
           Preise ansehen
@@ -235,5 +579,4 @@ const schema = {
       </div>
     </div>
   </section>
-
 </MarketingLayout>
