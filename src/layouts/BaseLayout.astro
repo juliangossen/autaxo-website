@@ -17,24 +17,106 @@ interface Props {
 const {
   title,
   description,
-  image,
+  image = '/og-image.jpg',
   type = 'website',
   publishedDate,
   modifiedDate,
   author,
   tags,
-} = Astro.props;
+} = Astro.props as Props;
+
+// Canonical (prefer consistent trailing slash for directory routes)
+const site = Astro.site; // requires astro.config.mjs: site: 'https://www.autaxo.de'
+const pathname = Astro.url.pathname;
+const normalizedPath =
+  pathname === '/'
+    ? '/'
+    : pathname.endsWith('/') || pathname.includes('.')
+      ? pathname
+      : `${pathname}/`;
+
+const canonical = site ? new URL(normalizedPath, site).toString() : normalizedPath;
+
+// Absolute OG image for JSON-LD
+const siteUrl = site ? site.toString().replace(/\/$/, '') : 'https://www.autaxo.de';
+const ogImage =
+  /^https?:\/\//i.test(image)
+    ? image
+    : `${siteUrl}${image.startsWith('/') ? image : `/${image}`}`;
+
+// JSON-LD (GEO/LLMO): Organization + SoftwareApplication + WebPage/BlogPosting
+const org = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "GOBERU Solutions UG (haftungsbeschränkt)",
+  "url": siteUrl,
+  "logo": `${siteUrl}/logo.svg`,
+};
+
+const app = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Autaxo",
+  "operatingSystem": "Web",
+  "applicationCategory": "BusinessApplication",
+  "url": siteUrl,
+  "publisher": {
+    "@type": "Organization",
+    "name": "GOBERU Solutions UG (haftungsbeschränkt)",
+    "url": siteUrl,
+  },
+};
+
+const webPageBase: any = {
+  "@context": "https://schema.org",
+  "@type": type === "article" ? "BlogPosting" : "WebPage",
+  "name": title,
+  "headline": title,
+  "description": description,
+  "url": canonical,
+  "inLanguage": "de-DE",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Autaxo",
+    "url": siteUrl,
+  },
+};
+
+if (type === "article") {
+  webPageBase.image = ogImage;
+  if (publishedDate) webPageBase.datePublished = new Date(publishedDate).toISOString();
+  if (modifiedDate) webPageBase.dateModified = new Date(modifiedDate).toISOString();
+  if (author) webPageBase.author = { "@type": "Person", "name": author };
+  if (tags?.length) webPageBase.keywords = tags;
+
+  webPageBase.publisher = {
+    "@type": "Organization",
+    "name": "GOBERU Solutions UG (haftungsbeschränkt)",
+    "url": siteUrl,
+    "logo": { "@type": "ImageObject", "url": `${siteUrl}/logo.svg` },
+  };
+  webPageBase.mainEntityOfPage = canonical;
+}
+
+const jsonLd = [org, app, webPageBase];
 ---
 
 <!doctype html>
-<html lang="de" class="scroll-smooth">
+<html lang="de" class="scroll-smooth dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="alternate icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
+    <!-- Dark-only -->
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#0b0c10" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- SEO Meta (single source: SEO.astro) -->
     <SEO
       title={title}
       description={description}
@@ -46,110 +128,123 @@ const {
       tags={tags}
     />
 
-    <link rel="preconnect" href="https://storage.googleapis.com" crossorigin>
-    <link rel="dns-prefetch" href="//storage.googleapis.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <!-- RSS discovery -->
+    <link rel="alternate" type="application/rss+xml" title="Autaxo Blog RSS" href="/rss.xml" />
 
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+    <!-- Perf: preconnect only to domains you actually use -->
+    <link rel="preconnect" href="https://storage.googleapis.com" crossorigin />
+    <link rel="dns-prefetch" href="//storage.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+
+    <!-- Fonts: non-blocking -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
     <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      />
     </noscript>
 
+    <!-- Structured Data (GEO/LLMO) -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Autaxo",
-      "operatingSystem": "Web",
-      "applicationCategory": "BusinessApplication",
-      "publisher": {
-        "@type": "Organization",
-        "name": "GOBERU Solutions UG",
-        "url": "https://www.autaxo.de",
-        "logo": "https://www.autaxo.de/logo.svg"
-      }
-    }
+      {JSON.stringify(jsonLd)}
     </script>
 
-    <script is:inline>
-    (function () {
-      var CONSENT_KEY = 'autaxo_cookie_consent';
-      var GTM_ID = 'GTM-KMC8PBKV';
-
-      function loadGTM() {
-        if (window.__axGtmLoaded) return;
-        window.__axGtmLoaded = true;
-
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-
-        var f = document.getElementsByTagName('script')[0];
-        var j = document.createElement('script');
-        j.async = true;
-        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
-        f.parentNode.insertBefore(j, f);
-      }
-
-      // expose for body script or consent banner
-      window.__axLoadGTM = loadGTM;
-
-      // auto-load if user already consented
-      try {
-        if (localStorage.getItem(CONSENT_KEY) === 'all') loadGTM();
-      } catch (e) {}
-    })();
-    </script>
-
-    <script is:inline>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1615743829447277');
-    fbq('track', 'PageView');
-    </script>
+    <!-- Consent-gated GTM Loader (loads only after opt-in) -->
     <script is:inline>
       (function () {
-        const stored = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const theme = stored || (prefersDark ? 'dark' : 'light');
-        if (theme === 'dark') {
-          document.documentElement.classList.add('dark');
+        var CONSENT_KEY = 'autaxo_cookie_consent';
+        var GTM_ID = 'GTM-KMC8PBKV';
+
+        function loadGTM() {
+          if (window.__axGtmLoaded) return;
+          window.__axGtmLoaded = true;
+
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+
+          var f = document.getElementsByTagName('script')[0];
+          var j = document.createElement('script');
+          j.async = true;
+          j.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
+          f.parentNode.insertBefore(j, f);
         }
-        
-        // Announcement dismissal check
-        const keys = Object.keys(localStorage).filter((k) =>
-          k.startsWith('announcement-dismissed-')
-        );
-        keys.forEach((key) => {
-          if (localStorage.getItem(key) === 'true') {
-            const id = key.replace('announcement-dismissed-', '');
-            document.documentElement.classList.add(`announcement-${id}-dismissed`);
-          }
-        });
+
+        window.__axLoadGTM = loadGTM;
+
+        try {
+          if (localStorage.getItem(CONSENT_KEY) === 'all') loadGTM();
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- Consent-gated Meta Pixel (loads only after opt-in) -->
+    <script is:inline>
+      (function () {
+        var CONSENT_KEY = 'autaxo_cookie_consent';
+
+        function loadMetaPixel() {
+          if (window.__axPixelLoaded) return;
+          window.__axPixelLoaded = true;
+
+          !function(f,b,e,v,n,t,s)
+          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+          n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t,s)}(window, document,'script',
+          'https://connect.facebook.net/en_US/fbevents.js');
+
+          fbq('init', '1615743829447277');
+          fbq('track', 'PageView');
+        }
+
+        window.__axLoadMetaPixel = loadMetaPixel;
+
+        try {
+          if (localStorage.getItem(CONSENT_KEY) === 'all') loadMetaPixel();
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- Announcement dismissal (keeps existing behavior), no theme logic -->
+    <script is:inline>
+      (function () {
+        try {
+          const keys = Object.keys(localStorage).filter((k) => k.startsWith('announcement-dismissed-'));
+          keys.forEach((key) => {
+            if (localStorage.getItem(key) === 'true') {
+              const id = key.replace('announcement-dismissed-', '');
+              document.documentElement.classList.add(`announcement-${id}-dismissed`);
+            }
+          });
+        } catch (e) {}
       })();
     </script>
   </head>
+
   <body class="min-h-screen bg-background text-text antialiased">
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KMC8PBKV"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1615743829447277&ev=PageView&noscript=1"
-    /></noscript>
     <a
       href="#main-content"
       class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
     >
       Zum Inhalt springen
     </a>
+
     <slot />
   </body>
 </html>
