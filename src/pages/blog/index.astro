@@ -7,76 +7,74 @@ const title = "Autaxo Blog: §25a, DATEV, GoBD & EU/Export im Gebrauchtwagenhand
 const description =
   "Praxiswissen für Gebrauchtwagenhändler in Deutschland: Differenzbesteuerung (§25a UStG), EU/Export-Nachweise, GoBD-Dokumentation, DATEV-Export und Prozesse – kompakt erklärt.";
 
-/** Robust canonical */
-const canonicalUrl = (() => {
-  try {
-    if (Astro.site) return new URL(Astro.url.pathname, Astro.site).toString();
-  } catch (_) {}
-  return "https://www.autaxo.de/blog/";
-})();
-const pageUrl = canonicalUrl.endsWith("/") ? canonicalUrl : `${canonicalUrl}/`;
-
 const fallbackImage = "/og/autaxo-og.png";
 
-/** Slug normalisieren (wichtig gegen 404: immer /blog/<slug>/ bauen) */
-const normalizeSlug = (value: unknown, fallback: string) => {
-  const raw = typeof value === "string" ? value.trim() : "";
-  const last = raw.split("/").filter(Boolean).pop();
-  return (last && last.length > 0) ? last : fallback;
+/** Base URL robust (für Prod + Preview) */
+const baseUrl = (() => {
+  try {
+    if (Astro.site) return Astro.site.toString().replace(/\/$/, "");
+  } catch (_) {}
+  return "https://www.autaxo.de";
+})();
+
+const canonicalUrl = `${baseUrl}/blog/`;
+const pageUrl = canonicalUrl;
+
+const toISODate = (value) => {
+  const d = new Date(String(value || ""));
+  return Number.isNaN(d.getTime()) ? "1970-01-01" : d.toISOString().slice(0, 10);
 };
 
-/** Datum robust parsen */
-const toDate = (v: unknown) => {
-  if (v instanceof Date) return v;
-  if (typeof v === "string" && v.trim()) {
-    const d = new Date(v);
-    if (!Number.isNaN(d.getTime())) return d;
-  }
-  return new Date("1970-01-01");
-};
-
-/** Posts aus Content Collection */
 const entries = await getCollection('blog');
 
-// Normalisieren + sortieren (neueste zuerst)
+/**
+ * WICHTIG: URL immer aus entry.slug bauen (Dateiname in src/content/blog)
+ * => garantiert, dass es eine statische Route gibt.
+ */
 const posts = entries
-  .map((p) => {
-    const slug = normalizeSlug(p.data.slug, p.slug);
-    const url = `/blog/${slug}/`; // ✅ trailing slash
+  .map((entry) => {
+    const slug = entry.slug;                 // ✅ source of truth
+    const url = `/blog/${slug}/`;            // ✅ matcht [slug].astro
+    const date = toISODate(entry.data.datePublished);
+    const dateObj = new Date(date);
 
-    // datePublished kann String oder Date sein (je nach Schema)
-    const dateObj = toDate((p.data as any).publishedDate ?? p.data.datePublished);
-    const dateIso = dateObj.toISOString().slice(0, 10);
-
-    const image =
-      (p.data.coverImage && String(p.data.coverImage).trim().length > 0)
-        ? String(p.data.coverImage).trim()
+    const cover =
+      (entry.data.coverImage && String(entry.data.coverImage).trim().length > 0)
+        ? String(entry.data.coverImage).trim()
         : null;
 
-    const excerpt = p.data.excerpt ?? p.data.metaDescription ?? "";
+    const excerpt =
+      (entry.data.excerpt && String(entry.data.excerpt).trim())
+        ? String(entry.data.excerpt).trim()
+        : (entry.data.metaDescription && String(entry.data.metaDescription).trim())
+          ? String(entry.data.metaDescription).trim()
+          : "";
+
+    const tags = Array.isArray(entry.data.tags) ? entry.data.tags : [];
 
     return {
-      url,
       slug,
-      title: p.data.title,
+      url,
+      title: entry.data.title,
       excerpt,
+      date,
       dateObj,
-      dateIso,
-      image,
-      tags: Array.isArray(p.data.tags) ? p.data.tags : [],
+      image: cover,
+      tags,
     };
   })
   .sort((a, b) => (a.dateObj < b.dateObj ? 1 : -1));
 
-/** Themen (Filter-Chips) */
 const topics = [
-  { label: "§25a", key: "25a", tokens: ["§25a", "differenzbesteuerung", "ustg"] },
+  { label: "§25a", key: "25a", tokens: ["§25a", "differenzbesteuerung", "25a", "ustg"] },
   { label: "DATEV", key: "datev", tokens: ["datev", "skr03", "skr04", "buchhaltung"] },
   { label: "GoBD", key: "gobd", tokens: ["gobd", "dokumentation", "aufbewahrung"] },
   { label: "EU/Export", key: "eu-export", tokens: ["eu", "export", "igl", "vies", "gelangens"] },
   { label: "Nachweise", key: "nachweise", tokens: ["nachweis", "gelangens", "beleg", "dokument"] },
   { label: "Workflow", key: "workflow", tokens: ["workflow", "fin", "scan", "prozess"] },
 ];
+
+const abs = (path) => `${baseUrl}${path}`;
 
 /** Structured data */
 const schema = {
@@ -86,7 +84,7 @@ const schema = {
       "@type": "BreadcrumbList",
       "@id": `${pageUrl}#breadcrumb`,
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.autaxo.de/" },
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": `${baseUrl}/` },
         { "@type": "ListItem", "position": 2, "name": "Blog", "item": pageUrl }
       ]
     },
@@ -105,14 +103,14 @@ const schema = {
       "itemListElement": posts.map((p, i) => ({
         "@type": "ListItem",
         "position": i + 1,
-        "url": `https://www.autaxo.de${p.url}`,
+        "url": abs(p.url),
         "item": {
           "@type": "BlogPosting",
           "headline": p.title,
           "description": p.excerpt,
-          "datePublished": p.dateIso,
-          "image": p.image ? p.image : `https://www.autaxo.de${fallbackImage}`,
-          "mainEntityOfPage": `https://www.autaxo.de${p.url}`
+          "datePublished": p.date,
+          "image": p.image ? p.image : abs(fallbackImage),
+          "mainEntityOfPage": abs(p.url)
         }
       }))
     }
@@ -123,7 +121,6 @@ const schema = {
 <MarketingLayout title={title} description={description} canonicalUrl={canonicalUrl} image={fallbackImage}>
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(schema)} />
 
-  {/* HERO */}
   <section class="relative pt-32 pb-14 bg-[#0b0c10] overflow-hidden">
     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[520px] bg-primary/10 blur-[140px] rounded-full pointer-events-none -z-10"></div>
 
@@ -145,7 +142,6 @@ const schema = {
         Buchhaltungsprozesse – verständlich und praxisnah.
       </p>
 
-      {/* Suchfeld */}
       <div class="mt-9 max-w-2xl mx-auto">
         <div class="relative">
           <Icon name="lucide:search" class="w-5 h-5 text-white/40 absolute left-4 top-1/2 -translate-y-1/2" />
@@ -158,12 +154,12 @@ const schema = {
         </div>
       </div>
 
-      {/* Themen-Chips (Filter) */}
       <div class="mt-6 flex flex-wrap gap-2 justify-center" aria-label="Themen">
         <button
           type="button"
           class="ax-topic-chip is-active inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-white/80 hover:text-white hover:border-primary/40 transition-colors text-sm"
           data-topic="all"
+          data-tokens=""
         >
           <Icon name="lucide:layers" class="w-4 h-4 text-primary" />
           Alle Themen
@@ -182,7 +178,7 @@ const schema = {
         ))}
 
         <a
-          href="/blog/themen/"
+          href="/blog/themen"
           class="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-white/80 hover:text-white hover:border-primary/40 transition-colors text-sm"
         >
           <Icon name="lucide:compass" class="w-4 h-4 text-primary" />
@@ -190,7 +186,6 @@ const schema = {
         </a>
       </div>
 
-      {/* LLM/SEO: Kurz erklärt */}
       <div class="mt-10 max-w-4xl mx-auto text-left rounded-2xl border border-white/10 bg-[#15171e] p-6">
         <div class="flex items-center gap-2 mb-3">
           <Icon name="lucide:info" class="w-5 h-5 text-primary" />
@@ -205,17 +200,16 @@ const schema = {
 
         <div class="mt-4 text-sm text-white/70">
           Passende Produktseiten:{" "}
-          <a class="underline hover:text-white" href="/funktionen/differenzbesteuerung-25a-ustg/">§25a</a>{" "}
+          <a class="underline hover:text-white" href="/funktionen/differenzbesteuerung-25a-ustg">§25a</a>{" "}
           ·{" "}
-          <a class="underline hover:text-white" href="/funktionen/buchhaltung/">Buchhaltung/DATEV</a>{" "}
+          <a class="underline hover:text-white" href="/funktionen/buchhaltung">Buchhaltung/DATEV</a>{" "}
           ·{" "}
-          <a class="underline hover:text-white" href="/downloads/">Downloads & Vorlagen</a>
+          <a class="underline hover:text-white" href="/downloads">Downloads & Vorlagen</a>
         </div>
       </div>
     </div>
   </section>
 
-  {/* LISTE (Beitrag unter Beitrag) */}
   <main class="pb-24 bg-[#0b0c10]">
     <div class="container mx-auto px-4 max-w-5xl">
       <ol class="space-y-4" id="blog-list" aria-label="Blogartikel">
@@ -228,7 +222,6 @@ const schema = {
             <article class="group rounded-2xl border border-white/10 bg-[#15171e] hover:border-primary/50 transition-all overflow-hidden">
               <a href={post.url} class="block">
                 <div class="grid md:grid-cols-12 gap-0 md:gap-6">
-                  {/* Thumbnail */}
                   <div class="md:col-span-4 bg-black/30">
                     <img
                       src={post.image || fallbackImage}
@@ -239,12 +232,11 @@ const schema = {
                     />
                   </div>
 
-                  {/* Content */}
                   <div class="md:col-span-8 p-6 md:py-7 md:pr-7 md:pl-0">
                     <div class="flex flex-wrap items-center gap-2 text-xs mb-3">
                       <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white/70">
                         <Icon name="lucide:calendar" class="w-3.5 h-3.5 text-white/40" />
-                        {post.dateObj.toLocaleDateString("de-DE", { year: "numeric", month: "long", day: "2-digit" })}
+                        {new Date(post.date).toLocaleDateString("de-DE", { year: "numeric", month: "long", day: "2-digit" })}
                       </span>
 
                       {(post.tags || []).slice(0, 3).map((t) => (
@@ -276,57 +268,21 @@ const schema = {
           </li>
         ))}
       </ol>
-
-      {/* CTA */}
-      <section class="mt-16 bg-gradient-to-br from-[#1a1d26] to-[#15171e] border border-white/10 rounded-2xl p-8 md:p-12 text-center relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-72 h-72 bg-primary/10 blur-[90px] rounded-full pointer-events-none"></div>
-
-        <div class="relative z-10 max-w-3xl mx-auto">
-          <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
-            Autaxo: Prozesse, Nachweise und Steuerlogik in einem Workflow
-          </h2>
-          <p class="text-white/70 text-lg mb-8">
-            Digitale Fahrzeugakte, Dokumente, §25a/EU/Export-Logik und DATEV-Export – aufgebaut für den Händleralltag in Deutschland.
-          </p>
-
-          <div class="flex flex-col sm:flex-row gap-3 justify-center">
-            <a
-              href="https://garage.autaxo.de/auth/sign-up"
-              class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-white font-bold rounded-xl hover:bg-primary-hover transition-all shadow-lg shadow-primary/25"
-            >
-              Kostenlos testen
-              <Icon name="lucide:arrow-right" class="w-5 h-5" />
-            </a>
-            <a
-              href="/funktionen/"
-              class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/5 border border-white/10 hover:border-primary/40 text-white font-semibold rounded-xl transition-colors"
-            >
-              Funktionen ansehen
-            </a>
-          </div>
-
-          <p class="mt-4 text-xs text-white/50">30 Tage kostenlos. Keine Kreditkarte erforderlich.</p>
-        </div>
-      </section>
     </div>
   </main>
 
-  {/* Filter + Suche (client-side) */}
   <script is:inline>
     const search = document.getElementById('blog-search');
     const rows = Array.from(document.querySelectorAll('[data-post-row]'));
     const chips = Array.from(document.querySelectorAll('.ax-topic-chip'));
 
-    let activeTopic = 'all';
     let activeTokens = '';
 
     function normalize(s){ return (s || '').toLowerCase().trim(); }
 
-    function setActiveChip(key){
-      chips.forEach((c) => {
-        const k = c.getAttribute('data-topic');
-        c.classList.toggle('is-active', k === key);
-      });
+    function setActiveChip(el){
+      chips.forEach((c) => c.classList.remove('is-active'));
+      el.classList.add('is-active');
     }
 
     function tokenMatch(hay, tokens){
@@ -343,7 +299,7 @@ const schema = {
         const hay = (title + ' ' + tags);
 
         const qOk = (!q || hay.includes(q));
-        const topicOk = (activeTopic === 'all') ? true : tokenMatch(hay, activeTokens);
+        const topicOk = tokenMatch(hay, activeTokens);
 
         r.style.display = (qOk && topicOk) ? '' : 'none';
       });
@@ -351,17 +307,13 @@ const schema = {
 
     chips.forEach((c) => {
       c.addEventListener('click', () => {
-        activeTopic = (c.getAttribute('data-topic') || 'all');
         activeTokens = (c.getAttribute('data-tokens') || '');
-        setActiveChip(activeTopic);
+        setActiveChip(c);
         apply();
       });
     });
 
     search?.addEventListener('input', apply);
-
-    // init
-    setActiveChip('all');
     apply();
   </script>
 

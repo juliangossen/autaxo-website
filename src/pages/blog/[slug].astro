@@ -1,33 +1,163 @@
 ---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import { Icon } from 'astro-icon/components';
 import { getCollection } from "astro:content";
 
-const normalizeSlug = (value, fallback) => {
-  const raw = (typeof value === "string") ? value.trim() : "";
-  const last = raw.split("/").filter(Boolean).pop();
-  return (last && last.length > 0) ? last : fallback;
-};
+const fallbackImage = "/og/autaxo-og.png";
+
+const baseUrl = (() => {
+  try {
+    if (Astro.site) return Astro.site.toString().replace(/\/$/, "");
+  } catch (_) {}
+  return "https://www.autaxo.de";
+})();
 
 export async function getStaticPaths() {
   const entries = await getCollection("blog");
-
-  const paths = entries
-    .map((entry) => {
-      const safeSlug = normalizeSlug(entry.data?.slug, entry.slug);
-      if (!safeSlug) return null;
-
-      return {
-        params: { slug: safeSlug },
-        props: { entry },
-      };
-    })
-    .filter((x) => x !== null);
-
-  return paths;
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },   // ✅ exakt das, was im Dateisystem existiert
+    props: { entry },
+  }));
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content, headings } = await entry.render();
+
+const seoTitle = entry.data.seoTitle ?? entry.data.title;
+const metaDescription = entry.data.metaDescription ?? entry.data.excerpt ?? "";
+const coverImage = entry.data.coverImage ?? fallbackImage;
+
+const canonicalUrl = `${baseUrl}/blog/${entry.slug}/`;
+const abs = (p) => (String(p || "").startsWith("http") ? String(p) : `${baseUrl}${p}`);
+
+const publishedISO = (() => {
+  const d = new Date(String(entry.data.datePublished || ""));
+  return Number.isNaN(d.getTime()) ? undefined : d.toISOString();
+})();
+
+const modifiedISO = (() => {
+  if (!entry.data.dateModified) return undefined;
+  const d = new Date(String(entry.data.dateModified));
+  return Number.isNaN(d.getTime()) ? undefined : d.toISOString();
+})();
+
+const tags = Array.isArray(entry.data.tags) ? entry.data.tags : [];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${canonicalUrl}#breadcrumb`,
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": `${baseUrl}/` },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": `${baseUrl}/blog/` },
+        { "@type": "ListItem", "position": 3, "name": entry.data.title, "item": canonicalUrl }
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": `${canonicalUrl}#post`,
+      "mainEntityOfPage": canonicalUrl,
+      "headline": entry.data.title,
+      "description": metaDescription,
+      "datePublished": publishedISO,
+      "dateModified": modifiedISO,
+      "image": abs(coverImage),
+      "keywords": tags.join(", "),
+      "publisher": {
+        "@type": "Organization",
+        "name": "GOBERU Solutions UG",
+        "url": baseUrl,
+        "logo": {
+          "@type": "ImageObject",
+          "url": `${baseUrl}/logo.svg`
+        }
+      }
+    }
+  ]
+};
 ---
 
-<!-- Ab hier dein Layout/HTML für den Blogpost -->
-<Content />
+<MarketingLayout
+  title={seoTitle}
+  description={metaDescription}
+  canonicalUrl={canonicalUrl}
+  image={coverImage}
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(schema)} />
+
+  <section class="relative pt-28 pb-10 bg-[#0b0c10] overflow-hidden">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[520px] bg-primary/10 blur-[140px] rounded-full pointer-events-none -z-10"></div>
+
+    <div class="container mx-auto px-4 max-w-4xl">
+      <div class="text-sm text-white/60">
+        <a class="hover:text-white underline" href="/blog/">Blog</a>
+        <span class="mx-2">/</span>
+        <span class="text-white/80">{entry.data.title}</span>
+      </div>
+
+      <h1 class="mt-4 text-3xl md:text-5xl font-extrabold text-white leading-tight">
+        {entry.data.title}
+      </h1>
+
+      <div class="mt-4 flex flex-wrap gap-2 items-center text-xs">
+        {entry.data.datePublished && (
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white/70">
+            <Icon name="lucide:calendar" class="w-3.5 h-3.5 text-white/40" />
+            {new Date(entry.data.datePublished).toLocaleDateString("de-DE", { year: "numeric", month: "long", day: "2-digit" })}
+          </span>
+        )}
+        {tags.slice(0, 5).map((t) => (
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white/70">
+            <Icon name="lucide:tag" class="w-3.5 h-3.5 text-white/40" />
+            {t}
+          </span>
+        ))}
+      </div>
+
+      {entry.data.shortDefinition && (
+        <div class="mt-6 rounded-2xl border border-white/10 bg-[#15171e] p-5">
+          <div class="flex items-start gap-3">
+            <div class="mt-0.5 text-primary">
+              <Icon name="lucide:quote" class="w-5 h-5" />
+            </div>
+            <p class="text-white/80 leading-relaxed m-0">
+              <strong class="text-white">Kurzdefinition:</strong> {entry.data.shortDefinition}
+            </p>
+          </div>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <main class="pb-24 bg-[#0b0c10]">
+    <div class="container mx-auto px-4 max-w-4xl">
+      {headings?.length > 0 && (
+        <div class="mb-8 rounded-2xl border border-white/10 bg-[#15171e] p-6">
+          <div class="flex items-center gap-2 mb-3">
+            <Icon name="lucide:list" class="w-5 h-5 text-primary" />
+            <h2 class="text-white font-bold text-lg m-0">Inhaltsverzeichnis</h2>
+          </div>
+          <ul class="list-disc pl-5 text-white/70 space-y-1">
+            {headings
+              .filter((h) => h.depth >= 2 && h.depth <= 3)
+              .map((h) => (
+                <li class={h.depth === 3 ? "ml-4" : ""}>
+                  <a class="underline hover:text-white" href={`#${h.slug}`}>{h.text}</a>
+                </li>
+              ))}
+          </ul>
+        </div>
+      )}
+
+      <article class="prose prose-invert max-w-none prose-headings:text-white prose-p:text-white/80 prose-li:text-white/80 prose-strong:text-white">
+        <Content />
+      </article>
+
+      <div class="mt-10 text-sm text-white/60 border-t border-white/10 pt-6">
+        Hinweis: Dieser Beitrag dient der allgemeinen Information und ersetzt keine steuerliche Beratung im Einzelfall.
+      </div>
+    </div>
+  </main>
+</MarketingLayout>
