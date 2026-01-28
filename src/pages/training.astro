@@ -9,14 +9,14 @@ const description = "Lerne Autaxo kennen: Schritt-für-Schritt Video-Anleitungen
 // Video Daten (Zentralisiert für einfache Wartung & Schema-Generierung)
 const videos = [
   {
-    id: "J2U9Hmmpqhc", // Stammdaten Video
+    id: "J2U9Hmmpqhc",
     title: "Schritt 1: Stammdaten & Grundeinstellungen",
     description: "Das Fundament: So richtest du dein Firmenprofil, Briefköpfe und Nutzerrechte korrekt ein, bevor du das erste Auto verkaufst.",
-    uploadDate: "2023-01-01", // Kann angepasst werden, wichtig für Schema
+    uploadDate: "2023-01-01",
     thumbnail: "https://i.ytimg.com/vi/J2U9Hmmpqhc/maxresdefault.jpg"
   },
   {
-    id: "vAAAxkRt_tY", // Verkauf Video
+    id: "vAAAxkRt_tY",
     title: "Schritt 2: Fahrzeug anlegen & verkaufen",
     description: "Der Kernprozess: Fahrzeugankauf, automatische Steuerlogik (Differenz/Regel) und rechtssicherer Rechnungsdruck in Echtzeit.",
     uploadDate: "2023-01-01",
@@ -45,18 +45,23 @@ const schema = {
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(schema)} />
 
   <section class="relative pt-32 pb-16 bg-[#0b0c10] overflow-hidden">
-    <div class="absolute top-0 right-0 w-[800px] h-[600px] bg-primary/5 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+    {/* ✅ Gleiches Glow-Setup wie über-uns.astro (zentriert, gleiche Größe, gleiche Intensität) */}
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-primary/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
 
     <div class="container mx-auto px-4 text-center">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-primary text-sm font-medium mb-6">
         <Icon name="lucide:graduation-cap" class="w-4 h-4" />
         Autaxo Academy
       </div>
-      
-      <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight">
-        Bringe deinen Autohandel auf das <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-light">nächste Level.</span>
+
+      <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight leading-tight">
+        Bringe deinen Autohandel auf das{" "}
+        {/* ✅ Gleicher Farbverlauf wie über-uns.astro */}
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-400">
+          nächste Level.
+        </span>
       </h1>
-      
+
       <p class="text-lg md:text-xl text-text-muted max-w-2xl mx-auto leading-relaxed">
         Kompakte Video-Trainings, damit du und dein Team Autaxo in Minuten beherrscht. Keine Handbücher wälzen, einfach zuschauen und nachmachen.
       </p>
@@ -66,21 +71,21 @@ const schema = {
   <section class="pb-24 bg-[#0b0c10]">
     <div class="container mx-auto px-4">
       <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-        
+
         {videos.map((video) => (
           <article class="flex flex-col bg-[#15171e] border border-white/10 rounded-2xl overflow-hidden hover:border-primary/30 transition-all duration-300 group">
             <div class="relative w-full aspect-video bg-black">
-              <iframe 
+              <iframe
                 src={`https://www.youtube-nocookie.com/embed/${video.id}?rel=0&modestbranding=1`}
                 title={video.title}
                 class="absolute top-0 left-0 w-full h-full"
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen
                 loading="lazy"
               ></iframe>
             </div>
-            
+
             <div class="p-8 flex-1 flex flex-col">
               <h3 class="text-xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
                 {video.title}
@@ -99,7 +104,7 @@ const schema = {
   <section class="py-20 bg-[#0f1117] border-t border-white/5">
     <div class="container mx-auto px-4 text-center">
       <h2 class="text-2xl font-bold text-white mb-8">Noch Fragen offen?</h2>
-      
+
       <div class="grid sm:grid-cols-2 gap-4 max-w-lg mx-auto">
         <a href="/faq" class="group flex items-center justify-center gap-3 p-5 rounded-xl bg-[#15171e] border border-white/10 hover:border-primary/50 transition-all hover:-translate-y-1">
           <div class="bg-white/5 p-2 rounded-lg text-white group-hover:text-primary transition-colors">
@@ -124,5 +129,4 @@ const schema = {
 
     </div>
   </section>
-
 </MarketingLayout>
