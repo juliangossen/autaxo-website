@@ -10,8 +10,14 @@ const signupUrl = "https://garage.autaxo.de/auth/sign-up";
 const demoUrl =
   "https://calendar.google.com/calendar/appointments/schedules/AcZssZ0-xc9C7ft1ZGEy3HpR6hP8NyrHXyM_ikIgv0KEUx9tSnzjZGoQ1RNyF4X5WMjk0o4vg6A9ksjD?gv=true&mode=week";
 
-// Optional: wenn du eine echte Canonical-URL hast, die im Layout verwendet wird:
-const pageUrl = "https://autaxo.de/"; // <- ggf. anpassen
+/** Robust canonical (nutzt Astro.site, fällt sonst auf autaxo.de zurück) */
+const canonicalUrl = (() => {
+  try {
+    if (Astro.site) return new URL(Astro.url.pathname, Astro.site).toString();
+  } catch (_) {}
+  return "https://autaxo.de/";
+})();
+const pageUrl = canonicalUrl.endsWith("/") ? canonicalUrl : `${canonicalUrl}/`;
 
 const modules = [
   {
@@ -166,7 +172,6 @@ const workflowSteps = [
       "Buchungssätze werden zum Monatsende im DATEV-Format exportiert (SKR03/04). Weniger Sortieren, weniger Rückfragen.",
     media: {
       type: "video",
-      // BUGFIX: konsistente URL-Encoding-Form wie bei (1)-(7)
       src: "https://storage.googleapis.com/autaxo-website/GIFs%20for%20Website%20(8).mp4",
     },
   },
@@ -200,15 +205,14 @@ const faqs = [
   },
 ];
 
+/**
+ * JSON-LD:
+ * BaseLayout liefert bereits Organization/WebSite.
+ * Hier ergänzen wir SoftwareApplication + FAQPage (ohne Organization-Doppelung).
+ */
 const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": "Organization",
-      "@id": `${pageUrl}#org`,
-      "name": "Autaxo",
-      "url": pageUrl,
-    },
     {
       "@type": "SoftwareApplication",
       "@id": `${pageUrl}#app`,
@@ -239,8 +243,17 @@ const structuredData = {
 };
 ---
 
-<MarketingLayout title={title} description={description}>
-  <main class="relative overflow-hidden" data-page data-spotlight>
+<MarketingLayout
+  title={title}
+  description={description}
+  canonicalUrl={canonicalUrl}
+  image="/og/autaxo-og.png"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  </Fragment>
+
+  <div class="relative overflow-hidden" data-page data-spotlight>
     <!-- Continuous background for the whole page -->
     <div class="pointer-events-none fixed inset-0 -z-10" aria-hidden="true">
       <div class="absolute inset-0 ax-mesh"></div>
@@ -254,7 +267,8 @@ const structuredData = {
     <!-- HERO -->
     <header class="pt-28 pb-12 lg:pt-44 lg:pb-14">
       <div class="container mx-auto px-4">
-        <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <!-- FIX: items-start statt items-center => rechter Container kann oben/unten sauber “mitlaufen” -->
+        <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
           <div class="lg:col-span-6">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/90 text-xs font-semibold tracking-wide">
               <span class="relative flex h-2 w-2" aria-hidden="true">
@@ -320,11 +334,12 @@ const structuredData = {
           </div>
 
           <!-- Right: product window -->
-          <div class="lg:col-span-6" data-reveal>
-            <div class="relative">
+          <div class="lg:col-span-6 self-stretch" data-reveal>
+            <div class="relative h-full">
               <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-primary/35 via-fuchsia-500/20 to-cyan-400/20 blur-xl opacity-70" aria-hidden="true"></div>
 
-              <div class="relative rounded-3xl border border-white/10 bg-[#0b0c10]/70 backdrop-blur-xl overflow-hidden shadow-2xl">
+              <!-- FIX: h-full + flex => Container kann auf Höhe der linken Spalte wachsen -->
+              <div class="relative rounded-3xl border border-white/10 bg-[#0b0c10]/70 backdrop-blur-xl overflow-hidden shadow-2xl h-full flex flex-col">
                 <div class="flex items-center justify-between px-5 py-4 border-b border-white/10 bg-white/5">
                   <div class="flex items-center gap-2" aria-hidden="true">
                     <span class="h-2.5 w-2.5 rounded-full bg-red-500/70"></span>
@@ -334,9 +349,9 @@ const structuredData = {
                   <div class="text-xs font-mono text-white/45">SSG • Edge</div>
                 </div>
 
-                <div class="p-5 lg:p-6">
+                <div class="p-5 lg:p-6 flex-1 flex flex-col">
                   <div class="grid sm:grid-cols-2 gap-4">
-                    <div class="relative rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
+                    <div class="relative rounded-2xl border border-white/10 bg-white/5 overflow-hidden h-full">
                       <div class="absolute inset-0 ax-shine opacity-60" aria-hidden="true"></div>
                       <img
                         src="/screenshots/dark-mode.webp"
@@ -356,51 +371,54 @@ const structuredData = {
                       </div>
                     </div>
 
-                    <div class="relative rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
+                    <!-- Carlo Card (FIX: oben zentriert + CTA Button centered) -->
+                    <div class="relative rounded-2xl border border-white/10 bg-white/5 overflow-hidden h-full">
                       <div class="absolute inset-0 ax-scanline" aria-hidden="true"></div>
-                      <div class="p-4">
-                        <div class="flex items-center gap-2">
-                          <div class="h-9 w-9 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center" aria-hidden="true">
-                            <Icon name="lucide:bot" class="w-4 h-4 text-primary" aria-hidden="true" />
+                      <div class="p-4 h-full flex flex-col">
+                        <div class="flex flex-col items-center text-center">
+                          <div class="h-10 w-10 rounded-2xl bg-primary/20 border border-primary/30 flex items-center justify-center" aria-hidden="true">
+                            <Icon name="lucide:bot" class="w-5 h-5 text-primary" aria-hidden="true" />
                           </div>
-                          <div>
-                            <p class="text-sm font-bold text-white leading-tight">Carlo</p>
-                            <p class="text-xs text-white/50">Checks im Workflow</p>
-                          </div>
+                          <p class="mt-3 text-sm font-extrabold text-white leading-tight">Carlo</p>
+                          <p class="mt-0.5 text-xs text-white/50">Checks im Workflow</p>
                         </div>
 
-                        <div class="mt-4 text-sm space-y-3">
+                        <div class="mt-4 text-sm space-y-3 flex-1">
                           <div class="rounded-2xl bg-[#15171e] border border-white/10 px-3 py-2 text-text-muted">
-                            „Italien netto – was beachten?“
+                            „Italien netto – welche Nachweise brauche ich?“
                           </div>
                           <div class="rounded-2xl bg-primary/10 border border-primary/20 px-3 py-2 text-white">
-                            „EU-Fall erkannt: VIES prüfen, korrekte Hinweise & Pflichten im Vorgang.“
+                            „EU/Export erkannt: VIES prüfen, Nachweise im Vorgang, Hinweise in Vertrag/Rechnung.“
                           </div>
                         </div>
 
-                        <a href="/funktionen/ki-assistent" class="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-white/80 hover:text-white">
-                          Mehr zu Carlo <Icon name="lucide:arrow-right" class="w-4 h-4 text-primary" aria-hidden="true" />
-                        </a>
+                        <div class="pt-4 flex justify-center">
+                          <a
+                            href="/funktionen/ki-assistent"
+                            class="inline-flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-lg bg-primary/15 border border-primary/30 text-primary font-semibold text-xs hover:bg-primary/20 transition-colors"
+                          >
+                            Mehr zu Carlo
+                            <Icon name="lucide:arrow-right" class="w-4 h-4" aria-hidden="true" />
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </div>
 
-                  <div class="mt-4 flex flex-wrap gap-2" aria-label="Kernmodule">
+                  <div class="mt-auto pt-4 flex flex-wrap gap-2" aria-label="Kernmodule">
                     <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white/70">Fahrzeugakte</span>
                     <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white/70">§25a/EU/Export</span>
                     <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white/70">DATEV</span>
                   </div>
                 </div>
               </div>
-
-              <div class="mt-4 ax-divider" aria-hidden="true"></div>
             </div>
           </div>
         </div>
       </div>
     </header>
 
-    <!-- MODULE NAV + SCROLLSPY -->
+    <!-- MODULE NAV + (NEU) ACCORDION -->
     <section class="pb-24" aria-labelledby="modules-title">
       <div class="container mx-auto px-4">
         <div class="grid lg:grid-cols-12 gap-10 lg:gap-12">
@@ -417,7 +435,7 @@ const structuredData = {
               </h2>
 
               <p class="mt-4 text-text-muted" data-reveal>
-                Beim Scrollen wird das aktive Modul automatisch markiert. Module sind auch direkt verlinkt.
+                Links ein Modul auswählen – rechts klappt die Kurz-Zusammenfassung auf. Im offenen Modul führt ein Button zur passenden Funktionsseite.
               </p>
 
               <nav class="mt-6 grid gap-2" aria-label="Module Navigator" data-reveal>
@@ -455,45 +473,92 @@ const structuredData = {
                 </a>
               </div>
 
-              <div class="mt-6 text-xs text-white/50">
-                Weitere Inhalte: <a class="underline hover:text-white" href="#workflow">Workflow</a> · <a class="underline hover:text-white" href="#faq">FAQ</a>
+              <!-- FIX: “Weitere Inhalte” als sichtbare Buttons, zentriert -->
+              <div class="mt-6" data-reveal>
+                <p class="text-xs text-white/50 text-center mb-2">Weitere Inhalte</p>
+                <div class="flex items-center justify-center gap-2">
+                  <a
+                    href="#workflow"
+                    class="inline-flex items-center justify-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:border-primary/40 text-white/80 hover:text-white text-xs font-semibold transition-colors"
+                  >
+                    <Icon name="lucide:route" class="w-4 h-4 text-primary" aria-hidden="true" />
+                    Workflow
+                  </a>
+                  <a
+                    href="#faq"
+                    class="inline-flex items-center justify-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:border-primary/40 text-white/80 hover:text-white text-xs font-semibold transition-colors"
+                  >
+                    <Icon name="lucide:help-circle" class="w-4 h-4 text-primary" aria-hidden="true" />
+                    FAQ
+                  </a>
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- Module Story -->
+          <!-- Right: Accordion Modules (eingeklappt) -->
           <div class="lg:col-span-8">
-            <div class="grid gap-6">
+            <div class="grid gap-4">
               {modules.map((m) => (
-                <section
+                <details
                   id={m.id}
-                  data-mod-section={m.id}
-                  class="rounded-3xl border border-white/10 bg-[#0b0c10]/70 backdrop-blur-xl p-7 shadow-2xl"
+                  data-mod-details={m.id}
+                  class="ax-accordion rounded-3xl border border-white/10 bg-[#0b0c10]/70 backdrop-blur-xl shadow-2xl overflow-hidden"
                   data-reveal
                 >
-                  <div class="flex items-start gap-4">
-                    <div class="h-12 w-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary" aria-hidden="true">
-                      <Icon name={m.icon} class="w-6 h-6" aria-hidden="true" />
+                  <summary class="ax-accordion-summary px-7 py-6 cursor-pointer">
+                    <div class="flex items-start gap-4">
+                      <div class="h-12 w-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0" aria-hidden="true">
+                        <Icon name={m.icon} class="w-6 h-6" aria-hidden="true" />
+                      </div>
+
+                      <div class="flex-1 min-w-0">
+                        <h3 class="text-white font-extrabold text-xl">{m.title}</h3>
+                        <p class="mt-1.5 text-text-muted">{m.desc}</p>
+                      </div>
+
+                      <div class="shrink-0">
+                        <span class="ax-details-pill inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-semibold text-white/80">
+                          <span class="ax-label-closed">Details öffnen</span>
+                          <span class="ax-label-open">Details schließen</span>
+                          <Icon name="lucide:chevron-down" class="ax-accordion-chevron w-4 h-4 text-primary" aria-hidden="true" />
+                        </span>
+                      </div>
                     </div>
-                    <div class="flex-1">
-                      <h3 class="text-white font-extrabold text-xl">{m.title}</h3>
-                      <p class="mt-2 text-text-muted">{m.desc}</p>
+                  </summary>
 
-                      <ul class="mt-4 grid sm:grid-cols-2 gap-3 text-sm" aria-label={`Vorteile: ${m.title}`}>
-                        {m.bullets.map((b) => (
-                          <li class="flex items-start gap-2 text-white/75">
-                            <Icon name="lucide:check" class="w-4 h-4 text-primary mt-0.5" aria-hidden="true" />
-                            <span>{b}</span>
-                          </li>
-                        ))}
-                      </ul>
+                  <div class="px-7 pb-7 pt-2">
+                    <p class="text-xs font-bold tracking-wider uppercase text-white/50">
+                      Kurz-Zusammenfassung
+                    </p>
 
-                      <a href={m.href} class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white/80 hover:text-white">
-                        Details öffnen <Icon name="lucide:arrow-right" class="w-4 h-4 text-primary" aria-hidden="true" />
+                    <ul class="mt-4 grid sm:grid-cols-2 gap-3 text-sm" aria-label={`Vorteile: ${m.title}`}>
+                      {m.bullets.map((b) => (
+                        <li class="flex items-start gap-2 text-white/75">
+                          <Icon name="lucide:check" class="w-4 h-4 text-primary mt-0.5" aria-hidden="true" />
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div class="mt-6 flex flex-col sm:flex-row gap-3">
+                      <a
+                        href={m.href}
+                        class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold transition-colors shadow-xl shadow-primary/15"
+                      >
+                        Zur Funktionsseite
+                        <Icon name="lucide:arrow-right" class="w-5 h-5" aria-hidden="true" />
+                      </a>
+
+                      <a
+                        href={signupUrl}
+                        class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:border-primary/40 text-white font-semibold transition-colors"
+                      >
+                        Kostenlos testen
                       </a>
                     </div>
                   </div>
-                </section>
+                </details>
               ))}
             </div>
 
@@ -676,10 +741,7 @@ const structuredData = {
         </dialog>
       );
     })}
-
-    <!-- JSON-LD (works even if Layout doesn't expose head slots) -->
-    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
-  </main>
+  </div>
 </MarketingLayout>
 
 <style>
@@ -701,15 +763,15 @@ const structuredData = {
   }
   .ax-spotlight{
     background: radial-gradient(650px 420px at var(--mx, 50%) var(--my, 30%), rgba(255,255,255,.10), transparent 60%);
-    transition: background-position 80ms linear;
+    transition: background 80ms linear;
   }
   .ax-divider{
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
   }
 
-  /* Scroll anchor offset (fix: anchors hidden under sticky header) */
-  [data-mod-section] { scroll-margin-top: 120px; }
+  /* Scroll anchor offset (für Hash/scrollIntoView) */
+  [data-mod-details] { scroll-margin-top: 120px; }
 
   /* Floating glows */
   @keyframes axFloat { 0%,100%{ transform:translate3d(0,0,0)} 50%{ transform:translate3d(0,-18px,0)} }
@@ -747,7 +809,7 @@ const structuredData = {
     transform: translateY(0);
   }
 
-  /* ScrollSpy nav active */
+  /* Nav active */
   .ax-nav-item.is-active{
     border-color: rgba(179,0,24,.55);
     background: rgba(179,0,24,.08);
@@ -756,6 +818,21 @@ const structuredData = {
     color: rgba(255,255,255,1);
   }
 
+  /* Accordion styling */
+  .ax-accordion summary { list-style: none; }
+  .ax-accordion summary::-webkit-details-marker { display: none; }
+  .ax-accordion:focus-within { outline: 2px solid rgba(179,0,24,.35); outline-offset: 2px; }
+  .ax-accordion[open]{
+    border-color: rgba(179,0,24,.55);
+    background: rgba(179,0,24,.06);
+  }
+  .ax-accordion-chevron{ transition: transform .18s ease; }
+  .ax-accordion[open] .ax-accordion-chevron{ transform: rotate(180deg); }
+
+  .ax-label-open{ display: none; }
+  .ax-accordion[open] .ax-label-open{ display: inline; }
+  .ax-accordion[open] .ax-label-closed{ display: none; }
+
   /* Dialog fallback (if showModal unsupported) */
   .ax-dialog[open] { max-height: 92vh; }
 
@@ -763,26 +840,32 @@ const structuredData = {
   @media (prefers-reduced-motion: reduce){
     .ax-float, .ax-float2, .ax-float3, .ax-shine, .ax-scanline{ animation: none !important; }
     .js [data-reveal]{ opacity: 1 !important; transform: none !important; }
+    .ax-spotlight{ transition: none !important; }
   }
 </style>
 
 <script is:inline>
   document.documentElement.classList.add('js');
 
-  // Spotlight (rAF throttled)
+  // Spotlight (FIX: viewport-basiert => exakt unter Maus, unabhängig vom Scroll)
   const page = document.querySelector('[data-spotlight]');
   let mx = 50, my = 30, raf = 0;
+
+  const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
+
   function commitSpot() {
     raf = 0;
     if (!page) return;
     page.style.setProperty('--mx', mx + '%');
     page.style.setProperty('--my', my + '%');
   }
+
   if (page) {
-    page.addEventListener('pointermove', (ev) => {
-      const r = page.getBoundingClientRect();
-      mx = ((ev.clientX - r.left) / r.width) * 100;
-      my = ((ev.clientY - r.top) / r.height) * 100;
+    window.addEventListener('pointermove', (ev) => {
+      const w = window.innerWidth || 1;
+      const h = window.innerHeight || 1;
+      mx = clamp((ev.clientX / w) * 100, 0, 100);
+      my = clamp((ev.clientY / h) * 100, 0, 100);
       if (!raf) raf = requestAnimationFrame(commitSpot);
     }, { passive: true });
   }
@@ -799,9 +882,16 @@ const structuredData = {
   }, { threshold: 0.14 });
   revealEls.forEach((el) => io.observe(el));
 
-  // Module ScrollSpy (auto active)
+  // Überblick: Accordion + deterministische Active-State (FIX: kein “Homepage verrückt” mehr)
   const navItems = Array.from(document.querySelectorAll('[data-mod-link]'));
-  const sections = Array.from(document.querySelectorAll('[data-mod-section]'));
+  const detailsEls = Array.from(document.querySelectorAll('details[data-mod-details]'));
+
+  function clearActive() {
+    navItems.forEach((a) => {
+      a.classList.remove('is-active');
+      a.removeAttribute('aria-current');
+    });
+  }
 
   function setActive(id) {
     navItems.forEach((a) => {
@@ -812,25 +902,74 @@ const structuredData = {
     });
   }
 
-  if (sections[0]) setActive(sections[0].getAttribute('data-mod-section'));
+  function closeAllExcept(id) {
+    detailsEls.forEach((d) => {
+      const did = d.getAttribute('data-mod-details');
+      if (did !== id) d.open = false;
+    });
+  }
 
-  const spy = new IntersectionObserver((entries) => {
-    const visible = entries
-      .filter((e) => e.isIntersecting)
-      .sort((a, b) => (b.intersectionRatio || 0) - (a.intersectionRatio || 0))[0];
+  let programmatic = false;
 
-    if (visible?.target) {
-      const id = visible.target.getAttribute('data-mod-section');
-      if (id) setActive(id);
+  function openModule(id, { scroll = true, updateHash = true } = {}) {
+    const target = detailsEls.find((d) => d.getAttribute('data-mod-details') === id) || document.getElementById(id);
+    if (!target) return;
+
+    programmatic = true;
+    closeAllExcept(id);
+    target.open = true;
+    programmatic = false;
+
+    setActive(id);
+
+    if (updateHash) {
+      try { history.replaceState(null, '', `#${id}`); } catch (_) { /* ignore */ }
     }
-  }, {
-    rootMargin: "-35% 0px -55% 0px",
-    threshold: [0.12, 0.2, 0.35, 0.5, 0.7],
+
+    if (scroll) {
+      try { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (_) {}
+    }
+  }
+
+  // Links-Klick: nicht “wild” springen lassen, sondern öffnen + sauber scrollen
+  navItems.forEach((a) => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('data-mod-link');
+      if (!id) return;
+      e.preventDefault();
+      openModule(id, { scroll: true, updateHash: true });
+    });
   });
 
-  sections.forEach((s) => spy.observe(s));
+  // Rechts (summary click): Akkordeon-Logik + Active + Hash
+  detailsEls.forEach((d) => {
+    d.addEventListener('toggle', () => {
+      if (programmatic) return;
+      const id = d.getAttribute('data-mod-details');
+      if (!id) return;
 
-  // Modals + lazy video attach (BUGFIX: call video.load() after adding source)
+      if (d.open) {
+        programmatic = true;
+        closeAllExcept(id);
+        programmatic = false;
+
+        setActive(id);
+        try { history.replaceState(null, '', `#${id}`); } catch (_) {}
+      } else {
+        // Wenn nichts offen bleibt, Active entfernen (optional, aber sauber)
+        const anyOpen = detailsEls.some((x) => x.open);
+        if (!anyOpen) clearActive();
+      }
+    });
+  });
+
+  // Hash on load => Modul öffnen (ohne Scroll-Jump)
+  try {
+    const initial = decodeURIComponent(location.hash || '').replace('#', '');
+    if (initial) openModule(initial, { scroll: false, updateHash: false });
+  } catch (_) {}
+
+  // Modals + lazy video attach
   const openButtons = document.querySelectorAll('[data-open-modal]');
   const closeButtons = document.querySelectorAll('[data-close-modal]');
 
@@ -854,7 +993,6 @@ const structuredData = {
   function playVideo(dialog) {
     const video = dialog.querySelector('video[data-video]');
     if (!video) return;
-    // Autoplay kann blockiert werden; try/catch ist ok.
     try { video.play(); } catch (_) {}
   }
 
@@ -868,10 +1006,8 @@ const structuredData = {
     const dialog = document.getElementById(id);
     if (!dialog) return;
 
-    // Robust: attach before open
     attachVideoSource(dialog);
 
-    // Native dialog supported?
     if (typeof dialog.showModal === 'function') {
       if (!dialog.open) dialog.showModal();
     } else {
@@ -903,12 +1039,10 @@ const structuredData = {
   });
 
   document.querySelectorAll('dialog').forEach((dialog) => {
-    // Close on backdrop click (browser-dependent, but widely works)
     dialog.addEventListener('click', (e) => {
       if (e.target === dialog) closeModal(dialog);
     });
 
-    // Ensure we pause on ESC/cancel (BUGFIX: cancel not always triggers our close handler)
     dialog.addEventListener('cancel', (e) => {
       e.preventDefault();
       closeModal(dialog);

@@ -3,19 +3,11 @@ interface Props {
   title: string;
   description: string;
 
-  /** OG image: absolute URL oder Pfad wie "/og/autaxo.png" */
   image?: string;
-
-  /** "website" (default) oder "article" */
   type?: 'website' | 'article';
-
-  /** Optional überschreiben (sonst aus Astro.site + Astro.url.pathname) */
   canonicalUrl?: string;
-
-  /** SEO-Steuerung */
   noindex?: boolean;
 
-  /** Article JSON-LD */
   publishedDate?: Date | string;
   modifiedDate?: Date | string;
   author?: string;
@@ -39,12 +31,10 @@ const SITE_NAME = "Autaxo";
 const LOCALE = "de_DE";
 const THEME_BG = "#0b0c10";
 
-// Canonical URL (best practice: Astro.site in astro.config gesetzt)
 const canonicalUrl = (() => {
   if (canonicalUrlProp) return canonicalUrlProp;
   try {
     if (Astro.site) return new URL(Astro.url.pathname, Astro.site).toString();
-    // Fallback (dev/unknown): besser als gar nichts, aber nicht ideal
     return new URL(Astro.url.pathname, Astro.url.origin).toString();
   } catch {
     return undefined;
@@ -62,9 +52,7 @@ function toAbsoluteUrl(maybeUrl?: string) {
   }
 }
 
-// OG image: fallback (bitte Pfad ggf. anpassen!)
 const ogImage = toAbsoluteUrl(image ?? "/og/autaxo-og.png");
-
 const ogType = type === 'article' ? 'article' : 'website';
 const twitterCard = ogImage ? "summary_large_image" : "summary";
 
@@ -82,7 +70,6 @@ function toIso(d?: Date | string) {
 const publishedIso = toIso(publishedDate);
 const modifiedIso = toIso(modifiedDate);
 
-// Basis-JSON-LD (für alle Seiten)
 const jsonLdBase = {
   "@context": "https://schema.org",
   "@graph": [
@@ -101,7 +88,6 @@ const jsonLdBase = {
   ],
 };
 
-// Optional: Article JSON-LD (nur wenn type="article")
 const jsonLdArticle =
   type === "article"
     ? {
@@ -115,10 +101,7 @@ const jsonLdArticle =
         "author": author ? { "@type": "Person", "name": author } : undefined,
         "keywords": tags?.length ? tags.join(", ") : undefined,
         "image": ogImage,
-        "publisher": {
-          "@type": "Organization",
-          "name": SITE_NAME,
-        },
+        "publisher": { "@type": "Organization", "name": SITE_NAME },
       }
     : undefined;
 ---
@@ -150,12 +133,7 @@ const jsonLdArticle =
     <meta property="og:description" content={description} />
     {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
     {ogImage && <meta property="og:image" content={ogImage} />}
-    {ogImage && (
-      <meta
-        property="og:image:alt"
-        content="Autaxo – Dealer-Management-System für §25a, EU & Export"
-      />
-    )}
+    {ogImage && <meta property="og:image:alt" content="Autaxo – Dealer-Management-System für §25a, EU & Export" />}
 
     <!-- Twitter -->
     <meta name="twitter:card" content={twitterCard} />
@@ -164,24 +142,19 @@ const jsonLdArticle =
     {ogImage && <meta name="twitter:image" content={ogImage} />}
 
     <!-- Article meta -->
-    {type === "article" && publishedIso && (
-      <meta property="article:published_time" content={publishedIso} />
-    )}
-    {type === "article" && modifiedIso && (
-      <meta property="article:modified_time" content={modifiedIso} />
-    )}
-    {type === "article" && tags?.length
-      ? tags.map((t) => <meta property="article:tag" content={t} />)
-      : null}
+    {type === "article" && publishedIso && <meta property="article:published_time" content={publishedIso} />}
+    {type === "article" && modifiedIso && <meta property="article:modified_time" content={modifiedIso} />}
+    {type === "article" && tags?.length ? tags.map((t) => <meta property="article:tag" content={t} />) : null}
 
-    <!-- Per-page head injections (JSON-LD, preload, etc.) -->
+    <!-- Page head additions (JSON-LD, preload, etc.) -->
     <slot name="head" />
+
+    <!-- CRITICAL: Ohne Astro.head fehlen Styles/Skripte => Seite sieht aus wie dein Screenshot -->
+    <Astro.head />
 
     <!-- Base JSON-LD -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLdBase)} />
-    {jsonLdArticle && (
-      <script type="application/ld+json" set:html={JSON.stringify(jsonLdArticle)} />
-    )}
+    {jsonLdArticle && <script type="application/ld+json" set:html={JSON.stringify(jsonLdArticle)} />}
   </head>
 
   <body class="min-h-screen bg-[#0b0c10] text-white antialiased">

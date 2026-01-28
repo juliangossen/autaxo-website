@@ -1,19 +1,18 @@
 /**
  * Navigation Configuration
- * Optimiert für Conversion und Übersichtlichkeit.
+ * Zentralisiertes Menü für Header & Footer.
+ * KAIZEN: Single Source of Truth für alle Links.
  */
 
 import type { Navigation } from '../lib/types';
 
-// Hinweis: Wir erweitern die Struktur hier um "items" für Dropdowns.
-// Falls TypeScript meckert, müssen wir gleich kurz die types.ts anpassen.
 export const navigation = {
   header: {
     main: [
       // 1. Das Produkt (Dropdown) - Der wichtigste Punkt
       { 
         label: 'Funktionen', 
-        href: '/funktionen', // Klick auf Hauptlink geht zur Übersicht
+        href: '/funktionen',
         items: [
           { label: 'Alle Funktionen', href: '/funktionen' },
           { label: 'Verträge & E-Signatur', href: '/funktionen/digitale-vertraege-esignatur' },
@@ -29,32 +28,39 @@ export const navigation = {
         href: '/preise' 
       },
 
-      // 3. Wissen & Mehrwert (Ehemals "News")
+      // 3. Wissen & Mehrwert
       { 
         label: 'Ressourcen', 
+        href: '#', // Dropdown Trigger
         items: [
+          { label: 'Training & Videos', href: '/training' },
+          { label: 'Downloads & Vorlagen', href: '/downloads' },
+          { label: 'Software-Vergleich', href: '/vergleich' }, // Neu dazu
           { label: 'Blog', href: '/blog' },
-          { label: 'Downloads & Whitepaper', href: '/downloads' },
         ]
       },
 
-      // 4. Vertrauen & Hilfe
+      // 4. Support
       { 
         label: 'Hilfe', 
+        href: '/hilfe', // Fallback Link
         items: [
           { label: 'Support Center', href: '/hilfe' },
           { label: 'FAQ', href: '/faq' },
-          { label: 'Training', href: '/training' },
         ]
       },
 
-      // 5. Netzwerk
+      // 5. Unternehmen (Trust & Netzwerk) - HIER IST DIE ÄNDERUNG
       { 
-        label: 'Partner', 
-        href: '/partnernetzwerk' 
+        label: 'Unternehmen', 
+        href: '#', 
+        items: [
+          { label: 'Über uns (Die Story)', href: '/ueber-uns' }, // Dein Trust-Booster
+          { label: 'Partnernetzwerk', href: '/partnernetzwerk' },
+        ]
       },
       
-      // 6. Kontakt
+      // 6. Kontakt - Bleibt direkt für schnelle Erreichbarkeit
       { 
         label: 'Kontakt', 
         href: '/kontakt' 
@@ -68,19 +74,19 @@ export const navigation = {
     ],
   },
 
-  // Footer bleibt schlank und rechtssicher
+  // Footer - Hier war es schon fast perfekt, nur Vergleich ergänzt
   footer: {
     product: [
       { label: 'Funktionen', href: '/funktionen' },
       { label: 'Preise', href: '/preise' },
       { label: 'Für Steuerberater', href: '/steuerberater' },
-      { label: 'Downloads', href: '/downloads' },
+      { label: 'Software-Vergleich', href: '/vergleich' }, // Neu
     ],
     solutions: [
       { label: 'Blog', href: '/blog' },
       { label: 'Training', href: '/training' },
-      { label: 'Hilfe', href: '/hilfe' },
-      { label: 'FAQ', href: '/faq' },
+      { label: 'Downloads (PDF)', href: '/downloads' }, // Neu
+      { label: 'Hilfe & FAQ', href: '/faq' },
     ],
     company: [
       { label: 'Über uns', href: '/ueber-uns' },

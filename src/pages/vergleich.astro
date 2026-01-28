@@ -1,0 +1,237 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import { Icon } from 'astro-icon/components';
+
+// Metadaten: Spezifisch auf "Vergleich" und "Alternativen" optimiert
+const title = "Autohändler Software Vergleich 2026 | Autaxo vs. Andere";
+const description = "Der große DMS-Vergleich: Autaxo vs. Carcuro, Loco-Soft & Co. Welche Software passt zu deinem Autohandel? Fokus auf §25a, GoBD und DATEV.";
+
+// Vergleichsdaten (Datenbasis für Tabelle & Schema)
+const comparisonData = [
+  {
+    feature: "Plattform & Zugriff",
+    autaxo: { text: "100% Cloud / Browser", check: true },
+    carcuro: { text: "Cloud + Mobile App Fokus", check: true },
+    legacy: { text: "Oft Server/Installation", check: false }
+  },
+  {
+    feature: "Steuerlogik (§25a UStG)",
+    autaxo: { text: "Automatisiert & Prüfungssicher", check: true },
+    carcuro: { text: "Vorhanden", check: true },
+    legacy: { text: "Oft komplex / manuell", check: "partial" }
+  },
+  {
+    feature: "Buchhaltung & DATEV",
+    autaxo: { text: "Tiefe Integration (SKR03/04)", check: true },
+    carcuro: { text: "Basis-Export", check: "partial" },
+    legacy: { text: "Sehr umfangreich", check: true }
+  },
+  {
+    feature: "Vertragswesen",
+    autaxo: { text: "Digitale E-Signatur & GoBD", check: true },
+    carcuro: { text: "Standard PDF", check: "partial" },
+    legacy: { text: "Druck-Fokus", check: "partial" }
+  },
+  {
+    feature: "Preis-Modell",
+    autaxo: { text: "Monatlich kündbar", check: true },
+    carcuro: { text: "Jahreslizenz (Vorkasse)", check: false },
+    legacy: { text: "Hohe Anschaffungskosten", check: false }
+  }
+];
+
+// JSON-LD Schema für AI-Bot Verständnis (FAQ Page)
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was ist der Unterschied zwischen Autaxo und Carcuro?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Während Carcuro einen starken 'Mobile-First'-Ansatz für Einsteiger verfolgt und im österreichischen Markt (NoVA/RKSV) stark ist, positioniert sich Autaxo als die spezialisierte Lösung für den deutschen Markt. Autaxo fokussiert sich auf rechtssichere Prozesse (GoBD), tiefe Buchhaltungsintegration (DATEV) und Vertragsmanagement für wachsende Händler."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ist Autaxo eine Alternative zu Loco-Soft?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja, für freie Gebrauchtwagenhändler. Loco-Soft ist ein mächtiges System für große Autohäuser mit Werkstatt und Herstelleranbindung. Autaxo ist die schlanke, moderne Cloud-Alternative für Händler, die keine komplexe Server-Infrastruktur betreiben möchten, aber dennoch professionelle Buchhaltungs-Features benötigen."
+      }
+    }
+  ]
+};
+---
+
+<MarketingLayout title={title} description={description}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(schema)} />
+
+  <section class="relative pt-32 pb-20 bg-[#0b0c10] overflow-hidden">
+    <div class="absolute top-0 right-1/2 translate-x-1/2 w-[1000px] h-[500px] bg-primary/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+    
+    <div class="container mx-auto px-4 text-center z-10 relative">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-primary text-sm font-medium mb-6">
+        <Icon name="lucide:scale" class="w-4 h-4" />
+        Transparenter Vergleich
+      </div>
+      
+      <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight">
+        Finde die Software, die zu <br class="hidden md:block" />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-light">deinem Handel passt.</span>
+      </h1>
+      
+      <p class="text-lg text-text-muted max-w-2xl mx-auto leading-relaxed mb-10">
+        Der Markt für Händler-Software ist unübersichtlich. Wir vergleichen die Top-Lösungen fair und faktenbasiert, damit du die richtige Entscheidung triffst.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-[#0b0c10]">
+    <div class="container mx-auto px-4">
+      <div class="bg-[#15171e] border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="border-b border-white/10 bg-white/5">
+                <th class="p-6 text-white font-bold text-lg min-w-[200px]">Funktion</th>
+                <th class="p-6 text-white font-bold text-lg min-w-[200px] bg-primary/10 border-t-4 border-primary">
+                  Autaxo
+                  <span class="block text-xs text-primary font-normal mt-1">Die Profi-Lösung</span>
+                </th>
+                <th class="p-6 text-text-muted font-bold text-lg min-w-[200px]">
+                  Mobile Apps
+                  <span class="block text-xs font-normal mt-1 opacity-70">z.B. Carcuro</span>
+                </th>
+                <th class="p-6 text-text-muted font-bold text-lg min-w-[200px]">
+                  Legacy Systeme
+                  <span class="block text-xs font-normal mt-1 opacity-70">z.B. Loco-Soft</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5">
+              {comparisonData.map((row) => (
+                <tr class="hover:bg-white/[0.02] transition-colors">
+                  <td class="p-6 text-white font-medium">{row.feature}</td>
+                  
+                  <td class="p-6 bg-primary/5">
+                    <div class="flex items-center gap-2">
+                      <Icon name="lucide:check-circle-2" class="w-5 h-5 text-green-500 shrink-0" />
+                      <span class="text-white text-sm">{row.autaxo.text}</span>
+                    </div>
+                  </td>
+
+                  <td class="p-6">
+                    <div class="flex items-center gap-2">
+                      {row.carcuro.check === true && <Icon name="lucide:check" class="w-5 h-5 text-gray-500 shrink-0" />}
+                      {row.carcuro.check === false && <Icon name="lucide:x" class="w-5 h-5 text-gray-600 shrink-0" />}
+                      {row.carcuro.check === 'partial' && <Icon name="lucide:minus" class="w-5 h-5 text-gray-500 shrink-0" />}
+                      <span class="text-text-muted text-sm">{row.carcuro.text}</span>
+                    </div>
+                  </td>
+
+                  <td class="p-6">
+                    <div class="flex items-center gap-2">
+                      {row.legacy.check === true && <Icon name="lucide:check" class="w-5 h-5 text-gray-500 shrink-0" />}
+                      {row.legacy.check === false && <Icon name="lucide:x" class="w-5 h-5 text-gray-600 shrink-0" />}
+                      {row.legacy.check === 'partial' && <Icon name="lucide:minus" class="w-5 h-5 text-gray-500 shrink-0" />}
+                      <span class="text-text-muted text-sm">{row.legacy.text}</span>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-[#0f1117] border-t border-white/5">
+    <div class="container mx-auto px-4 max-w-4xl">
+      
+      <div class="space-y-16">
+        <article>
+          <div class="flex items-center gap-4 mb-6">
+            <div class="bg-blue-500/10 p-3 rounded-lg text-blue-400">
+              <Icon name="lucide:smartphone" class="w-8 h-8" />
+            </div>
+            <h2 class="text-2xl md:text-3xl font-bold text-white">Autaxo vs. Carcuro: Was passt zu mir?</h2>
+          </div>
+          <div class="prose prose-invert max-w-none text-text-muted">
+            <p>
+              Carcuro und Autaxo adressieren beide den modernen, unabhängigen Händler. Dennoch gibt es strategische Unterschiede:
+            </p>
+            <ul class="space-y-4 my-6">
+              <li class="flex gap-3">
+                <Icon name="lucide:arrow-right" class="w-5 h-5 text-primary shrink-0 mt-1" />
+                <span>
+                  <strong class="text-white">Der Mobile-First Ansatz:</strong> Carcuro hat seine Stärke in der mobilen App. [cite_start]Wer den ganzen Tag auf dem Platz steht und nur ein Smartphone nutzt, findet hier einen schnellen Einstieg[cite: 52]. Autaxo bietet ebenfalls mobile Funktionen, fokussiert sich aber stärker auf die <strong>Verwaltung im Büro (Desktop)</strong>, wo komplexe Buchhaltung und Verträge effizienter erledigt werden.
+                </span>
+              </li>
+              <li class="flex gap-3">
+                <Icon name="lucide:arrow-right" class="w-5 h-5 text-primary shrink-0 mt-1" />
+                <span>
+                  [cite_start]<strong class="text-white">Deutschland vs. Österreich:</strong> Carcuro hat seine Wurzeln in Österreich und bietet spezifische Features wie den NoVA-Rechner oder RKSV-Kassen[cite: 52, 74]. [cite_start]Autaxo ist <strong>zu 100% auf den deutschen Rechtsraum</strong> optimiert (GoBD, §25a UStG, DATEV-Export nach SKR03/04), ohne Kompromisse für andere Märkte einzugehen[cite: 133].
+                </span>
+              </li>
+              <li class="flex gap-3">
+                <Icon name="lucide:arrow-right" class="w-5 h-5 text-primary shrink-0 mt-1" />
+                <span>
+                  [cite_start]<strong class="text-white">Preismodell:</strong> Viele Wettbewerber setzen auf Jahreslizenzen und Vorkasse[cite: 53]. Autaxo setzt auf maximale Flexibilität mit einem <strong>monatlich kündbaren Modell</strong>. Wir glauben, dass gute Software Kunden durch Leistung bindet, nicht durch Verträge.
+                </span>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <hr class="border-white/10" />
+
+        <article>
+          <div class="flex items-center gap-4 mb-6">
+            <div class="bg-purple-500/10 p-3 rounded-lg text-purple-400">
+              <Icon name="lucide:server" class="w-8 h-8" />
+            </div>
+            <h2 class="text-2xl md:text-3xl font-bold text-white">Autaxo vs. Legacy Systeme (z.B. Loco-Soft)</h2>
+          </div>
+          <div class="prose prose-invert max-w-none text-text-muted">
+            <p>
+              [cite_start]Systeme wie Loco-Soft sind der Industriestandard für große Autohäuser mit Werkstatt, Teilehandel und Herstelleranbindung[cite: 25]. Für den reinen Gebrauchtwagenhandel sind sie jedoch oft:
+            </p>
+            <div class="grid md:grid-cols-2 gap-6 my-6">
+              <div class="bg-[#15171e] p-5 rounded-xl border border-white/5">
+                <h4 class="text-white font-bold mb-2">Legacy Systeme</h4>
+                [cite_start]<p class="text-sm">Oft teuer in der Anschaffung, erfordern lokale Server-Installationen, sind komplex in der Bedienung ("Over-Engineered") und schwer mobil nutzbar[cite: 32].</p>
+              </div>
+              <div class="bg-[#15171e] p-5 rounded-xl border border-primary/20 bg-primary/5">
+                <h4 class="text-primary font-bold mb-2">Der Autaxo Weg</h4>
+                <p class="text-sm text-white">Browser-basiert (SaaS), sofort startklar, keine Installation, intuitive Oberfläche und speziell auf die Bedürfnisse des freien Handels zugeschnitten.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="py-24 bg-[#0b0c10] text-center">
+    <div class="container mx-auto px-4">
+      <h3 class="text-3xl font-bold text-white mb-6">Vergleiche selbst. Risikofrei.</h3>
+      <p class="text-text-muted mb-10 max-w-xl mx-auto">
+        Keine Jahresverträge, keine Einrichtungsgebühr. Teste Autaxo 30 Tage lang kostenlos und entscheide dann, ob wir der richtige Partner für deinen Erfolg sind.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="https://garage.autaxo.de/auth/sign-up" class="btn btn--primary btn--large">
+          Jetzt 30 Tage kostenlos testen
+        </a>
+        <a href="/faq" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-white/10 text-white hover:bg-white/5 transition-colors">
+          Häufige Fragen lesen
+        </a>
+      </div>
+    </div>
+  </section>
+
+</MarketingLayout>

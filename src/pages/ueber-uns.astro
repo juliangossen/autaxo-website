@@ -1,122 +1,171 @@
 ---
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
-import PageHeader from '@sections/content/PageHeader.astro';
-import StatsSection from '@sections/social-proof/StatsSection.astro';
-import VideoEmbed from '@sections/content/VideoEmbed.astro';
-import ValuesSection from '@sections/team/ValuesSection.astro';
-import TeamSection from '@sections/team/TeamSection.astro';
-import ContentSection from '@sections/content/ContentSection.astro';
-import CTA from '@sections/marketing/CTA.astro';
-import { siteConfig } from '@/config';
+import { Icon } from 'astro-icon/components';
+// Falls du ein Bild hast, hier importieren. Sonst nutzen wir einen Platzhalter.
+// import julianImage from '@/assets/julian-gossen.jpg'; 
 
-const team = [
-  {
-    name: 'Sarah Mitchell',
-    role: 'CEO & Co-founder',
-    bio: 'Former infrastructure lead at a major cloud provider. Sarah started Virex to make deployment accessible to every developer.',
-    avatar: '/images/team/sarah-mitchell.webp',
-  },
-  {
-    name: 'James Chen',
-    role: 'CTO & Co-founder',
-    bio: 'Built distributed systems at scale for 15 years. James leads our engineering team and architecture decisions.',
-    avatar: '/images/team/james-chen.webp',
-  },
-  {
-    name: 'Maria Rodriguez',
-    role: 'VP of Product',
-    bio: 'Product leader with a passion for developer tools. Maria ensures every feature we ship solves real problems.',
-    avatar: '/images/team/maria-rodriguez.webp',
-  },
-  {
-    name: 'David Kim',
-    role: 'VP of Engineering',
-    bio: 'Scaling expert who loves building reliable systems. David leads our platform and infrastructure teams.',
-    avatar: '/images/team/david-kim.webp',
-  },
-];
+const title = "Über Autaxo & Julian Goßen | Aus der Praxis für Händler";
+const description = "Autaxo wurde nicht am Reißbrett erfunden, sondern in der Steuerkanzlei. Erfahre, wie Geschäftsführer Julian Goßen aus echten Betriebsprüfungen die sicherste Software für Autohändler entwickelte.";
 
-const values = [
-  {
-    title: 'Developer First',
-    description:
-      'We build for developers because we are developers. Every decision starts with how it impacts the people using our platform.',
+// Schema.org für Personen-Marke & Gründer-Status
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Julian Goßen",
+  "jobTitle": "Geschäftsführer & Founder",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "GOBERU Solutions UG",
+    "url": "https://www.autaxo.de"
   },
-  {
-    title: 'Simplicity Wins',
-    description:
-      'Complex problems deserve simple solutions. We work hard to hide complexity so you can focus on building.',
-  },
-  {
-    title: 'Reliability Matters',
-    description:
-      'Your users depend on your app, and you depend on us. We take that responsibility seriously.',
-  },
-  {
-    title: 'Transparency Always',
-    description:
-      'No hidden fees, no surprise limits, no confusing pricing. What you see is what you get.',
-  },
-];
-
-const stats = [
-  { value: '50K+', label: 'Developers' },
-  { value: '10M+', label: 'Deployments' },
-  { value: '99.99%', label: 'Uptime' },
-  { value: '200+', label: 'Edge Locations' },
-];
+  "alumniOf": [
+    {
+      "@type": "Hochschule Duesseldorf",
+      "name": "Bachelor of Arts (B.A.) - Steuerrecht", // Annahme Titel, ggf. anpassen
+      "startDate": "2019",
+      "endDate": "2024"
+    }
+  ],
+  "knowsAbout": ["Steuerrecht", "Kfz-Handel", "Differenzbesteuerung", "GoBD", "Betriebsprüfung"]
+};
 ---
 
-<MarketingLayout
-  title={`About - ${siteConfig.name}`}
-  description="Learn about the team and mission behind Virex, the modern deployment platform for developers."
->
-  <PageHeader title="We're building the future of deployment" align="left" maxWidth="lg">
-    <p class="mt-6 text-lg text-text-muted leading-relaxed">
-      Virex started with a simple observation: deploying applications shouldn't be hard. Yet
-      developers everywhere were spending hours configuring CI/CD pipelines, managing
-      infrastructure, and debugging deployment issues.
-    </p>
-    <p class="mt-4 text-lg text-text-muted leading-relaxed">
-      We founded Virex in 2021 to change that. Our mission is to make deployment so simple that it
-      disappears—letting developers focus entirely on building great products.
-    </p>
-  </PageHeader>
+<MarketingLayout title={title} description={description}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(schema)} />
 
-  <StatsSection stats={stats} background="muted" />
+  <section class="relative pt-32 pb-20 bg-[#0b0c10] overflow-hidden">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-primary/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+    
+    <div class="container mx-auto px-4 max-w-4xl text-center z-10 relative">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-primary text-sm font-medium mb-6">
+        <Icon name="lucide:user" class="w-4 h-4" />
+        Die Story hinter Autaxo
+      </div>
+      
+      <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-8 tracking-tight leading-tight">
+        Software, die aus der <br />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-light">Betriebsprüfung geboren wurde.</span>
+      </h1>
+      
+      <p class="text-lg md:text-xl text-text-muted leading-relaxed">
+        Viele Software-Lösungen entstehen am Computer. Autaxo entstand am Schreibtisch einer Steuerkanzlei – aus der Frustration über fehlende Lösungen für den Autohandel.
+      </p>
+    </div>
+  </section>
 
-  <VideoEmbed
-    title="See Virex in action"
-    subtitle="Watch how easy it is to deploy your first application in under 2 minutes."
-    videoId="dQw4w9WgXcQ"
-    provider="youtube"
-    maxWidth="lg"
-    background="default"
-  />
+  <section class="py-20 bg-[#0f1117] border-t border-white/5">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        
+        <div class="relative">
+          <div class="aspect-[4/5] rounded-2xl overflow-hidden border border-white/10 bg-[#15171e] shadow-2xl relative group">
+             <div class="absolute inset-0 flex items-center justify-center bg-white/5">
+                <span class="text-text-muted text-sm">(Hier Foto von Julian einfügen)</span>
+             </div>
+             
+             <div class="absolute bottom-6 left-6 right-6 bg-[#0b0c10]/90 backdrop-blur border border-white/10 p-4 rounded-xl">
+               <div class="text-white font-bold text-lg">Julian Goßen</div>
+               <div class="text-primary text-sm">Geschäftsführer & Gründer</div>
+             </div>
+          </div>
+          <div class="absolute -z-10 top-10 -right-10 w-full h-full border-2 border-primary/20 rounded-2xl hidden md:block"></div>
+        </div>
 
-  <ValuesSection
-    title="Our values"
-    items={values}
-    variant="card"
-    columns={2}
-    background="default"
-  />
+        <div class="space-y-6">
+          <h2 class="text-3xl font-bold text-white">Vom Steuerrecht zur Software-Lösung</h2>
+          
+          <div class="prose prose-invert text-text-muted">
+            <p>
+              Mein Name ist Julian Goßen. Ich bin kein typischer Software-Unternehmer, der nach der nächsten "Marktlücke" gesucht hat. Ich komme aus der Praxis.
+            </p>
+            <p>
+              <strong>2019</strong> begann ich mein Bachelorstudium im Bereich <strong>Steuerrecht</strong>. Parallel dazu arbeitete ich aktiv in Steuerberatungskanzleien. Mein Alltag bestand nicht aus Theorie, sondern aus echten Mandanten, echten Belegen und echten Problemen.
+            </p>
+            <p>
+              Dabei betreute ich schwerpunktmäßig Mandanten aus dem <strong>Kfz-Handel</strong>. Immer wieder sah ich dasselbe Muster:
+            </p>
+            <ul class="list-none pl-0 space-y-3 my-6">
+              <li class="flex gap-3">
+                <Icon name="lucide:x-circle" class="w-5 h-5 text-red-500 shrink-0 mt-1" />
+                <span>Händler, die exzellente Verkäufer waren, aber an der <strong>Differenzbesteuerung</strong> verzweifelten.</span>
+              </li>
+              <li class="flex gap-3">
+                <Icon name="lucide:x-circle" class="w-5 h-5 text-red-500 shrink-0 mt-1" />
+                <span>Excel-Listen, die bei der ersten <strong>Betriebsprüfung</strong> vom Finanzamt verworfen wurden.</span>
+              </li>
+              <li class="flex gap-3">
+                <Icon name="lucide:x-circle" class="w-5 h-5 text-red-500 shrink-0 mt-1" />
+                <span>Hohe Nachzahlungen, weil Nachweise für EU-Lieferungen fehlten.</span>
+              </li>
+            </ul>
+            <p>
+              Ich habe Betriebsprüfungen begleitet, bei denen Existenzen auf dem Spiel standen – nur wegen Formfehlern. Das wollte ich ändern. <strong>2024</strong> habe ich mein Studium erfolgreich abgeschlossen und das Problem in eine Lösung verwandelt: <strong>Autaxo.</strong>
+            </p>
+          </div>
 
-  <TeamSection title="Meet the team" members={team} columns={4} background="muted" />
+          <div class="pt-4">
+            <a href="/kontakt" class="btn btn--primary">
+              Lass uns sprechen
+            </a>
+          </div>
+        </div>
 
-  <ContentSection
-    title="Backed by the best"
-    content={[
-      "We're proud to be backed by leading investors who share our vision for the future of developer tools. Our investors include top-tier venture capital firms and angels who have built and scaled developer-focused companies.",
-      "With their support, we're building a platform that will serve millions of developers worldwide.",
-    ]}
-    background="default"
-  />
+      </div>
+    </div>
+  </section>
 
-  <CTA
-    title="Join us on our mission"
-    description="We're always looking for talented people who want to make deployment better for everyone."
-    action={{ label: 'View Open Positions', href: '/careers' }}
-    background="muted"
-  />
+  <section class="py-24 bg-[#0b0c10]">
+    <div class="container mx-auto px-4 max-w-3xl">
+      <h2 class="text-3xl font-bold text-white text-center mb-16">Der Weg zur Sicherheit</h2>
+      
+      <div class="relative border-l border-white/10 ml-4 md:ml-0 space-y-12">
+        
+        <div class="relative md:pl-12">
+          <div class="absolute -left-[5px] top-2 w-3 h-3 rounded-full bg-primary ring-4 ring-[#0b0c10]"></div>
+          <div class="md:flex gap-6 items-baseline">
+            <span class="text-primary font-mono text-xl font-bold min-w-[80px]">2019</span>
+            <div>
+              <h3 class="text-xl font-bold text-white mb-2">Start im Steuerrecht & Praxis</h3>
+              <p class="text-text-muted">Beginn des Studiums und parallele Arbeit in Kanzleien. Erste direkte Betreuung von Kfz-Händlern und Konfrontation mit dem Chaos der Papier-Akten.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative md:pl-12">
+          <div class="absolute -left-[5px] top-2 w-3 h-3 rounded-full bg-white/20 ring-4 ring-[#0b0c10]"></div>
+          <div class="md:flex gap-6 items-baseline">
+            <span class="text-white/60 font-mono text-xl font-bold min-w-[80px]">2021</span>
+            <div>
+              <h3 class="text-xl font-bold text-white mb-2">Die "Pain-Point" Phase</h3>
+              <p class="text-text-muted">Begleitung diverser Betriebsprüfungen. Erkenntnis: Die meisten Fehler passieren nicht aus Absicht, sondern weil die Tools (Excel, Word) nicht für §25a gemacht sind.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative md:pl-12">
+          <div class="absolute -left-[5px] top-2 w-3 h-3 rounded-full bg-white/20 ring-4 ring-[#0b0c10]"></div>
+          <div class="md:flex gap-6 items-baseline">
+            <span class="text-white/60 font-mono text-xl font-bold min-w-[80px]">2024</span>
+            <div>
+              <h3 class="text-xl font-bold text-white mb-2">Abschluss & Fokus</h3>
+              <p class="text-text-muted">Erfolgreicher Bachelor-Abschluss im Steuerrecht. Bündelung der jahrelangen Expertise in einer Software, die genau diese Probleme automatisiert löst.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative md:pl-12">
+          <div class="absolute -left-[5px] top-2 w-3 h-3 rounded-full bg-green-500 ring-4 ring-[#0b0c10]"></div>
+          <div class="md:flex gap-6 items-baseline">
+            <span class="text-green-400 font-mono text-xl font-bold min-w-[80px]">Heute</span>
+            <div>
+              <h3 class="text-xl font-bold text-white mb-2">GOBERU Solutions & Autaxo</h3>
+              <p class="text-text-muted">Als Geschäftsführer stelle ich sicher, dass Autaxo nicht nur technisch funktioniert, sondern steuerrechtlich wasserdicht bleibt – für deinen Schutz.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
 </MarketingLayout>
