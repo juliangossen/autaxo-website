@@ -1,254 +1,194 @@
 ---
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
-import PageHeader from '@sections/content/PageHeader.astro';
-import ValuesSection from '@sections/team/ValuesSection.astro';
-import FeatureHighlight from '@sections/marketing/FeatureHighlight.astro';
-import BentoGrid from '@sections/marketing/BentoGrid.astro';
-import CTA from '@sections/marketing/CTA.astro';
-import { siteConfig } from '@/config';
+import { Icon } from 'astro-icon/components';
 
-const highlightedFeatures = [
+const title = "Alle Funktionen | Autaxo Dealer-Management-System";
+const description = "Von der digitalen Vertrags- und Steuerabwicklung bis zum KI-Assistenten. Entdecke alle Funktionen von Autaxo für den digitalen Autohandel.";
+
+// Hier definieren wir alle Features zentral für sauberen Code
+const features = [
   {
-    title: 'Preview Deployments for Every PR',
-    description:
-      'Every pull request automatically gets its own unique preview URL. Share with your team, get feedback from stakeholders, and merge with confidence knowing exactly what will go live.',
-    image: '/images/features/preview-deploy.webp',
-    badge: 'Most Popular',
-    highlights: [
-      'Automatic deployment on every push',
-      'Unique URL for each pull request',
-      'Comment integration with GitHub/GitLab',
-      'Password protection for sensitive previews',
-    ],
-    cta: { label: 'Learn about previews', href: '/docs/previews' },
+    title: "Digitale Verträge & eSignatur",
+    text: "Erstelle rechtssichere Verkaufsverträge in Sekunden – inklusive digitaler Unterschrift. Autaxo spart dir Papierkram und macht deinen Fahrzeugverkauf vollständig digital.",
+    icon: "lucide:pen-tool",
+    href: "/funktionen/digitale-vertraege-esignatur", // Link existiert
+    isNew: false
   },
   {
-    title: 'Global Edge Network',
-    description:
-      'Your application runs on 200+ edge locations worldwide, ensuring blazing fast load times for every user regardless of their location. Static assets are cached at the edge for instant delivery.',
-    icon: 'lucide:globe',
-    badge: 'Performance',
-    highlights: [
-      '200+ edge locations globally',
-      'Sub-50ms response times',
-      'Automatic SSL certificates',
-      'Smart caching strategies',
-    ],
-    cta: { label: 'Explore our network', href: '/docs/edge-network' },
+    title: "Buchhaltung & Steuerlogik",
+    text: "Autaxo berechnet automatisch die korrekte Umsatzsteuer – inklusive Differenzbesteuerung – und erstellt einen vollständigen DATEV-Export für deine Buchhaltung.",
+    icon: "lucide:calculator",
+    href: "/funktionen/buchhaltung", // Link angepasst an deine Struktur
+    isNew: false
   },
   {
-    title: 'Zero-Config Framework Support',
-    description:
-      'Virex automatically detects your framework and configures the optimal build settings. Next.js, Astro, Remix, Nuxt, SvelteKit—we support them all out of the box.',
-    icon: 'lucide:package',
-    badge: 'Developer Experience',
-    highlights: [
-      'Auto-detection of 30+ frameworks',
-      'Optimized build configurations',
-      'Built-in caching for dependencies',
-      'Custom build commands when needed',
-    ],
-    cta: { label: 'View supported frameworks', href: '/docs/frameworks' },
+    title: "Steuerlogik §25a UStG",
+    text: "Autaxo erkennt alle umsatzsteuerlich relevanten Fälle im Autohandel automatisch und berechnet die Differenzbesteuerung korrekt. So bleibt deine Buchhaltung rechtssicher.",
+    icon: "lucide:percent",
+    href: "/funktionen/differenzbesteuerung-25a-ustg", // Link existiert
+    isNew: false
   },
+  {
+    title: "KI-Assistent Carlo",
+    text: "Carlo ist dein Co-Pilot: per Foto Fahrzeugscheine scannen, Kunden anlegen und Dokumente zuordnen. Er erkennt den Steuerfall und gibt smarte Hinweise.",
+    icon: "lucide:bot",
+    href: "/funktionen/ki-assistent", // Link angepasst
+    isNew: true
+  },
+  {
+    title: "Schnittstellen (mobile.de)",
+    text: "Übertrage Fahrzeugdaten automatisch auf mobile.de & AutoScout24. Inserate werden zentral verwaltet – ohne Doppeleingaben und manuelle Fehler.",
+    icon: "lucide:share-2",
+    href: null, // Kein Link im Original
+    isNew: false
+  },
+  {
+    title: "Dashboard & Analytics",
+    text: "Verkaufszahlen, Durchschnittsmargen, Standzeiten und Lagerbestand – alles in einem übersichtlichen Dashboard live im Blick.",
+    icon: "lucide:bar-chart-3",
+    href: null,
+    isNew: false
+  },
+  {
+    title: "Filialverwaltung",
+    text: "Arbeite gemeinsam mit deinem Team – egal ob Verkauf, Einkauf oder Buchhaltung. Auch mehrere Filialen verwaltest du zentral in einem System.",
+    icon: "lucide:building-2",
+    href: null,
+    isNew: false
+  },
+  {
+    title: "Datenschutz & GoBD",
+    text: "Deine Daten liegen verschlüsselt auf sicheren Servern in Deutschland. Vollständig DSGVO- und GoBD-konform.",
+    icon: "lucide:shield-check",
+    href: "/datenschutz",
+    isNew: false
+  },
+  {
+    title: "Skalierbarkeit",
+    text: "Autaxo wächst mit deinem Geschäft. Ideal für wachsende Händlerbetriebe mit digitalen Ambitionen.",
+    icon: "lucide:trending-up",
+    href: null,
+    isNew: false
+  }
 ];
 
-const bentoFeatures = [
+const partners = [
   {
-    title: 'Instant Rollbacks',
-    description:
-      'Something went wrong? Roll back to any previous deployment with a single click. Zero downtime, zero stress.',
-    icon: 'lucide:history',
-    size: 'large' as const,
-    accent: 'primary' as const,
-    href: '/docs/rollbacks',
+    title: "Steuerberatung",
+    text: "Berufsträger mit ausgewiesener KFZ-Handelsexpertise. Sicher in § 25a, igE/igL & Export. Nahtloses Zusammenspiel mit Autaxo & DATEV.",
+    icon: "lucide:briefcase"
   },
   {
-    title: 'Real-time Logs',
-    description: 'Stream build and runtime logs in real-time for quick debugging.',
-    icon: 'lucide:terminal',
-    accent: 'blue' as const,
+    title: "Laufende Buchhaltung",
+    text: "Buchen lfd. Geschäftsvorfälle & Lohn GoBD-konform – auf Autaxo-Workflows ausgelegt. Transparent, zuverlässig, skalierbar.",
+    icon: "lucide:book-open"
   },
   {
-    title: 'Environment Variables',
-    description: 'Securely manage secrets across development, preview, and production.',
-    icon: 'lucide:lock',
-    accent: 'green' as const,
-  },
-  {
-    title: 'Team Collaboration',
-    description:
-      'Role-based access control, deployment comments, and audit logs for your entire team.',
-    icon: 'lucide:users',
-    size: 'medium' as const,
-    accent: 'purple' as const,
-    href: '/docs/teams',
-  },
-];
-
-const featureCategories = [
-  {
-    title: 'Deployment',
-    subtitle: 'Get your code to production faster than ever',
-    items: [
-      {
-        icon: 'lucide:zap',
-        title: 'Instant Deploys',
-        description:
-          'Push to your Git repository and watch your changes go live in seconds. Our optimized build pipeline handles everything from dependency installation to asset optimization.',
-      },
-      {
-        icon: 'lucide:refresh-cw',
-        title: 'Automatic Rollbacks',
-        description:
-          'Every deployment is versioned and stored. Roll back to any previous version with a single click—no downtime, no stress.',
-      },
-      {
-        icon: 'lucide:git-branch',
-        title: 'Preview Deployments',
-        description:
-          'Every pull request gets its own unique URL. Share with your team, get feedback, and merge with confidence.',
-      },
-      {
-        icon: 'lucide:package',
-        title: 'Zero-Config Builds',
-        description:
-          'Virex auto-detects your framework and configures the build process automatically. Next.js, Astro, Remix, Vite—we support them all.',
-      },
-    ],
-  },
-  {
-    title: 'Infrastructure',
-    subtitle: 'Enterprise-grade infrastructure without the complexity',
-    items: [
-      {
-        icon: 'lucide:globe',
-        title: 'Global Edge Network',
-        description:
-          'Your application runs on 200+ edge locations worldwide. Users get sub-50ms response times no matter where they are.',
-      },
-      {
-        icon: 'lucide:trending-up',
-        title: 'Auto-Scaling',
-        description:
-          'Handle traffic spikes effortlessly. Virex automatically scales your application up or down based on demand.',
-      },
-      {
-        icon: 'lucide:shield',
-        title: 'Built-in Security',
-        description:
-          'SSL certificates provisioned automatically. DDoS protection, WAF rules, and security headers configured out of the box.',
-      },
-      {
-        icon: 'lucide:database',
-        title: 'Edge Caching',
-        description:
-          'Intelligent caching at the edge reduces origin load and speeds up content delivery. Configure cache rules with simple headers.',
-      },
-    ],
-  },
-  {
-    title: 'Developer Experience',
-    subtitle: 'Tools that make your team more productive',
-    items: [
-      {
-        icon: 'lucide:link',
-        title: 'Git Integration',
-        description:
-          'Connect your GitHub, GitLab, or Bitbucket repository. Automatic deployments on every push to your main branch.',
-      },
-      {
-        icon: 'lucide:terminal',
-        title: 'CLI & API',
-        description:
-          'Full-featured CLI for local development and CI/CD integration. REST API for custom automation workflows.',
-      },
-      {
-        icon: 'lucide:bar-chart',
-        title: 'Real-time Logs',
-        description:
-          'Stream build and runtime logs in real-time. Debug issues quickly with searchable, filterable log history.',
-      },
-      {
-        icon: 'lucide:bell',
-        title: 'Notifications',
-        description:
-          'Get notified about deployments, errors, and performance issues via Slack, Discord, email, or webhooks.',
-      },
-    ],
-  },
-  {
-    title: 'Collaboration',
-    subtitle: 'Built for teams of all sizes',
-    items: [
-      {
-        icon: 'lucide:users',
-        title: 'Team Management',
-        description:
-          'Invite team members with role-based access control. Admins, developers, and viewers each get appropriate permissions.',
-      },
-      {
-        icon: 'lucide:message-square',
-        title: 'Deployment Comments',
-        description:
-          'Leave comments on any deployment. Discuss changes, flag issues, and keep context with your code.',
-      },
-      {
-        icon: 'lucide:lock',
-        title: 'Environment Variables',
-        description:
-          'Securely manage secrets and configuration. Different values for development, preview, and production environments.',
-      },
-      {
-        icon: 'lucide:clipboard-list',
-        title: 'Audit Logs',
-        description:
-          'Track every action taken in your organization. Know who deployed what, when, and why.',
-      },
-    ],
-  },
+    title: "Prozess & Digitalisierung",
+    text: "GoBD-Setup, Kassenbuch, E-Rechnung, DMS & KPI-Reporting. Beschleunigt den Autaxo-Rollout und schult Teams.",
+    icon: "lucide:laptop"
+  }
 ];
 ---
 
-<MarketingLayout
-  title={`Features - ${siteConfig.name}`}
-  description="Discover all the features that make Virex the best platform for deploying and scaling your applications."
->
-  <PageHeader
-    title="Everything you need to ship"
-    subtitle="From your first commit to global scale, Virex provides all the tools your team needs to build, deploy, and run modern applications."
-  />
+<MarketingLayout title={title} description={description}>
+  
+  <section class="relative pt-32 pb-20 bg-[#0b0c10] overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-[#0b0c10] to-[#0b0c10]"></div>
+    
+    <div class="container mx-auto px-4 relative z-10 text-center">
+      <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight text-balance">
+        Alle Funktionen für deinen <br/>
+        <span class="text-primary">digitalen Fahrzeughandel</span>
+      </h1>
+      <p class="text-xl text-text-muted max-w-3xl mx-auto leading-relaxed mb-10 text-balance">
+        Von der digitalen Vertrags- und Steuerabwicklung über automatische Inserate bis zur Zusammenarbeit im Team – Autaxo bündelt alle Funktionen in einer Lösung.
+      </p>
+    </div>
+  </section>
 
-  <FeatureHighlight
-    title="Powerful Features in Detail"
-    subtitle="Deep dive into the capabilities that make Virex the best deployment platform."
-    features={highlightedFeatures}
-    background="muted"
-  />
+  <section class="py-20 bg-[#0b0c10]">
+    <div class="container mx-auto px-4">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        {features.map((feature) => (
+          feature.href ? (
+            // KLICKBARE KARTE
+            <a href={feature.href} class="group relative p-8 rounded-2xl bg-[#15171e] border border-white/10 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 block">
+              <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/0 via-primary/0 to-primary/0 group-hover:via-primary/50 transition-all duration-500"></div>
+              
+              <div class="flex items-center justify-between mb-6">
+                <div class="w-12 h-12 rounded-lg bg-white/5 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                  <Icon name={feature.icon} class="w-6 h-6" />
+                </div>
+                {feature.isNew && (
+                  <span class="px-2 py-1 rounded text-xs font-bold bg-primary text-white uppercase tracking-wider">Neu</span>
+                )}
+              </div>
+              
+              <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+                {feature.title}
+                <Icon name="lucide:arrow-right" class="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+              </h3>
+              <p class="text-text-muted leading-relaxed text-sm">
+                {feature.text}
+              </p>
+            </a>
+          ) : (
+            // STATISCHE KARTE
+            <div class="p-8 rounded-2xl bg-[#15171e] border border-white/5">
+              <div class="w-12 h-12 rounded-lg bg-white/5 flex items-center justify-center text-text-muted mb-6">
+                <Icon name={feature.icon} class="w-6 h-6" />
+              </div>
+              <h3 class="text-xl font-bold text-white mb-3">{feature.title}</h3>
+              <p class="text-text-muted leading-relaxed text-sm">
+                {feature.text}
+              </p>
+            </div>
+          )
+        ))}
 
-  {
-    featureCategories.map((category, index) => (
-      <ValuesSection
-        title={category.title}
-        subtitle={category.subtitle}
-        items={category.items}
-        variant="with-icon"
-        columns={2}
-        background={index % 2 === 0 ? 'muted' : 'default'}
-      />
-    ))
-  }
+      </div>
+    </div>
+  </section>
 
-  <BentoGrid
-    title="And Much More"
-    subtitle="Discover all the tools that make your deployment workflow seamless."
-    items={bentoFeatures}
-    background="muted"
-  />
+  <section class="py-24 bg-surface border-t border-white/5">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-3xl mx-auto mb-16">
+        <h2 class="text-3xl font-bold text-white mb-4">Der Autaxo Partner-Finder</h2>
+        <p class="text-text-muted">
+          Wir empfehlen ausgewählte Steuerberatungskanzleien und Experten, die Erfahrung im Gebrauchtwagenhandel haben und mit der Autaxo-Logik arbeiten.
+        </p>
+      </div>
 
-  <CTA
-    title="Ready to experience the difference?"
-    description="Start deploying with Virex today. Free tier available with no credit card required."
-    action={{ label: 'Get Started Free', href: '/pricing' }}
-    background="muted"
-  />
+      <div class="grid md:grid-cols-3 gap-8">
+        {partners.map((partner) => (
+          <div class="p-6">
+            <div class="w-16 h-16 mx-auto rounded-full bg-[#0b0c10] border border-white/10 flex items-center justify-center text-primary mb-6 shadow-lg shadow-primary/5">
+              <Icon name={partner.icon} class="w-8 h-8" />
+            </div>
+            <h3 class="text-lg font-bold text-white mb-3">{partner.title}</h3>
+            <p class="text-sm text-text-muted leading-relaxed">{partner.text}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-12">
+        <a href="/partnernetzwerk" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-white/20 hover:bg-white/10 text-white transition-colors">
+          Zum Partnernetzwerk
+          <Icon name="lucide:arrow-right" class="w-4 h-4" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 text-center">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-8">Bereit für den digitalen Handel?</h2>
+      <a href="https://garage.autaxo.de/auth/sign-up" class="inline-block px-8 py-4 bg-primary hover:bg-primary-hover text-white font-bold rounded-lg transition-colors shadow-lg shadow-primary/20">
+        Jetzt kostenlos testen
+      </a>
+    </div>
+  </section>
+
 </MarketingLayout>
