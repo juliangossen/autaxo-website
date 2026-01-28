@@ -4,7 +4,7 @@ import { Icon } from 'astro-icon/components';
 
 const title = "Autaxo | Dealer-Management-System für §25a, EU & Export";
 const description =
-  "Die Autohandel-Software mit KI. Digitale Fahrzeugakte, automatische Steuerlogik (§25a/Reverse-Charge) und DATEV-Export. Jetzt kostenlos testen.";
+  "Die Autohandel-Software mit KI. Digitale Fahrzeugakte, automatische Steuerlogik (§25a/EU/Export) und DATEV-Export. Jetzt kostenlos testen.";
 
 const signupUrl = "https://garage.autaxo.de/auth/sign-up";
 const demoUrl =
@@ -95,473 +95,548 @@ const workflowSteps = [
     media: { type: "video", src: "https://storage.googleapis.com/autaxo-website/GIFs%20for%20Website(8).mp4" },
   },
 ];
+
+const modules = [
+  {
+    id: "m-1",
+    title: "Digitale Fahrzeugakte",
+    desc: "Dokumente, Kosten, Status, Nachweise – revisionssicher am Fahrzeug.",
+    href: "/funktionen",
+    icon: "lucide:folder-archive",
+  },
+  {
+    id: "m-2",
+    title: "Verträge & eSignatur",
+    desc: "PDFs auf Knopfdruck – sauber, schnell, standardisiert.",
+    href: "/funktionen/digitale-vertraege-esignatur",
+    icon: "lucide:file-signature",
+  },
+  {
+    id: "m-3",
+    title: "Steuerlogik §25a/EU/Export",
+    desc: "Automatische Erkennung, Hinweise, Prüfpfade und Dokumentation.",
+    href: "/funktionen/differenzbesteuerung-25a-ustg",
+    icon: "lucide:scale",
+  },
+  {
+    id: "m-4",
+    title: "Buchhaltung & DATEV",
+    desc: "Export-ready Datenstruktur, weniger Rückfragen, weniger Fehler.",
+    href: "/funktionen/buchhaltung",
+    icon: "lucide:calculator",
+  },
+  {
+    id: "m-5",
+    title: "KI-Assistent Carlo",
+    desc: "Plausibilitätschecks & steuerliche Leitplanken im Workflow.",
+    href: "/funktionen/ki-assistent",
+    icon: "lucide:bot",
+  },
+];
 ---
 
 <MarketingLayout title={title} description={description}>
-  <!-- HERO (Ultra-modern, high contrast, animated but lightweight) -->
-  <section
-    class="relative overflow-hidden pt-28 pb-16 lg:pt-44 lg:pb-28"
-    data-spotlight
-  >
-    <!-- Background: mesh + grid + glow (pure CSS, no assets) -->
-    <div class="pointer-events-none absolute inset-0">
-      <div class="absolute inset-0 ax-mesh" aria-hidden="true"></div>
-      <div class="absolute inset-0 ax-grid-mask opacity-[0.65]" aria-hidden="true"></div>
-      <div class="absolute -top-40 -left-32 h-[520px] w-[520px] rounded-full bg-primary/20 blur-3xl ax-float" aria-hidden="true"></div>
-      <div class="absolute -bottom-44 -right-40 h-[620px] w-[620px] rounded-full bg-purple-500/15 blur-3xl ax-float2" aria-hidden="true"></div>
+  <div class="relative overflow-hidden" data-page data-spotlight>
+    <!-- Continuous background (fixed, no section breaks) -->
+    <div class="pointer-events-none fixed inset-0 -z-10" aria-hidden="true">
+      <div class="absolute inset-0 ax-mesh"></div>
+      <div class="absolute inset-0 ax-grid-mask opacity-[0.55]"></div>
 
-      <!-- Spotlight follows cursor (JS sets --mx/--my); safe fallback without JS -->
-      <div class="absolute inset-0 ax-spotlight" aria-hidden="true"></div>
+      <div class="absolute -top-48 -left-40 h-[640px] w-[640px] rounded-full bg-primary/20 blur-3xl ax-float"></div>
+      <div class="absolute top-[45vh] -right-40 h-[720px] w-[720px] rounded-full bg-fuchsia-500/12 blur-3xl ax-float2"></div>
+      <div class="absolute top-[120vh] -left-52 h-[760px] w-[760px] rounded-full bg-cyan-400/10 blur-3xl ax-float3"></div>
+
+      <div class="absolute inset-0 ax-spotlight"></div>
     </div>
 
-    <div class="container mx-auto px-4 relative z-10">
-      <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-        <!-- Left: Copy + CTAs -->
-        <div class="lg:col-span-6">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/90 text-xs font-semibold tracking-wide">
-            <span class="relative flex h-2 w-2">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-            </span>
-            Live: KI-Assistent <span class="text-primary">Carlo</span> • §25a / EU / Export
-          </div>
+    <!-- Small scroll progress (optional but modern) -->
+    <div class="ax-progress" aria-hidden="true">
+      <div class="ax-progress__bar"></div>
+    </div>
 
-          <h1 class="mt-6 text-5xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.02]">
-            Autohandel. <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-red-400 to-fuchsia-400">Automatisiert.</span>
-          </h1>
+    <!-- HERO -->
+    <section class="pt-28 pb-12 lg:pt-44 lg:pb-16">
+      <div class="container mx-auto px-4">
+        <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          <div class="lg:col-span-6">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/90 text-xs font-semibold tracking-wide">
+              <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+              </span>
+              Live: KI-Assistent <span class="text-primary">Carlo</span> • §25a / EU / Export
+            </div>
 
-          <p class="mt-6 text-lg lg:text-xl text-text-muted leading-relaxed max-w-xl">
-            Von der FIN zum Vertrag in 60 Sekunden. Digitale Fahrzeugakte, rechtssichere Dokumente und automatische Steuerlogik –
-            unterstützt durch künstliche Intelligenz.
-          </p>
+            <h1 class="mt-6 text-5xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.02] text-balance">
+              Autohandel.{" "}
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-red-400 to-fuchsia-400">
+                Automatisiert.
+              </span>
+            </h1>
 
-          <div class="mt-8 flex flex-col sm:flex-row gap-4">
-            <a
-              href={signupUrl}
-              class="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary hover:bg-primary-hover text-white font-bold rounded-xl transition-all hover:-translate-y-0.5 shadow-xl shadow-primary/25"
-            >
-              Kostenlos testen
-              <Icon name="lucide:arrow-right" class="w-5 h-5 transition-transform group-hover:translate-x-0.5" />
-            </a>
+            <p class="mt-6 text-lg lg:text-xl text-text-muted leading-relaxed max-w-xl text-balance">
+              Von der FIN zum Vertrag in 60 Sekunden. Digitale Fahrzeugakte, rechtssichere Dokumente und automatische Steuerlogik –
+              unterstützt durch künstliche Intelligenz.
+            </p>
 
-            <a
-              href={demoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/5 border border-white/10 hover:border-primary/40 text-white font-semibold rounded-xl transition-colors"
-            >
-              <Icon name="lucide:calendar" class="w-5 h-5 text-primary" />
-              Demo buchen
-            </a>
-          </div>
+            <div class="mt-8 flex flex-col sm:flex-row gap-4">
+              <a
+                href={signupUrl}
+                class="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary hover:bg-primary-hover text-white font-bold rounded-xl transition-all hover:-translate-y-0.5 shadow-xl shadow-primary/25"
+              >
+                Kostenlos testen
+                <Icon name="lucide:arrow-right" class="w-5 h-5 transition-transform group-hover:translate-x-0.5" />
+              </a>
 
-          <div class="mt-7 flex items-center gap-3 text-sm text-white/60">
-            <Icon name="lucide:shield-check" class="w-4 h-4 text-primary" />
-            <span>Made & hosted in Germany</span>
-            <span class="opacity-40">•</span>
-            <Icon name="lucide:file-check" class="w-4 h-4 text-primary" />
-            <span>DATEV-kompatibel</span>
-          </div>
+              <a
+                href={demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/5 border border-white/10 hover:border-primary/40 text-white font-semibold rounded-xl transition-colors"
+              >
+                <Icon name="lucide:calendar" class="w-5 h-5 text-primary" />
+                Demo buchen
+              </a>
+            </div>
 
-          <!-- Mini marquee: credibility / features (CSS only, reduced-motion safe) -->
-          <div class="mt-10 rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
-            <div class="ax-marquee px-4 py-3 text-xs font-semibold uppercase tracking-wider text-white/70">
-              <div class="ax-marquee__track">
-                <span class="ax-marquee__item"><Icon name="lucide:zap" class="w-4 h-4 text-primary" /> FIN → Fahrzeugakte</span>
-                <span class="ax-marquee__item"><Icon name="lucide:calculator" class="w-4 h-4 text-primary" /> §25a / Regel / EU / Export</span>
-                <span class="ax-marquee__item"><Icon name="lucide:scan-text" class="w-4 h-4 text-primary" /> OCR Fahrzeugschein</span>
-                <span class="ax-marquee__item"><Icon name="lucide:badge-check" class="w-4 h-4 text-primary" /> GoBD-Workflows</span>
-                <span class="ax-marquee__item"><Icon name="lucide:workflow" class="w-4 h-4 text-primary" /> Prozess-Checklisten</span>
-                <span class="ax-marquee__item"><Icon name="lucide:files" class="w-4 h-4 text-primary" /> Dokumentenablage</span>
-
-                <span class="ax-marquee__item"><Icon name="lucide:zap" class="w-4 h-4 text-primary" /> FIN → Fahrzeugakte</span>
-                <span class="ax-marquee__item"><Icon name="lucide:calculator" class="w-4 h-4 text-primary" /> §25a / Regel / EU / Export</span>
-                <span class="ax-marquee__item"><Icon name="lucide:scan-text" class="w-4 h-4 text-primary" /> OCR Fahrzeugschein</span>
-                <span class="ax-marquee__item"><Icon name="lucide:badge-check" class="w-4 h-4 text-primary" /> GoBD-Workflows</span>
-                <span class="ax-marquee__item"><Icon name="lucide:workflow" class="w-4 h-4 text-primary" /> Prozess-Checklisten</span>
-                <span class="ax-marquee__item"><Icon name="lucide:files" class="w-4 h-4 text-primary" /> Dokumentenablage</span>
+            <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3" data-reveal>
+              <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
+                <p class="text-white text-xl font-extrabold">60s</p>
+                <p class="text-xs text-white/60 mt-1">FIN → Vertrag</p>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
+                <p class="text-white text-xl font-extrabold">§25a</p>
+                <p class="text-xs text-white/60 mt-1">inkl. EU & Export</p>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
+                <p class="text-white text-xl font-extrabold">DATEV</p>
+                <p class="text-xs text-white/60 mt-1">Export per Klick</p>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
+                <p class="text-white text-xl font-extrabold">GoBD</p>
+                <p class="text-xs text-white/60 mt-1">audit-ready</p>
               </div>
             </div>
-          </div>
 
-          <!-- Stats -->
-          <div class="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-3">
-            <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
-              <p class="text-white text-xl font-extrabold">60s</p>
-              <p class="text-xs text-white/60 mt-1">FIN → Vertrag</p>
-            </div>
-            <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
-              <p class="text-white text-xl font-extrabold">§25a</p>
-              <p class="text-xs text-white/60 mt-1">inkl. EU & Export</p>
-            </div>
-            <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
-              <p class="text-white text-xl font-extrabold">DATEV</p>
-              <p class="text-xs text-white/60 mt-1">Export per Klick</p>
-            </div>
-            <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
-              <p class="text-white text-xl font-extrabold">GoBD</p>
-              <p class="text-xs text-white/60 mt-1">audit-ready</p>
-            </div>
-          </div>
-        </div>
+            <div class="mt-10 rounded-2xl border border-white/10 bg-white/5 overflow-hidden" data-reveal>
+              <div class="ax-marquee px-4 py-3 text-xs font-semibold uppercase tracking-wider text-white/70">
+                <div class="ax-marquee__track">
+                  <span class="ax-marquee__item"><Icon name="lucide:scan-text" class="w-4 h-4 text-primary" /> OCR Fahrzeugschein</span>
+                  <span class="ax-marquee__item"><Icon name="lucide:scale" class="w-4 h-4 text-primary" /> §25a / Regel / EU / Export</span>
+                  <span class="ax-marquee__item"><Icon name="lucide:file-check" class="w-4 h-4 text-primary" /> DATEV Export</span>
+                  <span class="ax-marquee__item"><Icon name="lucide:shield-check" class="w-4 h-4 text-primary" /> GoBD Workflows</span>
+                  <span class="ax-marquee__item"><Icon name="lucide:bot" class="w-4 h-4 text-primary" /> Carlo Checks</span>
 
-        <!-- Right: “Product window” with ultra-modern treatment -->
-        <div class="lg:col-span-6">
-          <div class="relative">
-            <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-primary/40 via-fuchsia-500/25 to-cyan-400/25 blur-xl opacity-70"></div>
-
-            <div class="relative rounded-3xl border border-white/10 bg-[#0b0c10]/70 backdrop-blur-xl overflow-hidden shadow-2xl">
-              <!-- Top bar -->
-              <div class="flex items-center justify-between px-5 py-4 border-b border-white/10 bg-white/5">
-                <div class="flex items-center gap-2">
-                  <span class="h-2.5 w-2.5 rounded-full bg-red-500/70"></span>
-                  <span class="h-2.5 w-2.5 rounded-full bg-yellow-500/70"></span>
-                  <span class="h-2.5 w-2.5 rounded-full bg-green-500/70"></span>
-                </div>
-                <div class="flex items-center gap-2 text-xs font-mono text-white/50">
-                  <span class="inline-flex items-center gap-1">
-                    <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
-                    AI CORE ONLINE
-                  </span>
-                  <span class="opacity-40">|</span>
-                  <span>SSG • Edge</span>
+                  <span class="ax-marquee__item"><Icon name="lucide:scan-text" class="w-4 h-4 text-primary" /> OCR Fahrzeugschein</span>
+                  <span class="ax-marquee__item"><Icon name="lucide:scale" class="w-4 h-4 text-primary" /> §25a / Regel / EU / Export</span>
+                  <span class="ax-marquee__item"><Icon name="lucide:file-check" class="w-4 h-4 text-primary" /> DATEV Export</span>
+                  <span class="ax-marquee__item"><Icon name="lucide:shield-check" class="w-4 h-4 text-primary" /> GoBD Workflows</span>
+                  <span class="ax-marquee__item"><Icon name="lucide:bot" class="w-4 h-4 text-primary" /> Carlo Checks</span>
                 </div>
               </div>
+            </div>
+          </div>
 
-              <!-- Main -->
-              <div class="p-5 lg:p-6">
-                <div class="grid sm:grid-cols-2 gap-4 items-stretch">
-                  <!-- Screenshot card -->
-                  <div class="relative rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
-                    <div class="absolute inset-0 ax-shine opacity-60" aria-hidden="true"></div>
-                    <img
-                      src="/screenshots/dark-mode.webp"
-                      alt="Autaxo Dashboard Screenshot (Dark Mode)"
-                      class="w-full h-full object-cover object-top ax-screenshot"
-                      loading="eager"
-                      decoding="async"
-                    />
-                    <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between">
-                      <span class="text-[11px] text-white/70 bg-black/40 border border-white/10 px-2.5 py-1 rounded-full">
-                        Dashboard • Bestand • Kosten • Dokumente
-                      </span>
-                      <span class="text-[11px] text-white/70 bg-black/40 border border-white/10 px-2.5 py-1 rounded-full">
-                        Live Preview
-                      </span>
-                    </div>
+          <!-- Right: product window -->
+          <div class="lg:col-span-6" data-reveal>
+            <div class="relative">
+              <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-primary/40 via-fuchsia-500/25 to-cyan-400/25 blur-xl opacity-70"></div>
+
+              <div class="relative rounded-3xl border border-white/10 bg-[#0b0c10]/70 backdrop-blur-xl overflow-hidden shadow-2xl">
+                <div class="flex items-center justify-between px-5 py-4 border-b border-white/10 bg-white/5">
+                  <div class="flex items-center gap-2">
+                    <span class="h-2.5 w-2.5 rounded-full bg-red-500/70"></span>
+                    <span class="h-2.5 w-2.5 rounded-full bg-yellow-500/70"></span>
+                    <span class="h-2.5 w-2.5 rounded-full bg-green-500/70"></span>
                   </div>
+                  <div class="flex items-center gap-2 text-xs font-mono text-white/50">
+                    <span class="inline-flex items-center gap-1">
+                      <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
+                      AI CORE ONLINE
+                    </span>
+                    <span class="opacity-40">|</span>
+                    <span>SSG • Edge</span>
+                  </div>
+                </div>
 
-                  <!-- “Carlo” micro demo -->
-                  <div class="relative rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
-                    <div class="absolute inset-0 ax-scanline" aria-hidden="true"></div>
-
-                    <div class="p-4">
-                      <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-2">
-                          <div class="h-9 w-9 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center">
-                            <Icon name="lucide:bot" class="w-4 h-4 text-primary" />
-                          </div>
-                          <div>
-                            <p class="text-sm font-bold text-white leading-tight">Carlo</p>
-                            <p class="text-xs text-white/50">Steuerlogik • Plausibilitätschecks</p>
-                          </div>
-                        </div>
-                        <span class="text-[11px] font-mono text-white/40">v1</span>
+                <div class="p-5 lg:p-6">
+                  <div class="grid sm:grid-cols-2 gap-4 items-stretch">
+                    <div class="relative rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
+                      <div class="absolute inset-0 ax-shine opacity-60" aria-hidden="true"></div>
+                      <img
+                        src="/screenshots/dark-mode.webp"
+                        alt="Autaxo Dashboard (Dark Mode)"
+                        class="w-full h-full object-cover object-top ax-screenshot"
+                        loading="eager"
+                        decoding="async"
+                      />
+                      <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+                        <span class="text-[11px] text-white/70 bg-black/40 border border-white/10 px-2.5 py-1 rounded-full">
+                          Dashboard • Bestand • Dokumente
+                        </span>
+                        <span class="text-[11px] text-white/70 bg-black/40 border border-white/10 px-2.5 py-1 rounded-full">
+                          Live Preview
+                        </span>
                       </div>
+                    </div>
 
-                      <div class="mt-4 space-y-3 text-sm">
-                        <div class="flex gap-2 items-start" data-reveal>
-                          <div class="h-8 w-8 rounded-full bg-white/10 border border-white/10 flex items-center justify-center shrink-0">
-                            <span class="text-[10px] font-bold text-white">DU</span>
+                    <div class="relative rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
+                      <div class="absolute inset-0 ax-scanline" aria-hidden="true"></div>
+
+                      <div class="p-4">
+                        <div class="flex items-center justify-between">
+                          <div class="flex items-center gap-2">
+                            <div class="h-9 w-9 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center">
+                              <Icon name="lucide:bot" class="w-4 h-4 text-primary" />
+                            </div>
+                            <div>
+                              <p class="text-sm font-bold text-white leading-tight">Carlo</p>
+                              <p class="text-xs text-white/50">Steuerlogik • Plausibilitätschecks</p>
+                            </div>
                           </div>
-                          <div class="flex-1 rounded-2xl rounded-tl-none bg-[#15171e] border border-white/10 px-3 py-2 text-text-muted">
-                            Habe einen X5 aus Italien gekauft. Netto. Was muss ich beachten?
-                          </div>
+                          <span class="text-[11px] font-mono text-white/40">v1</span>
                         </div>
 
-                        <div class="flex gap-2 items-center" data-reveal>
-                          <div class="h-8 w-8 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center shrink-0">
-                            <Icon name="lucide:bot" class="w-4 h-4 text-primary" />
+                        <div class="mt-4 space-y-3 text-sm">
+                          <div class="flex gap-2 items-start" data-reveal>
+                            <div class="h-8 w-8 rounded-full bg-white/10 border border-white/10 flex items-center justify-center shrink-0">
+                              <span class="text-[10px] font-bold text-white">DU</span>
+                            </div>
+                            <div class="flex-1 rounded-2xl rounded-tl-none bg-[#15171e] border border-white/10 px-3 py-2 text-text-muted">
+                              Habe einen X5 aus Italien gekauft. Netto. Was muss ich beachten?
+                            </div>
                           </div>
-                          <div class="flex items-center gap-1">
-                            <span class="h-1.5 w-1.5 bg-primary/60 rounded-full ax-dot"></span>
-                            <span class="h-1.5 w-1.5 bg-primary/60 rounded-full ax-dot ax-dot2"></span>
-                            <span class="h-1.5 w-1.5 bg-primary/60 rounded-full ax-dot ax-dot3"></span>
-                          </div>
-                        </div>
 
-                        <div class="flex gap-2 items-start" data-reveal>
-                          <div class="h-8 w-8 rounded-full bg-primary border border-primary/60 flex items-center justify-center shrink-0 shadow-lg shadow-primary/20">
-                            <Icon name="lucide:bot" class="w-4 h-4 text-white" />
+                          <div class="flex gap-2 items-center" data-reveal>
+                            <div class="h-8 w-8 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center shrink-0">
+                              <Icon name="lucide:bot" class="w-4 h-4 text-primary" />
+                            </div>
+                            <div class="flex items-center gap-1">
+                              <span class="h-1.5 w-1.5 bg-primary/60 rounded-full ax-dot"></span>
+                              <span class="h-1.5 w-1.5 bg-primary/60 rounded-full ax-dot ax-dot2"></span>
+                              <span class="h-1.5 w-1.5 bg-primary/60 rounded-full ax-dot ax-dot3"></span>
+                            </div>
                           </div>
-                          <div class="flex-1 rounded-2xl rounded-tl-none bg-primary/10 border border-primary/20 px-3 py-3 text-white relative overflow-hidden">
-                            <div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent pointer-events-none"></div>
-                            <p class="font-semibold">Innergemeinschaftlicher Erwerb.</p>
-                            <ul class="mt-2 space-y-1 text-xs text-white/80">
-                              <li class="flex gap-2"><Icon name="lucide:check" class="w-4 h-4 text-primary" /> USt-IdNr. prüfen (VIES)</li>
-                              <li class="flex gap-2"><Icon name="lucide:check" class="w-4 h-4 text-primary" /> Rechnung netto erfassen</li>
-                              <li class="flex gap-2"><Icon name="lucide:check" class="w-4 h-4 text-primary" /> Erwerbsteuer in DE abführen & ziehen</li>
-                            </ul>
-                            <div class="mt-3 pt-2 border-t border-primary/20 text-[11px] text-white/70 flex items-center gap-2">
-                              <Icon name="lucide:check-circle" class="w-4 h-4 text-primary" />
-                              Automatisch vorgemerkt.
+
+                          <div class="flex gap-2 items-start" data-reveal>
+                            <div class="h-8 w-8 rounded-full bg-primary border border-primary/60 flex items-center justify-center shrink-0 shadow-lg shadow-primary/20">
+                              <Icon name="lucide:bot" class="w-4 h-4 text-white" />
+                            </div>
+                            <div class="flex-1 rounded-2xl rounded-tl-none bg-primary/10 border border-primary/20 px-3 py-3 text-white relative overflow-hidden">
+                              <div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent pointer-events-none"></div>
+                              <p class="font-semibold">Innergemeinschaftlicher Erwerb.</p>
+                              <ul class="mt-2 space-y-1 text-xs text-white/80">
+                                <li class="flex gap-2"><Icon name="lucide:check" class="w-4 h-4 text-primary" /> USt-IdNr. prüfen (VIES)</li>
+                                <li class="flex gap-2"><Icon name="lucide:check" class="w-4 h-4 text-primary" /> Rechnung netto erfassen</li>
+                                <li class="flex gap-2"><Icon name="lucide:check" class="w-4 h-4 text-primary" /> Erwerbsteuer in DE abführen & ziehen</li>
+                              </ul>
+                              <div class="mt-3 pt-2 border-t border-primary/20 text-[11px] text-white/70 flex items-center gap-2">
+                                <Icon name="lucide:check-circle" class="w-4 h-4 text-primary" />
+                                Automatisch vorgemerkt.
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
 
-                      <div class="mt-4 flex flex-wrap gap-2">
-                        <a href="/funktionen/ki-assistent" class="inline-flex items-center gap-2 text-xs font-semibold text-white/80 hover:text-white">
-                          Mehr zu Carlo <Icon name="lucide:arrow-right" class="w-4 h-4 text-primary" />
-                        </a>
+                        <div class="mt-4">
+                          <a href="/funktionen/ki-assistent" class="inline-flex items-center gap-2 text-xs font-semibold text-white/80 hover:text-white">
+                            Mehr zu Carlo <Icon name="lucide:arrow-right" class="w-4 h-4 text-primary" />
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                <!-- Bottom chips -->
-                <div class="mt-4 flex flex-wrap gap-2">
-                  <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white/70">Digitale Fahrzeugakte</span>
-                  <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white/70">Verträge & Rechnungen</span>
-                  <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white/70">§25a/EU/Export</span>
-                  <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white/70">DATEV Export</span>
+                  <div class="mt-4 flex flex-wrap gap-2">
+                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white/70">Digitale Fahrzeugakte</span>
+                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white/70">Verträge & Rechnungen</span>
+                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white/70">§25a/EU/Export</span>
+                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white/70">DATEV Export</span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="mt-4 text-xs text-white/50 flex items-center gap-2">
-              <Icon name="lucide:mouse" class="w-4 h-4 text-primary" />
-              Tipp: Hover & Scroll – dezente Animationen, keine Performance-Last.
+              <p class="mt-4 text-xs text-white/50 flex items-center gap-2">
+                <Icon name="lucide:sparkles" class="w-4 h-4 text-primary" />
+                Alles wirkt wie aus einem Guss – ein Canvas, keine „Abschnitte“.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- soft divider -->
+        <div class="mt-14 ax-divider" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- MODULE CANVAS (sticky left + flowing right) -->
+    <section class="pb-24">
+      <div class="container mx-auto px-4">
+        <div class="grid lg:grid-cols-12 gap-10 lg:gap-12">
+          <div class="lg:col-span-5">
+            <div class="lg:sticky lg:top-28">
+              <div class="inline-flex items-center gap-2 text-primary font-bold tracking-wider uppercase text-sm" data-reveal>
+                <Icon name="lucide:layers" class="w-4 h-4" />
+                Module & Systemlogik
+              </div>
+
+              <h2 class="mt-3 text-3xl lg:text-5xl font-extrabold text-white text-balance" data-reveal>
+                Moderne Software fühlt sich an wie{" "}
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-fuchsia-400">ein Workflow.</span>
+              </h2>
+
+              <p class="mt-5 text-lg text-text-muted leading-relaxed" data-reveal>
+                Autaxo führt Händler Schritt für Schritt – mit Steuerlogik, Dokumentation und Exportpfaden. Kein Rätselraten, kein Papier.
+              </p>
+
+              <div class="mt-8 grid gap-3" data-reveal>
+                {modules.map((m) => (
+                  <a
+                    href={m.href}
+                    class="group rounded-2xl border border-white/10 bg-white/5 px-4 py-4 hover:border-primary/40 transition-colors flex items-start gap-3"
+                  >
+                    <div class="h-10 w-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                      <Icon name={m.icon} class="w-5 h-5" />
+                    </div>
+                    <div class="flex-1">
+                      <p class="text-white font-bold leading-tight">{m.title}</p>
+                      <p class="text-sm text-white/60 mt-1">{m.desc}</p>
+                    </div>
+                    <Icon name="lucide:arrow-right" class="w-4 h-4 text-primary mt-1 opacity-70 group-hover:opacity-100 transition-opacity" />
+                  </a>
+                ))}
+              </div>
+
+              <div class="mt-10 flex flex-col sm:flex-row gap-3" data-reveal>
+                <a
+                  href={signupUrl}
+                  class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-primary hover:bg-primary-hover text-white font-bold rounded-xl transition-all hover:-translate-y-0.5 shadow-xl shadow-primary/20"
+                >
+                  Kostenlos testen
+                  <Icon name="lucide:arrow-right" class="w-5 h-5" />
+                </a>
+                <a
+                  href="/preise"
+                  class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white/5 border border-white/10 hover:border-primary/40 text-white font-semibold rounded-xl transition-colors"
+                >
+                  Preise ansehen
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7">
+            <div class="grid gap-6">
+              <div class="rounded-3xl border border-white/10 bg-[#0b0c10]/70 backdrop-blur-xl p-7 shadow-2xl" data-reveal>
+                <div class="flex items-start justify-between gap-6">
+                  <div>
+                    <p class="text-white font-extrabold text-xl">„Von der FIN zum Vertrag in 60 Sekunden“</p>
+                    <p class="mt-2 text-text-muted">
+                      Der Kern ist Geschwindigkeit + Korrektheit: Stammdaten, Dokumente und Steuerlogik greifen ineinander – ohne Medienbruch.
+                    </p>
+                  </div>
+                  <div class="hidden sm:flex items-center gap-2 text-xs font-mono text-white/40">
+                    <span class="h-1.5 w-1.5 rounded-full bg-primary"></span> FLOW
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid md:grid-cols-2 gap-6">
+                <div class="rounded-3xl border border-white/10 bg-white/5 p-7" data-reveal>
+                  <div class="h-12 w-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                    <Icon name="lucide:scan-text" class="w-6 h-6" />
+                  </div>
+                  <h3 class="mt-5 text-white font-bold text-xl">Erfassen ohne Tipparbeit</h3>
+                  <p class="mt-2 text-text-muted">
+                    FIN / Scan → Fahrzeuganlage. Weniger Fehler, weniger Zeitverlust.
+                  </p>
+                  <a href="/funktionen" class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white/80 hover:text-white">
+                    Mehr erfahren <Icon name="lucide:arrow-right" class="w-4 h-4 text-primary" />
+                  </a>
+                </div>
+
+                <div class="rounded-3xl border border-white/10 bg-white/5 p-7" data-reveal>
+                  <div class="h-12 w-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                    <Icon name="lucide:shield-check" class="w-6 h-6" />
+                  </div>
+                  <h3 class="mt-5 text-white font-bold text-xl">Audit-ready Workflows</h3>
+                  <p class="mt-2 text-text-muted">
+                    Nachweise (z. B. Gelangensbestätigung) sitzen am Vorgang – nicht im Kopf.
+                  </p>
+                  <a href="/downloads" class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white/80 hover:text-white">
+                    Downloads <Icon name="lucide:arrow-right" class="w-4 h-4 text-primary" />
+                  </a>
+                </div>
+              </div>
+
+              <div class="rounded-3xl border border-white/10 bg-white/5 p-7" data-reveal>
+                <div class="flex items-start gap-4">
+                  <div class="h-12 w-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                    <Icon name="lucide:bot" class="w-6 h-6" />
+                  </div>
+                  <div class="flex-1">
+                    <h3 class="text-white font-bold text-xl">Carlo: Leitplanken statt Bauchgefühl</h3>
+                    <p class="mt-2 text-text-muted">
+                      Carlo prüft, erinnert und hilft dabei, typische Umsatzsteuer- und Dokumentationsfehler zu vermeiden – direkt im Workflow.
+                    </p>
+                    <a href="/funktionen/ki-assistent" class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-white/80 hover:text-white">
+                      Carlo ansehen <Icon name="lucide:arrow-right" class="w-4 h-4 text-primary" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ax-divider mt-6" aria-hidden="true"></div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FEATURES (clean + premium cards) -->
-  <section class="py-24 bg-surface border-y border-border">
-    <div class="container mx-auto px-4">
-      <div class="text-center max-w-3xl mx-auto" data-reveal>
-        <span class="inline-flex items-center gap-2 text-primary font-bold tracking-wider uppercase text-sm">
-          <Icon name="lucide:layers" class="w-4 h-4" />
-          Module, die zusammenarbeiten
-        </span>
-        <h2 class="mt-3 text-3xl lg:text-5xl font-extrabold text-white">
-          Entwickelt für den <span class="text-primary">modernen</span> Handel
-        </h2>
-        <p class="mt-5 text-lg text-text-muted">
-          Schluss mit Excel-Listen und Papierchaos. Autaxo zentralisiert Ihr gesamtes Geschäft – vom Einkauf bis zum DATEV-Export.
-        </p>
-      </div>
-
-      <div class="mt-14 grid md:grid-cols-3 gap-6 lg:gap-8">
-        <a href="/funktionen/digitale-vertraege-esignatur" class="group rounded-3xl border border-white/10 bg-[#0b0c10] p-7 hover:border-primary/40 transition-colors" data-reveal>
-          <div class="flex items-center justify-between">
-            <div class="h-12 w-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-              <Icon name="lucide:zap" class="w-6 h-6" />
-            </div>
-            <span class="text-xs font-mono text-white/30">01</span>
+    <!-- WORKFLOW (same canvas, integrated) -->
+    <section id="workflow" class="pb-24">
+      <div class="container mx-auto px-4">
+        <div class="rounded-3xl border border-white/10 bg-[#0b0c10]/70 backdrop-blur-xl p-8 lg:p-10 shadow-2xl">
+          <div class="text-center max-w-3xl mx-auto" data-reveal>
+            <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">Der Workflow</span>
+            <h2 class="text-3xl lg:text-5xl font-extrabold text-white text-balance">
+              Von <span class="text-primary">FIN</span> zum Vertrag in <span class="text-primary">60 Sekunden</span>
+            </h2>
+            <p class="mt-4 text-text-muted text-lg">
+              Klicken Sie auf einen Schritt für eine Demo. Videos laden erst beim Öffnen (Performance).
+            </p>
           </div>
-          <h3 class="mt-5 text-xl font-bold text-white">Schneller verkaufen</h3>
-          <p class="mt-2 text-text-muted leading-relaxed">
-            Fahrzeugschein scannen oder FIN eingeben – Autaxo übernimmt Stammdaten und erzeugt Dokumente ohne Tipparbeit.
-          </p>
-          <div class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white/80 group-hover:text-white">
-            Verträge & eSignatur <Icon name="lucide:arrow-right" class="w-4 h-4 text-primary" />
+
+          <div class="mt-12 relative max-w-4xl mx-auto">
+            <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/0 via-primary/50 to-primary/0 md:-translate-x-1/2"></div>
+
+            {workflowSteps.map((s, i) => {
+              const isRight = i % 2 === 1;
+              return (
+                <div class="relative z-10 mb-10" data-reveal>
+                  <button type="button" class="group w-full text-left" data-open-modal={s.id}>
+                    <div class="flex flex-col md:flex-row items-center gap-8">
+                      <div class={`w-full md:w-1/2 ${isRight ? "order-2 pl-12" : "order-2 pl-12 md:pl-0 md:pr-12 md:text-right"}`}>
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
+                          {s.n}. {s.title}
+                        </h3>
+                        <p class="text-text-muted text-sm">{s.desc}</p>
+                      </div>
+
+                      <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-[#0b0c10] border-2 border-white/10 group-hover:border-primary transition-colors flex items-center justify-center text-white/80 font-bold text-xs shadow-lg z-20">
+                        {s.n}
+                      </div>
+
+                      <div class={`hidden md:block w-1/2 ${isRight ? "order-1" : "order-3"}`}></div>
+                    </div>
+                  </button>
+                </div>
+              );
+            })}
           </div>
-        </a>
 
-        <a href="/funktionen/buchhaltung" class="group rounded-3xl border border-white/10 bg-[#0b0c10] p-7 hover:border-primary/40 transition-colors" data-reveal>
-          <div class="flex items-center justify-between">
-            <div class="h-12 w-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-              <Icon name="lucide:calculator" class="w-6 h-6" />
-            </div>
-            <span class="text-xs font-mono text-white/30">02</span>
-          </div>
-          <h3 class="mt-5 text-xl font-bold text-white">Umsatzsteuer im Griff</h3>
-          <p class="mt-2 text-text-muted leading-relaxed">
-            Automatische Erkennung von Steuerfällen (Regel vs. §25a, EU, Export) und Vorbereitung für saubere Übergaben an den Steuerberater.
-          </p>
-          <div class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white/80 group-hover:text-white">
-            Buchhaltung & Steuerlogik <Icon name="lucide:arrow-right" class="w-4 h-4 text-primary" />
-          </div>
-        </a>
-
-        <a href="/funktionen/differenzbesteuerung-25a-ustg" class="group rounded-3xl border border-white/10 bg-[#0b0c10] p-7 hover:border-primary/40 transition-colors" data-reveal>
-          <div class="flex items-center justify-between">
-            <div class="h-12 w-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-              <Icon name="lucide:files" class="w-6 h-6" />
-            </div>
-            <span class="text-xs font-mono text-white/30">03</span>
-          </div>
-          <h3 class="mt-5 text-xl font-bold text-white">Digitale Fahrzeugakte</h3>
-          <p class="mt-2 text-text-muted leading-relaxed">
-            Revisionssichere Ablage: EK/VK-Belege, Ausweis, Nachweise – alles direkt am Fahrzeug. Kein Suchen. Kein Chaos.
-          </p>
-          <div class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white/80 group-hover:text-white">
-            §25a Deep Dive <Icon name="lucide:arrow-right" class="w-4 h-4 text-primary" />
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- WORKFLOW (interactive, modal demos, lazy video sources) -->
-  <section id="workflow" class="py-24 relative overflow-hidden bg-[#0b0c10]">
-    <div class="pointer-events-none absolute inset-0 ax-grid-mask opacity-[0.35]" aria-hidden="true"></div>
-
-    <div class="container mx-auto px-4 relative z-10">
-      <div class="text-center mb-16" data-reveal>
-        <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">Der Workflow</span>
-        <h2 class="text-3xl lg:text-5xl font-extrabold text-white">
-          Von <span class="text-primary">FIN</span> zum Vertrag in <span class="text-primary">60 Sekunden</span>
-        </h2>
-        <p class="mt-4 text-text-muted text-lg max-w-2xl mx-auto">
-          Der komplette Prozess: Von der FIN-Abfrage bis zum DATEV-Export. Klicken Sie auf einen Schritt für die Demo.
-        </p>
-      </div>
-
-      <div class="relative max-w-4xl mx-auto">
-        <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/0 via-primary/50 to-primary/0 md:-translate-x-1/2"></div>
-
-        {workflowSteps.map((s, i) => {
-          const isRight = i % 2 === 1;
-          return (
-            <div
-              class={`relative z-10 mb-10 ${isRight ? "md:pl-0" : ""}`}
-              data-reveal
+          <div class="mt-10 text-center" data-reveal>
+            <a
+              href={signupUrl}
+              class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary hover:bg-primary-hover text-white font-bold rounded-xl transition-all hover:-translate-y-0.5 shadow-xl shadow-primary/20"
             >
+              Jetzt kostenlos testen
+              <Icon name="lucide:arrow-right" class="w-5 h-5" />
+            </a>
+            <p class="mt-4 text-sm text-text-muted">30 Tage kostenlos • Jederzeit kündbar • Made in Germany</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA (same canvas) -->
+    <section class="pb-28">
+      <div class="container mx-auto px-4 max-w-5xl">
+        <div class="rounded-3xl border border-white/10 bg-white/5 p-10 lg:p-14 text-center relative overflow-hidden" data-reveal>
+          <div class="absolute -top-32 left-1/2 -translate-x-1/2 h-[420px] w-[420px] rounded-full bg-primary/20 blur-3xl" aria-hidden="true"></div>
+          <h2 class="text-3xl lg:text-5xl font-extrabold text-white text-balance">
+            Bereit für die Zukunft des Handels?
+          </h2>
+          <p class="mt-5 text-lg lg:text-xl text-text-muted max-w-2xl mx-auto">
+            In 2 Minuten eingerichtet. Keine Kreditkarte erforderlich. Sofort produktiv.
+          </p>
+          <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href={signupUrl}
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary hover:bg-primary-hover text-white font-bold rounded-xl transition-all hover:-translate-y-0.5 shadow-xl shadow-primary/20"
+            >
+              Kostenlos starten
+              <Icon name="lucide:arrow-right" class="w-5 h-5" />
+            </a>
+            <a
+              href="/preise"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/5 border border-white/10 hover:border-primary/40 text-white font-semibold rounded-xl transition-colors"
+            >
+              Preise ansehen
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* MODALS */}
+    {workflowSteps.map((s) => (
+      <dialog
+        id={s.id}
+        class="bg-transparent p-0 w-full max-w-7xl backdrop:bg-black/80 backdrop:backdrop-blur-sm rounded-2xl shadow-2xl border border-white/10 m-auto"
+      >
+        <div class="bg-[#15171e] rounded-2xl overflow-hidden relative">
+          <button
+            type="button"
+            data-close-modal
+            class="absolute top-4 right-4 z-50 p-2 bg-black/50 hover:bg-primary text-white rounded-full transition-colors"
+            aria-label="Dialog schließen"
+          >
+            <Icon name="lucide:x" class="w-6 h-6" />
+          </button>
+
+          <div class="grid lg:grid-cols-5 h-full">
+            <div class="lg:col-span-3 bg-black flex items-center justify-center aspect-video lg:aspect-auto h-[40vh] lg:h-[70vh]">
+              {s.media.type === "video" ? (
+                <video
+                  controls
+                  preload="none"
+                  class="w-full h-full object-contain"
+                  data-video
+                  data-src={s.media.src}
+                />
+              ) : (
+                <img
+                  src={s.media.src}
+                  alt={`Workflow Demo: ${s.title}`}
+                  class="w-full h-full object-contain"
+                  loading="lazy"
+                  decoding="async"
+                />
+              )}
+            </div>
+
+            <div class="lg:col-span-2 p-8 lg:p-12 flex flex-col justify-center bg-[#15171e]">
+              <h3 class="text-2xl lg:text-3xl font-bold text-white mb-6">{s.modalTitle}</h3>
+              <p class="text-text-muted text-lg leading-relaxed mb-8">{s.modalText}</p>
+
               <button
                 type="button"
-                class="group w-full text-left"
-                data-open-modal={s.id}
+                data-close-modal
+                class="self-start px-8 py-3 border border-white/20 hover:bg-white/10 text-white rounded-lg transition-colors"
               >
-                <div class="flex flex-col md:flex-row items-center gap-8">
-                  {/* left column */}
-                  <div class={`w-full md:w-1/2 ${isRight ? "order-2 md:order-2 pl-12" : "order-2 md:order-1 pl-12 md:pl-0 md:pr-12 md:text-right"}`}>
-                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
-                      {s.n}. {s.title}
-                    </h3>
-                    <p class="text-text-muted text-sm">{s.desc}</p>
-                  </div>
-
-                  {/* center node */}
-                  <div class={`absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-[#0b0c10] border-2 border-white/10 group-hover:border-primary transition-colors flex items-center justify-center text-white/80 font-bold text-xs shadow-lg z-20`}>
-                    {s.n}
-                  </div>
-
-                  {/* spacer */}
-                  <div class={`hidden md:block w-1/2 ${isRight ? "order-1" : "order-3"}`}></div>
-                </div>
+                Schließen
               </button>
             </div>
-          );
-        })}
-      </div>
-
-      <div class="mt-14 text-center" data-reveal>
-        <a
-          href={signupUrl}
-          class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary hover:bg-primary-hover text-white font-bold rounded-xl transition-all hover:-translate-y-0.5 shadow-xl shadow-primary/20"
-        >
-          Jetzt kostenlos testen
-          <Icon name="lucide:arrow-right" class="w-5 h-5" />
-        </a>
-        <p class="mt-4 text-sm text-text-muted">30 Tage kostenlos • Jederzeit kündbar • Made in Germany</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- FINAL CTA -->
-  <section class="py-24">
-    <div class="container mx-auto px-4 max-w-5xl">
-      <div class="rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 to-white/0 p-10 lg:p-14 text-center relative overflow-hidden" data-reveal>
-        <div class="absolute -top-32 left-1/2 -translate-x-1/2 h-[380px] w-[380px] rounded-full bg-primary/20 blur-3xl" aria-hidden="true"></div>
-        <h2 class="text-3xl lg:text-5xl font-extrabold text-white">
-          Bereit für die Zukunft des Handels?
-        </h2>
-        <p class="mt-5 text-lg lg:text-xl text-text-muted max-w-2xl mx-auto">
-          In 2 Minuten eingerichtet. Keine Kreditkarte erforderlich. Sofort produktiv.
-        </p>
-        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a
-            href={signupUrl}
-            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary hover:bg-primary-hover text-white font-bold rounded-xl transition-all hover:-translate-y-0.5 shadow-xl shadow-primary/20"
-          >
-            Kostenlos starten
-            <Icon name="lucide:arrow-right" class="w-5 h-5" />
-          </a>
-          <a
-            href="/preise"
-            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/5 border border-white/10 hover:border-primary/40 text-white font-semibold rounded-xl transition-colors"
-          >
-            Preise ansehen
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {/* MODALS (generated, video sources lazy-attached) */}
-  {workflowSteps.map((s) => (
-    <dialog
-      id={s.id}
-      class="bg-transparent p-0 w-full max-w-7xl backdrop:bg-black/80 backdrop:backdrop-blur-sm rounded-2xl shadow-2xl border border-white/10 m-auto"
-    >
-      <div class="bg-[#15171e] rounded-2xl overflow-hidden relative">
-        <button
-          type="button"
-          data-close-modal
-          class="absolute top-4 right-4 z-50 p-2 bg-black/50 hover:bg-primary text-white rounded-full transition-colors"
-          aria-label="Dialog schließen"
-        >
-          <Icon name="lucide:x" class="w-6 h-6" />
-        </button>
-
-        <div class="grid lg:grid-cols-5 h-full">
-          <div class="lg:col-span-3 bg-black flex items-center justify-center aspect-video lg:aspect-auto h-[40vh] lg:h-[70vh]">
-            {s.media.type === "video" ? (
-              <video
-                controls
-                preload="none"
-                class="w-full h-full object-contain"
-                data-video
-                data-src={s.media.src}
-              />
-            ) : (
-              <img
-                src={s.media.src}
-                alt={`Workflow Demo: ${s.title}`}
-                class="w-full h-full object-contain"
-                loading="lazy"
-                decoding="async"
-              />
-            )}
-          </div>
-
-          <div class="lg:col-span-2 p-8 lg:p-12 flex flex-col justify-center bg-[#15171e]">
-            <h3 class="text-2xl lg:text-3xl font-bold text-white mb-6">{s.modalTitle}</h3>
-            <p class="text-text-muted text-lg leading-relaxed mb-8">{s.modalText}</p>
-
-            <button
-              type="button"
-              data-close-modal
-              class="self-start px-8 py-3 border border-white/20 hover:bg-white/10 text-white rounded-lg transition-colors"
-            >
-              Schließen
-            </button>
           </div>
         </div>
-      </div>
-    </dialog>
-  ))}
+      </dialog>
+    ))}
+  </div>
 </MarketingLayout>
 
 <style>
-  /* ====== Ultra-light, high-impact visuals (no external assets) ====== */
-
-  /* Mesh + grid */
+  /* Continuous canvas background */
   .ax-mesh{
     background:
       radial-gradient(1200px 600px at 80% -10%, rgba(179,0,24,.18), transparent 55%),
@@ -576,31 +651,34 @@ const workflowSteps = [
     background-size: 48px 48px;
     mask-image: radial-gradient(70% 60% at 50% 25%, #000 0%, transparent 68%);
   }
-
-  /* Cursor spotlight (JS updates --mx/--my in %); graceful fallback without JS */
   .ax-spotlight{
     background: radial-gradient(650px 420px at var(--mx, 50%) var(--my, 30%), rgba(255,255,255,.10), transparent 60%);
     transition: background-position 80ms linear;
   }
 
-  /* Floating blobs */
+  /* Soft divider instead of hard section cuts */
+  .ax-divider{
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+  }
+
+  /* Floating glows */
   @keyframes axFloat { 0%,100%{ transform:translate3d(0,0,0)} 50%{ transform:translate3d(0,-18px,0)} }
   @keyframes axFloat2 { 0%,100%{ transform:translate3d(0,0,0)} 50%{ transform:translate3d(0,14px,0)} }
+  @keyframes axFloat3 { 0%,100%{ transform:translate3d(0,0,0)} 50%{ transform:translate3d(0,-10px,0)} }
   .ax-float{ animation: axFloat 9s ease-in-out infinite; }
   .ax-float2{ animation: axFloat2 11s ease-in-out infinite; }
+  .ax-float3{ animation: axFloat3 12.5s ease-in-out infinite; }
 
-  /* Subtle shine on screenshot */
-  @keyframes axShine {
-    0%{ transform:translateX(-120%) }
-    100%{ transform:translateX(120%) }
-  }
+  /* Screenshot shine */
+  @keyframes axShine { 0%{ transform:translateX(-120%) } 100%{ transform:translateX(120%) } }
   .ax-shine{
     background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,.10) 45%, transparent 60%);
     transform: translateX(-120%);
     animation: axShine 5.2s ease-in-out infinite;
   }
 
-  /* Micro scanline on Carlo card */
+  /* Scanline on Carlo card */
   @keyframes axScan { 0%{ transform:translateY(-30%)} 100%{ transform:translateY(130%)} }
   .ax-scanline{
     background: linear-gradient(180deg, transparent, rgba(179,0,24,.22), transparent);
@@ -631,13 +709,13 @@ const workflowSteps = [
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 0.4rem 0.65rem;
+    padding: .4rem .65rem;
     border: 1px solid rgba(255,255,255,.10);
     border-radius: 999px;
     background: rgba(255,255,255,.03);
   }
 
-  /* Reveal animation: visible by default; JS adds .js to enable the effect */
+  /* Reveal: visible by default; JS enables transitions */
   .js [data-reveal]{
     opacity: 0;
     transform: translateY(14px);
@@ -648,28 +726,52 @@ const workflowSteps = [
     transform: translateY(0);
   }
 
+  /* Scroll progress */
+  .ax-progress{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    z-index: 60;
+    background: rgba(255,255,255,.06);
+  }
+  .ax-progress__bar{
+    height: 100%;
+    width: 100%;
+    transform-origin: left center;
+    transform: scaleX(0);
+    background: linear-gradient(90deg, rgba(179,0,24,1), rgba(255,80,110,.9), rgba(99,102,241,.9));
+    box-shadow: 0 0 18px rgba(179,0,24,.35);
+  }
+
   /* Reduced motion */
   @media (prefers-reduced-motion: reduce){
-    .ax-float, .ax-float2, .ax-shine, .ax-scanline, .ax-dot, .ax-marquee__track{ animation: none !important; }
+    .ax-float, .ax-float2, .ax-float3, .ax-shine, .ax-scanline, .ax-dot, .ax-marquee__track{ animation: none !important; }
     .js [data-reveal]{ opacity: 1 !important; transform: none !important; }
   }
 </style>
 
 <script is:inline>
-  // Enable progressive enhancement safely (SEO-friendly): content remains visible without JS.
+  // Progressive enhancement: SEO safe (HTML already complete)
   document.documentElement.classList.add('js');
 
-  // Spotlight cursor effect (very cheap)
-  const spotlightEl = document.querySelector('[data-spotlight]');
-  if (spotlightEl) {
-    const setSpot = (ev) => {
-      const r = spotlightEl.getBoundingClientRect();
-      const x = ((ev.clientX - r.left) / r.width) * 100;
-      const y = ((ev.clientY - r.top) / r.height) * 100;
-      spotlightEl.style.setProperty('--mx', `${x}%`);
-      spotlightEl.style.setProperty('--my', `${y}%`);
-    };
-    spotlightEl.addEventListener('pointermove', setSpot, { passive: true });
+  // Spotlight (throttled via rAF)
+  const page = document.querySelector('[data-spotlight]');
+  let mx = 50, my = 30, raf = 0;
+  function commitSpot() {
+    raf = 0;
+    if (!page) return;
+    page.style.setProperty('--mx', mx + '%');
+    page.style.setProperty('--my', my + '%');
+  }
+  if (page) {
+    page.addEventListener('pointermove', (ev) => {
+      const r = page.getBoundingClientRect();
+      mx = ((ev.clientX - r.left) / r.width) * 100;
+      my = ((ev.clientY - r.top) / r.height) * 100;
+      if (!raf) raf = requestAnimationFrame(commitSpot);
+    }, { passive: true });
   }
 
   // Reveal-on-scroll
@@ -684,7 +786,26 @@ const workflowSteps = [
   }, { threshold: 0.14 });
   revealEls.forEach((el) => io.observe(el));
 
-  // Modal handling + lazy video source attach (prevents network until open)
+  // Scroll progress (rAF throttled)
+  const bar = document.querySelector('.ax-progress__bar');
+  let ticking = false;
+  function updateProgress() {
+    ticking = false;
+    if (!bar) return;
+    const doc = document.documentElement;
+    const max = doc.scrollHeight - window.innerHeight;
+    const p = max > 0 ? (window.scrollY / max) : 0;
+    bar.style.transform = `scaleX(${Math.min(1, Math.max(0, p))})`;
+  }
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(updateProgress);
+    }
+  }, { passive: true });
+  updateProgress();
+
+  // Modals + lazy video attach
   const openButtons = document.querySelectorAll('[data-open-modal]');
   const closeButtons = document.querySelectorAll('[data-close-modal]');
 
@@ -742,7 +863,6 @@ const workflowSteps = [
     });
   });
 
-  // Close when clicking backdrop area
   document.querySelectorAll('dialog').forEach((dialog) => {
     dialog.addEventListener('click', (e) => {
       if (e.target === dialog) closeModal(dialog);
