@@ -1,23 +1,18 @@
 ---
 import { getCollection } from "astro:content";
 
+const normalizeSlug = (value, fallback) => {
+  const raw = (typeof value === "string") ? value.trim() : "";
+  const last = raw.split("/").filter(Boolean).pop();
+  return (last && last.length > 0) ? last : fallback;
+};
+
 export async function getStaticPaths() {
   const entries = await getCollection("blog");
 
-  return entries
+  const paths = entries
     .map((entry) => {
-      // Bevorzugt Frontmatter-Slug, sonst Dateisystem-Slug
-      const raw =
-        (typeof entry.data?.slug === "string" && entry.data.slug.trim())
-          ? entry.data.slug.trim()
-          : entry.slug;
-
-      // Falls jemand "/blog/foo/" oder "blog/foo" einträgt -> letztes Segment nehmen
-      const safeSlug = (raw || "")
-        .split("/")
-        .filter(Boolean)
-        .pop();
-
+      const safeSlug = normalizeSlug(entry.data?.slug, entry.slug);
       if (!safeSlug) return null;
 
       return {
@@ -25,9 +20,14 @@ export async function getStaticPaths() {
         props: { entry },
       };
     })
-    .filter(Boolean);
+    .filter((x) => x !== null);
+
+  return paths;
 }
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
+
+<!-- Ab hier dein Layout/HTML für den Blogpost -->
+<Content />

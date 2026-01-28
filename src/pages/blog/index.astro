@@ -18,33 +18,57 @@ const pageUrl = canonicalUrl.endsWith("/") ? canonicalUrl : `${canonicalUrl}/`;
 
 const fallbackImage = "/og/autaxo-og.png";
 
+/** Slug normalisieren (wichtig gegen 404: immer /blog/<slug>/ bauen) */
+const normalizeSlug = (value: unknown, fallback: string) => {
+  const raw = typeof value === "string" ? value.trim() : "";
+  const last = raw.split("/").filter(Boolean).pop();
+  return (last && last.length > 0) ? last : fallback;
+};
+
+/** Datum robust parsen */
+const toDate = (v: unknown) => {
+  if (v instanceof Date) return v;
+  if (typeof v === "string" && v.trim()) {
+    const d = new Date(v);
+    if (!Number.isNaN(d.getTime())) return d;
+  }
+  return new Date("1970-01-01");
+};
+
 /** Posts aus Content Collection */
 const entries = await getCollection('blog');
 
 // Normalisieren + sortieren (neueste zuerst)
 const posts = entries
   .map((p) => {
-    const slug = p.data.slug ?? p.slug; // slug im Frontmatter bevorzugen
-    const url = `/blog/${slug}/`;
+    const slug = normalizeSlug(p.data.slug, p.slug);
+    const url = `/blog/${slug}/`; // ✅ trailing slash
 
-    // datePublished ist bei euch String (ISO empfohlen)
-    const date = p.data.datePublished ?? "1970-01-01";
-    const dateObj = new Date(date);
+    // datePublished kann String oder Date sein (je nach Schema)
+    const dateObj = toDate((p.data as any).publishedDate ?? p.data.datePublished);
+    const dateIso = dateObj.toISOString().slice(0, 10);
+
+    const image =
+      (p.data.coverImage && String(p.data.coverImage).trim().length > 0)
+        ? String(p.data.coverImage).trim()
+        : null;
+
+    const excerpt = p.data.excerpt ?? p.data.metaDescription ?? "";
 
     return {
       url,
       slug,
       title: p.data.title,
-      excerpt: p.data.excerpt ?? p.data.metaDescription ?? "",
-      date,
+      excerpt,
       dateObj,
-      image: (p.data.coverImage && String(p.data.coverImage).length > 0) ? p.data.coverImage : null,
+      dateIso,
+      image,
       tags: Array.isArray(p.data.tags) ? p.data.tags : [],
     };
   })
   .sort((a, b) => (a.dateObj < b.dateObj ? 1 : -1));
 
-/** Themen (nur als Filter-Chips + Link zu /blog/themen) */
+/** Themen (Filter-Chips) */
 const topics = [
   { label: "§25a", key: "25a", tokens: ["§25a", "differenzbesteuerung", "ustg"] },
   { label: "DATEV", key: "datev", tokens: ["datev", "skr03", "skr04", "buchhaltung"] },
@@ -86,7 +110,7 @@ const schema = {
           "@type": "BlogPosting",
           "headline": p.title,
           "description": p.excerpt,
-          "datePublished": p.date,
+          "datePublished": p.dateIso,
           "image": p.image ? p.image : `https://www.autaxo.de${fallbackImage}`,
           "mainEntityOfPage": `https://www.autaxo.de${p.url}`
         }
@@ -158,7 +182,7 @@ const schema = {
         ))}
 
         <a
-          href="/blog/themen"
+          href="/blog/themen/"
           class="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-white/80 hover:text-white hover:border-primary/40 transition-colors text-sm"
         >
           <Icon name="lucide:compass" class="w-4 h-4 text-primary" />
@@ -181,11 +205,11 @@ const schema = {
 
         <div class="mt-4 text-sm text-white/70">
           Passende Produktseiten:{" "}
-          <a class="underline hover:text-white" href="/funktionen/differenzbesteuerung-25a-ustg">§25a</a>{" "}
+          <a class="underline hover:text-white" href="/funktionen/differenzbesteuerung-25a-ustg/">§25a</a>{" "}
           ·{" "}
-          <a class="underline hover:text-white" href="/funktionen/buchhaltung">Buchhaltung/DATEV</a>{" "}
+          <a class="underline hover:text-white" href="/funktionen/buchhaltung/">Buchhaltung/DATEV</a>{" "}
           ·{" "}
-          <a class="underline hover:text-white" href="/downloads">Downloads & Vorlagen</a>
+          <a class="underline hover:text-white" href="/downloads/">Downloads & Vorlagen</a>
         </div>
       </div>
     </div>
@@ -220,7 +244,7 @@ const schema = {
                     <div class="flex flex-wrap items-center gap-2 text-xs mb-3">
                       <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white/70">
                         <Icon name="lucide:calendar" class="w-3.5 h-3.5 text-white/40" />
-                        {new Date(post.date).toLocaleDateString("de-DE", { year: "numeric", month: "long", day: "2-digit" })}
+                        {post.dateObj.toLocaleDateString("de-DE", { year: "numeric", month: "long", day: "2-digit" })}
                       </span>
 
                       {(post.tags || []).slice(0, 3).map((t) => (
@@ -274,7 +298,7 @@ const schema = {
               <Icon name="lucide:arrow-right" class="w-5 h-5" />
             </a>
             <a
-              href="/funktionen"
+              href="/funktionen/"
               class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/5 border border-white/10 hover:border-primary/40 text-white font-semibold rounded-xl transition-colors"
             >
               Funktionen ansehen
