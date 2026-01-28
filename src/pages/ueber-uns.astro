@@ -1,16 +1,14 @@
 ---
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
 import { Icon } from 'astro-icon/components';
-// WICHTIG: Damit Bilder optimiert werden, brauchen wir diese Komponente:
 import { Image } from 'astro:assets';
 
-// Dein Bild-Import (Pfad muss exakt stimmen!)
 import julianImage from '../assets/julian-gossen.png';
 
 const title = "Über Autaxo & Julian Goßen | Aus der Praxis für Händler";
-const description = "Autaxo wurde nicht am Reißbrett erfunden, sondern in der Steuerkanzlei. Erfahre, wie Geschäftsführer Julian Goßen aus echten Betriebsprüfungen die sicherste Software für Autohändler entwickelte.";
+const description =
+  "Autaxo wurde nicht am Reißbrett erfunden, sondern in der Steuerkanzlei. Erfahre, wie Julian Goßen aus echten Praxisfällen eine prüfungsorientierte Software für Autohändler entwickelt hat.";
 
-// Schema.org für Personen-Marke & Gründer-Status
 const schema = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -23,9 +21,9 @@ const schema = {
   },
   "alumniOf": [
     {
-      "@type": "EducationalOrganization", // Habe den Typ angepasst, damit es valide ist
+      "@type": "EducationalOrganization",
       "name": "Hochschule Düsseldorf",
-      "sameAs": "https://www.hs-duesseldorf.de/" 
+      "sameAs": "https://www.hs-duesseldorf.de/"
     }
   ],
   "knowsAbout": ["Steuerrecht", "Kfz-Handel", "Differenzbesteuerung", "GoBD", "Betriebsprüfung"]
@@ -37,20 +35,20 @@ const schema = {
 
   <section class="relative pt-32 pb-20 bg-[#0b0c10] overflow-hidden">
     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-primary/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
-    
+
     <div class="container mx-auto px-4 max-w-4xl text-center z-10 relative">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-primary text-sm font-medium mb-6">
         <Icon name="lucide:user" class="w-4 h-4" />
         Die Story hinter Autaxo
       </div>
-      
+
       <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-8 tracking-tight leading-tight">
         Software, die aus der <br />
         <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-400">
           Betriebsprüfung geboren wurde.
         </span>
       </h1>
-      
+
       <p class="text-lg md:text-xl text-text-muted leading-relaxed">
         Viele Software-Lösungen entstehen am Computer. Autaxo entstand am Schreibtisch einer Steuerkanzlei – aus der Frustration über fehlende Lösungen für den Autohandel.
       </p>
@@ -60,27 +58,26 @@ const schema = {
   <section class="py-20 bg-[#0f1117] border-t border-white/5">
     <div class="container mx-auto px-4 max-w-6xl">
       <div class="grid md:grid-cols-2 gap-12 items-center">
-        
+
         <div class="relative">
           <div class="aspect-[4/5] rounded-2xl overflow-hidden border border-white/10 bg-[#15171e] shadow-2xl relative group">
-             
-<Image 
-                src={julianImage} 
-                alt="Julian Goßen - Geschäftsführer Autaxo" 
-                class="object-cover object-[center_70%] w-full h-full grayscale hover:grayscale-0 transition-all duration-500" 
-             />
-             
-             <div class="absolute bottom-6 left-6 right-6 bg-[#0b0c10]/90 backdrop-blur border border-white/10 p-4 rounded-xl">
-               <div class="text-white font-bold text-lg">Julian Goßen</div>
-               <div class="text-primary text-sm">Geschäftsführer & Gründer</div>
-             </div>
+            <Image
+              src={julianImage}
+              alt="Julian Goßen - Geschäftsführer Autaxo"
+              class="object-cover object-[center_70%] w-full h-full grayscale hover:grayscale-0 transition-all duration-500"
+            />
+
+            <div class="absolute bottom-6 left-6 right-6 bg-[#0b0c10]/90 backdrop-blur border border-white/10 p-4 rounded-xl">
+              <div class="text-white font-bold text-lg">Julian Goßen</div>
+              <div class="text-primary text-sm">Geschäftsführer & Gründer</div>
+            </div>
           </div>
           <div class="absolute -z-10 top-10 -right-10 w-full h-full border-2 border-primary/20 rounded-2xl hidden md:block"></div>
         </div>
 
         <div class="space-y-6">
           <h2 class="text-3xl font-bold text-white">Vom Steuerrecht zur Software-Lösung</h2>
-          
+
           <div class="prose prose-invert text-text-muted">
             <p>
               Mein Name ist Julian Goßen. Ich bin kein typischer Software-Unternehmer, der nach der nächsten "Marktlücke" gesucht hat. Ich komme aus der Praxis.
@@ -91,6 +88,7 @@ const schema = {
             <p>
               Dabei betreute ich schwerpunktmäßig Mandanten aus dem <strong>Kfz-Handel</strong>. Immer wieder sah ich dasselbe Muster:
             </p>
+
             <ul class="list-none pl-0 space-y-3 my-6">
               <li class="flex gap-3">
                 <Icon name="lucide:x-circle" class="w-5 h-5 text-red-500 shrink-0 mt-1" />
@@ -98,19 +96,94 @@ const schema = {
               </li>
               <li class="flex gap-3">
                 <Icon name="lucide:x-circle" class="w-5 h-5 text-red-500 shrink-0 mt-1" />
-                <span>Excel-Listen, die bei der ersten <strong>Betriebsprüfung</strong> vom Finanzamt verworfen wurden.</span>
+                <span>Excel-Listen, die in Prüfungen oft nicht als saubere, nachvollziehbare Dokumentation akzeptiert wurden.</span>
               </li>
               <li class="flex gap-3">
                 <Icon name="lucide:x-circle" class="w-5 h-5 text-red-500 shrink-0 mt-1" />
-                <span>Hohe Nachzahlungen, weil Nachweise für EU-Lieferungen fehlten.</span>
+                <span>Nachzahlungen und Stress, weil Nachweise für EU-Lieferungen fehlten oder unvollständig waren.</span>
               </li>
             </ul>
+
             <p>
-              Ich habe Betriebsprüfungen begleitet, bei denen Existenzen auf dem Spiel standen – nur wegen Formfehlern. Das wollte ich ändern. <strong>2024</strong> habe ich mein Studium erfolgreich abgeschlossen und das Problem in eine Lösung verwandelt: <strong>Autaxo.</strong>
+              Ich habe Betriebsprüfungen begleitet, bei denen erhebliche Risiken entstanden – oft durch Formfehler und fehlende Nachweise. Das wollte ich ändern.
+              <strong>2024</strong> habe ich mein Studium erfolgreich abgeschlossen und das Problem in eine Lösung verwandelt: <strong>Autaxo.</strong>
             </p>
           </div>
 
-          <div class="pt-4">
+          <!-- NEU: Julian in 60 Sekunden -->
+          <div class="rounded-2xl border border-white/10 bg-[#15171e] p-6 shadow-xl">
+            <div class="flex items-center gap-2 mb-4">
+              <Icon name="lucide:clock" class="w-5 h-5 text-primary" />
+              <h3 class="text-white text-lg font-bold m-0">Julian in 60 Sekunden</h3>
+            </div>
+
+            <div class="grid gap-4">
+              <div class="flex gap-3">
+                <Icon name="lucide:graduation-cap" class="w-5 h-5 text-white/70 shrink-0 mt-0.5" />
+                <div>
+                  <div class="text-white font-semibold">Hintergrund</div>
+                  <div class="text-text-muted">Steuerrecht (Praxis aus Steuerkanzleien)</div>
+                </div>
+              </div>
+
+              <div class="flex gap-3">
+                <Icon name="lucide:car" class="w-5 h-5 text-white/70 shrink-0 mt-0.5" />
+                <div>
+                  <div class="text-white font-semibold">Schwerpunkt</div>
+                  <div class="text-text-muted">Kfz-Handel, § 25a UStG, EU-/Export-Fälle, GoBD</div>
+                </div>
+              </div>
+
+              <div class="flex gap-3">
+                <Icon name="lucide:shield-check" class="w-5 h-5 text-white/70 shrink-0 mt-0.5" />
+                <div>
+                  <div class="text-white font-semibold">Fokus</div>
+                  <div class="text-text-muted">Prüfungsorientierte Prozesse: Nachweise, Dokumentation, Plausibilität</div>
+                </div>
+              </div>
+
+              <div class="flex gap-3">
+                <Icon name="lucide:briefcase" class="w-5 h-5 text-white/70 shrink-0 mt-0.5" />
+                <div>
+                  <div class="text-white font-semibold">Rolle</div>
+                  <div class="text-text-muted">Gründer & Geschäftsführer – verantwortlich für steuerliche Logik und Compliance-Fokus</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-5 text-sm text-white/70 border-t border-white/10 pt-4">
+              Autaxo ersetzt keine Steuerberatung – es sorgt dafür, dass Vorgänge und Nachweise im Alltag sauber und nachvollziehbar geführt werden.
+            </div>
+          </div>
+
+          <!-- NEU: Was Autaxo heute konkret löst -->
+          <div class="rounded-2xl border border-white/10 bg-[#15171e] p-6 shadow-xl">
+            <div class="flex items-center gap-2 mb-4">
+              <Icon name="lucide:badge-check" class="w-5 h-5 text-primary" />
+              <h3 class="text-white text-lg font-bold m-0">Was Autaxo heute konkret löst</h3>
+            </div>
+
+            <ul class="list-none pl-0 space-y-3 m-0">
+              <li class="flex gap-3">
+                <Icon name="lucide:check-circle" class="w-5 h-5 text-green-500 shrink-0 mt-1" />
+                <span class="text-text-muted">Automatische Steuerfall-Logik für den Gebrauchtwagenhandel (u. a. § 25a UStG).</span>
+              </li>
+              <li class="flex gap-3">
+                <Icon name="lucide:check-circle" class="w-5 h-5 text-green-500 shrink-0 mt-1" />
+                <span class="text-text-muted">Strukturierte Nachweise für EU-Lieferungen und Exporte – prüfungsorientiert gedacht.</span>
+              </li>
+              <li class="flex gap-3">
+                <Icon name="lucide:check-circle" class="w-5 h-5 text-green-500 shrink-0 mt-1" />
+                <span class="text-text-muted">Dokumenten- und Vorgangslogik, die auf GoBD-Anforderungen einzahlt.</span>
+              </li>
+              <li class="flex gap-3">
+                <Icon name="lucide:check-circle" class="w-5 h-5 text-green-500 shrink-0 mt-1" />
+                <span class="text-text-muted">Export-/Schnittstellenfähigkeit für die Zusammenarbeit mit Steuerberatung (z. B. DATEV-Umfeld).</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="pt-2">
             <a href="/kontakt" class="btn btn--primary">
               Lass uns sprechen!
             </a>
@@ -124,9 +197,9 @@ const schema = {
   <section class="py-24 bg-[#0b0c10]">
     <div class="container mx-auto px-4 max-w-3xl">
       <h2 class="text-3xl font-bold text-white text-center mb-16">Der Weg zur Sicherheit</h2>
-      
+
       <div class="relative border-l border-white/10 ml-4 md:ml-0 space-y-12">
-        
+
         <div class="relative md:pl-12">
           <div class="absolute -left-[5px] top-2 w-3 h-3 rounded-full bg-primary ring-4 ring-[#0b0c10]"></div>
           <div class="md:flex gap-6 items-baseline">
@@ -166,7 +239,7 @@ const schema = {
             <span class="text-green-400 font-mono text-xl font-bold min-w-[80px]">Heute</span>
             <div>
               <h3 class="text-xl font-bold text-white mb-2">GOBERU Solutions & Autaxo</h3>
-              <p class="text-text-muted">Als Geschäftsführer stelle ich sicher, dass Autaxo nicht nur technisch funktioniert, sondern steuerrechtlich wasserdicht bleibt – für deinen Schutz.</p>
+              <p class="text-text-muted">Als Geschäftsführer stelle ich sicher, dass Autaxo nicht nur technisch funktioniert, sondern steuerrechtlich präzise und prüfungsorientiert bleibt – für verlässliche Abläufe im Händleralltag.</p>
             </div>
           </div>
         </div>
