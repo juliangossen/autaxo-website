@@ -8,25 +8,46 @@ interface Props {
   description: string;
   image?: string;
   type?: 'website' | 'article';
-  // Article-specific props for JSON-LD
-  publishedDate?: Date;
-  modifiedDate?: Date;
+  publishedDate?: Date | string;
+  modifiedDate?: Date | string;
   author?: string;
   tags?: string[];
+
+  canonicalUrl?: string;
+  noindex?: boolean;
 }
 
-// Wir leiten einfach alle Props (Titel, Beschreibung etc.) an das BaseLayout weiter
-const props = Astro.props;
+const props = Astro.props as Props;
 ---
 
 <BaseLayout {...props}>
-  <div class="flex flex-col min-h-screen">
+  <!-- Head-Slot von Pages -> BaseLayout weiterreichen -->
+  <Fragment slot="head">
+    <slot name="head" />
+  </Fragment>
+
+  <!-- Dark-only: wrapper + Hintergrund erzwingen (falls irgendwo sonst Light existiert) -->
+  <div class="dark flex flex-col min-h-screen bg-[#0b0c10] text-white">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-primary focus:text-white"
+    >
+      Zum Inhalt springen
+    </a>
+
     <Header />
-    
-    <main id="main-content" class="flex-1">
+
+    <!-- tabindex=-1 erlaubt Fokus via Skip-Link (besser für Tastatur) -->
+    <main id="main-content" tabindex="-1" class="flex-1 outline-none">
       <slot />
     </main>
-    
+
     <Footer />
   </div>
 </BaseLayout>
+
+<style>
+  /* Extra sicher: auch ohne Tailwind sofort dunkel (kein "white flash") */
+  :global(html) { color-scheme: dark; }
+  :global(body) { background: #0b0c10; }
+</style>
