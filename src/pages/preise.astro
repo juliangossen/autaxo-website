@@ -1,179 +1,176 @@
 ---
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
-import PricingTable from '@sections/pricing/PricingTable.astro';
-import ComparisonTable from '@sections/pricing/ComparisonTable.astro';
-import TrustBadges from '@sections/pricing/TrustBadges.astro';
-import FAQSection from '@sections/content/FAQSection.astro';
-import CTA from '@sections/marketing/CTA.astro';
-import { siteConfig } from '@/config';
+import { Icon } from 'astro-icon/components';
 
-const planNames = ['Hobby', 'Pro', 'Enterprise'];
+// 1. METADATEN
+const title = "Preise & Tarife | Autaxo DMS";
+const description = "Ein Preis, alles drin. Keine versteckten Kosten, monatlich kündbar. Starten Sie jetzt mit Ihrer 30-tägigen kostenlosen Testphase.";
 
-const plans = [
-  {
-    name: 'Hobby',
-    monthlyPrice: 0,
-    description: 'Perfect for side projects and experiments',
-    features: [
-      '3 projects',
-      '100 GB bandwidth/month',
-      'Automatic HTTPS',
-      'Preview deployments',
-      'Community support',
-    ],
-    highlighted: false,
-    cta: { label: 'Start Free', href: '/register' },
-  },
-  {
-    name: 'Pro',
-    monthlyPrice: 20,
-    description: 'For professional developers and small teams',
-    features: [
-      'Unlimited projects',
-      '1 TB bandwidth/month',
-      'Team collaboration (5 members)',
-      'Priority builds',
-      'Advanced analytics',
-      'Email support',
-    ],
-    highlighted: true,
-    cta: { label: 'Start Free Trial', href: '/register' },
-  },
-  {
-    name: 'Enterprise',
-    monthlyPrice: null,
-    customPrice: 'Custom',
-    description: 'For organizations with advanced needs',
-    features: [
-      'Unlimited everything',
-      'Custom bandwidth limits',
-      'Unlimited team members',
-      'SSO & SAML',
-      'SLA guarantee',
-      'Dedicated support',
-      'Custom contracts',
-    ],
-    highlighted: false,
-    cta: { label: 'Contact Sales', href: '/contact' },
-  },
-];
-
+// 2. FAQ DATEN (Preisspezifisch)
 const faqs = [
   {
-    question: 'Can I change plans later?',
-    answer:
-      "Yes, you can upgrade or downgrade your plan at any time. When upgrading, you'll be charged the prorated difference. When downgrading, the new rate applies at your next billing cycle.",
+    question: "Gibt es eine Einrichtungsgebühr?",
+    answer: "Nein. Sie zahlen nur die monatliche Gebühr. Die Einrichtung und der Import Ihrer Bestandsdaten sind selbsterklärend und kostenlos."
   },
   {
-    question: 'What happens if I exceed my bandwidth limit?',
-    answer:
-      "We'll notify you when you're approaching your limit. If you exceed it, your sites will continue to work—we'll just reach out to discuss upgrading your plan or purchasing additional bandwidth.",
+    question: "Wie lange ist die Vertragslaufzeit?",
+    answer: "Wir mögen keine Knebelverträge. Autaxo ist monatlich kündbar. Wenn Sie nicht zufrieden sind, können Sie jederzeit zum Monatsende gehen."
   },
   {
-    question: 'Do you offer discounts for annual billing?',
-    answer:
-      'Yes! Annual plans come with a 20% discount. You can switch to annual billing from your account settings at any time.',
+    question: "Was passiert nach der Testphase?",
+    answer: "Nichts Automatisches. Sie müssen aktiv Ihre Zahlungsdaten hinterlegen, um Autaxo weiter zu nutzen. Es gibt keine Abo-Falle."
   },
   {
-    question: 'Is there a free trial for paid plans?',
-    answer:
-      "Absolutely. All paid plans come with a 14-day free trial. No credit card required to start—you'll only be charged if you decide to continue after the trial.",
-  },
-  {
-    question: 'What payment methods do you accept?',
-    answer:
-      'We accept all major credit cards (Visa, Mastercard, American Express) and PayPal. Enterprise customers can also pay via invoice with NET-30 terms.',
-  },
-  {
-    question: "Can I get a refund if I'm not satisfied?",
-    answer:
-      "Yes, we offer a 30-day money-back guarantee on all paid plans. If you're not happy with Virex, contact support for a full refund.",
-  },
+    question: "Sind Updates inklusive?",
+    answer: "Ja. Als Cloud-Software spielen wir Updates, neue Features (wie den KI-Assistenten) und rechtliche Anpassungen automatisch ein. Ohne Zusatzkosten."
+  }
 ];
 
-const comparisonCategories = [
-  {
-    name: 'Usage',
-    features: [
-      { name: 'Projects', values: ['3', 'Unlimited', 'Unlimited'] },
-      { name: 'Bandwidth', values: ['100 GB/mo', '1 TB/mo', 'Custom'] },
-      { name: 'Build minutes', values: ['100/mo', '1,000/mo', 'Unlimited'] },
-      { name: 'Concurrent builds', values: ['1', '3', '10+'] },
-    ],
-  },
-  {
-    name: 'Features',
-    features: [
-      { name: 'Preview deployments', values: [true, true, true] },
-      { name: 'Automatic HTTPS', values: [true, true, true] },
-      { name: 'Custom domains', values: ['1', '10', 'Unlimited'] },
-      { name: 'Edge functions', values: [false, true, true] },
-      { name: 'Analytics', values: [false, true, true] },
-      { name: 'Password protection', values: [false, true, true] },
-    ],
-  },
-  {
-    name: 'Collaboration',
-    features: [
-      { name: 'Team members', values: [false, '5', 'Unlimited'] },
-      { name: 'Role-based access', values: [false, true, true] },
-      { name: 'Audit logs', values: [false, false, true] },
-      { name: 'SSO/SAML', values: [false, false, true] },
-    ],
-  },
-  {
-    name: 'Support',
-    features: [
-      { name: 'Community support', values: [true, true, true] },
-      { name: 'Email support', values: [false, true, true] },
-      { name: 'Priority support', values: [false, false, true] },
-      { name: 'Dedicated account manager', values: [false, false, true] },
-      { name: 'SLA guarantee', values: [false, false, true] },
-    ],
-  },
+const featuresOne = [
+  "Unbegrenzte Fahrzeuge",
+  "Unbegrenzte Verträge & Rechnungen",
+  "KI-Assistent Carlo inklusive",
+  "DATEV-Export & Steuerlogik",
+  "Digitale Fahrzeugakte",
+  "FIN-Abfrage (Scanner)",
+  "Mobile App Nutzung",
+  "Kostenloser Support"
 ];
 ---
 
-<MarketingLayout
-  title={`Pricing - ${siteConfig.name}`}
-  description="Simple, transparent pricing for teams of all sizes. Start free and scale as you grow."
->
-  <PricingTable
-    title="Simple, transparent pricing"
-    subtitle="Start free and scale as you grow. No hidden fees, no surprises."
-    plans={plans}
-    annualDiscount={20}
-    defaultPeriod="monthly"
-  />
+<MarketingLayout title={title} description={description}>
 
-  <TrustBadges
-    guarantee={{
-      title: '30-day money-back guarantee',
-      description:
-        'Try risk-free. Not satisfied? Get a full refund within 30 days, no questions asked.',
-    }}
-  />
+  <section class="relative pt-32 pb-20 bg-[#0b0c10] overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-[#0b0c10] to-[#0b0c10]"></div>
+    
+    <div class="container mx-auto px-4 relative z-10 text-center">
+      <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight">
+        Ein Preis. <span class="text-primary">Alles drin.</span>
+      </h1>
+      <p class="text-xl text-text-muted max-w-2xl mx-auto leading-relaxed mb-8">
+        Keine komplizierten Module. Keine versteckten Kosten. <br>
+        Starten Sie mit voller Power in den digitalen Fahrzeughandel.
+      </p>
 
-  <ComparisonTable
-    title="Compare plans in detail"
-    subtitle="See exactly what's included in each plan."
-    plans={planNames}
-    categories={comparisonCategories}
-    highlightedPlan={1}
-    background="default"
-  />
+      <div class="flex flex-wrap justify-center gap-4 md:gap-8 text-sm font-medium text-white/60">
+        <span class="flex items-center gap-2">
+          <Icon name="lucide:check" class="text-primary" /> Monatlich kündbar
+        </span>
+        <span class="flex items-center gap-2">
+          <Icon name="lucide:check" class="text-primary" /> Made in Germany
+        </span>
+        <span class="flex items-center gap-2">
+          <Icon name="lucide:check" class="text-primary" /> DSGVO-konform
+        </span>
+      </div>
+    </div>
+  </section>
 
-  <FAQSection
-    title="Frequently asked questions"
-    faqs={faqs}
-    variant="simple"
-    background="default"
-  />
+  <section class="pb-24 bg-[#0b0c10]">
+    <div class="container mx-auto px-4">
+      <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8 items-start">
+        
+        <div class="p-8 rounded-2xl bg-[#15171e] border border-white/5 relative">
+          <h3 class="text-2xl font-bold text-white mb-2">Testphase</h3>
+          <p class="text-text-muted text-sm mb-6">Lernen Sie Autaxo unverbindlich kennen.</p>
+          
+          <div class="mb-8">
+            <span class="text-5xl font-extrabold text-white">0 €</span>
+            <span class="text-text-muted"> / 30 Tage</span>
+          </div>
 
-  <CTA
-    title="Need something custom?"
-    description="Have specific requirements or need a custom solution? Our team is happy to discuss your needs and create a plan that works for you."
-    action={{ label: 'Talk to Sales', href: '/contact' }}
-    background="muted"
-  />
+          <a href="https://garage.autaxo.de/auth/sign-up" class="block w-full py-4 rounded-lg border border-white/20 text-white font-bold text-center hover:bg-white/5 transition-all mb-8">
+            Jetzt testen
+          </a>
+
+          <ul class="space-y-4 text-text-muted text-sm">
+            <li class="flex gap-3">
+              <Icon name="lucide:check" class="w-5 h-5 text-white shrink-0" />
+              <span>Voller Funktionsumfang</span>
+            </li>
+            <li class="flex gap-3">
+              <Icon name="lucide:check" class="w-5 h-5 text-white shrink-0" />
+              <span>Keine Kreditkarte nötig</span>
+            </li>
+            <li class="flex gap-3">
+              <Icon name="lucide:check" class="w-5 h-5 text-white shrink-0" />
+              <span>Endet automatisch</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="p-8 rounded-2xl bg-[#15171e] border-2 border-primary relative shadow-2xl shadow-primary/10 transform md:-translate-y-4">
+          
+          <div class="absolute top-0 right-0 -mt-4 mr-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg">
+            Bestseller
+          </div>
+
+          <h3 class="text-2xl font-bold text-white mb-2">Autaxo ONE</h3>
+          <p class="text-text-muted text-sm mb-6">Die Komplettlösung für professionelle Händler.</p>
+          
+          <div class="mb-8">
+            <span class="text-5xl font-extrabold text-white">49 €</span>
+            <span class="text-text-muted"> / Monat</span>
+            <p class="text-xs text-text-muted mt-2">zzgl. MwSt., monatlich kündbar</p>
+          </div>
+
+          <a href="https://garage.autaxo.de/auth/sign-up" class="block w-full py-4 rounded-lg bg-primary hover:bg-primary-hover text-white font-bold text-center transition-all shadow-lg shadow-primary/25 mb-8">
+            Vollversion starten
+          </a>
+
+          <div class="space-y-4">
+            <p class="text-white font-bold text-sm uppercase tracking-wide border-b border-white/10 pb-2 mb-4">Alles inklusive:</p>
+            <ul class="space-y-4 text-white text-sm">
+              {featuresOne.map((feat) => (
+                <li class="flex gap-3 items-center">
+                  <div class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
+                    <Icon name="lucide:check" class="w-3.5 h-3.5 text-primary" />
+                  </div>
+                  <span>{feat}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-surface border-t border-white/5">
+    <div class="container mx-auto px-4 max-w-3xl">
+      <h2 class="text-2xl font-bold text-white mb-12 text-center">Häufige Fragen zur Abrechnung</h2>
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <details class="group bg-[#0b0c10] border border-white/10 rounded-lg overflow-hidden transition-colors hover:border-white/20">
+            <summary class="flex items-center justify-between p-5 cursor-pointer select-none">
+              <h3 class="font-medium text-white pr-4">{faq.question}</h3>
+              <span class="text-primary transition-transform duration-300 group-open:rotate-180">
+                <Icon name="lucide:chevron-down" class="w-5 h-5" />
+              </span>
+            </summary>
+            <div class="p-5 pt-0 text-text-muted text-sm leading-relaxed border-t border-white/5 mt-2">
+              {faq.answer}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 text-center bg-[#0b0c10]">
+    <div class="container mx-auto px-4">
+      <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/5 text-white mb-6 border border-white/10">
+        <Icon name="lucide:message-circle" class="w-8 h-8" />
+      </div>
+      <h2 class="text-3xl font-bold text-white mb-4">Noch unsicher?</h2>
+      <p class="text-text-muted mb-8 max-w-xl mx-auto">
+        Wir beraten dich persönlich und beantworten gerne all deine Fragen.
+      </p>
+      <a href="/kontakt" class="inline-block px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-bold rounded-lg border border-white/10 transition-all">
+        Kontakt aufnehmen
+      </a>
+    </div>
+  </section>
+
 </MarketingLayout>

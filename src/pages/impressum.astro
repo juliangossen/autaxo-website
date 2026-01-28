@@ -1,0 +1,110 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import { Icon } from 'astro-icon/components';
+
+// Metadaten
+const title = "Impressum | Autaxo";
+const description = "Anbieterkennzeichnung und rechtliche Hinweise gemäß § 5 TMG.";
+---
+
+<MarketingLayout title={title} description={description}>
+
+  <section class="pt-32 pb-12 bg-[#0b0c10]">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-4">
+        Impressum
+      </h1>
+      <p class="text-text-muted">
+        Angaben gemäß § 5 TMG
+      </p>
+    </div>
+  </section>
+
+  <section class="pb-24 bg-[#0b0c10]">
+    <div class="container mx-auto px-4 max-w-2xl">
+      
+      <div class="space-y-6">
+
+        <div class="bg-[#15171e] p-8 rounded-2xl border border-white/10">
+          <div class="flex items-start gap-4">
+            <div class="bg-primary/10 p-3 rounded-lg text-primary shrink-0">
+              <Icon name="lucide:building-2" class="w-6 h-6" />
+            </div>
+            <div>
+              <h2 class="text-sm text-text-muted uppercase tracking-wider font-bold mb-2">Angaben zum Unternehmen</h2>
+              <p class="text-xl text-white font-bold leading-snug">
+                GOBERU Solutions UG (haftungsbeschränkt)
+              </p>
+              <p class="text-white/80 mt-2 leading-relaxed">
+                c/o Julian Alessio Goßen<br>
+                Kiefernstraße 25<br>
+                45525 Hattingen<br>
+                Deutschland
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          
+          <div class="bg-[#15171e] p-6 rounded-2xl border border-white/10">
+            <h3 class="text-sm text-text-muted uppercase tracking-wider font-bold mb-2">Vertreten durch</h3>
+            <p class="text-white font-medium">Geschäftsführer:</p>
+            <p class="text-white text-lg">Julian Alessio Goßen</p>
+          </div>
+
+          <div class="bg-[#15171e] p-6 rounded-2xl border border-white/10">
+            <h3 class="text-sm text-text-muted uppercase tracking-wider font-bold mb-2">Kontakt</h3>
+            <ul class="space-y-2">
+              <li class="flex items-center gap-2 text-white">
+                <Icon name="lucide:mail" class="w-4 h-4 text-primary" />
+                <a href="mailto:kontakt@autaxo.de" class="hover:text-primary transition-colors">kontakt@autaxo.de</a>
+              </li>
+              <li class="flex items-center gap-2 text-white">
+                <Icon name="lucide:globe" class="w-4 h-4 text-primary" />
+                <a href="https://www.autaxo.de" target="_blank" class="hover:text-primary transition-colors">www.autaxo.de</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bg-[#15171e] p-8 rounded-2xl border border-white/10">
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <h3 class="text-sm text-text-muted uppercase tracking-wider font-bold mb-1">Registereintrag</h3>
+              <p class="text-white">Eintragung im Handelsregister.</p>
+              <p class="text-white"><span class="text-white/60">Registergericht:</span> Amtsgericht Essen</p>
+              <p class="text-white"><span class="text-white/60">Registernummer:</span> HRB 36889</p>
+            </div>
+            <div>
+              <h3 class="text-sm text-text-muted uppercase tracking-wider font-bold mb-1">Umsatzsteuer-ID</h3>
+              <p class="text-white/60 text-sm mb-1">Gemäß § 27 a Umsatzsteuergesetz:</p>
+              <p class="text-white font-mono text-lg">DE454764286</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-[#15171e] p-8 rounded-2xl border border-white/10">
+          <h3 class="text-sm text-text-muted uppercase tracking-wider font-bold mb-2">Verantwortlich für den Inhalt</h3>
+          <p class="text-white/60 text-sm mb-2">nach § 55 Abs. 2 RStV:</p>
+          <p class="text-white font-medium">
+            Julian Alessio Goßen<br>
+            Kiefernstraße 25<br>
+            45525 Hattingen
+          </p>
+        </div>
+
+        <div class="text-center pt-8">
+          <p class="text-text-muted text-sm">
+            Plattform der EU-Kommission zur Online-Streitbeilegung: <a href="https://ec.europa.eu/consumers/odr" target="_blank" class="text-primary hover:underline">https://ec.europa.eu/consumers/odr</a>
+          </p>
+          <p class="text-text-muted text-sm mt-2">
+            Wir sind zur Teilnahme an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle weder verpflichtet noch bereit.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</MarketingLayout>
