@@ -4,7 +4,7 @@ export const collections = {
   blog: defineCollection({
     type: "content",
     schema: z.object({
-      slug: z.string(),
+      slug: z.string().min(1).regex(/^[a-z0-9-]+$/i),
       title: z.string(),
       seoTitle: z.string().optional(),
       metaDescription: z.string().optional(),
