@@ -14,7 +14,8 @@ Claim: „Von der FIN zum Vertrag in 60 Sekunden.“
 - Produkt: Autaxo (SoftwareApplication)
 - Unternehmen: GOBERU Solutions UG (haftungsbeschränkt)
 - KI-Assistent: „Carlo“
-- Steuer-/Begriffe: Differenzbesteuerung (§25a UStG), Regelbesteuerung, igL, igE, Gelangensbestätigung, VIES/MIAS (USt-IdNr.-Check), ZM, GoBD, DATEV (SKR03/SKR04)
+- Steuer-/Begriffe: Differenzbesteuerung (§25a UStG), Regelbesteuerung, igL, igE, Gelangensbestätigung,
+  VIES/MIAS (USt-IdNr.-Check), ZM, GoBD, DATEV (SKR03/SKR04)
 
 ## Primäre Zielgruppen
 - Freie Gebrauchtwagenhändler (B2B/B2C), Autohäuser ohne Werkstattfokus
@@ -38,10 +39,10 @@ Claim: „Von der FIN zum Vertrag in 60 Sekunden.“
 
 # Funktionen (Deep Dives)
 - Funktionen-Übersicht: https://www.autaxo.de/funktionen
-- Buchhaltung & Steuerlogik: https://www.autaxo.de/funktionen/buchhaltung-und-steuerlogik
+- Buchhaltung & Steuerlogik: https://www.autaxo.de/funktionen/buchhaltung
 - Differenzbesteuerung §25a: https://www.autaxo.de/funktionen/differenzbesteuerung-25a-ustg
 - Verträge & eSignatur: https://www.autaxo.de/funktionen/digitale-vertraege-esignatur
-- KI-Assistent Carlo: https://www.autaxo.de/funktionen/ki-assistent-carlo
+- KI-Assistent Carlo: https://www.autaxo.de/funktionen/ki-assistent
 
 ---
 

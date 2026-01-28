@@ -3,510 +3,750 @@ import MarketingLayout from '@/layouts/MarketingLayout.astro';
 import { Icon } from 'astro-icon/components';
 
 const title = "Autaxo | Dealer-Management-System für §25a, EU & Export";
-const description = "Die Autohandel-Software mit KI. Digitale Fahrzeugakte, automatische Steuerlogik (§25a/Reverse-Charge) und DATEV-Export. Jetzt kostenlos testen.";
+const description =
+  "Die Autohandel-Software mit KI. Digitale Fahrzeugakte, automatische Steuerlogik (§25a/Reverse-Charge) und DATEV-Export. Jetzt kostenlos testen.";
+
+const signupUrl = "https://garage.autaxo.de/auth/sign-up";
+const demoUrl =
+  "https://calendar.google.com/calendar/appointments/schedules/AcZssZ0-xc9C7ft1ZGEy3HpR6hP8NyrHXyM_ikIgv0KEUx9tSnzjZGoQ1RNyF4X5WMjk0o4vg6A9ksjD?gv=true&mode=week";
+
+const workflowSteps = [
+  {
+    id: "wf-1",
+    n: 1,
+    title: "FIN-Abfrage & Scan",
+    desc: "Fahrzeugschein scannen. Stammdaten automatisch übernehmen.",
+    modalTitle: "Scannen statt Tippen.",
+    modalText:
+      "Erfassen Sie ein Fahrzeug in unter 60 Sekunden. Einfach den Fahrzeugschein scannen – Autaxo liest die FIN automatisch aus, fragt die Stammdaten ab (Hersteller, Modell, EZ) und legt das Fahrzeug fehlerfrei an.",
+    media: { type: "video", src: "https://storage.googleapis.com/autaxo-website/GIFs%20for%20Website%20(1).mp4" },
+  },
+  {
+    id: "wf-2",
+    n: 2,
+    title: "Kauftransaktion & Prüfung",
+    desc: "Verkäufer erfassen. USt-IdNr. wird automatisch geprüft (VIES).",
+    modalTitle: "Kauf korrekt erfassen.",
+    modalText:
+      "Egal ob von Privat oder Unternehmen – erfassen Sie den Verkäufer digital. Bei EU-Geschäften wird die USt-IdNr. automatisch geprüft.",
+    media: { type: "video", src: "https://storage.googleapis.com/autaxo-website/GIFs%20for%20Website%20(2).mp4" },
+  },
+  {
+    id: "wf-3",
+    n: 3,
+    title: "Ankaufsrechnung",
+    desc: "Ankaufsrechnung erzeugen oder Dokument hochladen.",
+    modalTitle: "Ankaufsrechnung.",
+    modalText:
+      "Erstellen Sie rechtssichere Ankaufsrechnungen (Gutschrift) oder laden Sie externe Belege einfach hoch. Alles digital.",
+    media: { type: "video", src: "https://storage.googleapis.com/autaxo-website/GIFs%20for%20Website%20(3).mp4" },
+  },
+  {
+    id: "wf-4",
+    n: 4,
+    title: "Inserat & Verkauf",
+    desc: "Mit einem Klick inserieren. Automatische Deaktivierung bei Verkauf.",
+    modalTitle: "Schneller inserieren.",
+    modalText:
+      "Erstellen Sie mit einem Klick Verkaufsanzeigen auf bekannten Marktplätzen. Nach dem Verkauf wird das Inserat automatisch deaktiviert.",
+    media: {
+      type: "image",
+      src: "https://storage.googleapis.com/autaxo-website/Homepage/Roadmap%20html%20block/Inserat%20Erstellen%20fu%CC%88r%20homepage%20(roadmap).png",
+    },
+  },
+  {
+    id: "wf-5",
+    n: 5,
+    title: "Vertrag & Rechnung",
+    desc: "Rechtssichere PDFs inkl. korrekter steuerlicher Hinweise.",
+    modalTitle: "Dokumente auf Knopfdruck.",
+    modalText:
+      "Erstellen Sie automatisch rechtssichere Kaufverträge und Rechnungen. Autaxo fügt die korrekten steuerlichen Hinweise automatisch hinzu.",
+    media: { type: "video", src: "https://storage.googleapis.com/autaxo-website/GIFs%20for%20Website%20(5).mp4" },
+  },
+  {
+    id: "wf-6",
+    n: 6,
+    title: "Umsatzsteuer-Logik",
+    desc: "Differenzbesteuerung, igL, Export – automatisch erkannt.",
+    modalTitle: "Steuerfälle? Erledigt.",
+    modalText:
+      "Autaxo erkennt automatisch: Differenzbesteuerung (§25a), Regelbesteuerung, innergemeinschaftliche Lieferung oder Export. Fehler werden minimiert.",
+    media: { type: "video", src: "https://storage.googleapis.com/autaxo-website/GIFs%20for%20Website%20(6).mp4" },
+  },
+  {
+    id: "wf-7",
+    n: 7,
+    title: "Dokumentation",
+    desc: "Gelangensbestätigung & Co. rechtssicher hinterlegen.",
+    modalTitle: "Sicher für die Prüfung.",
+    modalText:
+      "Autaxo erinnert an Pflichten wie die Gelangensbestätigung bei steuerfreier igL und speichert diese direkt zum Vorgang ab.",
+    media: { type: "video", src: "https://storage.googleapis.com/autaxo-website/GIFs%20for%20Website%20(7).mp4" },
+  },
+  {
+    id: "wf-8",
+    n: 8,
+    title: "DATEV-Export",
+    desc: "Buchungssätze per Klick im SKR04 exportieren.",
+    modalTitle: "Perfekt für den Steuerberater.",
+    modalText:
+      "Am Monatsende exportieren Sie alle Buchungssätze mit einem Klick im DATEV-Format (SKR03/04). Kein Sortieren von Belegen mehr notwendig.",
+    media: { type: "video", src: "https://storage.googleapis.com/autaxo-website/GIFs%20for%20Website(8).mp4" },
+  },
+];
 ---
 
 <MarketingLayout title={title} description={description}>
-  
-  <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-    <div class="container mx-auto px-4 relative z-10 text-center">
-      
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider mb-6">
-        <span class="relative flex h-2 w-2">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-        </span>
-        Neu: KI-Assistent Carlo
-      </div>
+  <!-- HERO (Ultra-modern, high contrast, animated but lightweight) -->
+  <section
+    class="relative overflow-hidden pt-28 pb-16 lg:pt-44 lg:pb-28"
+    data-spotlight
+  >
+    <!-- Background: mesh + grid + glow (pure CSS, no assets) -->
+    <div class="pointer-events-none absolute inset-0">
+      <div class="absolute inset-0 ax-mesh" aria-hidden="true"></div>
+      <div class="absolute inset-0 ax-grid-mask opacity-[0.65]" aria-hidden="true"></div>
+      <div class="absolute -top-40 -left-32 h-[520px] w-[520px] rounded-full bg-primary/20 blur-3xl ax-float" aria-hidden="true"></div>
+      <div class="absolute -bottom-44 -right-40 h-[620px] w-[620px] rounded-full bg-purple-500/15 blur-3xl ax-float2" aria-hidden="true"></div>
 
-      <h1 class="text-5xl lg:text-7xl font-extrabold tracking-tight text-white mb-6 text-balance">
-        Autohändler Software für <br />
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-red-400">§25a, EU & Export</span>
-      </h1>
-
-      <p class="text-xl text-text-muted max-w-2xl mx-auto mb-10 text-balance leading-relaxed">
-        Von der FIN zum Vertrag in 60 Sekunden. Digitale Fahrzeugakte, rechtssichere Rechnungen und 
-        automatische Steuerlogik – unterstützt durch künstliche Intelligenz.
-      </p>
-
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="https://garage.autaxo.de/auth/sign-up" class="w-full sm:w-auto px-8 py-4 bg-primary hover:bg-primary-hover text-white font-bold rounded-lg transition-all transform hover:-translate-y-1 shadow-lg shadow-primary/25">
-          Kostenlos testen
-        </a>
-        <a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0-xc9C7ft1ZGEy3HpR6hP8NyrHXyM_ikIgv0KEUx9tSnzjZGoQ1RNyF4X5WMjk0o4vg6A9ksjD?gv=true&mode=week" target="_blank" class="w-full sm:w-auto px-8 py-4 bg-surface border border-border hover:border-primary/50 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2">
-          <Icon name="lucide:calendar" class="w-5 h-5" />
-          Demo buchen
-        </a>
-      </div>
-
-      <div class="mt-16 pt-8 border-t border-white/5 flex flex-wrap justify-center gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-        <span class="flex items-center gap-2 text-sm font-medium"><Icon name="lucide:shield-check" class="w-5 h-5" /> GoBD zertifiziert</span>
-        <span class="flex items-center gap-2 text-sm font-medium"><Icon name="lucide:lock" class="w-5 h-5" /> DSGVO konform</span>
-        <span class="flex items-center gap-2 text-sm font-medium"><Icon name="lucide:server" class="w-5 h-5" /> Hosted in Germany</span>
-        <span class="flex items-center gap-2 text-sm font-medium"><Icon name="lucide:file-check" class="w-5 h-5" /> DATEV kompatibel</span>
-      </div>
+      <!-- Spotlight follows cursor (JS sets --mx/--my); safe fallback without JS -->
+      <div class="absolute inset-0 ax-spotlight" aria-hidden="true"></div>
     </div>
-  </section>
 
-  <section class="py-24 bg-surface border-y border-border">
-    <div class="container mx-auto px-4">
-      <div class="grid lg:grid-cols-2 gap-16 items-center">
-        <div>
-          <h2 class="text-3xl lg:text-4xl font-bold text-white mb-6">
-            Carlo beantwortet deine <br />
-            <span class="text-primary">Händlerfragen zu Steuern.</span>
-          </h2>
-          <p class="text-lg text-text-muted mb-6 leading-relaxed">
-            Während du dein Geschäft führst, prüft <strong>KI-Assistent Carlo</strong> im Hintergrund die Steuerlogik. 
-            Egal ob Differenzbesteuerung, innergemeinschaftliche Lieferung oder Drittlands-Export – Carlo weiß Bescheid.
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <!-- Left: Copy + CTAs -->
+        <div class="lg:col-span-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/90 text-xs font-semibold tracking-wide">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+            </span>
+            Live: KI-Assistent <span class="text-primary">Carlo</span> • §25a / EU / Export
+          </div>
+
+          <h1 class="mt-6 text-5xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.02]">
+            Autohandel. <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-red-400 to-fuchsia-400">Automatisiert.</span>
+          </h1>
+
+          <p class="mt-6 text-lg lg:text-xl text-text-muted leading-relaxed max-w-xl">
+            Von der FIN zum Vertrag in 60 Sekunden. Digitale Fahrzeugakte, rechtssichere Dokumente und automatische Steuerlogik –
+            unterstützt durch künstliche Intelligenz.
           </p>
-          <ul class="space-y-4 mb-8">
-            <li class="flex items-start gap-3">
-              <div class="mt-1 p-1 rounded-full bg-primary/20 text-primary"><Icon name="lucide:check" class="w-4 h-4" /></div>
-              <span class="text-text-muted">Automatische Erkennung des Steuerfalls (§25a vs. Regel)</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <div class="mt-1 p-1 rounded-full bg-primary/20 text-primary"><Icon name="lucide:check" class="w-4 h-4" /></div>
-              <span class="text-text-muted">Live-Prüfung von USt-IDs via VIES Schnittstelle</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <div class="mt-1 p-1 rounded-full bg-primary/20 text-primary"><Icon name="lucide:check" class="w-4 h-4" /></div>
-              <span class="text-text-muted">Erinnerung an Gelangensbestätigungen & Nachweise</span>
-            </li>
-          </ul>
-        </div>
-        
-        <div class="relative group">
-          <div class="absolute -inset-1 bg-gradient-to-r from-primary to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-          
-          <div class="relative bg-[#0b0c10] border border-border rounded-2xl p-6 shadow-2xl overflow-hidden h-full min-h-[320px] flex flex-col justify-center">
-            
-            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/0 via-primary/50 to-primary/0"></div>
-            <div class="absolute bottom-4 right-4 text-xs font-mono text-white/20">AI CORE: ONLINE</div>
 
-            <div class="space-y-6 w-full max-w-sm mx-auto font-sans text-sm relative z-10">
-              <div class="flex gap-3 animate-fade-in-up" style="animation-delay: 0.5s; opacity: 0; animation-fill-mode: forwards;">
-                <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0 border border-white/10">
-                  <span class="text-xs font-bold text-white">DU</span>
-                </div>
-                <div class="bg-surface border border-border p-3 rounded-2xl rounded-tl-none text-text-muted shadow-sm">
-                  <p>Habe einen X5 aus Italien gekauft. Netto. Was muss ich beachten?</p>
-                </div>
-              </div>
+          <div class="mt-8 flex flex-col sm:flex-row gap-4">
+            <a
+              href={signupUrl}
+              class="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary hover:bg-primary-hover text-white font-bold rounded-xl transition-all hover:-translate-y-0.5 shadow-xl shadow-primary/25"
+            >
+              Kostenlos testen
+              <Icon name="lucide:arrow-right" class="w-5 h-5 transition-transform group-hover:translate-x-0.5" />
+            </a>
 
-              <div class="flex gap-3 animate-fade-out" style="animation-delay: 2.5s; animation-fill-mode: forwards;">
-                <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center shrink-0 border border-primary/30">
-                  <Icon name="lucide:bot" class="w-4 h-4 text-primary" />
-                </div>
-                <div class="flex items-center gap-1 h-8">
-                  <span class="w-1.5 h-1.5 bg-primary/50 rounded-full animate-bounce"></span>
-                  <span class="w-1.5 h-1.5 bg-primary/50 rounded-full animate-bounce delay-75"></span>
-                  <span class="w-1.5 h-1.5 bg-primary/50 rounded-full animate-bounce delay-150"></span>
-                </div>
-              </div>
+            <a
+              href={demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/5 border border-white/10 hover:border-primary/40 text-white font-semibold rounded-xl transition-colors"
+            >
+              <Icon name="lucide:calendar" class="w-5 h-5 text-primary" />
+              Demo buchen
+            </a>
+          </div>
 
-              <div class="flex gap-3 animate-fade-in-up" style="animation-delay: 2.8s; opacity: 0; animation-fill-mode: forwards;">
-                <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 shadow-lg shadow-primary/20">
-                  <Icon name="lucide:bot" class="w-4 h-4 text-white" />
-                </div>
-                <div class="bg-primary/10 border border-primary/20 p-4 rounded-2xl rounded-tl-none text-white shadow-sm relative overflow-hidden">
-                  <div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent pointer-events-none"></div>
-                  <p class="mb-2 font-medium">Das ist ein innergemeinschaftlicher Erwerb.</p>
-                  <ul class="list-disc list-inside text-primary-200 text-xs space-y-1 opacity-90">
-                    <li>USt-IdNr. des Verkäufers prüfen (VIES)</li>
-                    <li>Rechnung ohne ausländische MwSt verbuchen</li>
-                    <li>Erwerbsteuer in DE abführen & ziehen</li>
-                  </ul>
-                  <div class="mt-3 flex items-center gap-2 text-[10px] text-primary-300 border-t border-primary/20 pt-2">
-                    <Icon name="lucide:check-circle" class="w-3 h-3" />
-                    <span>Automatisch für Voranmeldung vorgemerkt.</span>
-                  </div>
-                </div>
+          <div class="mt-7 flex items-center gap-3 text-sm text-white/60">
+            <Icon name="lucide:shield-check" class="w-4 h-4 text-primary" />
+            <span>Made & hosted in Germany</span>
+            <span class="opacity-40">•</span>
+            <Icon name="lucide:file-check" class="w-4 h-4 text-primary" />
+            <span>DATEV-kompatibel</span>
+          </div>
+
+          <!-- Mini marquee: credibility / features (CSS only, reduced-motion safe) -->
+          <div class="mt-10 rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
+            <div class="ax-marquee px-4 py-3 text-xs font-semibold uppercase tracking-wider text-white/70">
+              <div class="ax-marquee__track">
+                <span class="ax-marquee__item"><Icon name="lucide:zap" class="w-4 h-4 text-primary" /> FIN → Fahrzeugakte</span>
+                <span class="ax-marquee__item"><Icon name="lucide:calculator" class="w-4 h-4 text-primary" /> §25a / Regel / EU / Export</span>
+                <span class="ax-marquee__item"><Icon name="lucide:scan-text" class="w-4 h-4 text-primary" /> OCR Fahrzeugschein</span>
+                <span class="ax-marquee__item"><Icon name="lucide:badge-check" class="w-4 h-4 text-primary" /> GoBD-Workflows</span>
+                <span class="ax-marquee__item"><Icon name="lucide:workflow" class="w-4 h-4 text-primary" /> Prozess-Checklisten</span>
+                <span class="ax-marquee__item"><Icon name="lucide:files" class="w-4 h-4 text-primary" /> Dokumentenablage</span>
+
+                <span class="ax-marquee__item"><Icon name="lucide:zap" class="w-4 h-4 text-primary" /> FIN → Fahrzeugakte</span>
+                <span class="ax-marquee__item"><Icon name="lucide:calculator" class="w-4 h-4 text-primary" /> §25a / Regel / EU / Export</span>
+                <span class="ax-marquee__item"><Icon name="lucide:scan-text" class="w-4 h-4 text-primary" /> OCR Fahrzeugschein</span>
+                <span class="ax-marquee__item"><Icon name="lucide:badge-check" class="w-4 h-4 text-primary" /> GoBD-Workflows</span>
+                <span class="ax-marquee__item"><Icon name="lucide:workflow" class="w-4 h-4 text-primary" /> Prozess-Checklisten</span>
+                <span class="ax-marquee__item"><Icon name="lucide:files" class="w-4 h-4 text-primary" /> Dokumentenablage</span>
               </div>
             </div>
           </div>
+
+          <!-- Stats -->
+          <div class="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
+              <p class="text-white text-xl font-extrabold">60s</p>
+              <p class="text-xs text-white/60 mt-1">FIN → Vertrag</p>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
+              <p class="text-white text-xl font-extrabold">§25a</p>
+              <p class="text-xs text-white/60 mt-1">inkl. EU & Export</p>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
+              <p class="text-white text-xl font-extrabold">DATEV</p>
+              <p class="text-xs text-white/60 mt-1">Export per Klick</p>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
+              <p class="text-white text-xl font-extrabold">GoBD</p>
+              <p class="text-xs text-white/60 mt-1">audit-ready</p>
+            </div>
           </div>
+        </div>
+
+        <!-- Right: “Product window” with ultra-modern treatment -->
+        <div class="lg:col-span-6">
+          <div class="relative">
+            <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-primary/40 via-fuchsia-500/25 to-cyan-400/25 blur-xl opacity-70"></div>
+
+            <div class="relative rounded-3xl border border-white/10 bg-[#0b0c10]/70 backdrop-blur-xl overflow-hidden shadow-2xl">
+              <!-- Top bar -->
+              <div class="flex items-center justify-between px-5 py-4 border-b border-white/10 bg-white/5">
+                <div class="flex items-center gap-2">
+                  <span class="h-2.5 w-2.5 rounded-full bg-red-500/70"></span>
+                  <span class="h-2.5 w-2.5 rounded-full bg-yellow-500/70"></span>
+                  <span class="h-2.5 w-2.5 rounded-full bg-green-500/70"></span>
+                </div>
+                <div class="flex items-center gap-2 text-xs font-mono text-white/50">
+                  <span class="inline-flex items-center gap-1">
+                    <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
+                    AI CORE ONLINE
+                  </span>
+                  <span class="opacity-40">|</span>
+                  <span>SSG • Edge</span>
+                </div>
+              </div>
+
+              <!-- Main -->
+              <div class="p-5 lg:p-6">
+                <div class="grid sm:grid-cols-2 gap-4 items-stretch">
+                  <!-- Screenshot card -->
+                  <div class="relative rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
+                    <div class="absolute inset-0 ax-shine opacity-60" aria-hidden="true"></div>
+                    <img
+                      src="/screenshots/dark-mode.webp"
+                      alt="Autaxo Dashboard Screenshot (Dark Mode)"
+                      class="w-full h-full object-cover object-top ax-screenshot"
+                      loading="eager"
+                      decoding="async"
+                    />
+                    <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+                      <span class="text-[11px] text-white/70 bg-black/40 border border-white/10 px-2.5 py-1 rounded-full">
+                        Dashboard • Bestand • Kosten • Dokumente
+                      </span>
+                      <span class="text-[11px] text-white/70 bg-black/40 border border-white/10 px-2.5 py-1 rounded-full">
+                        Live Preview
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- “Carlo” micro demo -->
+                  <div class="relative rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
+                    <div class="absolute inset-0 ax-scanline" aria-hidden="true"></div>
+
+                    <div class="p-4">
+                      <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                          <div class="h-9 w-9 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center">
+                            <Icon name="lucide:bot" class="w-4 h-4 text-primary" />
+                          </div>
+                          <div>
+                            <p class="text-sm font-bold text-white leading-tight">Carlo</p>
+                            <p class="text-xs text-white/50">Steuerlogik • Plausibilitätschecks</p>
+                          </div>
+                        </div>
+                        <span class="text-[11px] font-mono text-white/40">v1</span>
+                      </div>
+
+                      <div class="mt-4 space-y-3 text-sm">
+                        <div class="flex gap-2 items-start" data-reveal>
+                          <div class="h-8 w-8 rounded-full bg-white/10 border border-white/10 flex items-center justify-center shrink-0">
+                            <span class="text-[10px] font-bold text-white">DU</span>
+                          </div>
+                          <div class="flex-1 rounded-2xl rounded-tl-none bg-[#15171e] border border-white/10 px-3 py-2 text-text-muted">
+                            Habe einen X5 aus Italien gekauft. Netto. Was muss ich beachten?
+                          </div>
+                        </div>
+
+                        <div class="flex gap-2 items-center" data-reveal>
+                          <div class="h-8 w-8 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center shrink-0">
+                            <Icon name="lucide:bot" class="w-4 h-4 text-primary" />
+                          </div>
+                          <div class="flex items-center gap-1">
+                            <span class="h-1.5 w-1.5 bg-primary/60 rounded-full ax-dot"></span>
+                            <span class="h-1.5 w-1.5 bg-primary/60 rounded-full ax-dot ax-dot2"></span>
+                            <span class="h-1.5 w-1.5 bg-primary/60 rounded-full ax-dot ax-dot3"></span>
+                          </div>
+                        </div>
+
+                        <div class="flex gap-2 items-start" data-reveal>
+                          <div class="h-8 w-8 rounded-full bg-primary border border-primary/60 flex items-center justify-center shrink-0 shadow-lg shadow-primary/20">
+                            <Icon name="lucide:bot" class="w-4 h-4 text-white" />
+                          </div>
+                          <div class="flex-1 rounded-2xl rounded-tl-none bg-primary/10 border border-primary/20 px-3 py-3 text-white relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent pointer-events-none"></div>
+                            <p class="font-semibold">Innergemeinschaftlicher Erwerb.</p>
+                            <ul class="mt-2 space-y-1 text-xs text-white/80">
+                              <li class="flex gap-2"><Icon name="lucide:check" class="w-4 h-4 text-primary" /> USt-IdNr. prüfen (VIES)</li>
+                              <li class="flex gap-2"><Icon name="lucide:check" class="w-4 h-4 text-primary" /> Rechnung netto erfassen</li>
+                              <li class="flex gap-2"><Icon name="lucide:check" class="w-4 h-4 text-primary" /> Erwerbsteuer in DE abführen & ziehen</li>
+                            </ul>
+                            <div class="mt-3 pt-2 border-t border-primary/20 text-[11px] text-white/70 flex items-center gap-2">
+                              <Icon name="lucide:check-circle" class="w-4 h-4 text-primary" />
+                              Automatisch vorgemerkt.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="mt-4 flex flex-wrap gap-2">
+                        <a href="/funktionen/ki-assistent" class="inline-flex items-center gap-2 text-xs font-semibold text-white/80 hover:text-white">
+                          Mehr zu Carlo <Icon name="lucide:arrow-right" class="w-4 h-4 text-primary" />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Bottom chips -->
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white/70">Digitale Fahrzeugakte</span>
+                  <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white/70">Verträge & Rechnungen</span>
+                  <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white/70">§25a/EU/Export</span>
+                  <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white/70">DATEV Export</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 text-xs text-white/50 flex items-center gap-2">
+              <Icon name="lucide:mouse" class="w-4 h-4 text-primary" />
+              Tipp: Hover & Scroll – dezente Animationen, keine Performance-Last.
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="py-24">
+  <!-- FEATURES (clean + premium cards) -->
+  <section class="py-24 bg-surface border-y border-border">
     <div class="container mx-auto px-4">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4">Entwickelt für den modernen Handel</h2>
-        <p class="text-text-muted text-lg">Schluss mit Excel-Listen und Papierchaos. Autaxo zentralisiert dein gesamtes Geschäft.</p>
+      <div class="text-center max-w-3xl mx-auto" data-reveal>
+        <span class="inline-flex items-center gap-2 text-primary font-bold tracking-wider uppercase text-sm">
+          <Icon name="lucide:layers" class="w-4 h-4" />
+          Module, die zusammenarbeiten
+        </span>
+        <h2 class="mt-3 text-3xl lg:text-5xl font-extrabold text-white">
+          Entwickelt für den <span class="text-primary">modernen</span> Handel
+        </h2>
+        <p class="mt-5 text-lg text-text-muted">
+          Schluss mit Excel-Listen und Papierchaos. Autaxo zentralisiert Ihr gesamtes Geschäft – vom Einkauf bis zum DATEV-Export.
+        </p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="p-8 rounded-2xl bg-surface border border-border hover:border-primary/50 transition-colors group">
-          <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors text-primary">
-            <Icon name="lucide:zap" class="w-6 h-6" />
+      <div class="mt-14 grid md:grid-cols-3 gap-6 lg:gap-8">
+        <a href="/funktionen/digitale-vertraege-esignatur" class="group rounded-3xl border border-white/10 bg-[#0b0c10] p-7 hover:border-primary/40 transition-colors" data-reveal>
+          <div class="flex items-center justify-between">
+            <div class="h-12 w-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+              <Icon name="lucide:zap" class="w-6 h-6" />
+            </div>
+            <span class="text-xs font-mono text-white/30">01</span>
           </div>
-          <h3 class="text-xl font-bold text-white mb-3">Schneller verkaufen</h3>
-          <p class="text-text-muted leading-relaxed">
-            Fahrzeugschein scannen oder FIN eingeben – Autaxo zieht alle Stammdaten automatisch. Inserate für mobile.de werden direkt aus der Akte erstellt.
+          <h3 class="mt-5 text-xl font-bold text-white">Schneller verkaufen</h3>
+          <p class="mt-2 text-text-muted leading-relaxed">
+            Fahrzeugschein scannen oder FIN eingeben – Autaxo übernimmt Stammdaten und erzeugt Dokumente ohne Tipparbeit.
           </p>
-        </div>
+          <div class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white/80 group-hover:text-white">
+            Verträge & eSignatur <Icon name="lucide:arrow-right" class="w-4 h-4 text-primary" />
+          </div>
+        </a>
 
-        <div class="p-8 rounded-2xl bg-surface border border-border hover:border-primary/50 transition-colors group">
-          <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors text-primary">
-            <Icon name="lucide:calculator" class="w-6 h-6" />
+        <a href="/funktionen/buchhaltung" class="group rounded-3xl border border-white/10 bg-[#0b0c10] p-7 hover:border-primary/40 transition-colors" data-reveal>
+          <div class="flex items-center justify-between">
+            <div class="h-12 w-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+              <Icon name="lucide:calculator" class="w-6 h-6" />
+            </div>
+            <span class="text-xs font-mono text-white/30">02</span>
           </div>
-          <h3 class="text-xl font-bold text-white mb-3">Umsatzsteuer im Griff</h3>
-          <p class="text-text-muted leading-relaxed">
-            Keine Angst vor der Betriebsprüfung. Autaxo erkennt Steuerfälle automatisch und setzt die richtigen Hinweise auf Rechnungen (z.B. "Steuerfrei gem. §4 Nr. 1b").
+          <h3 class="mt-5 text-xl font-bold text-white">Umsatzsteuer im Griff</h3>
+          <p class="mt-2 text-text-muted leading-relaxed">
+            Automatische Erkennung von Steuerfällen (Regel vs. §25a, EU, Export) und Vorbereitung für saubere Übergaben an den Steuerberater.
           </p>
-        </div>
+          <div class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white/80 group-hover:text-white">
+            Buchhaltung & Steuerlogik <Icon name="lucide:arrow-right" class="w-4 h-4 text-primary" />
+          </div>
+        </a>
 
-        <div class="p-8 rounded-2xl bg-surface border border-border hover:border-primary/50 transition-colors group">
-          <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors text-primary">
-            <Icon name="lucide:files" class="w-6 h-6" />
+        <a href="/funktionen/differenzbesteuerung-25a-ustg" class="group rounded-3xl border border-white/10 bg-[#0b0c10] p-7 hover:border-primary/40 transition-colors" data-reveal>
+          <div class="flex items-center justify-between">
+            <div class="h-12 w-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+              <Icon name="lucide:files" class="w-6 h-6" />
+            </div>
+            <span class="text-xs font-mono text-white/30">03</span>
           </div>
-          <h3 class="text-xl font-bold text-white mb-3">Nie wieder Zettelchaos</h3>
-          <p class="text-text-muted leading-relaxed">
-            Digitale Fahrzeugakte statt Leitz-Ordner. Alle Dokumente (EK-Rechnung, VK-Rechnung, Ausweis) sind revisionssicher am Fahrzeug gespeichert.
+          <h3 class="mt-5 text-xl font-bold text-white">Digitale Fahrzeugakte</h3>
+          <p class="mt-2 text-text-muted leading-relaxed">
+            Revisionssichere Ablage: EK/VK-Belege, Ausweis, Nachweise – alles direkt am Fahrzeug. Kein Suchen. Kein Chaos.
           </p>
-        </div>
+          <div class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white/80 group-hover:text-white">
+            §25a Deep Dive <Icon name="lucide:arrow-right" class="w-4 h-4 text-primary" />
+          </div>
+        </a>
       </div>
     </div>
   </section>
 
-  <section id="roadmap" class="py-24 bg-[#0b0c10] relative overflow-hidden">
-    
+  <!-- WORKFLOW (interactive, modal demos, lazy video sources) -->
+  <section id="workflow" class="py-24 relative overflow-hidden bg-[#0b0c10]">
+    <div class="pointer-events-none absolute inset-0 ax-grid-mask opacity-[0.35]" aria-hidden="true"></div>
+
     <div class="container mx-auto px-4 relative z-10">
-      <div class="text-center mb-20">
+      <div class="text-center mb-16" data-reveal>
         <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">Der Workflow</span>
-        <h2 class="text-3xl lg:text-5xl font-extrabold text-white mb-6">
+        <h2 class="text-3xl lg:text-5xl font-extrabold text-white">
           Von <span class="text-primary">FIN</span> zum Vertrag in <span class="text-primary">60 Sekunden</span>
         </h2>
-        <p class="text-text-muted text-lg max-w-2xl mx-auto">
-          Der komplette Prozess: Von der FIN-Abfrage bis zum DATEV-Export. Klicke auf die Schritte für eine Live-Demo.
+        <p class="mt-4 text-text-muted text-lg max-w-2xl mx-auto">
+          Der komplette Prozess: Von der FIN-Abfrage bis zum DATEV-Export. Klicken Sie auf einen Schritt für die Demo.
         </p>
       </div>
 
       <div class="relative max-w-4xl mx-auto">
         <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/0 via-primary/50 to-primary/0 md:-translate-x-1/2"></div>
 
-        <div class="timeline-item relative z-10 mb-12 opacity-0 translate-y-8 transition-all duration-700 ease-out" onclick="openModal('modal-1')">
-          <div class="flex flex-col md:flex-row items-center gap-8 group cursor-pointer">
-            <div class="w-full md:w-1/2 md:text-right order-2 md:order-1 pl-12 md:pl-0 md:pr-12">
-              <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">1. FIN-Abfrage & Scan</h3>
-              <p class="text-text-muted text-sm">Fahrzeugschein scannen. Stammdaten automatisch übernehmen.</p>
-            </div>
-            <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-9 h-9 rounded-full bg-[#0b0c10] border-2 border-primary flex items-center justify-center text-white font-bold text-xs shadow-lg z-20">1</div>
-            <div class="hidden md:block w-1/2 order-3"></div>
-          </div>
-        </div>
+        {workflowSteps.map((s, i) => {
+          const isRight = i % 2 === 1;
+          return (
+            <div
+              class={`relative z-10 mb-10 ${isRight ? "md:pl-0" : ""}`}
+              data-reveal
+            >
+              <button
+                type="button"
+                class="group w-full text-left"
+                data-open-modal={s.id}
+              >
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                  {/* left column */}
+                  <div class={`w-full md:w-1/2 ${isRight ? "order-2 md:order-2 pl-12" : "order-2 md:order-1 pl-12 md:pl-0 md:pr-12 md:text-right"}`}>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
+                      {s.n}. {s.title}
+                    </h3>
+                    <p class="text-text-muted text-sm">{s.desc}</p>
+                  </div>
 
-        <div class="timeline-item relative z-10 mb-12 opacity-0 translate-y-8 transition-all duration-700 ease-out delay-75" onclick="openModal('modal-2')">
-          <div class="flex flex-col md:flex-row items-center gap-8 group cursor-pointer">
-            <div class="hidden md:block w-1/2 order-1"></div>
-            <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-9 h-9 rounded-full bg-[#0b0c10] border-2 border-border group-hover:border-primary flex items-center justify-center text-text-muted font-bold text-xs z-20">2</div>
-            <div class="w-full md:w-1/2 order-2 pl-12">
-              <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">2. Kauftransaktion & Prüfung</h3>
-              <p class="text-text-muted text-sm">Verkäufer erfassen. USt-IdNr. wird automatisch geprüft (VIES).</p>
-            </div>
-          </div>
-        </div>
+                  {/* center node */}
+                  <div class={`absolute left-0 md:left-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-[#0b0c10] border-2 border-white/10 group-hover:border-primary transition-colors flex items-center justify-center text-white/80 font-bold text-xs shadow-lg z-20`}>
+                    {s.n}
+                  </div>
 
-        <div class="timeline-item relative z-10 mb-12 opacity-0 translate-y-8 transition-all duration-700 ease-out delay-100" onclick="openModal('modal-3')">
-          <div class="flex flex-col md:flex-row items-center gap-8 group cursor-pointer">
-            <div class="w-full md:w-1/2 md:text-right order-2 md:order-1 pl-12 md:pl-0 md:pr-12">
-              <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">3. Ankaufsrechnung</h3>
-              <p class="text-text-muted text-sm">Ankaufsrechnung erzeugen oder Dokument hochladen.</p>
+                  {/* spacer */}
+                  <div class={`hidden md:block w-1/2 ${isRight ? "order-1" : "order-3"}`}></div>
+                </div>
+              </button>
             </div>
-            <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-9 h-9 rounded-full bg-[#0b0c10] border-2 border-border group-hover:border-primary flex items-center justify-center text-text-muted font-bold text-xs z-20">3</div>
-            <div class="hidden md:block w-1/2 order-3"></div>
-          </div>
-        </div>
-
-        <div class="timeline-item relative z-10 mb-12 opacity-0 translate-y-8 transition-all duration-700 ease-out delay-150" onclick="openModal('modal-4')">
-          <div class="flex flex-col md:flex-row items-center gap-8 group cursor-pointer">
-            <div class="hidden md:block w-1/2 order-1"></div>
-            <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-9 h-9 rounded-full bg-[#0b0c10] border-2 border-border group-hover:border-primary flex items-center justify-center text-text-muted font-bold text-xs z-20">4</div>
-            <div class="w-full md:w-1/2 order-2 pl-12">
-              <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">4. Inserat & Verkauf</h3>
-              <p class="text-text-muted text-sm">Mit einem Klick inserieren. Automatische Deaktivierung bei Verkauf.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-item relative z-10 mb-12 opacity-0 translate-y-8 transition-all duration-700 ease-out delay-200" onclick="openModal('modal-5')">
-          <div class="flex flex-col md:flex-row items-center gap-8 group cursor-pointer">
-            <div class="w-full md:w-1/2 md:text-right order-2 md:order-1 pl-12 md:pl-0 md:pr-12">
-              <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">5. Vertrag & Rechnung</h3>
-              <p class="text-text-muted text-sm">Rechtssichere PDFs inkl. korrekter steuerlicher Hinweise.</p>
-            </div>
-            <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-9 h-9 rounded-full bg-[#0b0c10] border-2 border-border group-hover:border-primary flex items-center justify-center text-text-muted font-bold text-xs z-20">5</div>
-            <div class="hidden md:block w-1/2 order-3"></div>
-          </div>
-        </div>
-
-        <div class="timeline-item relative z-10 mb-12 opacity-0 translate-y-8 transition-all duration-700 ease-out delay-250" onclick="openModal('modal-6')">
-          <div class="flex flex-col md:flex-row items-center gap-8 group cursor-pointer">
-            <div class="hidden md:block w-1/2 order-1"></div>
-            <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-9 h-9 rounded-full bg-[#0b0c10] border-2 border-border group-hover:border-primary flex items-center justify-center text-text-muted font-bold text-xs z-20">6</div>
-            <div class="w-full md:w-1/2 order-2 pl-12">
-              <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">6. Umsatzsteuer-Logik</h3>
-              <p class="text-text-muted text-sm">Differenzbesteuerung, igL, Export – automatisch erkannt.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-item relative z-10 mb-12 opacity-0 translate-y-8 transition-all duration-700 ease-out delay-300" onclick="openModal('modal-7')">
-          <div class="flex flex-col md:flex-row items-center gap-8 group cursor-pointer">
-            <div class="w-full md:w-1/2 md:text-right order-2 md:order-1 pl-12 md:pl-0 md:pr-12">
-              <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">7. Dokumentation</h3>
-              <p class="text-text-muted text-sm">Gelangensbestätigung & Co. rechtssicher hinterlegen.</p>
-            </div>
-            <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-9 h-9 rounded-full bg-[#0b0c10] border-2 border-border group-hover:border-primary flex items-center justify-center text-text-muted font-bold text-xs z-20">7</div>
-            <div class="hidden md:block w-1/2 order-3"></div>
-          </div>
-        </div>
-
-        <div class="timeline-item relative z-10 mb-12 opacity-0 translate-y-8 transition-all duration-700 ease-out delay-350" onclick="openModal('modal-8')">
-          <div class="flex flex-col md:flex-row items-center gap-8 group cursor-pointer">
-            <div class="hidden md:block w-1/2 order-1"></div>
-            <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-9 h-9 rounded-full bg-[#0b0c10] border-2 border-border group-hover:border-primary flex items-center justify-center text-text-muted font-bold text-xs z-20">8</div>
-            <div class="w-full md:w-1/2 order-2 pl-12">
-              <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">8. DATEV-Export</h3>
-              <p class="text-text-muted text-sm">Buchungssätze per Klick im SKR04 exportieren.</p>
-            </div>
-          </div>
-        </div>
-
+          );
+        })}
       </div>
-    </div>
-  </section>
 
-  <section class="py-24 text-center">
-    <div class="container mx-auto px-4 max-w-4xl">
-      <h2 class="text-4xl lg:text-5xl font-bold text-white mb-8">Bereit für die Zukunft des Handels?</h2>
-      <p class="text-xl text-text-muted mb-10 max-w-2xl mx-auto">
-        Starte jetzt durch. Keine Kreditkarte erforderlich. In 2 Minuten eingerichtet.
-      </p>
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="https://garage.autaxo.de/auth/sign-up" class="w-full sm:w-auto px-8 py-4 bg-primary hover:bg-primary-hover text-white font-bold rounded-lg transition-all text-lg shadow-xl shadow-primary/20">
+      <div class="mt-14 text-center" data-reveal>
+        <a
+          href={signupUrl}
+          class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary hover:bg-primary-hover text-white font-bold rounded-xl transition-all hover:-translate-y-0.5 shadow-xl shadow-primary/20"
+        >
           Jetzt kostenlos testen
+          <Icon name="lucide:arrow-right" class="w-5 h-5" />
         </a>
+        <p class="mt-4 text-sm text-text-muted">30 Tage kostenlos • Jederzeit kündbar • Made in Germany</p>
       </div>
-      <p class="mt-6 text-sm text-text-muted">
-        30 Tage kostenlos testen • Jederzeit kündbar • Made in Germany
-      </p>
     </div>
   </section>
 
+  <!-- FINAL CTA -->
+  <section class="py-24">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <div class="rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 to-white/0 p-10 lg:p-14 text-center relative overflow-hidden" data-reveal>
+        <div class="absolute -top-32 left-1/2 -translate-x-1/2 h-[380px] w-[380px] rounded-full bg-primary/20 blur-3xl" aria-hidden="true"></div>
+        <h2 class="text-3xl lg:text-5xl font-extrabold text-white">
+          Bereit für die Zukunft des Handels?
+        </h2>
+        <p class="mt-5 text-lg lg:text-xl text-text-muted max-w-2xl mx-auto">
+          In 2 Minuten eingerichtet. Keine Kreditkarte erforderlich. Sofort produktiv.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href={signupUrl}
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary hover:bg-primary-hover text-white font-bold rounded-xl transition-all hover:-translate-y-0.5 shadow-xl shadow-primary/20"
+          >
+            Kostenlos starten
+            <Icon name="lucide:arrow-right" class="w-5 h-5" />
+          </a>
+          <a
+            href="/preise"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/5 border border-white/10 hover:border-primary/40 text-white font-semibold rounded-xl transition-colors"
+          >
+            Preise ansehen
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* MODALS (generated, video sources lazy-attached) */}
+  {workflowSteps.map((s) => (
+    <dialog
+      id={s.id}
+      class="bg-transparent p-0 w-full max-w-7xl backdrop:bg-black/80 backdrop:backdrop-blur-sm rounded-2xl shadow-2xl border border-white/10 m-auto"
+    >
+      <div class="bg-[#15171e] rounded-2xl overflow-hidden relative">
+        <button
+          type="button"
+          data-close-modal
+          class="absolute top-4 right-4 z-50 p-2 bg-black/50 hover:bg-primary text-white rounded-full transition-colors"
+          aria-label="Dialog schließen"
+        >
+          <Icon name="lucide:x" class="w-6 h-6" />
+        </button>
+
+        <div class="grid lg:grid-cols-5 h-full">
+          <div class="lg:col-span-3 bg-black flex items-center justify-center aspect-video lg:aspect-auto h-[40vh] lg:h-[70vh]">
+            {s.media.type === "video" ? (
+              <video
+                controls
+                preload="none"
+                class="w-full h-full object-contain"
+                data-video
+                data-src={s.media.src}
+              />
+            ) : (
+              <img
+                src={s.media.src}
+                alt={`Workflow Demo: ${s.title}`}
+                class="w-full h-full object-contain"
+                loading="lazy"
+                decoding="async"
+              />
+            )}
+          </div>
+
+          <div class="lg:col-span-2 p-8 lg:p-12 flex flex-col justify-center bg-[#15171e]">
+            <h3 class="text-2xl lg:text-3xl font-bold text-white mb-6">{s.modalTitle}</h3>
+            <p class="text-text-muted text-lg leading-relaxed mb-8">{s.modalText}</p>
+
+            <button
+              type="button"
+              data-close-modal
+              class="self-start px-8 py-3 border border-white/20 hover:bg-white/10 text-white rounded-lg transition-colors"
+            >
+              Schließen
+            </button>
+          </div>
+        </div>
+      </div>
+    </dialog>
+  ))}
 </MarketingLayout>
 
-<dialog id="modal-1" class="bg-transparent p-0 w-full max-w-7xl backdrop:bg-black/80 backdrop:backdrop-blur-sm rounded-2xl shadow-2xl border border-white/10 m-auto">
-  <div class="bg-[#15171e] rounded-2xl overflow-hidden relative">
-    <button onclick="closeModal('modal-1')" class="absolute top-4 right-4 z-50 p-2 bg-black/50 hover:bg-primary text-white rounded-full transition-colors"><Icon name="lucide:x" class="w-6 h-6" /></button>
-    <div class="grid lg:grid-cols-5 h-full">
-      <div class="lg:col-span-3 bg-black flex items-center justify-center aspect-video lg:aspect-auto h-[40vh] lg:h-[70vh]">
-        <video controls class="w-full h-full object-contain"><source src="https://storage.googleapis.com/autaxo-website/GIFs%20for%20Website%20(1).mp4" type="video/mp4"></video>
-      </div>
-      <div class="lg:col-span-2 p-8 lg:p-12 flex flex-col justify-center bg-[#15171e]">
-        <h3 class="text-2xl lg:text-3xl font-bold text-white mb-6">Scannen statt Tippen.</h3>
-        <p class="text-text-muted text-lg leading-relaxed mb-8">
-          Erfassen Sie ein Fahrzeug in unter 60 Sekunden. Einfach den Fahrzeugschein scannen – Autaxo liest die FIN automatisch aus, fragt die Stammdaten ab (Hersteller, Modell, EZ) und legt das Fahrzeug fehlerfrei an.
-        </p>
-        <button onclick="closeModal('modal-1')" class="self-start px-8 py-3 border border-white/20 hover:bg-white/10 text-white rounded-lg transition-colors">Schließen</button>
-      </div>
-    </div>
-  </div>
-</dialog>
-
-<dialog id="modal-2" class="bg-transparent p-0 w-full max-w-7xl backdrop:bg-black/80 backdrop:backdrop-blur-sm rounded-2xl shadow-2xl border border-white/10 m-auto">
-  <div class="bg-[#15171e] rounded-2xl overflow-hidden relative">
-    <button onclick="closeModal('modal-2')" class="absolute top-4 right-4 z-50 p-2 bg-black/50 hover:bg-primary text-white rounded-full transition-colors"><Icon name="lucide:x" class="w-6 h-6" /></button>
-    <div class="grid lg:grid-cols-5 h-full">
-      <div class="lg:col-span-3 bg-black flex items-center justify-center aspect-video lg:aspect-auto h-[40vh] lg:h-[70vh]">
-        <video controls class="w-full h-full object-contain"><source src="https://storage.googleapis.com/autaxo-website/GIFs%20for%20Website%20(2).mp4" type="video/mp4"></video>
-      </div>
-      <div class="lg:col-span-2 p-8 lg:p-12 flex flex-col justify-center bg-[#15171e]">
-        <h3 class="text-2xl lg:text-3xl font-bold text-white mb-6">Kauf korrekt erfassen.</h3>
-        <p class="text-text-muted text-lg leading-relaxed mb-8">
-          Egal ob von Privat oder Unternehmen – erfassen Sie den Verkäufer digital. Bei EU-Geschäften wird die USt-IdNr. automatisch geprüft.
-        </p>
-        <button onclick="closeModal('modal-2')" class="self-start px-8 py-3 border border-white/20 hover:bg-white/10 text-white rounded-lg transition-colors">Schließen</button>
-      </div>
-    </div>
-  </div>
-</dialog>
-
-<dialog id="modal-3" class="bg-transparent p-0 w-full max-w-7xl backdrop:bg-black/80 backdrop:backdrop-blur-sm rounded-2xl shadow-2xl border border-white/10 m-auto">
-  <div class="bg-[#15171e] rounded-2xl overflow-hidden relative">
-    <button onclick="closeModal('modal-3')" class="absolute top-4 right-4 z-50 p-2 bg-black/50 hover:bg-primary text-white rounded-full transition-colors"><Icon name="lucide:x" class="w-6 h-6" /></button>
-    <div class="grid lg:grid-cols-5 h-full">
-      <div class="lg:col-span-3 bg-black flex items-center justify-center aspect-video lg:aspect-auto h-[40vh] lg:h-[70vh]">
-        <video controls class="w-full h-full object-contain"><source src="https://storage.googleapis.com/autaxo-website/GIFs%20for%20Website%20(3).mp4" type="video/mp4"></video>
-      </div>
-      <div class="lg:col-span-2 p-8 lg:p-12 flex flex-col justify-center bg-[#15171e]">
-        <h3 class="text-2xl lg:text-3xl font-bold text-white mb-6">Ankaufsrechnung.</h3>
-        <p class="text-text-muted text-lg leading-relaxed mb-8">
-          Erstellen Sie rechtssichere Ankaufsrechnungen (Gutschrift) oder laden Sie externe Belege einfach hoch. Alles digital.
-        </p>
-        <button onclick="closeModal('modal-3')" class="self-start px-8 py-3 border border-white/20 hover:bg-white/10 text-white rounded-lg transition-colors">Schließen</button>
-      </div>
-    </div>
-  </div>
-</dialog>
-
-<dialog id="modal-4" class="bg-transparent p-0 w-full max-w-7xl backdrop:bg-black/80 backdrop:backdrop-blur-sm rounded-2xl shadow-2xl border border-white/10 m-auto">
-  <div class="bg-[#15171e] rounded-2xl overflow-hidden relative">
-    <button onclick="closeModal('modal-4')" class="absolute top-4 right-4 z-50 p-2 bg-black/50 hover:bg-primary text-white rounded-full transition-colors"><Icon name="lucide:x" class="w-6 h-6" /></button>
-    <div class="grid lg:grid-cols-5 h-full">
-      <div class="lg:col-span-3 bg-black flex items-center justify-center aspect-video lg:aspect-auto h-[40vh] lg:h-[70vh]">
-        <img src="https://storage.googleapis.com/autaxo-website/Homepage/Roadmap%20html%20block/Inserat%20Erstellen%20fu%CC%88r%20homepage%20(roadmap).png" class="w-full h-full object-contain">
-      </div>
-      <div class="lg:col-span-2 p-8 lg:p-12 flex flex-col justify-center bg-[#15171e]">
-        <h3 class="text-2xl lg:text-3xl font-bold text-white mb-6">Schneller inserieren.</h3>
-        <p class="text-text-muted text-lg leading-relaxed mb-8">
-          Erstellen Sie mit einem Klick Verkaufsanzeigen auf bekannten Marktplätzen. Nach dem Verkauf wird das Inserat automatisch deaktiviert.
-        </p>
-        <button onclick="closeModal('modal-4')" class="self-start px-8 py-3 border border-white/20 hover:bg-white/10 text-white rounded-lg transition-colors">Schließen</button>
-      </div>
-    </div>
-  </div>
-</dialog>
-
-<dialog id="modal-5" class="bg-transparent p-0 w-full max-w-7xl backdrop:bg-black/80 backdrop:backdrop-blur-sm rounded-2xl shadow-2xl border border-white/10 m-auto">
-  <div class="bg-[#15171e] rounded-2xl overflow-hidden relative">
-    <button onclick="closeModal('modal-5')" class="absolute top-4 right-4 z-50 p-2 bg-black/50 hover:bg-primary text-white rounded-full transition-colors"><Icon name="lucide:x" class="w-6 h-6" /></button>
-    <div class="grid lg:grid-cols-5 h-full">
-      <div class="lg:col-span-3 bg-black flex items-center justify-center aspect-video lg:aspect-auto h-[40vh] lg:h-[70vh]">
-        <video controls class="w-full h-full object-contain"><source src="https://storage.googleapis.com/autaxo-website/GIFs%20for%20Website%20(5).mp4" type="video/mp4"></video>
-      </div>
-      <div class="lg:col-span-2 p-8 lg:p-12 flex flex-col justify-center bg-[#15171e]">
-        <h3 class="text-2xl lg:text-3xl font-bold text-white mb-6">Dokumente auf Knopfdruck.</h3>
-        <p class="text-text-muted text-lg leading-relaxed mb-8">
-          Erstellen Sie automatisch rechtssichere Kaufverträge und Rechnungen. Autaxo fügt die korrekten steuerlichen Hinweise automatisch hinzu.
-        </p>
-        <button onclick="closeModal('modal-5')" class="self-start px-8 py-3 border border-white/20 hover:bg-white/10 text-white rounded-lg transition-colors">Schließen</button>
-      </div>
-    </div>
-  </div>
-</dialog>
-
-<dialog id="modal-6" class="bg-transparent p-0 w-full max-w-7xl backdrop:bg-black/80 backdrop:backdrop-blur-sm rounded-2xl shadow-2xl border border-white/10 m-auto">
-  <div class="bg-[#15171e] rounded-2xl overflow-hidden relative">
-    <button onclick="closeModal('modal-6')" class="absolute top-4 right-4 z-50 p-2 bg-black/50 hover:bg-primary text-white rounded-full transition-colors"><Icon name="lucide:x" class="w-6 h-6" /></button>
-    <div class="grid lg:grid-cols-5 h-full">
-      <div class="lg:col-span-3 bg-black flex items-center justify-center aspect-video lg:aspect-auto h-[40vh] lg:h-[70vh]">
-        <video controls class="w-full h-full object-contain"><source src="https://storage.googleapis.com/autaxo-website/GIFs%20for%20Website%20(6).mp4" type="video/mp4"></video>
-      </div>
-      <div class="lg:col-span-2 p-8 lg:p-12 flex flex-col justify-center bg-[#15171e]">
-        <h3 class="text-2xl lg:text-3xl font-bold text-white mb-6">Steuerfälle? Erledigt.</h3>
-        <p class="text-text-muted text-lg leading-relaxed mb-8">
-          Autaxo erkennt automatisch: Differenzbesteuerung (§25a), Regelbesteuerung, innergemeinschaftliche Lieferung oder Export. Fehler werden minimiert.
-        </p>
-        <button onclick="closeModal('modal-6')" class="self-start px-8 py-3 border border-white/20 hover:bg-white/10 text-white rounded-lg transition-colors">Schließen</button>
-      </div>
-    </div>
-  </div>
-</dialog>
-
-<dialog id="modal-7" class="bg-transparent p-0 w-full max-w-7xl backdrop:bg-black/80 backdrop:backdrop-blur-sm rounded-2xl shadow-2xl border border-white/10 m-auto">
-  <div class="bg-[#15171e] rounded-2xl overflow-hidden relative">
-    <button onclick="closeModal('modal-7')" class="absolute top-4 right-4 z-50 p-2 bg-black/50 hover:bg-primary text-white rounded-full transition-colors"><Icon name="lucide:x" class="w-6 h-6" /></button>
-    <div class="grid lg:grid-cols-5 h-full">
-      <div class="lg:col-span-3 bg-black flex items-center justify-center aspect-video lg:aspect-auto h-[40vh] lg:h-[70vh]">
-        <video controls class="w-full h-full object-contain"><source src="https://storage.googleapis.com/autaxo-website/GIFs%20for%20Website%20(7).mp4" type="video/mp4"></video>
-      </div>
-      <div class="lg:col-span-2 p-8 lg:p-12 flex flex-col justify-center bg-[#15171e]">
-        <h3 class="text-2xl lg:text-3xl font-bold text-white mb-6">Sicher für die Prüfung.</h3>
-        <p class="text-text-muted text-lg leading-relaxed mb-8">
-          Autaxo erinnert an Pflichten wie die Gelangensbestätigung bei steuerfreier igL und speichert diese direkt zum Vorgang ab.
-        </p>
-        <button onclick="closeModal('modal-7')" class="self-start px-8 py-3 border border-white/20 hover:bg-white/10 text-white rounded-lg transition-colors">Schließen</button>
-      </div>
-    </div>
-  </div>
-</dialog>
-
-<dialog id="modal-8" class="bg-transparent p-0 w-full max-w-7xl backdrop:bg-black/80 backdrop:backdrop-blur-sm rounded-2xl shadow-2xl border border-white/10 m-auto">
-  <div class="bg-[#15171e] rounded-2xl overflow-hidden relative">
-    <button onclick="closeModal('modal-8')" class="absolute top-4 right-4 z-50 p-2 bg-black/50 hover:bg-primary text-white rounded-full transition-colors"><Icon name="lucide:x" class="w-6 h-6" /></button>
-    <div class="grid lg:grid-cols-5 h-full">
-      <div class="lg:col-span-3 bg-black flex items-center justify-center aspect-video lg:aspect-auto h-[40vh] lg:h-[70vh]">
-        <video controls class="w-full h-full object-contain"><source src="https://storage.googleapis.com/autaxo-website/GIFs%20for%20Website(8).mp4" type="video/mp4"></video>
-      </div>
-      <div class="lg:col-span-2 p-8 lg:p-12 flex flex-col justify-center bg-[#15171e]">
-        <h3 class="text-2xl lg:text-3xl font-bold text-white mb-6">Perfekt für den Steuerberater.</h3>
-        <p class="text-text-muted text-lg leading-relaxed mb-8">
-          Am Monatsende exportieren Sie alle Buchungssätze mit einem Klick im DATEV-Format (SKR03/04). Kein Sortieren von Belegen mehr notwendig.
-        </p>
-        <button onclick="closeModal('modal-8')" class="self-start px-8 py-3 border border-white/20 hover:bg-white/10 text-white rounded-lg transition-colors">Schließen</button>
-      </div>
-    </div>
-  </div>
-</dialog>
-
 <style>
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+  /* ====== Ultra-light, high-impact visuals (no external assets) ====== */
+
+  /* Mesh + grid */
+  .ax-mesh{
+    background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(179,0,24,.18), transparent 55%),
+      radial-gradient(900px 520px at 15% 20%, rgba(99,102,241,.18), transparent 60%),
+      radial-gradient(700px 500px at 85% 70%, rgba(34,211,238,.12), transparent 60%),
+      linear-gradient(180deg, rgba(11,12,16,1) 0%, rgba(11,12,16,1) 40%, rgba(11,12,16,1) 100%);
   }
-  @keyframes fadeOut {
-    0% { opacity: 1; display: flex; }
-    99% { opacity: 0; display: flex; }
-    100% { opacity: 0; display: none; width: 0; height: 0; margin: 0; }
+  .ax-grid-mask{
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.07) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(70% 60% at 50% 25%, #000 0%, transparent 68%);
   }
-  .animate-fade-in-up {
-    animation-name: fadeInUp;
-    animation-duration: 0.5s;
-    animation-timing-function: ease-out;
+
+  /* Cursor spotlight (JS updates --mx/--my in %); graceful fallback without JS */
+  .ax-spotlight{
+    background: radial-gradient(650px 420px at var(--mx, 50%) var(--my, 30%), rgba(255,255,255,.10), transparent 60%);
+    transition: background-position 80ms linear;
   }
-  .animate-fade-out {
-    animation-name: fadeOut;
-    animation-duration: 0.3s;
+
+  /* Floating blobs */
+  @keyframes axFloat { 0%,100%{ transform:translate3d(0,0,0)} 50%{ transform:translate3d(0,-18px,0)} }
+  @keyframes axFloat2 { 0%,100%{ transform:translate3d(0,0,0)} 50%{ transform:translate3d(0,14px,0)} }
+  .ax-float{ animation: axFloat 9s ease-in-out infinite; }
+  .ax-float2{ animation: axFloat2 11s ease-in-out infinite; }
+
+  /* Subtle shine on screenshot */
+  @keyframes axShine {
+    0%{ transform:translateX(-120%) }
+    100%{ transform:translateX(120%) }
+  }
+  .ax-shine{
+    background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,.10) 45%, transparent 60%);
+    transform: translateX(-120%);
+    animation: axShine 5.2s ease-in-out infinite;
+  }
+
+  /* Micro scanline on Carlo card */
+  @keyframes axScan { 0%{ transform:translateY(-30%)} 100%{ transform:translateY(130%)} }
+  .ax-scanline{
+    background: linear-gradient(180deg, transparent, rgba(179,0,24,.22), transparent);
+    height: 26%;
+    width: 100%;
+    transform: translateY(-30%);
+    animation: axScan 4.8s ease-in-out infinite;
+    opacity: .35;
+  }
+
+  /* Typing dots */
+  @keyframes axDot { 0%, 100% { transform: translateY(0); opacity: .55 } 50% { transform: translateY(-3px); opacity: 1 } }
+  .ax-dot{ animation: axDot 900ms ease-in-out infinite; }
+  .ax-dot2{ animation-delay: 120ms; }
+  .ax-dot3{ animation-delay: 240ms; }
+
+  /* Marquee */
+  @keyframes axMarquee { 0% { transform: translateX(0) } 100% { transform: translateX(-50%) } }
+  .ax-marquee{ white-space: nowrap; }
+  .ax-marquee__track{
+    display: inline-flex;
+    gap: 18px;
+    min-width: 200%;
+    animation: axMarquee 18s linear infinite;
+    align-items: center;
+  }
+  .ax-marquee__item{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.4rem 0.65rem;
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 999px;
+    background: rgba(255,255,255,.03);
+  }
+
+  /* Reveal animation: visible by default; JS adds .js to enable the effect */
+  .js [data-reveal]{
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity .6s ease, transform .7s ease;
+  }
+  .js [data-reveal].is-visible{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce){
+    .ax-float, .ax-float2, .ax-shine, .ax-scanline, .ax-dot, .ax-marquee__track{ animation: none !important; }
+    .js [data-reveal]{ opacity: 1 !important; transform: none !important; }
   }
 </style>
 
 <script is:inline>
-  document.addEventListener('DOMContentLoaded', () => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.remove('opacity-0', 'translate-y-8');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
+  // Enable progressive enhancement safely (SEO-friendly): content remains visible without JS.
+  document.documentElement.classList.add('js');
 
-    document.querySelectorAll('.timeline-item').forEach(item => {
-      observer.observe(item);
+  // Spotlight cursor effect (very cheap)
+  const spotlightEl = document.querySelector('[data-spotlight]');
+  if (spotlightEl) {
+    const setSpot = (ev) => {
+      const r = spotlightEl.getBoundingClientRect();
+      const x = ((ev.clientX - r.left) / r.width) * 100;
+      const y = ((ev.clientY - r.top) / r.height) * 100;
+      spotlightEl.style.setProperty('--mx', `${x}%`);
+      spotlightEl.style.setProperty('--my', `${y}%`);
+    };
+    spotlightEl.addEventListener('pointermove', setSpot, { passive: true });
+  }
+
+  // Reveal-on-scroll
+  const revealEls = Array.from(document.querySelectorAll('[data-reveal]'));
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-visible');
+        io.unobserve(e.target);
+      }
+    }
+  }, { threshold: 0.14 });
+  revealEls.forEach((el) => io.observe(el));
+
+  // Modal handling + lazy video source attach (prevents network until open)
+  const openButtons = document.querySelectorAll('[data-open-modal]');
+  const closeButtons = document.querySelectorAll('[data-close-modal]');
+
+  function attachVideoSource(dialog) {
+    const video = dialog.querySelector('video[data-video]');
+    if (!video) return;
+    if (video.dataset.loaded === '1') return;
+    const src = video.getAttribute('data-src');
+    if (!src) return;
+
+    const source = document.createElement('source');
+    source.src = src;
+    source.type = 'video/mp4';
+    video.appendChild(source);
+    video.dataset.loaded = '1';
+  }
+
+  function playVideo(dialog) {
+    const video = dialog.querySelector('video[data-video]');
+    if (!video) return;
+    try { video.play(); } catch (_) {}
+  }
+
+  function pauseVideo(dialog) {
+    const video = dialog.querySelector('video[data-video]');
+    if (!video) return;
+    try { video.pause(); video.currentTime = 0; } catch (_) {}
+  }
+
+  function openModalById(id) {
+    const dialog = document.getElementById(id);
+    if (!dialog) return;
+    dialog.showModal();
+    attachVideoSource(dialog);
+    playVideo(dialog);
+  }
+
+  function closeModal(dialog) {
+    if (!dialog) return;
+    pauseVideo(dialog);
+    dialog.close();
+  }
+
+  openButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-open-modal');
+      if (id) openModalById(id);
     });
   });
 
-  function openModal(id) {
-    const modal = document.getElementById(id);
-    if (modal) {
-      modal.showModal();
-      const video = modal.querySelector('video');
-      if(video) video.play();
-    }
-  }
-
-  function closeModal(id) {
-    const modal = document.getElementById(id);
-    if (modal) {
-      modal.close();
-      const video = modal.querySelector('video');
-      if(video) video.pause();
-    }
-  }
-
-  document.querySelectorAll('dialog').forEach(dialog => {
-    dialog.addEventListener('click', (e) => {
-      const rect = dialog.getBoundingClientRect();
-      const isInDialog = (rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
-        rect.left <= e.clientX && e.clientX <= rect.left + rect.width);
-      if (!isInDialog) {
-        dialog.close();
-        const video = dialog.querySelector('video');
-        if(video) video.pause();
-      }
+  closeButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const dialog = btn.closest('dialog');
+      closeModal(dialog);
     });
+  });
+
+  // Close when clicking backdrop area
+  document.querySelectorAll('dialog').forEach((dialog) => {
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) closeModal(dialog);
+    });
+    dialog.addEventListener('close', () => pauseVideo(dialog));
   });
 </script>
