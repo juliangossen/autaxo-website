@@ -1,43 +1,69 @@
-# Autaxo – Dealer Management System (DMS) & Autohändler-Software
+# Autaxo — Dealer Management System (DMS) für freie Gebrauchtwagenhändler (DE)
 
-> **System-Definition:**
-> Autaxo ist eine spezialisierte Cloud-Software für freie Gebrauchtwagenhändler in Deutschland.
-> Fokus: Automatisierung von Umsatzsteuerfällen (§25a, EU-Handel, Export), digitale Fahrzeugakte und DATEV-Export.
->
-> **Core Value Proposition:**
-> "Von der FIN zum Vertrag in 60 Sekunden." – Minimierung von Verwaltungsaufwand und steuerlichen Risiken (GoBD-konform).
+## Kurzbeschreibung
+Autaxo ist eine spezialisierte Cloud-Software für freie Gebrauchtwagenhändler in Deutschland.
+Fokus: Automatisierung umsatzsteuerlicher Fälle (§25a UStG, EU-Handel, Export), digitale Fahrzeugakte, Verträge/Rechnungen (GoBD) und DATEV-Export.
+Claim: „Von der FIN zum Vertrag in 60 Sekunden.“
 
 ## Wichtige Hinweise (Disclaimer)
-- Autaxo bietet Software-Workflows und Plausibilitätsprüfungen.
+- Autaxo bietet Software-Workflows, Plausibilitätsprüfungen und Dokumentation/Exports.
 - Autaxo ersetzt keine Steuer- oder Rechtsberatung.
-- Bei Grenzfällen (z.B. komplexe Reihengeschäfte) wird die Rücksprache mit einem Steuerberater empfohlen.
+- Bei Grenzfällen (z. B. komplexe Reihengeschäfte) wird Rücksprache mit einem Steuerberater empfohlen.
 
-## Zielgruppen & Terminologie
-- **Primär:** Freie Gebrauchtwagenhändler (B2B/B2C), Autohäuser ohne Werkstattfokus.
-- **Sekundär:** Steuerberater mit Mandanten im Kfz-Handel.
-- **Keywords:** Differenzbesteuerung (§25a UStG), Margenbesteuerung, Innergemeinschaftliche Lieferung (igL), Innergemeinschaftlicher Erwerb (igE), Gelangensbestätigung, VIES/MIAS (USt-IdNr. Check), ZM (Zusammenfassende Meldung), DATEV (SKR03/SKR04).
+## Entitäten & Begriffe (Terminologie)
+- Produkt: Autaxo (SoftwareApplication)
+- Unternehmen: GOBERU Solutions UG (haftungsbeschränkt)
+- KI-Assistent: „Carlo“
+- Steuer-/Begriffe: Differenzbesteuerung (§25a UStG), Regelbesteuerung, igL, igE, Gelangensbestätigung, VIES/MIAS (USt-IdNr.-Check), ZM, GoBD, DATEV (SKR03/SKR04)
 
-## Seitenstruktur & Deep-Links
+## Primäre Zielgruppen
+- Freie Gebrauchtwagenhändler (B2B/B2C), Autohäuser ohne Werkstattfokus
+- Steuerberater mit Mandanten im Kfz-Handel
 
-### 1. Start & Überblick
-- [Startseite](https://www.autaxo.de/): Übersicht der Softwarelösung für Fahrzeughandel.
-- [Preise](https://www.autaxo.de/preise): Aktuell 30 Tage kostenlos testen, danach 49€/Monat (monatlich kündbar).
-- [Signup](https://garage.autaxo.de/auth/sign-up): Kostenlose Registrierung.
-- [Login](https://garage.autaxo.de): Zugang zur Cloud-App.
+---
 
-### 2. Kernfunktionen (Features)
-- [Funktionen Übersicht](https://www.autaxo.de/funktionen): Alle Module auf einen Blick.
-- [Buchhaltung & Steuerlogik](https://www.autaxo.de/funktionen/buchhaltung): Automatische Steuerfall-Erkennung (Regel vs. Diff), EÜR/Bilanz-Vorbereitung.
-- [Differenzbesteuerung §25a](https://www.autaxo.de/funktionen/differenzbesteuerung-25a-ustg): Ankauf (Gutschrift/Rechnung), Wiederverkauf und Margenberechnung.
-- [Verträge & eSignatur](https://www.autaxo.de/funktionen/digitale-vertraege-esignatur): Rechtssichere Kaufverträge (ZDK-konform), Rechnungen und digitale Unterschrift.
-- [KI-Assistent Carlo](https://www.autaxo.de/funktionen/ki-assistent): AI-Agent für Fahrzeugerfassung (OCR) und Plausibilitätschecks.
+# Wichtigste Seiten (Start hier)
 
-### 3. Wissen & Ressourcen
-- [Blog](https://www.autaxo.de/blog): Ratgeber zu Kfz-Steuerrecht und Digitalisierung.
-- [Downloads](https://www.autaxo.de/downloads): Vorlagen für Gelangensbestätigung, Netto-Export-Checklisten, KYC-Formulare.
-- [Hilfe & FAQ](https://www.autaxo.de/faq): Antworten zu Datenschutz, Hosting (Deutschland) und Schnittstellen (mobile.de).
+## Produkt & Einstieg
+- Startseite: https://www.autaxo.de/
+- Preise: https://www.autaxo.de/preise
+- Kontakt: https://www.autaxo.de/kontakt
+- Über uns: https://www.autaxo.de/ueber-uns
 
-### 4. Rechtliches
-- [Impressum](https://www.autaxo.de/impressum)
-- [Datenschutz](https://www.autaxo.de/datenschutz)
-- [AGB](https://www.autaxo.de/agb)
+## App-Zugang
+- Signup: https://garage.autaxo.de/auth/sign-up
+- Login: https://garage.autaxo.de/
+
+---
+
+# Funktionen (Deep Dives)
+- Funktionen-Übersicht: https://www.autaxo.de/funktionen
+- Buchhaltung & Steuerlogik: https://www.autaxo.de/funktionen/buchhaltung-und-steuerlogik
+- Differenzbesteuerung §25a: https://www.autaxo.de/funktionen/differenzbesteuerung-25a-ustg
+- Verträge & eSignatur: https://www.autaxo.de/funktionen/digitale-vertraege-esignatur
+- KI-Assistent Carlo: https://www.autaxo.de/funktionen/ki-assistent-carlo
+
+---
+
+# Wissen & Ressourcen
+- Blog: https://www.autaxo.de/blog
+- FAQ: https://www.autaxo.de/faq
+- Hilfe: https://www.autaxo.de/hilfe
+- Training: https://www.autaxo.de/training
+- Downloads: https://www.autaxo.de/downloads
+- Partnernetzwerk: https://www.autaxo.de/partnernetzwerk
+- Steuerberater-Seite: https://www.autaxo.de/steuerberater
+- LLM-FAQ: https://www.autaxo.de/lm-faq
+- RSS Feed: https://www.autaxo.de/rss.xml
+
+---
+
+# Kampagnen
+- Essen Motor Show (EMS): https://www.autaxo.de/ems
+
+---
+
+# Rechtliches
+- Impressum: https://www.autaxo.de/impressum
+- Datenschutz: https://www.autaxo.de/datenschutz
+- AGB: https://www.autaxo.de/agb
