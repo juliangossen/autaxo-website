@@ -14,16 +14,10 @@ export const announcement: AnnouncementConfig = {
   enabled: true,
 
   /** Unique ID - change this to reset dismissal for new announcements */
-  id: 'launch-2025',
+  id: 'new-website-2026',
 
   /** Announcement text */
-  text: '🚀 Virex 2.0 is here!',
-
-  /** Optional link URL */
-  href: '/changelog',
-
-  /** Optional link text */
-  linkText: "See what's new",
+  text: '🚀 Die neue Autaxo Webseite!',
 
   /** Visual style: 'primary' | 'secondary' | 'gradient' */
   variant: 'primary',

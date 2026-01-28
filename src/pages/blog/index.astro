@@ -21,31 +21,41 @@ const pageUrl = canonicalUrl.endsWith("/") ? canonicalUrl : `${canonicalUrl}/`;
 /** Posts aus Content Collection */
 const entries = await getCollection("blog");
 
-// Helper: Datum robust
+// Helper: Datum robust (Date-Objekt oder String)
 function safeDate(value: unknown): Date {
+  if (value instanceof Date) return isNaN(value.getTime()) ? new Date("1970-01-01") : value;
   const s = typeof value === "string" ? value : "";
   const d = new Date(s);
   return isNaN(d.getTime()) ? new Date("1970-01-01") : d;
 }
 
-// Normalisieren + sortieren
+// ✅ Normalisieren + sortieren (ROUTING-SLUG ausschließlich aus entry.slug)
 const posts = entries
   .map((p) => {
-    // ✅ ROUTING-SLUG immer aus Dateiname
-    const url = `/blog/${p.slug}/`;
+    const url = `/blog/${p.slug}/`; // ✅ einzig relevante Route
 
-    const dateObj = safeDate(p.data.datePublished);
-    const dateIso = typeof p.data.datePublished === "string" ? p.data.datePublished : "1970-01-01";
+    // ✅ Content-Collections liefern publishedDate i.d.R. als Date (z.coerce.date)
+    const dateObj = safeDate((p.data as any).publishedDate ?? (p.data as any).datePublished);
+    const dateIso = isNaN(dateObj.getTime()) ? "1970-01-01" : dateObj.toISOString().slice(0, 10);
+
+    const cover = typeof (p.data as any).coverImage === "string" ? (p.data as any).coverImage.trim() : "";
+    const image = cover.length > 0 ? cover : null;
+
+    const excerpt =
+      (p.data as any).excerpt ??
+      (p.data as any).metaDescription ??
+      (p.data as any).description ??
+      "";
 
     return {
       url,
       slug: p.slug,
-      title: p.data.title,
-      excerpt: p.data.excerpt ?? p.data.metaDescription ?? "",
+      title: (p.data as any).title,
+      excerpt,
       date: dateIso,
       dateObj,
-      image: (p.data.coverImage && String(p.data.coverImage).length > 0) ? p.data.coverImage : null,
-      tags: Array.isArray(p.data.tags) ? p.data.tags : [],
+      image,
+      tags: Array.isArray((p.data as any).tags) ? (p.data as any).tags : [],
     };
   })
   .sort((a, b) => (a.dateObj < b.dateObj ? 1 : -1));
@@ -69,15 +79,15 @@ const schema = {
       "@id": `${pageUrl}#breadcrumb`,
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.autaxo.de/" },
-        { "@type": "ListItem", "position": 2, "name": "Blog", "item": pageUrl }
-      ]
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": pageUrl },
+      ],
     },
     {
       "@type": "Blog",
       "@id": `${pageUrl}#blog`,
       "name": title,
       "description": description,
-      "url": pageUrl
+      "url": pageUrl,
     },
     {
       "@type": "ItemList",
@@ -94,11 +104,11 @@ const schema = {
           "description": p.excerpt,
           "datePublished": p.date,
           "image": p.image ? p.image : `https://www.autaxo.de${fallbackImage}`,
-          "mainEntityOfPage": `https://www.autaxo.de${p.url}`
-        }
-      }))
-    }
-  ]
+          "mainEntityOfPage": `https://www.autaxo.de${p.url}`,
+        },
+      })),
+    },
+  ],
 };
 ---
 
@@ -193,7 +203,7 @@ const schema = {
                     <div class="flex flex-wrap items-center gap-2 text-xs mb-3">
                       <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white/70">
                         <Icon name="lucide:calendar" class="w-3.5 h-3.5 text-white/40" />
-                        {new Date(post.dateObj).toLocaleDateString("de-DE", { year: "numeric", month: "long", day: "2-digit" })}
+                        {post.dateObj.toLocaleDateString("de-DE", { year: "numeric", month: "long", day: "2-digit" })}
                       </span>
 
                       {(post.tags || []).slice(0, 3).map((t) => (
