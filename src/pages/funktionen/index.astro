@@ -11,35 +11,35 @@ const features = [
     title: "Digitale Verträge & eSignatur",
     text: "Erstelle rechtssichere Verkaufsverträge in Sekunden – inklusive digitaler Unterschrift. Autaxo spart dir Papierkram und macht deinen Fahrzeugverkauf vollständig digital.",
     icon: "lucide:pen-tool",
-    href: "/funktionen/digitale-vertraege-esignatur", // Link existiert
+    href: "/funktionen/digitale-vertraege-esignatur",
     isNew: false
   },
   {
     title: "Buchhaltung & Steuerlogik",
     text: "Autaxo berechnet automatisch die korrekte Umsatzsteuer – inklusive Differenzbesteuerung – und erstellt einen vollständigen DATEV-Export für deine Buchhaltung.",
     icon: "lucide:calculator",
-    href: "/funktionen/buchhaltung", // Link angepasst an deine Struktur
+    href: "/funktionen/buchhaltung",
     isNew: false
   },
   {
     title: "Steuerlogik §25a UStG",
     text: "Autaxo erkennt alle umsatzsteuerlich relevanten Fälle im Autohandel automatisch und berechnet die Differenzbesteuerung korrekt. So bleibt deine Buchhaltung rechtssicher.",
     icon: "lucide:percent",
-    href: "/funktionen/differenzbesteuerung-25a-ustg", // Link existiert
+    href: "/funktionen/differenzbesteuerung-25a-ustg",
     isNew: false
   },
   {
     title: "KI-Assistent Carlo",
     text: "Carlo ist dein Co-Pilot: per Foto Fahrzeugscheine scannen, Kunden anlegen und Dokumente zuordnen. Er erkennt den Steuerfall und gibt smarte Hinweise.",
     icon: "lucide:bot",
-    href: "/funktionen/ki-assistent", // Link angepasst
+    href: "/funktionen/ki-assistent",
     isNew: true
   },
   {
     title: "Schnittstellen (mobile.de)",
     text: "Übertrage Fahrzeugdaten automatisch auf mobile.de & AutoScout24. Inserate werden zentral verwaltet – ohne Doppeleingaben und manuelle Fehler.",
     icon: "lucide:share-2",
-    href: null, // Kein Link im Original
+    href: null,
     isNew: false
   },
   {
@@ -69,6 +69,29 @@ const features = [
     icon: "lucide:trending-up",
     href: null,
     isNew: false
+  },
+
+  // ✅ NEU: 3 zusätzliche Boxen (gleiches Design)
+  {
+    title: "DATEV Buchungsdatenservice",
+    text: "Übermittle Rechnungen und Kassendaten digital direkt an die Kanzlei. Nutze die native Schnittstelle für eine nahtlose, revisionssichere Buchhaltung ohne manuelle Doppelarbeit (Verfügbar ab Februar).",
+    icon: "lucide:plug",
+    href: null,
+    isNew: true
+  },
+  {
+    title: "Zentrales Rechnungsmanagement",
+    text: "Erstelle sonstige Ausgangsrechnungen und erfasse alle Eingangsbelege zentral. Ordne Kosten direkt zu und ermittle so den echten Gewinn pro Fahrzeug (Verfügbar ab Februar).",
+    icon: "lucide:receipt",
+    href: null,
+    isNew: true
+  },
+  {
+    title: "KI-Fahrzeugbild-Optimierung",
+    text: "Verwandle Schnappschüsse automatisch in Profi-Fotos. Unsere KI entfernt Hintergründe und optimiert die Darstellung für maximale Klickraten auf allen Fahrzeugbörsen (Verfügbar ab Februar).",
+    icon: "lucide:image",
+    href: null,
+    isNew: true
   }
 ];
 
@@ -92,10 +115,10 @@ const partners = [
 ---
 
 <MarketingLayout title={title} description={description}>
-  
+
   <section class="relative pt-32 pb-20 bg-[#0b0c10] overflow-hidden">
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-[#0b0c10] to-[#0b0c10]"></div>
-    
+
     <div class="container mx-auto px-4 relative z-10 text-center">
       <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight text-balance">
         Alle Funktionen für deinen <br/>
@@ -110,13 +133,13 @@ const partners = [
   <section class="py-20 bg-[#0b0c10]">
     <div class="container mx-auto px-4">
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        
+
         {features.map((feature) => (
           feature.href ? (
             // KLICKBARE KARTE
             <a href={feature.href} class="group relative p-8 rounded-2xl bg-[#15171e] border border-white/10 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 block">
               <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/0 via-primary/0 to-primary/0 group-hover:via-primary/50 transition-all duration-500"></div>
-              
+
               <div class="flex items-center justify-between mb-6">
                 <div class="w-12 h-12 rounded-lg bg-white/5 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
                   <Icon name={feature.icon} class="w-6 h-6" />
@@ -125,7 +148,7 @@ const partners = [
                   <span class="px-2 py-1 rounded text-xs font-bold bg-primary text-white uppercase tracking-wider">Neu</span>
                 )}
               </div>
-              
+
               <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
                 {feature.title}
                 <Icon name="lucide:arrow-right" class="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
@@ -137,9 +160,15 @@ const partners = [
           ) : (
             // STATISCHE KARTE
             <div class="p-8 rounded-2xl bg-[#15171e] border border-white/5">
-              <div class="w-12 h-12 rounded-lg bg-white/5 flex items-center justify-center text-text-muted mb-6">
-                <Icon name={feature.icon} class="w-6 h-6" />
+              <div class="flex items-center justify-between mb-6">
+                <div class="w-12 h-12 rounded-lg bg-white/5 flex items-center justify-center text-text-muted">
+                  <Icon name={feature.icon} class="w-6 h-6" />
+                </div>
+                {feature.isNew && (
+                  <span class="px-2 py-1 rounded text-xs font-bold bg-primary text-white uppercase tracking-wider">Neu</span>
+                )}
               </div>
+
               <h3 class="text-xl font-bold text-white mb-3">{feature.title}</h3>
               <p class="text-text-muted leading-relaxed text-sm">
                 {feature.text}
