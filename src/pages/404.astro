@@ -3,10 +3,31 @@ import ErrorLayout from '@/layouts/ErrorLayout.astro';
 import ErrorPage from '@components/error/ErrorPage.astro';
 ---
 
-<ErrorLayout title="Page Not Found" description="The page you're looking for doesn't exist.">
+<ErrorLayout
+  title="404 – Seite nicht gefunden"
+  description="Autaxo 404: Diese Seite ist wie ein Fahrzeug ohne FIN – nicht auffindbar."
+>
   <ErrorPage
     code={404}
-    title="Page Not Found"
-    message="Sorry, we couldn't find the page you're looking for. It might have been moved, deleted, or never existed."
-  />
+    title="404 – Diese Seite hat keinen TÜV"
+    message="Carlo hat gesucht: Bestand, Dokumentenablage, sogar den DATEV-Export. Ergebnis: 0 Treffer. Diese URL wurde vermutlich verschoben, gelöscht oder nie angelegt."
+  >
+    <!-- Falls ErrorPage einen Slot unterstützt, werden die Buttons unten angezeigt -->
+    <div style="margin-top: 1.25rem; display: flex; flex-wrap: wrap; gap: .75rem;">
+      <a href="/" style="padding: .7rem 1rem; border-radius: .75rem; border: 1px solid currentColor; text-decoration: none;">
+        Zur Startseite
+      </a>
+      <a href="/blog" style="padding: .7rem 1rem; border-radius: .75rem; border: 1px solid currentColor; text-decoration: none;">
+        Zum Blog
+      </a>
+      <a href="/kontakt" style="padding: .7rem 1rem; border-radius: .75rem; border: 1px solid currentColor; text-decoration: none;">
+        Kontakt
+      </a>
+    </div>
+
+    <p style="margin-top: .9rem; opacity: .8;">
+      Pro-Tipp: Wenn die URL wie eine Fahrgestellnummer aussieht, fehlt oft nur ein Zeichen.
+      Wenn das reproduzierbar ist: Autaxo kurz die URL schicken – dann wird’s sauber „eingebucht“.
+    </p>
+  </ErrorPage>
 </ErrorLayout>
