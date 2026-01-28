@@ -1,6 +1,7 @@
 ---
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
 import { Icon } from 'astro-icon/components';
+import SourceLink from '@/components/common/SourceLink.astro';
 
 const lastUpdatedISO = "2026-01-28";
 
@@ -290,9 +291,6 @@ const schema = {
   ]
 };
 
-const SourceLink = ({ id }) => (
-  <a href={`#${id}`} class="text-xs text-white/60 underline underline-offset-4 hover:text-white">[{id}]</a>
-);
 ---
 
 <MarketingLayout title={title} description={description}>
