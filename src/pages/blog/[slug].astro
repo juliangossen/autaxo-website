@@ -1,0 +1,123 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { Icon } from 'astro-icon/components';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((p) => ({
+    params: { slug: p.data.slug ?? p.slug },
+    props: { post: p },
+  }));
+}
+
+const { post } = Astro.props as { post: CollectionEntry<'blog'> };
+
+const title = post.data.seoTitle ?? post.data.title;
+const description = post.data.metaDescription ?? post.data.excerpt ?? '';
+const canonicalUrl = (() => {
+  try {
+    if (Astro.site) return new URL(`/blog/${post.data.slug ?? post.slug}/`, Astro.site).toString();
+  } catch (_) {}
+  return `https://www.autaxo.de/blog/${post.data.slug ?? post.slug}/`;
+})();
+
+const ogImage = post.data.coverImage && String(post.data.coverImage).length > 0
+  ? post.data.coverImage
+  : "/og/autaxo-og.png";
+
+const pageUrl = canonicalUrl;
+
+const breadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.autaxo.de/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.autaxo.de/blog/" },
+    { "@type": "ListItem", "position": 3, "name": post.data.title, "item": pageUrl }
+  ]
+};
+
+const blogPosting = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": post.data.title,
+  "description": description,
+  "inLanguage": post.data.language ?? "de-DE",
+  "datePublished": post.data.datePublished,
+  "dateModified": post.data.dateModified ?? post.data.datePublished,
+  "mainEntityOfPage": pageUrl,
+  "image": [`https://www.autaxo.de${ogImage}`],
+  "author": {
+    "@type": "Organization",
+    "name": "Autaxo (GOBERU Solutions UG)"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "GOBERU Solutions UG",
+    "url": "https://www.autaxo.de",
+    "logo": { "@type": "ImageObject", "url": "https://www.autaxo.de/logo.svg" }
+  }
+};
+---
+
+<MarketingLayout title={title} description={description} canonicalUrl={canonicalUrl} image={ogImage}>
+  <Fragment slot="head">
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={`https://www.autaxo.de${ogImage}`} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`https://www.autaxo.de${ogImage}`} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumb)} />
+    <script type="application/ld+json" set:html={JSON.stringify(blogPosting)} />
+  </Fragment>
+
+  <section class="pt-28 pb-10 bg-[#0b0c10]">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <a href="/blog" class="inline-flex items-center gap-2 text-white/70 hover:text-white transition-colors text-sm">
+        <Icon name="lucide:arrow-left" class="w-4 h-4" />
+        Zur Blog-Übersicht
+      </a>
+
+      <h1 class="mt-6 text-3xl md:text-5xl font-extrabold text-white leading-tight">
+        {post.data.title}
+      </h1>
+
+      <div class="mt-4 flex flex-wrap gap-2 text-xs text-white/70">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10">
+          <Icon name="lucide:calendar" class="w-3.5 h-3.5 text-white/40" />
+          {new Date(post.data.datePublished).toLocaleDateString("de-DE", { year: "numeric", month: "long", day: "2-digit" })}
+        </span>
+
+        {(post.data.tags ?? []).slice(0, 8).map((t: string) => (
+          <a href={`/blog/themen/${String(t).toLowerCase().replaceAll(" ", "-")}/`}
+             class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 hover:border-primary/40 transition-colors">
+            <Icon name="lucide:tag" class="w-3.5 h-3.5 text-white/40" />
+            {t}
+          </a>
+        ))}
+      </div>
+
+      {post.data.shortDefinition && (
+        <div class="mt-6 rounded-2xl border border-white/10 bg-[#15171e] p-5 text-white/80">
+          <div class="text-xs uppercase tracking-wider text-white/50 mb-2">Kurzdefinition</div>
+          <p class="m-0 leading-relaxed">{post.data.shortDefinition}</p>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <section class="pb-24 bg-[#0b0c10]">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <article class="prose prose-invert max-w-none prose-headings:text-white prose-p:text-white/75 prose-li:text-white/75">
+        <post.Content />
+      </article>
+    </div>
+  </section>
+</MarketingLayout>
