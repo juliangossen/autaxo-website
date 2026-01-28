@@ -3,25 +3,28 @@ import { defineCollection, z } from "astro:content";
 const blog = defineCollection({
   type: "content",
   schema: z.object({
-    // optional: eigener Slug (ansonsten wird entry.slug = Dateiname genutzt)
-    slug: z.string().optional(),
-
     title: z.string(),
-    description: z.string(),        // <- REQUIRED (dein Build verlangt das)
-    author: z.string().optional(),  // optional lassen, wenn du willst (sonst required)
+    description: z.string(),
+    author: z.string(),
 
-    // <- CRITICAL: robust gegen String oder YAML-Date
+    // robust: akzeptiert YAML-Date oder String
     publishedDate: z.coerce.date(),
+    updatedDate: z.coerce.date().optional(),
 
+    // SEO optional
     seoTitle: z.string().optional(),
     metaDescription: z.string().optional(),
     excerpt: z.string().optional(),
 
-    language: z.string().optional(),
-    region: z.string().optional(),
-    tags: z.array(z.string()).optional(),
+    tags: z.array(z.string()).default([]),
     coverImage: z.string().optional(),
     shortDefinition: z.string().optional(),
+
+    language: z.string().default("de-DE"),
+    region: z.string().default("DE"),
+
+    // optional (für später)
+    draft: z.boolean().default(false),
   }),
 });
 
