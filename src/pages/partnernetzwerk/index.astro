@@ -42,45 +42,37 @@ const categories = [
   },
 ];
 
-// Optional: leichte SEO-Stütze ohne Risiko (kein Overclaim)
 const schema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Autaxo Partnernetzwerk",
   "description": description,
   "inLanguage": "de-DE",
-  "about": [
-    { "@type": "Thing", "name": "Gebrauchtwagenhandel" },
-    { "@type": "Thing", "name": "§25a UStG (Differenzbesteuerung)" },
-    { "@type": "Thing", "name": "GoBD" },
-    { "@type": "Thing", "name": "DATEV" },
-  ],
 };
 ---
 
 <MarketingLayout title={title} description={description}>
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(schema)} />
 
-  {/* HERO – gleicher Stil wie FAQ (rote Wolke + Badge) */}
+  {/* HERO – 1:1 FAQ-Stil (rote Wolke + Badge) */}
   <section class="pt-32 pb-16 bg-[#0b0c10] relative overflow-hidden">
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[420px] bg-primary/10 blur-[100px] rounded-full pointer-events-none"></div>
+    {/* ✅ Glow/Wolke – robust sichtbar */}
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[420px] bg-primary/10 blur-[100px] rounded-full pointer-events-none -z-10"></div>
 
     <div class="container mx-auto px-4 text-center relative z-10">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-primary text-sm font-medium mb-6">
         <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-        Partnernetzwerk
+        Experten-Netzwerk
       </div>
 
       <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight text-balance">
-        Experten für den KFZ-Handel{" "}
-        <span class="text-primary">mit Autaxo-Know-how</span>
+        Partnernetzwerk <span class="text-primary">(Experten)</span>
       </h1>
 
       <p class="text-text-muted text-lg md:text-xl max-w-3xl mx-auto leading-relaxed text-balance">
-        Schluss mit Insellösungen zwischen DMS, Buchhaltung und Steuerfragen. Im Autaxo Partnernetzwerk finden Sie
-        Experten, die die <span class="text-white font-semibold">Autaxo-Logik</span> verstehen und Prozesse im
-        Gebrauchtwagenhandel <span class="text-white font-semibold">GoBD-konform</span> und effizient aufsetzen –
-        von <span class="text-white font-semibold">§25a</span> bis <span class="text-white font-semibold">DATEV</span>.
+        Finden Sie geprüfte Experten, die die <strong class="text-white">Autaxo-Logik</strong> verstehen und Prozesse im
+        Gebrauchtwagenhandel <strong class="text-white">GoBD-konform</strong> aufsetzen – von <strong class="text-white">§25a</strong>
+        bis <strong class="text-white">DATEV</strong>.
       </p>
 
       <div class="mt-10 flex flex-wrap justify-center gap-4">
@@ -107,9 +99,9 @@ const schema = {
         {categories.map((cat) => (
           <a
             href={cat.link}
-            class={`group bg-[#15171e] border border-white/10 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${cat.border}`}
+            class={`group relative bg-[#15171e] border border-white/10 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${cat.border}`}
           >
-            <div class="absolute top-6 right-6 px-2 py-1 bg-white/5 rounded text-[10px] uppercase font-bold text-white/50 tracking-wider group-hover:text-white group-hover:bg-white/10 transition-colors">
+            <div class="absolute top-4 right-4 px-2 py-1 bg-white/5 rounded text-[10px] uppercase font-bold text-white/50 tracking-wider group-hover:text-white group-hover:bg-white/10 transition-colors">
               Geprüft
             </div>
 
@@ -144,96 +136,83 @@ const schema = {
     </div>
   </section>
 
-  {/* NUTZEN – optisch wie FAQ-Accordion Cards */}
+  {/* NUTZEN */}
   <section class="py-24 bg-[#0b0c10] border-t border-white/5">
     <div class="container mx-auto px-4 max-w-5xl">
       <div class="text-center mb-12">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-primary text-sm font-medium mb-6">
-          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-          Nutzen
-        </div>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4 text-balance">
-          Ihr Nutzen im Partnernetzwerk
-        </h2>
+        <h2 class="text-3xl font-bold text-white mb-4">Ihr Nutzen im Netzwerk</h2>
         <p class="text-text-muted max-w-3xl mx-auto">
-          Weniger Reibung zwischen Handel, Buchhaltung und Steuerberatung – durch klare Standards und
-          abgestimmte Prozesse rund um Autaxo.
+          Weniger Reibung zwischen Handel, Buchhaltung und Steuerberatung – durch abgestimmte Standards rund um Autaxo.
         </p>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-4">
-        {[
-          {
-            icon: "lucide:shield-check",
-            title: "Rechtssicherheit",
-            text: "Partner kennen typische Stolperfallen im KFZ-Handel – von §25a bis zu Nachweisen bei EU/Export und GoBD-Themen.",
-          },
-          {
-            icon: "lucide:arrow-up-right",
-            title: "Skalierbare Prozesse",
-            text: "Digitalisierte Workflows zwischen Autaxo und DATEV reduzieren Rückfragen und beschleunigen Monatsabschlüsse – ohne Papierchaos.",
-          },
-          {
-            icon: "lucide:file-check",
-            title: "E-Rechnung ready",
-            text: "Vorbereitung auf E-Rechnung (XRechnung/ZUGFeRD): Autaxo liefert die Basis, Partner liefern Setup, Schulung und Prozessführung.",
-          },
-          {
-            icon: "lucide:line-chart",
-            title: "Besseres Controlling",
-            text: "Wenn DMS und Buchhaltung synchron laufen, werden Auswertungen belastbar. Entscheidungen basieren auf Zahlen statt Bauchgefühl.",
-          },
-        ].map((b) => (
-          <div class="group bg-[#15171e] border border-white/10 rounded-xl overflow-hidden transition-all duration-300 hover:border-primary/40">
-            <div class="p-6">
-              <div class="flex items-start gap-4">
-                <div class="bg-white/5 p-3 rounded-xl border border-white/10">
-                  <Icon name={b.icon} class="w-6 h-6 text-primary" />
-                </div>
-                <div class="min-w-0">
-                  <h3 class="text-lg font-bold text-white mb-2">{b.title}</h3>
-                  <p class="text-text-muted text-sm leading-relaxed">{b.text}</p>
-                </div>
-              </div>
-            </div>
-            <div class="h-px w-full bg-white/5"></div>
-            <div class="px-6 py-4 text-xs text-white/60">
-              Fokus: §25a · GoBD · EU/Export · DATEV
-            </div>
+      <div class="grid md:grid-cols-2 gap-12 text-left">
+        <div class="flex gap-4">
+          <div class="bg-primary/10 p-3 rounded-lg h-fit">
+            <Icon name="lucide:shield-check" class="w-6 h-6 text-primary" />
           </div>
-        ))}
+          <div>
+            <h3 class="text-white font-bold text-lg mb-2">Rechtssicherheit</h3>
+            <p class="text-text-muted text-sm">
+              Partner kennen Stolperfallen im KFZ-Handel – von §25a bis zu Nachweisen bei EU/Export und GoBD-Themen.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="bg-primary/10 p-3 rounded-lg h-fit">
+            <Icon name="lucide:arrow-up-right" class="w-6 h-6 text-primary" />
+          </div>
+          <div>
+            <h3 class="text-white font-bold text-lg mb-2">Skalierbare Prozesse</h3>
+            <p class="text-text-muted text-sm">
+              Digitalisierte Workflows zwischen Autaxo und DATEV reduzieren Rückfragen und beschleunigen Monatsabschlüsse.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="bg-primary/10 p-3 rounded-lg h-fit">
+            <Icon name="lucide:file-check" class="w-6 h-6 text-primary" />
+          </div>
+          <div>
+            <h3 class="text-white font-bold text-lg mb-2">E-Rechnung Ready</h3>
+            <p class="text-text-muted text-sm">
+              Vorbereitung auf E-Rechnung (XRechnung/ZUGFeRD): Autaxo liefert die Technik, Partner das Setup und die Schulung.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="bg-primary/10 p-3 rounded-lg h-fit">
+            <Icon name="lucide:line-chart" class="w-6 h-6 text-primary" />
+          </div>
+          <div>
+            <h3 class="text-white font-bold text-lg mb-2">Echtes Controlling</h3>
+            <p class="text-text-muted text-sm">
+              Wenn DMS und Buchhaltung synchron laufen, werden Auswertungen belastbar. Entscheidungen basieren auf Zahlen.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  {/* CTA – im Stil der FAQ-Seite */}
+  {/* CTA */}
   <section class="py-24 bg-[#0b0c10] text-center border-t border-white/5">
-    <div class="container mx-auto px-4 max-w-4xl">
-      <div class="relative bg-[#15171e] border border-white/10 rounded-2xl p-8 md:p-12 overflow-hidden">
+    <div class="container mx-auto px-4">
+      <div class="relative bg-gradient-to-br from-[#1a1d26] to-[#15171e] border border-white/10 rounded-3xl p-8 md:p-12 max-w-4xl mx-auto overflow-hidden">
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[320px] bg-primary/10 blur-[100px] rounded-full pointer-events-none"></div>
 
         <h3 class="text-2xl md:text-3xl font-bold text-white mb-4 relative z-10">
           Sie sind Steuerberater oder Consultant?
         </h3>
-        <p class="text-text-muted mb-8 max-w-2xl mx-auto relative z-10">
-          Werden Sie Teil des Netzwerks. Sie erhalten Anfragen von Autohändlern, die digital arbeiten und saubere Daten
-          liefern – abgestimmt auf Autaxo.
+        <p class="text-text-muted mb-8 max-w-xl mx-auto relative z-10">
+          Werden Sie Teil des Netzwerks. Profitieren Sie von Mandanten, die digital arbeiten und saubere Daten liefern.
         </p>
-
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
-          <a
-            href="/kontakt"
-            class="w-full sm:w-auto px-8 py-3 bg-primary text-white font-bold rounded-full hover:bg-primary-hover transition-all shadow-lg hover:shadow-primary/25"
-          >
-            Partner werden
-          </a>
-          <a
-            href="#kategorien"
-            class="w-full sm:w-auto px-8 py-3 bg-white/5 hover:bg-white/10 text-white font-bold rounded-full border border-white/10 transition-all"
-          >
-            Partner finden
-          </a>
-        </div>
+        <a href="/kontakt" class="btn btn--primary relative z-10">
+          Partner werden
+        </a>
       </div>
     </div>
   </section>
