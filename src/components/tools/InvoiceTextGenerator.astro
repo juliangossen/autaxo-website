@@ -1,5 +1,10 @@
 ---
 import { Icon } from 'astro-icon/components';
+
+// Wir definieren die Klassen hier, um den HTML-Code sauber zu halten
+const btnBase = "w-full p-3 rounded-lg border border-white/20 text-white text-sm font-medium transition-all text-left hover:bg-white/5";
+const btnActive = "[&.active]:border-primary [&.active]:bg-primary/10 [&.active]:text-primary [&.active]:ring-1 [&.active]:ring-primary";
+const btnClass = `${btnBase} ${btnActive}`;
 ---
 
 <div class="bg-[#15171e] border border-white/10 rounded-2xl p-6 lg:p-8 max-w-4xl mx-auto shadow-2xl my-12 relative overflow-hidden">
@@ -19,10 +24,10 @@ import { Icon } from 'astro-icon/components';
       <div>
         <label class="block text-sm font-medium text-gray-300 mb-2">Besteuerung des Fahrzeugs (Einkauf)</label>
         <div class="grid grid-cols-2 gap-3">
-          <button type="button" class="select-btn active" data-group="tax" data-value="regel" onclick="selectOption('tax', 'regel', this)">
+          <button type="button" class={btnClass + " active"} data-group="tax" data-value="regel" onclick="selectOption('tax', 'regel', this)">
             Regelbesteuerung (19%)
           </button>
-          <button type="button" class="select-btn" data-group="tax" data-value="25a" onclick="selectOption('tax', '25a', this)">
+          <button type="button" class={btnClass} data-group="tax" data-value="25a" onclick="selectOption('tax', '25a', this)">
             Differenzbest. (§25a)
           </button>
         </div>
@@ -84,15 +89,6 @@ import { Icon } from 'astro-icon/components';
     </div>
   </div>
 </div>
-
-<style>
-  .select-btn {
-    @apply w-full p-3 rounded-lg border border-white/20 text-white text-sm font-medium transition-all text-left hover:bg-white/5;
-  }
-  .select-btn.active {
-    @apply border-primary bg-primary/10 text-primary ring-1 ring-primary;
-  }
-</style>
 
 <script is:inline>
   let state = {
