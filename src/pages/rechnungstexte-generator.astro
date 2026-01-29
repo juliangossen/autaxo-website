@@ -1,0 +1,79 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import InvoiceTextGenerator from '@/components/tools/InvoiceTextGenerator.astro';
+import { Icon } from 'astro-icon/components';
+
+const title = "Kfz Rechnungstext-Generator | Steuerfreie Lieferung & Export";
+const description = "Welcher Satz muss auf die Rechnung? Generator für innergemeinschaftliche Lieferung, §25a und Export (Drittland). Kostenloses Tool für Autohändler.";
+---
+
+<MarketingLayout title={title} description={description}>
+  
+  <section class="pt-32 pb-12 lg:pt-48 lg:pb-20">
+    <div class="container mx-auto px-4 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider mb-6">
+        Kostenloses Tool
+      </div>
+      <h1 class="text-4xl lg:text-6xl font-extrabold text-white mb-6">
+        Rechnungstexte für <br />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500">Export & EU-Verkäufe</span>
+      </h1>
+      <p class="text-xl text-text-muted max-w-2xl mx-auto mb-10">
+        §25a, innergemeinschaftliche Lieferung oder Ausfuhr in die Schweiz? 
+        Erstelle hier den rechtssicheren Hinweistext für deine Rechnung.
+      </p>
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+      <InvoiceTextGenerator />
+    </div>
+  </section>
+
+  <section class="py-20 bg-surface border-t border-border">
+    <div class="container mx-auto px-4 max-w-3xl">
+      
+      <div class="prose prose-invert mx-auto mb-16">
+        <h3>Warum der richtige Satz bares Geld wert ist</h3>
+        <p>
+          Fehlt der Hinweis auf die Steuerbefreiung (z.B. bei Export oder EU-Verkäufen), erkennt das Finanzamt die Steuerfreiheit oft nicht an. 
+          Das Ergebnis: Du musst 19% Umsatzsteuer aus eigener Tasche nachzahlen. 
+        </p>
+        <p>
+          Ebenso gefährlich: Wer bei Differenzbesteuerung (§ 25a UStG) versehentlich Umsatzsteuer ausweist, schuldet diese dem Staat (§ 14c UStG), ohne sie vom Kunden bekommen zu haben.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <a href="/blog/fahrzeugverkauf-ins-drittland-umsatzsteuer-ausfuhrnachweis" class="group block p-6 bg-[#0b0c10] border border-white/10 rounded-xl hover:border-primary/50 transition-all">
+          <div class="flex items-center gap-3 mb-3 text-primary">
+            <Icon name="lucide:globe" class="w-5 h-5" />
+            <span class="text-xs font-bold uppercase">Export Guide</span>
+          </div>
+          <h4 class="text-white font-bold mb-2 group-hover:text-primary transition-colors">Verkauf ins Drittland (Schweiz etc.)</h4>
+          <p class="text-sm text-gray-400">Was du bei MRN und Ausfuhrnachweisen beachten musst.</p>
+        </a>
+
+        <a href="/blog/innergemeinschaftliche-lieferung-kfz-steuerfrei" class="group block p-6 bg-[#0b0c10] border border-white/10 rounded-xl hover:border-primary/50 transition-all">
+          <div class="flex items-center gap-3 mb-3 text-purple-400">
+            <Icon name="lucide:euro" class="w-5 h-5" />
+            <span class="text-xs font-bold uppercase">EU Guide</span>
+          </div>
+          <h4 class="text-white font-bold mb-2 group-hover:text-primary transition-colors">EU-Verkauf & Gelangensbestätigung</h4>
+          <p class="text-sm text-gray-400">Alles zu USt-IdNr. Prüfung und steuerfreier igL.</p>
+        </a>
+      </div>
+
+      <div class="mt-12 p-8 bg-gradient-to-br from-primary/20 to-purple-900/20 border border-primary/30 rounded-2xl text-center">
+        <h3 class="text-2xl font-bold text-white mb-4">Keine Lust auf manuelles Tippen?</h3>
+        <p class="text-gray-300 mb-6 max-w-lg mx-auto">
+          Autaxo erkennt den Steuerfall automatisch anhand des Käufers und setzt den korrekten Gesetzestext vollautomatisch auf jede Rechnung.
+        </p>
+        <a href="https://garage.autaxo.de/auth/sign-up" class="inline-flex items-center justify-center px-8 py-3 text-base font-bold leading-6 text-white transition duration-150 ease-in-out bg-primary border border-transparent rounded-lg hover:bg-primary-hover focus:outline-none focus:shadow-outline-blue md:py-4 md:text-lg md:px-10">
+          Autaxo kostenlos testen
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</MarketingLayout>
