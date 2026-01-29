@@ -8,7 +8,7 @@ seoTitle: "Innergemeinschaftliche Lieferung Kfz: Steuer, Nachweise & ZM"
 metaDescription: "Leitfaden für Autohändler: Steuerfreie EU-Lieferung (§ 6a UStG), Gelangensbestätigung, USt-IdNr.-Prüfung & Differenzbesteuerung. Inkl. Checkliste & FAQ."
 excerpt: "Praxis-Guide zur steuerfreien EU-Fahrzeuglieferung (§ 6a UStG): Voraussetzungen, Nachweisführung (Gelangensbestätigung/CMR), ZM-Compliance (Quick Fixes) und die § 25a-Kollision."
 tags: ["innergemeinschaftliche Lieferung", "§6a", "UStG", "Gelangensbestätigung", "USt-IdNr", "ZM", "Quick Fixes", "Kfz-Export", "§25a", "GoBD"]
-coverImage: "/og/autaxo-og.png"
+coverImage: "/images/blog/igl-fahrzeugverkauf.jpg"
 shortDefinition: "Eine innergemeinschaftliche Lieferung im Kfz-Handel ist ein steuerfreier Umsatz (§ 4 Nr. 1b i. V. m. § 6a UStG), wenn ein Fahrzeug von Deutschland in einen anderen EU-Mitgliedstaat gelangt und der Händler die Voraussetzungen (u. a. gültige USt-IdNr., korrekte ZM, Buch- und Belegnachweise wie Gelangensbestätigung/CMR) erfüllt."
 ---
 
