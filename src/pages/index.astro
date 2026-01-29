@@ -28,8 +28,9 @@ const modules = [
     title: "Digitale Fahrzeugakte",
     desc: "Status, Kosten, Dokumente und Nachweise zentral am Vorgang – audit-ready.",
     bullets: [
-      "Revisionssichere Ablage am Vorgang",
-      "Klare Statuslogik statt Excel & Ordner",
+      "Revisionssichere Ablage direkt am Vorgang",
+      "Kosten, Status und Dokumente pro Fahrzeug im Blick",
+      "Schnellere Übergabe an Steuerberatung & Prüfung",
     ],
     href: "/funktionen",
     icon: "lucide:folder-archive",
@@ -39,16 +40,38 @@ const modules = [
     nav: "Dokumente",
     title: "Verträge & eSignatur",
     desc: "PDFs in Sekunden: strukturiert, konsistent und rechtssicher.",
-    bullets: ["Kaufvertrag & Rechnung per Klick", "Standardisiert – weniger Fehler"],
+    bullets: [
+      "Kaufvertrag & Rechnung in Sekunden generieren",
+      "Standardisierte Vorlagen – weniger Formfehler",
+      "PDF-Versand + saubere Ablage am Vorgang",
+    ],
     href: "/funktionen/digitale-vertraege-esignatur",
     icon: "lucide:file-signature",
+  },
+  {
+    id: "mod-faktura",
+    nav: "Faktura",
+    title: "Dokumente & Faktura (Rechnungen)",
+    desc: "Rechnungen, Gutschriften & Storno – plus Beleg-Upload mit USt-Logik, Versand und revisionssicherer Ablage.",
+    bullets: [
+      "Vollwertige Faktura: Ausgangsrechnungen, Gutschriften & Storno – auch für Nicht-Fahrzeugfälle",
+      "USt-Logik im Dokument: Carlo unterstützt bei Steuerfällen und Pflichtangaben (z. B. §25a/EU/Export)",
+      "Belege hochladen: Fremdrechnungen werden analysiert; Kostenarten/Vorkontierung (Konten) werden vorgeschlagen",
+      "Export-ready & GoBD: revisionssicher archiviert, PDF + E-Mail-Versand, DATEV Buchungsdatenservice oder CSV Export",
+    ],
+    href: "/funktionen/faktura-rechnungen",
+    icon: "lucide:receipt",
   },
   {
     id: "mod-steuer",
     nav: "Steuerlogik",
     title: "§25a / EU / Export Steuerlogik",
     desc: "Autaxo erkennt den Fall und setzt Hinweise + Pflichten automatisch.",
-    bullets: ["Automatische Fall-Erkennung", "Dokumentations-Hinweise im Workflow"],
+    bullets: [
+      "Automatische Fall-Erkennung (§25a, EU, Export)",
+      "Leitplanken: Pflichtangaben & Hinweise im Dokument",
+      "Nachweispflichten sichtbar und am Vorgang ablegbar",
+    ],
     href: "/funktionen/differenzbesteuerung-25a-ustg",
     icon: "lucide:scale",
   },
@@ -57,7 +80,11 @@ const modules = [
     nav: "DATEV",
     title: "Buchhaltung & DATEV",
     desc: "Export-ready Daten, weniger Rückfragen, schnellerer Monatsabschluss.",
-    bullets: ["DATEV Export per Klick", "Struktur statt Nacharbeit"],
+    bullets: [
+      "DATEV-Export für Monatsabschluss per Klick",
+      "Weniger Rückfragen durch strukturierte Daten",
+      "Einheitliche Datenbasis statt Nacharbeit in Excel",
+    ],
     href: "/funktionen/buchhaltung",
     icon: "lucide:calculator",
   },
@@ -66,7 +93,11 @@ const modules = [
     nav: "Carlo",
     title: "KI-Assistent Carlo",
     desc: "Plausibilitätschecks und Leitplanken direkt im Prozess.",
-    bullets: ["Typische Fehler früh erkennen", "Hilft bei Fragen zu Steuerfällen"],
+    bullets: [
+      "Plausibilitätschecks im Prozess – Fehler früh erkennen",
+      "Kontext-Hinweise zu Steuerfällen & Dokumenten",
+      "Schnelle Antworten direkt im Vorgang (audit-ready)",
+    ],
     href: "/funktionen/ki-assistent",
     icon: "lucide:bot",
   },
@@ -394,7 +425,6 @@ const structuredData = {
                             <li class="flex gap-2"><span aria-hidden="true">•</span><span>Rechnungshinweise prüfen</span></li>
                           </ul>
                         </div>
-
                       </div>
 
                       <div class="pt-4 flex justify-center">
