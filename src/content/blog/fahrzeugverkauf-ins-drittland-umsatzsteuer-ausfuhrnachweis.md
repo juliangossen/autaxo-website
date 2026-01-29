@@ -130,6 +130,20 @@ Die MRN (Movement Reference Number) ist die Referenznummer der Ausfuhranmeldung.
 ### Muss die Rechnung zwingend einen Hinweis auf die Steuerbefreiung enthalten?
 Ja. Beispiele sind „steuerfreie Ausfuhrlieferung“ oder „umsatzsteuerfreie Ausfuhrlieferung“.
 
+---
+
+## Rechtsgrundlagen & Quellen
+
+Damit die steuerliche Einordnung und Dokumentation prüfungssicher bleibt, basieren die Prozesse auf folgenden Normen:
+
+* **§ 4 Nr. 1 Buchst. a UStG i.V.m. § 6 UStG:** Gesetzliche Basis für die Steuerbefreiung von Ausfuhrlieferungen in Drittlandsgebiete.
+* **§§ 8 bis 17 UStDV (Umsatzsteuer-Durchführungsverordnung):** Detaillierte Vorschriften zum Ausfuhrnachweis. Hier ist geregelt, dass der Ausfuhrnachweis durch Belege (z.B. Ausgangsvermerk) zu führen ist.
+* **§ 14 Abs. 4 UStG:** Pflichtangaben in der Rechnung, insbesondere der Hinweis auf die Steuerbefreiung.
+* **§ 147 AO (Abgabenordnung):** Aufbewahrungspflichten für Belege und Daten (10 Jahre).
+* **Atlas-Verfahren (IT-Verfahren Atlas):** Verfahrensanweisung des Zolls zur elektronischen Ausfuhr und Erstellung der MRN/Ausgangsvermerke.
+
+---
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
