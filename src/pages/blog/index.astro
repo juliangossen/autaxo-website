@@ -189,13 +189,13 @@ const schema = {
             <article class="group rounded-2xl border border-white/10 bg-[#15171e] hover:border-primary/50 transition-all overflow-hidden">
               <a href={post.url} class="block">
                 <div class="grid md:grid-cols-12 gap-0 md:gap-6">
-                  <div class="md:col-span-4 bg-black/30">
+                  <div class="md:col-span-4 bg-black/30 relative h-full min-h-[200px]">
                     <img
                       src={post.image || fallbackImage}
                       alt={post.title}
                       loading="lazy"
                       decoding="async"
-                      class="w-full h-full object-cover aspect-square md:aspect-auto opacity-90 group-hover:opacity-100 transition-opacity"
+                      class="w-full h-full object-cover absolute inset-0"
                     />
                   </div>
 
