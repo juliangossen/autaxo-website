@@ -2,7 +2,7 @@
 slug: "differenzbesteuerung-kfz-25a-ustg-guide-eu-fallen"
 title: "Differenzbesteuerung im Autohandel (§ 25a UStG) – Ein technischer Leitfaden"
 description: "Praxis-Guide zur Differenzbesteuerung (§ 25a UStG): Voraussetzungen, Berechnung, Rechnungsvorschriften, GoBD-Dokumentation und das EU-Dilemma (igL vs. Marge)."
-author: "Julian Goßen"
+author: "Julian Alessio Goßen (Bachelor of Taxation)"
 publishedDate: "2026-01-28"
 seoTitle: "Differenzbesteuerung Kfz: § 25a UStG Guide & EU-Fallen"
 metaDescription: "Praxis-Guide zur Differenzbesteuerung (§ 25a UStG): Berechnung, Rechnungsvorschriften und das strategische Risiko beim EU-Verkauf (igL vs. Marge)."
@@ -193,10 +193,11 @@ Weil dadurch im Zielmarkt die Margenfähigkeit für den B2C-Weiterverkauf entfal
   ],
   "datePublished": "2026-01-28",
   "author": [{
-      "@type": "Person",
-      "name": "Julian Goßen",
-      "url": "https://autaxo.de/ueber-uns"
-    }],
+      "@type": "Person",
+      "name": "Julian Alessio Goßen",
+      "jobTitle": "Bachelor of Taxation",
+      "url": "https://autaxo.de/ueber-uns"
+    }],
   "description": "Praxis-Guide zur Differenzbesteuerung (§ 25a UStG): Voraussetzungen, Berechnung, Rechnungsvorschriften, GoBD-Dokumentation und das EU-Dilemma.",
   "publisher": {
     "@type": "Organization",

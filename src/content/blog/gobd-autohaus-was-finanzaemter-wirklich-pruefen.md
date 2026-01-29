@@ -2,7 +2,7 @@
 slug: "gobd-autohaus-was-finanzaemter-wirklich-pruefen"
 title: "GoBD im Autohaus: Was Finanzämter wirklich prüfen"
 description: "Praxisnaher Leitfaden: Worauf Finanzämter bei GoBD-Prüfungen im Autohaus achten – Rechnungsnummern, Bargeld, Unveränderbarkeit, Belegablage, E‑Rechnung."
-author: "Julian Goßen"
+author: "Julian Alessio Goßen (Bachelor of Taxation)"
 publishedDate: "2026-01-29"
 seoTitle: "GoBD im Autohaus: Prüfungsfokus Finanzamt (Rechnungsnummern, Bargeld, Unveränderbarkeit, Belegablage, E‑Rechnung)"
 metaDescription: "Was Finanzämter im Autohaus wirklich prüfen: lückenlose Rechnungsnummern, Bargeld & Geldverkehrsrechnung, Unveränderbarkeit (DATEV-Festschreibung), Belegablage, E‑Rechnung ab 2025."
@@ -176,7 +176,8 @@ Damit die Prozesse prüfungssicher bleiben, basieren sie auf folgenden Normen:
   "datePublished": "2026-01-29",
   "author": [{
       "@type": "Person",
-      "name": "Julian Goßen",
+      "name": "Julian Alessio Goßen",
+      "jobTitle": "Bachelor of Taxation",
       "url": "https://autaxo.de/ueber-uns"
     }],
   "description": "Praxisnaher Leitfaden: Worauf Finanzämter bei GoBD-Prüfungen im Autohaus achten – Rechnungsnummern, Bargeld, Unveränderbarkeit, Belegablage, E‑Rechnung.",

@@ -2,7 +2,7 @@
 slug: "fahrzeugverkauf-ins-drittland-umsatzsteuer-ausfuhrnachweis"
 title: "Fahrzeugverkauf ins Drittland: Umsatzsteuer & Exportnachweise sauber lösen"
 description: "Drittland richtig einordnen, Ausfuhrnachweis (MRN/Ausgangsvermerk) revisionssicher dokumentieren und die Rechnung korrekt kennzeichnen – so bleibt der Fahrzeugexport umsatzsteuerlich belastbar."
-author: "Julian Goßen"
+author: "Julian Alessio Goßen (Bachelor of Taxation)"
 publishedDate: "2026-01-29"
 seoTitle: "Fahrzeugverkauf ins Drittland: Umsatzsteuer, MRN & Ausfuhrnachweis in der Praxis"
 metaDescription: "Drittland = außerhalb EU. Für steuerfreie Fahrzeug-Exporte ist der Ausfuhrnachweis entscheidend: Zollunterlagen mit MRN statt reiner Speditionsbescheinigung."
@@ -168,7 +168,8 @@ Damit die steuerliche Einordnung und Dokumentation prüfungssicher bleibt, basie
   "datePublished": "2026-01-29",
   "author": [{
       "@type": "Person",
-      "name": "Julian Goßen",
+      "name": "Julian Alessio Goßen",
+      "jobTitle": "Bachelor of Taxation",
       "url": "https://autaxo.de/ueber-uns"
     }],
   "description": "Drittland richtig einordnen, Ausfuhrnachweis (MRN/Ausgangsvermerk) revisionssicher dokumentieren und die Rechnung korrekt kennzeichnen.",

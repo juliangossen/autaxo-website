@@ -2,7 +2,7 @@
 slug: "innergemeinschaftliche-lieferung-kfz-steuerfrei"
 title: "Innergemeinschaftliche Lieferung im Kfz-Handel (§ 6a UStG) – Steuer, Nachweise & ZM"
 description: "Leitfaden für Autohändler zur steuerfreien innergemeinschaftlichen Lieferung (EU-Fahrzeugverkauf): Voraussetzungen nach § 6a UStG, USt-IdNr.-Prüfung, ZM (Quick Fixes), Gelangensbestätigung/CMR sowie die Kollision mit § 25a UStG. Inkl. Entscheidungsmatrix, Nachweis-Matrix, Checkliste & FAQ."
-author: "Julian Goßen"
+author: "Julian Alessio Goßen (Bachelor of Taxation)"
 publishedDate: "2026-01-29"
 seoTitle: "Innergemeinschaftliche Lieferung Kfz: Steuer, Nachweise & ZM"
 metaDescription: "Leitfaden für Autohändler: Steuerfreie EU-Lieferung (§ 6a UStG), Gelangensbestätigung, USt-IdNr.-Prüfung & Differenzbesteuerung. Inkl. Checkliste & FAQ."
@@ -272,7 +272,8 @@ Nein. Bei Anwendung von § 25a UStG ist die Steuerbefreiung für innergemeinscha
   "datePublished": "2026-01-29",
   "author": [{
       "@type": "Person",
-      "name": "Julian Goßen",
+      "name": "Julian Alessio Goßen",
+      "jobTitle": "Bachelor of Taxation",
       "url": "https://autaxo.de/ueber-uns"
     }],
   "description": "Leitfaden für Autohändler zur steuerfreien innergemeinschaftlichen Lieferung (§ 6a UStG): Voraussetzungen, Nachweise, ZM und Kollision mit § 25a UStG.",

@@ -2,7 +2,7 @@
 slug: "e-rechnung-2025-kfz-autohandel-pflicht-datev"
 title: "E-Rechnung ab 2025 im Autohandel: Pflichten, ZUGFeRD & die DATEV-Lösung"
 description: "Was Autohändler zur E-Rechnungspflicht wissen müssen: Unterschied zwischen Empfang (Pflicht seit 01.01.2025) und Versand. Warum Autaxo auf ZUGFeRD (PDF/A-3) setzt und weshalb die DATEV E-Rechnungsplattform die beste Lösung für Eingangsrechnungen ist."
-author: "Julian Goßen"
+author: "Julian Alessio Goßen (Bachelor of Taxation)"
 publishedDate: "2026-02-05"
 seoTitle: "E-Rechnung Kfz 2025: ZUGFeRD, Empfangspflicht & DATEV-Empfehlung"
 metaDescription: "E-Rechnung im Autohaus: Ab wann gilt die Pflicht? Wie empfange ich XRechnungen (DATEV)? Und wie hilft Autaxo beim Versand (ZUGFeRD/PDF/A-3)?"
@@ -125,7 +125,8 @@ Die E-Rechnungspflicht basiert auf nationalen und europäischen Anpassungen:
   "datePublished": "2026-02-05",
   "author": [{
       "@type": "Person",
-      "name": "Julian Goßen",
+      "name": "Julian Alessio Goßen",
+      "jobTitle": "Bachelor of Taxation",
       "url": "https://autaxo.de/ueber-uns"
     }],
   "description": "Was Autohändler zur E-Rechnungspflicht wissen müssen: DATEV für den Empfang nutzen, Autaxo (ZUGFeRD) für den Versand. Alle Fristen und Pflichten im Überblick.",
