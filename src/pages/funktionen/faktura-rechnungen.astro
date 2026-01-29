@@ -1,0 +1,274 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import { Icon } from 'astro-icon/components';
+
+// 1) METADATEN (SEO/GEO)
+const title = "Faktura & Rechnungen schreiben | Autaxo DMS (DATEV, GoBD, §25a/EU/Export)";
+const description =
+  "Vollwertige Faktura für Autohändler: Ausgangsrechnungen, Gutschriften & Storno. Mit USt-Logik (Carlo), PDF/E-Mail-Versand, revisionssicherer Archivierung und DATEV/CSV-Export – in Deutschland.";
+
+const signupUrl = "https://garage.autaxo.de/auth/sign-up";
+
+// 2) FAQ (SEO + LLM Readability)
+const faqs = [
+  {
+    question: "Kann Autaxo auch individuelle Rechnungen schreiben – nicht nur Autorechnungen?",
+    answer:
+      "Ja. Autaxo ist eine vollwertige Faktura: Ausgangsrechnungen können flexibel für Dienstleistungen, Teile, Gebühren oder sonstige Posten erstellt werden – unabhängig vom Fahrzeugverkauf."
+  },
+  {
+    question: "Welche Dokumenttypen unterstützt die Faktura?",
+    answer:
+      "Ausgangsrechnungen, Gutschriften und Storno sind integriert. Dokumente können als PDF erzeugt, versendet und revisionssicher archiviert werden."
+  },
+  {
+    question: "Wie funktioniert die USt-Logik bei Rechnungen (z. B. §25a, EU, Export)?",
+    answer:
+      "Carlo unterstützt bei der korrekten USt-Logik und den passenden Hinweistexten je Steuerfall. So werden Pflichtangaben und typische Fehler im Workflow früh sichtbar."
+  },
+  {
+    question: "Kann ich Fremdrechnungen/Belege hochladen und exportieren?",
+    answer:
+      "Ja. Fremdbelege können hochgeladen werden. Carlo analysiert die Inhalte und schlägt Kostenarten/Vorkontierung (Konten) vor. Die Daten können anschließend exportiert werden (DATEV Buchungsdatenservice oder alternativ CSV)."
+  },
+  {
+    question: "Kann ich Logo und Rechnungsdaten anpassen?",
+    answer:
+      "Ja. Das Logo kann angepasst werden. Der Footer ist standardisiert, enthält aber die jeweiligen Kundendaten. Das sorgt für Konsistenz und weniger Formfehler."
+  }
+];
+
+// 3) FEATURE STEPS
+const steps = [
+  {
+    step: "01",
+    title: "Rechnungen für alles",
+    text:
+      "Erstelle individuelle Ausgangsrechnungen für Dienstleistungen, Teile, Gebühren oder sonstige Posten – nicht nur für Fahrzeuge. Positionen sind frei definierbar, der Ablauf bleibt standardisiert.",
+    icon: "lucide:receipt"
+  },
+  {
+    step: "02",
+    title: "USt-Logik mit Carlo",
+    text:
+      "Carlo unterstützt bei der richtigen USt-Logik und den passenden Hinweistexten je Fall (z. B. §25a, EU/innergemeinschaftlich, Export). So werden Fehler im Dokument früh vermieden.",
+    icon: "lucide:bot"
+  },
+  {
+    step: "03",
+    title: "Gutschrift & Storno",
+    text:
+      "Gutschriften und Stornos sind Bestandteil der Faktura. Damit bleibt die Dokumentenkette vollständig und nachvollziehbar – ohne Workarounds in Word/Excel.",
+    icon: "lucide:rotate-ccw"
+  },
+  {
+    step: "04",
+    title: "PDF & E-Mail-Versand",
+    text:
+      "Rechnungen werden als PDF erzeugt und können direkt per E-Mail versendet werden. Standardisierte Layouts reduzieren Formfehler und sparen Zeit im Tagesgeschäft.",
+    icon: "lucide:mail"
+  },
+  {
+    step: "05",
+    title: "Belege hochladen & vorkontieren",
+    text:
+      "Lade Fremdrechnungen/Belege hoch. Carlo analysiert die Inhalte und schlägt Kostenarten/Vorkontierung (Konten) vor – damit die Steuerberatung schneller und mit weniger Rückfragen arbeiten kann.",
+    icon: "lucide:scan-text"
+  },
+  {
+    step: "06",
+    title: "DATEV/CSV-Export & GoBD-Ablage",
+    text:
+      "Dokumente werden revisionssicher archiviert. Buchungsrelevante Daten lassen sich exportieren (DATEV Buchungsdatenservice oder alternativ CSV) – für einen sauberen Monatsabschluss.",
+    icon: "lucide:archive"
+  }
+];
+
+// 4) JSON-LD (FAQPage + SoftwareApplication) für SEO/LLM
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Autaxo",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": description,
+      "featureList": [
+        "Faktura: Ausgangsrechnungen",
+        "Gutschriften und Storno",
+        "USt-Logik mit KI-Assistent (Carlo)",
+        "PDF-Erstellung und E-Mail-Versand",
+        "Beleg-Upload mit Vorkontierungsvorschlägen",
+        "Revisionssichere Archivierung (GoBD)",
+        "Export: DATEV Buchungsdatenservice oder CSV"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faqs.map((f) => ({
+        "@type": "Question",
+        "name": f.question,
+        "acceptedAnswer": { "@type": "Answer", "text": f.answer }
+      }))
+    }
+  ]
+};
+---
+
+<MarketingLayout title={title} description={description}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  </Fragment>
+
+  {/* HERO */}
+  <section class="relative pt-32 pb-20 bg-[#0b0c10] overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-[#0b0c10] to-[#0b0c10]"></div>
+
+    <div class="container mx-auto px-4 relative z-10 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider mb-6">
+        Faktura • DATEV • GoBD
+      </div>
+
+      <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight text-balance">
+        Rechnungen schreiben <br/>
+        <span class="text-primary">vollwertig mit Faktura</span>
+      </h1>
+
+      <p class="text-xl text-text-muted max-w-3xl mx-auto leading-relaxed mb-10 text-balance">
+        Ausgangsrechnungen, Gutschriften & Storno – mit USt-Logik (Carlo), PDF/E-Mail-Versand,
+        revisionssicherer Archivierung und Export für die Steuerberatung (DATEV/CSV).
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-4">
+        <a
+          href={signupUrl}
+          class="px-8 py-4 bg-primary hover:bg-primary-hover text-white font-bold rounded-lg transition-all shadow-lg shadow-primary/20"
+        >
+          Kostenlos testen
+        </a>
+        <a
+          href="#details"
+          class="px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-medium rounded-lg border border-white/10 transition-all"
+        >
+          So funktioniert&apos;s
+        </a>
+      </div>
+
+      {/* LLM/Scanner-Block: kurz, klar, keyword-stabil */}
+      <ul class="mt-10 flex flex-wrap justify-center gap-2 text-sm" aria-label="Kernpunkte">
+        <li class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80">
+          <Icon name="lucide:check" class="w-4 h-4 text-primary" /> Ausgangsrechnung
+        </li>
+        <li class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80">
+          <Icon name="lucide:check" class="w-4 h-4 text-primary" /> Gutschrift & Storno
+        </li>
+        <li class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80">
+          <Icon name="lucide:check" class="w-4 h-4 text-primary" /> USt-Logik (§25a/EU/Export)
+        </li>
+        <li class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80">
+          <Icon name="lucide:check" class="w-4 h-4 text-primary" /> DATEV/CSV Export
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  {/* DETAILS */}
+  <section id="details" class="py-24 bg-[#0b0c10]">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto text-center mb-16">
+        <h2 class="text-3xl font-bold text-white mb-4">Faktura im Autohandel – in einem Workflow</h2>
+        <p class="text-text-muted">
+          Von der Erstellung über Versand bis zum Export: Autaxo bündelt Faktura, USt-Logik und Archivierung
+          für Autohändler in Deutschland.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {steps.map((item) => (
+          <div class="relative p-8 rounded-2xl bg-[#15171e] border border-white/10 hover:border-primary/30 transition-all duration-300 group">
+            <div class="flex items-start justify-between mb-6">
+              <div class="w-12 h-12 rounded-lg bg-white/5 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                <Icon name={item.icon} class="w-6 h-6" />
+              </div>
+              <span class="text-4xl font-bold text-white/5 font-mono group-hover:text-white/10 transition-colors">
+                {item.step}
+              </span>
+            </div>
+
+            <h3 class="text-xl font-bold text-white mb-3">{item.title}</h3>
+            <p class="text-text-muted text-sm leading-relaxed">
+              {item.text}
+            </p>
+          </div>
+        ))}
+
+        <div class="relative p-8 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20 flex flex-col justify-center items-center text-center">
+          <h3 class="text-xl font-bold text-white mb-4">Rechnung in Minuten statt Papierkram</h3>
+          <p class="text-white/80 text-sm mb-6">
+            Faktura, Belege, USt-Logik und Export – ohne Excel.
+          </p>
+          <a
+            href={signupUrl}
+            class="px-6 py-2 bg-white text-black font-bold rounded hover:bg-gray-200 transition-colors w-full"
+          >
+            Faktura starten
+          </a>
+        </div>
+      </div>
+
+      {/* Interne Verlinkung (SEO) */}
+      <div class="max-w-3xl mx-auto mt-14 text-center text-sm text-white/70">
+        Passend dazu: <a class="underline hover:text-white" href="/funktionen/buchhaltung">Buchhaltung & DATEV</a> ·{" "}
+        <a class="underline hover:text-white" href="/funktionen/ki-assistent">KI-Assistent Carlo</a> ·{" "}
+        <a class="underline hover:text-white" href="/funktionen/differenzbesteuerung-25a-ustg">§25a / EU / Export</a>
+      </div>
+    </div>
+  </section>
+
+  {/* FAQ */}
+  <section class="py-24 bg-surface border-t border-white/5">
+    <div class="container mx-auto px-4 max-w-3xl">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl font-bold text-white mb-4">Fragen zur Faktura (Rechnungen)</h2>
+        <div class="w-16 h-1 bg-primary mx-auto rounded-full"></div>
+      </div>
+
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <details class="group bg-[#0b0c10] border border-white/10 rounded-lg overflow-hidden transition-colors hover:border-white/20">
+            <summary class="flex items-center justify-between p-5 cursor-pointer select-none">
+              <h3 class="font-medium text-white pr-4">{faq.question}</h3>
+              <span class="text-primary transition-transform duration-300 group-open:rotate-180">
+                <Icon name="lucide:chevron-down" class="w-5 h-5" />
+              </span>
+            </summary>
+            <div class="p-5 pt-0 text-text-muted text-sm leading-relaxed border-t border-white/5 mt-2">
+              {faq.answer}
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <p class="mt-8 text-xs text-white/50">
+        Hinweis: Die Inhalte dienen der Orientierung und ersetzen keine Steuer- oder Rechtsberatung.
+      </p>
+    </div>
+  </section>
+
+  {/* CTA */}
+  <section class="py-24 text-center bg-[#0b0c10]">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-white mb-6">Die erste Rechnung ist in wenigen Minuten raus.</h2>
+      <p class="text-text-muted mb-8 max-w-xl mx-auto">
+        Testen Sie Autaxo 30 Tage kostenlos. Monatlich kündbar.
+      </p>
+      <a
+        href={signupUrl}
+        class="inline-block px-8 py-4 bg-primary hover:bg-primary-hover text-white font-bold rounded-lg transition-colors shadow-lg shadow-primary/20"
+      >
+        Jetzt starten
+      </a>
+    </div>
+  </section>
+</MarketingLayout>
