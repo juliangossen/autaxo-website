@@ -136,11 +136,11 @@ Ja. Beispiele sind „steuerfreie Ausfuhrlieferung“ oder „umsatzsteuerfreie 
 
 Damit die steuerliche Einordnung und Dokumentation prüfungssicher bleibt, basieren die Prozesse auf folgenden Normen:
 
-* **§ 4 Nr. 1 Buchst. a UStG i.V.m. § 6 UStG:** Gesetzliche Basis für die Steuerbefreiung von Ausfuhrlieferungen in Drittlandsgebiete.
-* **§§ 8 bis 17 UStDV (Umsatzsteuer-Durchführungsverordnung):** Detaillierte Vorschriften zum Ausfuhrnachweis. Hier ist geregelt, dass der Ausfuhrnachweis durch Belege (z.B. Ausgangsvermerk) zu führen ist.
-* **§ 14 Abs. 4 UStG:** Pflichtangaben in der Rechnung, insbesondere der Hinweis auf die Steuerbefreiung.
-* **§ 147 AO (Abgabenordnung):** Aufbewahrungspflichten für Belege und Daten (10 Jahre).
-* **Atlas-Verfahren (IT-Verfahren Atlas):** Verfahrensanweisung des Zolls zur elektronischen Ausfuhr und Erstellung der MRN/Ausgangsvermerke.
+* **[§ 4 Nr. 1 Buchst. a UStG](https://www.gesetze-im-internet.de/ustg_1980/__4.html) i.V.m. [§ 6 UStG](https://www.gesetze-im-internet.de/ustg_1980/__6.html):** Gesetzliche Basis für die Steuerbefreiung von Ausfuhrlieferungen in Drittlandsgebiete.
+* **[§§ 8 bis 17 UStDV](https://www.gesetze-im-internet.de/ustdv_1980/__8.html) (Umsatzsteuer-Durchführungsverordnung):** Detaillierte Vorschriften zum Ausfuhrnachweis. Hier ist geregelt, dass der Ausfuhrnachweis durch Belege (z.B. Ausgangsvermerk) zu führen ist.
+* **[§ 14 Abs. 4 UStG](https://www.gesetze-im-internet.de/ustg_1980/__14.html):** Pflichtangaben in der Rechnung, insbesondere der Hinweis auf die Steuerbefreiung.
+* **[§ 147 AO](https://www.gesetze-im-internet.de/ao_1977/__147.html) (Abgabenordnung):** Aufbewahrungspflichten für Belege und Daten (10 Jahre).
+* **[Atlas-Verfahren (Zoll.de)](https://www.zoll.de/DE/Fachthemen/Zoelle/ATLAS/atlas_node.html):** Verfahrensanweisung des Zolls zur elektronischen Ausfuhr und Erstellung der MRN/Ausgangsvermerke.
 
 ---
 

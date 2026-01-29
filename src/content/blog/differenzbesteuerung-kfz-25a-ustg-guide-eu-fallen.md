@@ -173,14 +173,40 @@ Weil dadurch im Zielmarkt die Margenfähigkeit für den B2C-Weiterverkauf entfal
 ## Rechtsgrundlagen & zitierfähige Quellen (DE/EU)
 
 **Gesetze / Normen (Deutschland):**
-- **§ 25a UStG** – Differenzbesteuerung (Sonderregelung für Wiederverkäufer von Gebrauchtgegenständen, u. a. Gebrauchtwagen).
-- **§ 14c UStG** – Unrichtiger oder unberechtigter Steuerausweis (Risiko bei falschem USt-Ausweis auf Rechnungen).
-- **§ 19 UStG** – Kleinunternehmerregelung (Relevanz für „Einkauf ohne Vorsteuerabzug“).
-- **GoBD** – Grundsätze zur ordnungsmäßigen Führung und Aufbewahrung von Büchern, Aufzeichnungen und Unterlagen in elektronischer Form sowie zum Datenzugriff (Anforderungen an Nachvollziehbarkeit/Unveränderbarkeit/Dokumentation).
+- **[§ 25a UStG](https://www.gesetze-im-internet.de/ustg_1980/__25a.html)** – Differenzbesteuerung (Sonderregelung für Wiederverkäufer von Gebrauchtgegenständen, u. a. Gebrauchtwagen).
+- **[§ 14c UStG](https://www.gesetze-im-internet.de/ustg_1980/__14c.html)** – Unrichtiger oder unberechtigter Steuerausweis (Risiko bei falschem USt-Ausweis auf Rechnungen).
+- **[§ 19 UStG](https://www.gesetze-im-internet.de/ustg_1980/__19.html)** – Kleinunternehmerregelung (Relevanz für „Einkauf ohne Vorsteuerabzug“).
+- **[GoBD](https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Weitere_Steuerthemen/Abgabenordnung/2019-11-28-GoBD-nach-Befuerwortung-durch-Rechnungshoefe-veroeffentlicht.html)** – Grundsätze zur ordnungsmäßigen Führung und Aufbewahrung von Büchern, Aufzeichnungen und Unterlagen in elektronischer Form sowie zum Datenzugriff (Anforderungen an Nachvollziehbarkeit/Unveränderbarkeit/Dokumentation).
 
 **EU-Bezug (Kontext):**
-- **MwStSystRL (Richtlinie 2006/112/EG)** – EU-Mehrwertsteuersystemrichtlinie (u. a. Regelungen/Grundsystematik zur Besteuerung, inkl. Sonderregelungen für Gebrauchtgegenstände und innergemeinschaftliche Lieferungen).
+- **[MwStSystRL (Richtlinie 2006/112/EG)](https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=celex%3A32006L0112)** – EU-Mehrwertsteuersystemrichtlinie (u. a. Regelungen/Grundsystematik zur Besteuerung, inkl. Sonderregelungen für Gebrauchtgegenstände und innergemeinschaftliche Lieferungen).
 
 **Hinweis zur Praxis:** Die konkrete Beurteilung (insb. bei EU-Fällen und Vertrags-/Rechnungsgestaltung) hängt vom Einzelfall ab (B2B/B2C, Lieferkette, Nachweise, Zielland).
 
 **Hinweis:** Dieser Beitrag dient der allgemeinen Information und ersetzt keine steuerliche Beratung im Einzelfall.
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Differenzbesteuerung im Autohandel (§ 25a UStG) – Ein technischer Leitfaden",
+  "image": [
+    "https://autaxo.de/images/blog/differenzbesteuerung-kfz-25a-ustg-guide-eu-fallen.webp"
+  ],
+  "datePublished": "2026-01-28",
+  "author": [{
+      "@type": "Person",
+      "name": "Julian Goßen",
+      "url": "https://autaxo.de/ueber-uns"
+    }],
+  "description": "Praxis-Guide zur Differenzbesteuerung (§ 25a UStG): Voraussetzungen, Berechnung, Rechnungsvorschriften, GoBD-Dokumentation und das EU-Dilemma.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Autaxo",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://autaxo.de/logo.svg"
+    }
+  }
+}
+</script>

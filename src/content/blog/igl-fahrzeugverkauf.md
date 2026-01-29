@@ -268,3 +268,29 @@ Nein. Bei Anwendung von § 25a UStG ist die Steuerbefreiung für innergemeinscha
   https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32011R0282
 
 **Hinweis:** Dieser Beitrag dient der allgemeinen Information und ersetzt keine steuerliche Beratung im Einzelfall (insb. Zielland-Besonderheiten, Reihengeschäfte, Dreiecksgeschäfte, Kettenlieferungen, Sonderfälle Neufahrzeuge).
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Innergemeinschaftliche Lieferung im Kfz-Handel (§ 6a UStG) – Steuer, Nachweise & ZM",
+  "image": [
+    "https://autaxo.de/images/blog/igl-fahrzeugverkauf.webp"
+  ],
+  "datePublished": "2026-01-29",
+  "author": [{
+      "@type": "Person",
+      "name": "Julian Goßen",
+      "url": "https://autaxo.de/ueber-uns"
+    }],
+  "description": "Leitfaden für Autohändler zur steuerfreien innergemeinschaftlichen Lieferung (§ 6a UStG): Voraussetzungen, Nachweise, ZM und Kollision mit § 25a UStG.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Autaxo",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://autaxo.de/logo.svg"
+    }
+  }
+}
+</script>
