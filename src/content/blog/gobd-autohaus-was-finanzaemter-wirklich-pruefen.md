@@ -26,7 +26,7 @@ Im Autohaus ist das Risiko typischerweise höher als in vielen anderen Branchen,
 
 ---
 
-## Prüfungsfokus 1: Lückenlose Rechnungsstellung ist der „Türöffner“
+## Prüfungsfokus 1: Warum sind Rechnungslücken für Prüfer das erste Angriffsziel?
 
 ### Was Prüfer praktisch prüfen
 Der erste Blick geht fast immer auf die Vollständigkeit der Ausgangsrechnungen:
@@ -46,7 +46,7 @@ Ein sauberer, systemischer Nummernkreis ist kein „nice to have“, sondern ein
 
 ---
 
-## Prüfungsfokus 2: Bargeld – im Kfz-Handel besonders sensibel
+## Prüfungsfokus 2: Warum triggert Bargeld im Autohaus fast immer eine Geldverkehrsrechnung?
 
 ### Geldverkehrsrechnung als Standard-Trigger
 Wenn im Autohaus mit Bargeld gearbeitet wird, triggert dies fast immer eine **Geldverkehrsrechnung**.
@@ -62,9 +62,9 @@ Die Logik: Es wird geprüft, ob die bekannten Mittel (Entnahmen/Einlagen) die pr
 
 ---
 
-## Prüfungsfokus 3: Unveränderbarkeit – Warum „Festschreibung“ zählt
+## Prüfungsfokus 3: Was bedeutet "Unveränderbarkeit" und warum ist der "offene Stapel" riskant?
 
-### Was „Unveränderbarkeit“ bedeutet
+### Die Definition
 Das eingesetzte DV-Verfahren muss gewährleisten, dass einmal eingebrachte Informationen nicht unterdrückt, überschrieben, gelöscht oder geändert werden können – oder Änderungen müssen kenntlich sein.
 
 ### DATEV-Praxis: Das Risiko „offener Stapel“
@@ -77,7 +77,7 @@ In der Praxis bedeutet das:
 
 ---
 
-## Prüfungsfokus 4: Belegablage – vollständig, auffindbar, zuordenbar
+## Prüfungsfokus 4: Wie muss die Belegablage aussehen, um sicher zu sein?
 
 Die Belegablage wird nach drei Tests bewertet:
 1.  **Vollständigkeit:** Alle Belege da (ohne Lücken).
@@ -88,7 +88,7 @@ Bei Kassenthemen müssen Daten während der Aufbewahrungsfrist jederzeit verfüg
 
 ---
 
-## E‑Rechnung ab 2025: Erhöhter Druck
+## E‑Rechnung ab 2025: Was ändert sich für die GoBD?
 
 ### Was seit 1. Januar 2025 gilt
 * **Pflicht:** Bei B2B-Umsätzen im Inland ist regelmäßig eine E‑Rechnung zu verwenden.
@@ -150,46 +150,6 @@ Im Autohaus entscheidet GoBD-Compliance selten an Detailparagrafen – sondern a
 4.  **Belegablage** vollständig, auffindbar, zuordenbar – inkl. strukturierter E‑Rechnungsdaten.
 
 Wer diese Punkte operationalisiert, reduziert nicht nur Prüfungsstress, sondern verhindert die teuerste Kategorie von Fehlern: formelle Mängel, die Schätzungsdiskussionen überhaupt erst eröffnen.
-
----
-
-## Rechtsgrundlagen & Quellen
-
-Damit die Prozesse prüfungssicher bleiben, basieren sie auf folgenden Normen:
-
-* **[GoBD (BMF-Schreiben)](https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Weitere_Steuerthemen/Abgabenordnung/2019-11-28-GoBD-nach-Befuerwortung-durch-Rechnungshoefe-veroeffentlicht.html):** Grundsätze zur ordnungsmäßigen Führung und Aufbewahrung von Büchern, Aufzeichnungen und Unterlagen in elektronischer Form sowie zum Datenzugriff.
-* **[§ 146 AO](https://www.gesetze-im-internet.de/ao_1977/__146.html):** Ordnungsvorschriften für die Buchführung und für Aufzeichnungen (Grundlage für Kassenführung und Zeitgerechtheit).
-* **[§ 147 AO](https://www.gesetze-im-internet.de/ao_1977/__147.html):** Ordnungsvorschriften für die Aufbewahrung von Unterlagen (Dauer, Format, Lesbarkeit).
-* **[§ 158 AO](https://www.gesetze-im-internet.de/ao_1977/__158.html):** Beweiskraft der Buchführung (Nur ordnungsmäßige Buchführung hat Beweiskraft).
-* **[Wachstumschancengesetz (E-Rechnung)](https://www.bundesfinanzministerium.de/Content/DE/Gesetzestexte/Gesetze_Gesetzesvorhaben/Abteilungen/Abteilung_IV/20_Legislaturperiode/2023-08-30-Wachstumschancengesetz/0-Gesetz.html):** Gesetzliche Neuregelung zur E-Rechnungspflicht ab 01.01.2025.
-
----
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "GoBD im Autohaus: Was Finanzämter wirklich prüfen",
-  "image": [
-    "https://autaxo.de/images/blog/gobd-autohaus-was-finanzaemter-wirklich-pruefen.webp"
-  ],
-  "datePublished": "2026-01-29",
-  "author": [{
-      "@type": "Person",
-      "name": "Julian Goßen",
-      "url": "https://autaxo.de/ueber-uns"
-    }],
-  "description": "Praxisnaher Leitfaden: Worauf Finanzämter bei GoBD-Prüfungen im Autohaus achten – Rechnungsnummern, Bargeld, Unveränderbarkeit, Belegablage, E‑Rechnung.",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Autaxo",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://autaxo.de/logo.svg"
-    }
-  }
-}
-</script>
 
 ---
 

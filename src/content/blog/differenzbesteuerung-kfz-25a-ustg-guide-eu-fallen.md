@@ -20,7 +20,7 @@ Dieser Beitrag erklärt Funktionsweise, Voraussetzungen, Berechnung, Rechnungs- 
 
 ---
 
-## Kurzdefinition (für schnelle Einordnung)
+## Kurzdefinition: Was ist die Differenzbesteuerung (§ 25a UStG)?
 
 > **Die Differenzbesteuerung (§ 25a UStG)** besteuert bei Gebrauchtwagen nicht den gesamten Verkaufspreis, sondern nur die **Marge** (Verkaufspreis minus Einkaufspreis). Sie ist nur zulässig, wenn der Ankauf **ohne Vorsteuerabzug** erfolgte (z. B. Privatankauf, Kleinunternehmer, bereits differenzbesteuerter Ankauf).
 
@@ -36,7 +36,7 @@ Dieser Beitrag erklärt Funktionsweise, Voraussetzungen, Berechnung, Rechnungs- 
 
 ---
 
-## Was ist die Differenzbesteuerung nach § 25a UStG?
+## Funktionsweise: Wie unterscheidet sich § 25a UStG von der Regelbesteuerung?
 
 Die Differenzbesteuerung (Margenbesteuerung) vermeidet eine erneute volle Besteuerung von Waren, die bereits eine „endgültige“ Umsatzsteuerbelastung enthalten.
 
@@ -44,11 +44,11 @@ Beispiel: Ein Händler kauft einen Golf VII von einer Privatperson für 15.000 �
 
 ---
 
-## Warum ist § 25a UStG für Autohändler wirtschaftlich relevant?
+## Wirtschaftlichkeit: Warum lohnt sich die Differenzbesteuerung für Händler?
 
 Ohne § 25a wären Endkundenpreise bei Privatankäufen regelmäßig deutlich höher, um dieselbe Netto-Marge zu erzielen.
 
-**Vergleichsrechnung (vereinfachtes Beispiel):**  
+**Vergleichsrechnung (vereinfachtes Beispiel):**  
 Szenario: Einkauf 10.000 € (Privat), gewünschter Rohertrag 1.000 €.
 
 - **Regelbesteuerung:** 11.000 € netto + 19 % USt (= 2.090 €) → **13.090 €** brutto
@@ -58,7 +58,7 @@ Szenario: Einkauf 10.000 € (Privat), gewünschter Rohertrag 1.000 €.
 
 ---
 
-## Das EU-Dilemma: Strategischer Konflikt bei Verkäufen ins EU-Ausland
+## EU-Dilemma: Warum ist der Export bei § 25a problematisch?
 
 Ein kritischer Aspekt ist der Verkauf eines differenzbesteuerten Fahrzeugs an einen Händler im EU-Ausland. Hier prallen Interessen von Verkäufer (DE) und Käufer (EU) unmittelbar aufeinander.
 
@@ -86,41 +86,41 @@ Der deutsche Händler verkauft differenzbesteuert (ohne Steuerausweis).
 
 ---
 
-## Voraussetzungen für die Anwendung
+## Voraussetzungen: Wann darf die Differenzbesteuerung angewendet werden?
 
 Die Differenzbesteuerung ist an den Status des Einkaufs gebunden.
 
 1. **Wiederverkäufer-Eigenschaft:** gewerbsmäßiger Handel.
 2. **Lieferung im Gemeinschaftsgebiet:** Ankauf in DE/EU (kein Drittlandsimport im Sinne dieser Darstellung).
 3. **Einkauf ohne Vorsteuerabzug:**
-   - Ankauf von Privatpersonen
-   - Ankauf von Kleinunternehmern (§ 19 UStG)
-   - Ankauf von Händlern, die bereits § 25a angewendet haben
+   - Ankauf von Privatpersonen
+   - Ankauf von Kleinunternehmern (§ 19 UStG)
+   - Ankauf von Händlern, die bereits § 25a angewendet haben
 
 **Warnung:** Liegt eine Eingangsrechnung mit offen ausgewiesener USt vor (z. B. Firmenfahrzeug, Leasingrückläufer mit USt-Ausweis), ist § 25a grundsätzlich **nicht** zulässig.
 
 ---
 
-## Berechnung der Umsatzsteuer (Einzeldifferenz)
+## Berechnung: Wie ermittelt man die Umsatzsteuer (Einzeldifferenz)?
 
 Im Kfz-Handel wird regelmäßig die **Einzeldifferenz** je Fahrzeug gebildet. Verluste dürfen nicht mit Gewinnen anderer Fahrzeuge verrechnet werden.
 
 **Formel:**
-1. Bruttomarge = Verkaufspreis (brutto) – Einkaufspreis (brutto)  
-2. Bemessungsgrundlage (netto) = Bruttomarge / 1,19  
+1. Bruttomarge = Verkaufspreis (brutto) – Einkaufspreis (brutto)  
+2. Bemessungsgrundlage (netto) = Bruttomarge / 1,19  
 3. Umsatzsteueranteil = Bruttomarge – Bemessungsgrundlage
 
 **Wichtig:** Reparaturkosten erhöhen nicht den Einkaufspreis. Sie sind Betriebsausgaben und verändern die Bemessungsgrundlage der Differenzbesteuerung nicht.
 
 ---
 
-## Pflichten: Rechnung und Dokumentation (GoBD)
+## Pflichten: Welche Anforderungen stellt das Finanzamt an Rechnung und GoBD?
 
 Ein Fehler auf der Rechnung kann teuer werden (u. a. Risiken aus § 14c UStG).
 
 ### Pflichtangaben (bei Anwendung § 25a)
-- Hinweis auf die Sonderregelung, z. B.  
-  **„Differenzbesteuerung nach § 25a UStG“** oder **„Sonderregelung Gebrauchtgegenstände“**
+- Hinweis auf die Sonderregelung, z. B.  
+  **„Differenzbesteuerung nach § 25a UStG“** oder **„Sonderregelung Gebrauchtgegenstände“**
 
 ### Verboten (bei Anwendung § 25a)
 - **kein** gesonderter Ausweis von Umsatzsteuer (weder 19 % noch Betrag)
@@ -136,24 +136,24 @@ Für jedes Fahrzeug müssen mindestens nachvollziehbar sein:
 **Praxis-Lösung:** Systeme, die Einkaufstyp → Rechnungslogik → Dokumentation konsistent verknüpfen, reduzieren manuelle Fehler. Beispiel: Autaxo sperrt bei „§25a“-Ankauf den Steuerausweis automatisch und hält die Margenlogik am Vorgang nachvollziehbar.
 
 Interne Links:
-- Funktionsseite §25a: /funktionen/differenzbesteuerung-25a-ustg  
-- Buchhaltung/DATEV: /funktionen/buchhaltung  
+- Funktionsseite §25a: /funktionen/differenzbesteuerung-25a-ustg  
+- Buchhaltung/DATEV: /funktionen/buchhaltung  
 - Downloads/Vorlagen: /downloads
 
 ---
 
 ## FAQ zur Differenzbesteuerung
 
-**Kann bei differenzbesteuerten Fahrzeugen Vorsteuer gezogen werden?**  
+**Kann bei differenzbesteuerten Fahrzeugen Vorsteuer gezogen werden?**  
 Nein. Ohne offen ausgewiesene Umsatzsteuer im Einkauf fehlt die Grundlage für Vorsteuerabzug.
 
-**Was passiert bei negativer Marge?**  
+**Was passiert bei negativer Marge?**  
 Ist der Verkaufspreis niedriger als der Einkaufspreis, beträgt die Bemessungsgrundlage 0 €. Es fällt keine USt an. Eine negative Steuer wird nicht erstattet.
 
-**Darf Zubehör (z. B. Winterreifen) differenzbesteuert werden?**  
+**Darf Zubehör (z. B. Winterreifen) differenzbesteuert werden?**  
 Wird Zubehör gemeinsam als einheitliche Leistung mit dem Fahrzeug verkauft, kann es das steuerliche Schicksal teilen. Bei separatem Verkauf gilt häufig Regelbesteuerung. (Einzelfallabhängig.)
 
-**Warum wollen manche Händler keine „Netto-Rechnung“ (igL)?**  
+**Warum wollen manche Händler keine „Netto-Rechnung“ (igL)?**  
 Weil dadurch im Zielmarkt die Margenfähigkeit für den B2C-Weiterverkauf entfallen kann (EU-Dilemma).
 
 ---
@@ -165,8 +165,6 @@ Weil dadurch im Zielmarkt die Margenfähigkeit für den B2C-Weiterverkauf entfal
 - [ ] EU-Strategie: igL (netto) vs. Marge (brutto) vorab klären, Preis ggf. anpassen
 - [ ] Rechnung: kein Steuerausweis, Hinweis auf §25a gesetzt
 - [ ] Akte: Ankaufbeleg + Margenberechnung zur FIN archiviert (GoBD)
-
----
 
 ---
 
@@ -187,26 +185,26 @@ Weil dadurch im Zielmarkt die Margenfähigkeit für den B2C-Weiterverkauf entfal
 
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Differenzbesteuerung im Autohandel (§ 25a UStG) – Ein technischer Leitfaden",
-  "image": [
-    "https://autaxo.de/images/blog/differenzbesteuerung-kfz-25a-ustg-guide-eu-fallen.webp"
-  ],
-  "datePublished": "2026-01-28",
-  "author": [{
-      "@type": "Person",
-      "name": "Julian Goßen",
-      "url": "https://autaxo.de/ueber-uns"
-    }],
-  "description": "Praxis-Guide zur Differenzbesteuerung (§ 25a UStG): Voraussetzungen, Berechnung, Rechnungsvorschriften, GoBD-Dokumentation und das EU-Dilemma.",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Autaxo",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://autaxo.de/logo.svg"
-    }
-  }
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Differenzbesteuerung im Autohandel (§ 25a UStG) – Ein technischer Leitfaden",
+  "image": [
+    "https://autaxo.de/images/blog/differenzbesteuerung-kfz-25a-ustg-guide-eu-fallen.webp"
+  ],
+  "datePublished": "2026-01-28",
+  "author": [{
+      "@type": "Person",
+      "name": "Julian Goßen",
+      "url": "https://autaxo.de/ueber-uns"
+    }],
+  "description": "Praxis-Guide zur Differenzbesteuerung (§ 25a UStG): Voraussetzungen, Berechnung, Rechnungsvorschriften, GoBD-Dokumentation und das EU-Dilemma.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Autaxo",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://autaxo.de/logo.svg"
+    }
+  }
 }
 </script>
