@@ -1,9 +1,7 @@
 ---
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
 import { Icon } from 'astro-icon/components';
-// NEU: Import für das Bild
 import { Image } from 'astro:assets';
-// NEU: Das Bild laden (Pfad relativ von src/pages zu src/assets)
 import dashboardImg from '../assets/dashboard.png';
 
 const title = "Autaxo | Dealer-Management-System für §25a, EU & Export";
@@ -262,303 +260,261 @@ const structuredData = {
       <div class="absolute inset-0 ax-spotlight"></div>
     </div>
 
-    <header class="pt-28 pb-12 lg:pt-44 lg:pb-14">
+    {/* ✅ HERO: gestackt (zentriert), weniger Dichte, mehr Luft */}
+    <header class="pt-28 pb-16 lg:pt-44 lg:pb-24">
       <div class="container mx-auto px-4">
-        <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-
-          {/* ✅ Links schmaler: 4/12 */}
-          <div class="lg:col-span-4">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/90 text-xs font-semibold tracking-wide">
-              <span class="relative flex h-2 w-2" aria-hidden="true">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-              </span>
-              Live: KI-Assistent <span class="text-primary">Carlo</span>
-            </div>
-
-            <h1 id="hero-title" class="mt-6 text-5xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.02] text-balance">
-              Autohandel.
-              <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-red-400 to-fuchsia-400">
-                {" "}Automatisiert.
-              </span>
-            </h1>
-
-            <p class="mt-6 text-lg lg:text-xl text-text-muted leading-relaxed max-w-xl text-balance">
-              Autaxo bündelt Fahrzeugakte, Dokumente, Steuerlogik (§25a/EU/Export) und DATEV-Export in einem durchgängigen Workflow – vom Scan bis zum Vertrag.
-            </p>
-
-            <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <a
-                href={signupUrl}
-                class="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary hover:bg-primary-hover text-white font-bold rounded-xl transition-all hover:-translate-y-0.5 shadow-xl shadow-primary/25"
-                aria-label="Autaxo kostenlos testen"
-              >
-                Kostenlos testen
-                <Icon name="lucide:arrow-right" class="w-5 h-5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-              </a>
-
-              <a
-                href="/preise"
-                class="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/5 border border-white/10 hover:border-primary/40 text-white font-semibold rounded-xl transition-colors"
-                aria-label="Zu den Preisen"
-              >
-                Preise
-              </a>
-            </div>
-
-            <section class="mt-8" aria-label="Kurzfakten">
-              <dl class="grid grid-cols-3 gap-3 max-w-lg" data-reveal>
-                <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
-                  <dt class="text-xs text-white/60">Speed</dt>
-                  <dd class="text-white text-xl font-extrabold mt-1">60s</dd>
-                  <dd class="text-xs text-white/60 mt-1">FIN → Vertrag</dd>
-                </div>
-                <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
-                  <dt class="text-xs text-white/60">Steuerlogik</dt>
-                  <dd class="text-white text-xl font-extrabold mt-1">§25a</dd>
-                  <dd class="text-xs text-white/60 mt-1">EU & Export</dd>
-                </div>
-                <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
-                  <dt class="text-xs text-white/60">Buchhaltung</dt>
-                  <dd class="text-white text-xl font-extrabold mt-1">DATEV</dd>
-                  <dd class="text-xs text-white/60 mt-1">per Klick</dd>
-                </div>
-              </dl>
-            </section>
+        <div class="mx-auto max-w-3xl text-center">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/90 text-xs font-semibold tracking-wide" data-reveal>
+            <span class="relative flex h-2 w-2" aria-hidden="true">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+            </span>
+            Live: KI-Assistent <span class="text-primary">Carlo</span>
           </div>
 
-          {/* ✅ Rechts breiter: 8/12 (≈ 2/3) */}
-          <div class="lg:col-span-8 self-stretch" data-reveal>
-            <div class="relative h-full">
-              <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-primary/35 via-fuchsia-500/20 to-cyan-400/20 blur-xl opacity-70" aria-hidden="true"></div>
+          <h1 id="hero-title" class="mt-6 text-5xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.02] text-balance" data-reveal>
+            Autohandel.
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-red-400 to-fuchsia-400">
+              {" "}Automatisiert.
+            </span>
+          </h1>
 
-              <div class="relative rounded-3xl border border-white/10 bg-[#0b0c10]/70 backdrop-blur-xl overflow-hidden shadow-2xl h-full flex flex-col">
-                <div class="flex items-center justify-between px-5 py-4 border-b border-white/10 bg-white/5">
-                  <div class="flex items-center gap-2" aria-hidden="true">
-                    <span class="h-2.5 w-2.5 rounded-full bg-red-500/70"></span>
-                    <span class="h-2.5 w-2.5 rounded-full bg-yellow-500/70"></span>
-                    <span class="h-2.5 w-2.5 rounded-full bg-green-500/70"></span>
+          <p class="mt-6 text-lg lg:text-xl text-text-muted leading-relaxed text-balance" data-reveal>
+            Autaxo bündelt Fahrzeugakte, Dokumente, Steuerlogik (§25a/EU/Export) und DATEV-Export in einem durchgängigen Workflow – vom Scan bis zum Vertrag.
+          </p>
+
+          <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center" data-reveal>
+            <a
+              href={signupUrl}
+              class="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary hover:bg-primary-hover text-white font-bold rounded-xl transition-all hover:-translate-y-0.5 shadow-xl shadow-primary/25"
+              aria-label="Autaxo kostenlos testen"
+            >
+              Kostenlos testen
+              <Icon name="lucide:arrow-right" class="w-5 h-5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+            </a>
+
+            <a
+              href="/preise"
+              class="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/5 border border-white/10 hover:border-primary/40 text-white font-semibold rounded-xl transition-colors"
+              aria-label="Zu den Preisen"
+            >
+              Preise
+            </a>
+          </div>
+
+          {/* ✅ Kurzfakten: als Chips (ruhiger als 3 Cards) */}
+          <ul class="mt-7 flex flex-wrap justify-center gap-2" aria-label="Kurzfakten" data-reveal>
+            <li>
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-white/80">
+                <span class="text-white/60">Speed</span>
+                <span class="text-white">60s</span>
+                <span class="text-white/60">FIN → Vertrag</span>
+              </span>
+            </li>
+            <li>
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-white/80">
+                <span class="text-white/60">Steuerlogik</span>
+                <span class="text-white">§25a</span>
+                <span class="text-white/60">EU & Export</span>
+              </span>
+            </li>
+            <li>
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-white/80">
+                <span class="text-white/60">Buchhaltung</span>
+                <span class="text-white">DATEV</span>
+                <span class="text-white/60">per Klick</span>
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        {/* ✅ Product-Proof direkt im Hero (unter Text) */}
+        <div class="mt-12 lg:mt-14 mx-auto max-w-6xl" data-reveal>
+          <div class="relative">
+            <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-primary/35 via-fuchsia-500/20 to-cyan-400/20 blur-xl opacity-70" aria-hidden="true"></div>
+
+            <div class="relative rounded-3xl border border-white/10 bg-[#0b0c10]/70 backdrop-blur-xl overflow-hidden shadow-2xl">
+              <div class="flex items-center justify-between px-5 py-4 border-b border-white/10 bg-white/5">
+                <div class="flex items-center gap-2" aria-hidden="true">
+                  <span class="h-2.5 w-2.5 rounded-full bg-red-500/70"></span>
+                  <span class="h-2.5 w-2.5 rounded-full bg-yellow-500/70"></span>
+                  <span class="h-2.5 w-2.5 rounded-full bg-green-500/70"></span>
+                </div>
+                <div class="text-xs font-mono text-white/45">SSG • Edge</div>
+              </div>
+
+              <div class="p-5 lg:p-6">
+                {/* ✅ 3/4 : 1/4 Layout, mobil untereinander */}
+                <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 items-stretch">
+                  {/* Dashboard: 3/4 */}
+                  <div class="relative rounded-2xl border border-white/10 bg-white/5 overflow-hidden sm:col-span-3">
+                    <div class="absolute inset-0 ax-shine opacity-60" aria-hidden="true"></div>
+
+                    <Image
+                      src={dashboardImg}
+                      alt="Autaxo Dashboard mit digitaler Fahrzeugakte und Statusübersicht"
+                      class="w-full h-[260px] sm:h-[420px] lg:h-[460px] object-cover object-top"
+                      loading="eager"
+                      decoding="async"
+                      fetchpriority="high"
+                    />
+
+                    <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between" aria-hidden="true">
+                      <span class="text-[11px] text-white/70 bg-black/40 border border-white/10 px-2.5 py-1 rounded-full">
+                        Dashboard
+                      </span>
+                      <span class="text-[11px] text-white/70 bg-black/40 border border-white/10 px-2.5 py-1 rounded-full">
+                        Audit-ready
+                      </span>
+                    </div>
                   </div>
-                  <div class="text-xs font-mono text-white/45">SSG • Edge</div>
+
+                  {/* Carlo: 1/4 */}
+                  <div class="relative rounded-2xl border border-white/10 bg-white/5 overflow-hidden sm:col-span-1">
+                    <div class="absolute inset-0 ax-scanline" aria-hidden="true"></div>
+                    <div class="p-4 h-full flex flex-col">
+                      <div class="flex flex-col items-center text-center">
+                        <div class="h-10 w-10 rounded-2xl bg-primary/20 border border-primary/30 flex items-center justify-center" aria-hidden="true">
+                          <Icon name="lucide:bot" class="w-5 h-5 text-primary" aria-hidden="true" />
+                        </div>
+                        <p class="mt-3 text-sm font-extrabold text-white leading-tight">Carlo</p>
+                        <p class="mt-0.5 text-xs text-white/50">Checks im Workflow</p>
+                      </div>
+
+                      <div class="mt-4 text-sm space-y-3 flex-1">
+                        <div class="rounded-2xl bg-[#15171e] border border-white/10 px-3 py-2 text-text-muted">
+                          „Italien netto – welche Nachweise brauche ich?“
+                        </div>
+                        <div class="rounded-2xl bg-primary/10 border border-primary/20 px-3 py-2 text-white">
+                          „EU/Export erkannt: VIES prüfen, Nachweise im Vorgang, Hinweise in Vertrag/Rechnung.“
+                        </div>
+                      </div>
+
+                      <div class="pt-4 flex justify-center">
+                        <a
+                          href="/funktionen/ki-assistent"
+                          class="inline-flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-lg bg-primary/15 border border-primary/30 text-primary font-semibold text-xs hover:bg-primary/20 transition-colors"
+                        >
+                          Mehr zu Carlo
+                          <Icon name="lucide:arrow-right" class="w-4 h-4" aria-hidden="true" />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
-                <div class="p-5 lg:p-6 flex-1 flex flex-col">
-                  {/* ✅ 3/5 : 2/5 Layout */}
-                  <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 items-stretch">
-                    {/* Dashboard: 3/4 */}
-                    <div class="relative rounded-2xl border border-white/10 bg-white/5 overflow-hidden h-full sm:col-span-3">
-                      <div class="absolute inset-0 ax-shine opacity-60" aria-hidden="true"></div>
-
-                      <Image
-                        src={dashboardImg}
-                        alt="Autaxo Dashboard mit digitaler Fahrzeugakte und Statusübersicht"
-                        class="w-full h-[260px] sm:h-full object-cover object-top"
-                        loading="eager"
-                        decoding="async"
-                        fetchpriority="high"
-                      />
-
-                      <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between" aria-hidden="true">
-                        <span class="text-[11px] text-white/70 bg-black/40 border border-white/10 px-2.5 py-1 rounded-full">
-                          Dashboard
-                        </span>
-                        <span class="text-[11px] text-white/70 bg-black/40 border border-white/10 px-2.5 py-1 rounded-full">
-                          Audit-ready
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Carlo: 1/4 */}
-                    <div class="relative rounded-2xl border border-white/10 bg-white/5 overflow-hidden h-full sm:col-span-1">
-                      <div class="absolute inset-0 ax-scanline" aria-hidden="true"></div>
-                      <div class="p-4 h-full flex flex-col">
-                        <div class="flex flex-col items-center text-center">
-                          <div class="h-10 w-10 rounded-2xl bg-primary/20 border border-primary/30 flex items-center justify-center" aria-hidden="true">
-                            <Icon name="lucide:bot" class="w-5 h-5 text-primary" aria-hidden="true" />
-                          </div>
-                          <p class="mt-3 text-sm font-extrabold text-white leading-tight">Carlo</p>
-                          <p class="mt-0.5 text-xs text-white/50">Checks im Workflow</p>
-                        </div>
-
-                        <div class="mt-4 text-sm space-y-3 flex-1">
-                          <div class="rounded-2xl bg-[#15171e] border border-white/10 px-3 py-2 text-text-muted">
-                            „Italien netto – welche Nachweise brauche ich?“
-                          </div>
-                          <div class="rounded-2xl bg-primary/10 border border-primary/20 px-3 py-2 text-white">
-                            „EU/Export erkannt: VIES prüfen, Nachweise im Vorgang, Hinweise in Vertrag/Rechnung.“
-                          </div>
-                        </div>
-
-                        <div class="pt-4 flex justify-center">
-                          <a
-                            href="/funktionen/ki-assistent"
-                            class="inline-flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-lg bg-primary/15 border border-primary/30 text-primary font-semibold text-xs hover:bg-primary/20 transition-colors"
-                          >
-                            Mehr zu Carlo
-                            <Icon name="lucide:arrow-right" class="w-4 h-4" aria-hidden="true" />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="mt-auto pt-4 flex flex-wrap gap-2" aria-label="Kernmodule">
-                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white/70">Fahrzeugakte</span>
-                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white/70">§25a/EU/Export</span>
-                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white/70">DATEV</span>
-                  </div>
+                <div class="mt-5 flex flex-wrap gap-2" aria-label="Kernmodule">
+                  <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white/70">Fahrzeugakte</span>
+                  <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white/70">§25a/EU/Export</span>
+                  <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white/70">DATEV</span>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </header>
 
-    <section class="pb-24" aria-labelledby="modules-title">
+    {/* ✅ MODULES: Überblick entschlackt (nur rechte Liste / Accordion) + weniger CTA-Spam */}
+    <section class="pb-28 lg:pb-32" aria-labelledby="modules-title">
       <div class="container mx-auto px-4">
-        <div class="grid lg:grid-cols-12 gap-10 lg:gap-12">
-          <div class="lg:col-span-4">
-            <div class="lg:sticky lg:top-28">
-              <div class="inline-flex items-center gap-2 text-primary font-bold tracking-wider uppercase text-sm" data-reveal>
-                <Icon name="lucide:layers" class="w-4 h-4" aria-hidden="true" />
-                Überblick
-              </div>
-
-              <h2 id="modules-title" class="mt-3 text-3xl lg:text-4xl font-extrabold text-white text-balance" data-reveal>
-                Ein System. <span class="text-primary">Ein Flow.</span>
-              </h2>
-
-              <nav class="mt-6 grid gap-2" aria-label="Module Navigator" data-reveal>
-                {modules.map((m) => (
-                  <a
-                    href={`#${m.id}`}
-                    data-mod-link={m.id}
-                    class="ax-nav-item rounded-2xl border border-white/10 bg-white/5 px-4 py-3 flex items-center gap-3 hover:border-primary/40 transition-colors"
-                  >
-                    <div class="h-9 w-9 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary" aria-hidden="true">
-                      <Icon name={m.icon} class="w-5 h-5" aria-hidden="true" />
-                    </div>
-                    <div class="flex-1">
-                      <p class="text-white font-bold leading-tight">{m.nav}</p>
-                      <p class="text-xs text-white/50 mt-0.5">{m.title}</p>
-                    </div>
-                    <Icon name="lucide:chevron-right" class="w-4 h-4 text-white/40" aria-hidden="true" />
-                  </a>
-                ))}
-              </nav>
-
-              <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center" data-reveal>
-                <a
-                  href={signupUrl}
-                  class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-primary hover:bg-primary-hover text-white font-bold rounded-xl transition-all hover:-translate-y-0.5 shadow-xl shadow-primary/20"
-                >
-                  Kostenlos testen
-                  <Icon name="lucide:arrow-right" class="w-5 h-5" aria-hidden="true" />
-                </a>
-                <a
-                  href="/preise"
-                  class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white/5 border border-white/10 hover:border-primary/40 text-white font-semibold rounded-xl transition-colors"
-                >
-                  Preise
-                </a>
-              </div>
-
-              <div class="mt-6" data-reveal>
-                <p class="text-xs text-white/50 text-center mb-2">Weitere Inhalte</p>
-                <div class="flex items-center justify-center gap-2">
-                  <a
-                    href="#workflow"
-                    class="inline-flex items-center justify-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:border-primary/40 text-white/80 hover:text-white text-xs font-semibold transition-colors"
-                  >
-                    <Icon name="lucide:route" class="w-4 h-4 text-primary" aria-hidden="true" />
-                    Workflow
-                  </a>
-                  <a
-                    href="#faq"
-                    class="inline-flex items-center justify-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:border-primary/40 text-white/80 hover:text-white text-xs font-semibold transition-colors"
-                  >
-                    <Icon name="lucide:help-circle" class="w-4 h-4 text-primary" aria-hidden="true" />
-                    FAQ
-                  </a>
-                </div>
-              </div>
+        <div class="mx-auto max-w-5xl">
+          <div class="text-center">
+            <div class="inline-flex items-center justify-center gap-2 text-primary font-bold tracking-wider uppercase text-sm" data-reveal>
+              <Icon name="lucide:layers" class="w-4 h-4" aria-hidden="true" />
+              Überblick
             </div>
+
+            <h2 id="modules-title" class="mt-3 text-3xl lg:text-4xl font-extrabold text-white text-balance" data-reveal>
+              Ein System. <span class="text-primary">Ein Flow.</span>
+            </h2>
+
+            <p class="mt-4 text-text-muted max-w-3xl mx-auto text-balance" data-reveal>
+              Von der digitalen Fahrzeugakte über Verträge bis zur Steuerlogik (§25a/EU/Export) und DATEV-Export: Autaxo führt alle Schritte in einem konsistenten Workflow zusammen.
+            </p>
           </div>
 
-          <div class="lg:col-span-8">
-            <div class="grid gap-4">
-              {modules.map((m) => (
-                <details
-                  id={m.id}
-                  data-mod-details={m.id}
-                  class="ax-accordion rounded-3xl border border-white/10 bg-[#0b0c10]/70 backdrop-blur-xl shadow-2xl overflow-hidden"
-                  data-reveal
-                >
-                  <summary class="ax-accordion-summary px-7 py-6 cursor-pointer">
-                    <div class="flex items-start gap-4">
-                      <div class="h-12 w-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0" aria-hidden="true">
-                        <Icon name={m.icon} class="w-6 h-6" aria-hidden="true" />
-                      </div>
-
-                      <div class="flex-1 min-w-0">
-                        <h3 class="text-white font-extrabold text-xl">{m.title}</h3>
-                        <p class="mt-1.5 text-text-muted">{m.desc}</p>
-                      </div>
-
-                      <div class="shrink-0">
-                        <span class="ax-details-pill inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-semibold text-white/80">
-                          <span class="ax-label-closed">Details öffnen</span>
-                          <span class="ax-label-open">Details schließen</span>
-                          <Icon name="lucide:chevron-down" class="ax-accordion-chevron w-4 h-4 text-primary" aria-hidden="true" />
-                        </span>
-                      </div>
+          <div class="mt-10 grid gap-5">
+            {modules.map((m) => (
+              <details
+                id={m.id}
+                data-mod-details={m.id}
+                class="ax-accordion group rounded-3xl border border-white/10 bg-[#0b0c10]/70 backdrop-blur-xl shadow-2xl overflow-hidden"
+                data-reveal
+              >
+                <summary class="ax-accordion-summary px-7 py-6 cursor-pointer">
+                  <div class="flex items-start gap-4">
+                    <div class="h-12 w-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0" aria-hidden="true">
+                      <Icon name={m.icon} class="w-6 h-6" aria-hidden="true" />
                     </div>
-                  </summary>
 
-                  <div class="px-7 pb-7 pt-2">
-                    <p class="text-xs font-bold tracking-wider uppercase text-white/50">
-                      Kurz-Zusammenfassung
-                    </p>
-
-                    <ul class="mt-4 grid sm:grid-cols-2 gap-3 text-sm" aria-label={`Vorteile: ${m.title}`}>
-                      {m.bullets.map((b) => (
-                        <li class="flex items-start gap-2 text-white/75">
-                          <Icon name="lucide:check" class="w-4 h-4 text-primary mt-0.5" aria-hidden="true" />
-                          <span>{b}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    <div class="mt-6 flex flex-col sm:flex-row gap-3">
-                      <a
-                        href={m.href}
-                        class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold transition-colors shadow-xl shadow-primary/15"
-                      >
-                        Zur Funktionsseite
-                        <Icon name="lucide:arrow-right" class="w-5 h-5" aria-hidden="true" />
-                      </a>
-
-                      <a
-                        href={signupUrl}
-                        class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:border-primary/40 text-white font-semibold transition-colors"
-                      >
-                        Kostenlos testen
-                      </a>
+                    <div class="flex-1 min-w-0">
+                      <h3 class="text-white font-extrabold text-xl">{m.title}</h3>
+                      <p class="mt-1.5 text-text-muted">{m.desc}</p>
                     </div>
+
+                    {/* ✅ kein „Details öffnen“-Pill mehr */}
+                    <Icon
+                      name="lucide:chevron-down"
+                      class="ax-accordion-chevron w-5 h-5 text-primary shrink-0 mt-1"
+                      aria-hidden="true"
+                    />
                   </div>
-                </details>
-              ))}
-            </div>
+                </summary>
 
-            <div class="mt-10 ax-divider" aria-hidden="true"></div>
+                <div class="px-7 pb-7 pt-2">
+                  <p class="text-xs font-bold tracking-wider uppercase text-white/50">
+                    Kurz-Zusammenfassung
+                  </p>
+
+                  <ul class="mt-4 grid sm:grid-cols-2 gap-3 text-sm" aria-label={`Vorteile: ${m.title}`}>
+                    {m.bullets.map((b) => (
+                      <li class="flex items-start gap-2 text-white/75">
+                        <Icon name="lucide:check" class="w-4 h-4 text-primary mt-0.5" aria-hidden="true" />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* ✅ nur ein dezenter „Learn more“-Link (CTA-Hierarchie bleibt im Abschnitt) */}
+                  <div class="mt-6">
+                    <a
+                      href={m.href}
+                      class="inline-flex items-center gap-2 text-sm font-semibold text-white/80 hover:text-white transition-colors"
+                    >
+                      Zur Funktionsseite
+                      <Icon name="lucide:arrow-right" class="w-4 h-4 text-primary" aria-hidden="true" />
+                    </a>
+                  </div>
+                </div>
+              </details>
+            ))}
           </div>
+
+          {/* ✅ Abschnitts-CTA: 1 primär + 1 sekundär */}
+          <div class="mt-12 flex flex-col sm:flex-row gap-3 justify-center" data-reveal>
+            <a
+              href={signupUrl}
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-primary hover:bg-primary-hover text-white font-bold rounded-xl transition-all hover:-translate-y-0.5 shadow-xl shadow-primary/20"
+            >
+              Kostenlos testen
+              <Icon name="lucide:arrow-right" class="w-5 h-5" aria-hidden="true" />
+            </a>
+            <a
+              href="/preise"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white/5 border border-white/10 hover:border-primary/40 text-white font-semibold rounded-xl transition-colors"
+            >
+              Preise
+            </a>
+          </div>
+
+          <div class="mt-12 ax-divider" aria-hidden="true"></div>
         </div>
       </div>
     </section>
 
-    <section id="workflow" class="pb-24" aria-labelledby="workflow-title">
+    {/* ✅ mehr Luft zwischen Abschnitten */}
+    <section id="workflow" class="pb-28 lg:pb-32" aria-labelledby="workflow-title">
       <div class="container mx-auto px-4">
         <div class="rounded-3xl border border-white/10 bg-white/5 p-8 lg:p-10" data-reveal>
           <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
@@ -605,7 +561,7 @@ const structuredData = {
       </div>
     </section>
 
-    <section id="faq" class="pb-24" aria-labelledby="faq-title">
+    <section id="faq" class="pb-28 lg:pb-32" aria-labelledby="faq-title">
       <div class="container mx-auto px-4 max-w-5xl">
         <div class="rounded-3xl border border-white/10 bg-[#0b0c10]/70 backdrop-blur-xl p-8 lg:p-10" data-reveal>
           <h2 id="faq-title" class="text-3xl lg:text-4xl font-extrabold text-white text-balance">
@@ -796,15 +752,6 @@ const structuredData = {
     transform: translateY(0);
   }
 
-  /* Nav active */
-  .ax-nav-item.is-active{
-    border-color: rgba(179,0,24,.55);
-    background: rgba(179,0,24,.08);
-  }
-  .ax-nav-item.is-active p:first-child{
-    color: rgba(255,255,255,1);
-  }
-
   /* Accordion styling */
   .ax-accordion summary { list-style: none; }
   .ax-accordion summary::-webkit-details-marker { display: none; }
@@ -815,10 +762,6 @@ const structuredData = {
   }
   .ax-accordion-chevron{ transition: transform .18s ease; }
   .ax-accordion[open] .ax-accordion-chevron{ transform: rotate(180deg); }
-
-  .ax-label-open{ display: none; }
-  .ax-accordion[open] .ax-label-open{ display: inline; }
-  .ax-accordion[open] .ax-label-closed{ display: none; }
 
   /* Dialog fallback (if showModal unsupported) */
   .ax-dialog[open] { max-height: 92vh; }
@@ -834,7 +777,7 @@ const structuredData = {
 <script is:inline>
   document.documentElement.classList.add('js');
 
-  // Spotlight (FIX: viewport-basiert => exakt unter Maus, unabhängig vom Scroll)
+  // Spotlight (viewport-basiert => exakt unter Maus, unabhängig vom Scroll)
   const page = document.querySelector('[data-spotlight]');
   let mx = 50, my = 30, raf = 0;
 
@@ -869,25 +812,9 @@ const structuredData = {
   }, { threshold: 0.14 });
   revealEls.forEach((el) => io.observe(el));
 
-  // Überblick: Accordion + deterministische Active-State (FIX: kein “Homepage verrückt” mehr)
-  const navItems = Array.from(document.querySelectorAll('[data-mod-link]'));
+  // Überblick: Accordion (1 offen) + Hash-Support (ohne Link-Navigation links)
   const detailsEls = Array.from(document.querySelectorAll('details[data-mod-details]'));
-
-  function clearActive() {
-    navItems.forEach((a) => {
-      a.classList.remove('is-active');
-      a.removeAttribute('aria-current');
-    });
-  }
-
-  function setActive(id) {
-    navItems.forEach((a) => {
-      const isActive = a.getAttribute('data-mod-link') === id;
-      a.classList.toggle('is-active', isActive);
-      if (isActive) a.setAttribute('aria-current', 'true');
-      else a.removeAttribute('aria-current');
-    });
-  }
+  let programmatic = false;
 
   function closeAllExcept(id) {
     detailsEls.forEach((d) => {
@@ -895,8 +822,6 @@ const structuredData = {
       if (did !== id) d.open = false;
     });
   }
-
-  let programmatic = false;
 
   function openModule(id, { scroll = true, updateHash = true } = {}) {
     const target = detailsEls.find((d) => d.getAttribute('data-mod-details') === id) || document.getElementById(id);
@@ -907,28 +832,14 @@ const structuredData = {
     target.open = true;
     programmatic = false;
 
-    setActive(id);
-
     if (updateHash) {
-      try { history.replaceState(null, '', `#${id}`); } catch (_) { /* ignore */ }
+      try { history.replaceState(null, '', `#${id}`); } catch (_) {}
     }
-
     if (scroll) {
       try { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (_) {}
     }
   }
 
-  // Links-Klick: nicht “wild” springen lassen, sondern öffnen + sauber scrollen
-  navItems.forEach((a) => {
-    a.addEventListener('click', (e) => {
-      const id = a.getAttribute('data-mod-link');
-      if (!id) return;
-      e.preventDefault();
-      openModule(id, { scroll: true, updateHash: true });
-    });
-  });
-
-  // Rechts (summary click): Akkordeon-Logik + Active + Hash
   detailsEls.forEach((d) => {
     d.addEventListener('toggle', () => {
       if (programmatic) return;
@@ -940,12 +851,7 @@ const structuredData = {
         closeAllExcept(id);
         programmatic = false;
 
-        setActive(id);
         try { history.replaceState(null, '', `#${id}`); } catch (_) {}
-      } else {
-        // Wenn nichts offen bleibt, Active entfernen (optional, aber sauber)
-        const anyOpen = detailsEls.some((x) => x.open);
-        if (!anyOpen) clearActive();
       }
     });
   });
@@ -953,7 +859,9 @@ const structuredData = {
   // Hash on load => Modul öffnen (ohne Scroll-Jump)
   try {
     const initial = decodeURIComponent(location.hash || '').replace('#', '');
-    if (initial) openModule(initial, { scroll: false, updateHash: false });
+    if (initial && detailsEls.some((d) => d.getAttribute('data-mod-details') === initial)) {
+      openModule(initial, { scroll: false, updateHash: false });
+    }
   } catch (_) {}
 
   // Modals + lazy video attach
