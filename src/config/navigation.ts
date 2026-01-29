@@ -16,6 +16,7 @@ export const navigation = {
         items: [
           { label: 'Alle Funktionen', href: '/funktionen' },
           { label: 'Verträge & E-Signatur', href: '/funktionen/digitale-vertraege-esignatur' },
+          { label: 'Rechnungen', href: '/funktionen/faktura-rechnungen' },
           { label: 'Buchhaltung & DATEV', href: '/funktionen/buchhaltung' },
           { label: 'Steuerlogik (§25a)', href: '/funktionen/differenzbesteuerung-25a-ustg' },
           { label: 'KI-Assistent Carlo', href: '/funktionen/ki-assistent' },
