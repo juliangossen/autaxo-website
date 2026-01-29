@@ -1,0 +1,56 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import TaxCheck25a from '@/components/tools/TaxCheck25a.astro';
+import { Icon } from 'astro-icon/components';
+
+const title = "§25a Steuer-Check für Autohändler | Differenzbesteuerung Rechner";
+const description = "Darf ich die Differenzbesteuerung anwenden? Mache den schnellen §25a-Check für Gebrauchtwagenhändler. Kostenloses Tool von Autaxo.";
+---
+
+<MarketingLayout title={title} description={description}>
+  
+  <section class="pt-32 pb-12 lg:pt-48 lg:pb-20">
+    <div class="container mx-auto px-4 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider mb-6">
+        Kostenloses Tool
+      </div>
+      <h1 class="text-4xl lg:text-6xl font-extrabold text-white mb-6">
+        Darf ich <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500">differenzbesteuern?</span>
+      </h1>
+      <p class="text-xl text-text-muted max-w-2xl mx-auto mb-10">
+        Unsicher, ob Regelbesteuerung oder § 25a UStG gilt? Beantworte 3 Fragen und erhalte sofort das Ergebnis.
+      </p>
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+      <TaxCheck25a />
+    </div>
+  </section>
+
+  <section class="py-20 bg-surface border-t border-border">
+    <div class="container mx-auto px-4 max-w-3xl">
+      <div class="prose prose-invert mx-auto">
+        <h3>Warum ist dieser Check so wichtig?</h3>
+        <p>
+          Ein Fehler bei der Klassifizierung (z. B. unberechtigte Anwendung der Differenzbesteuerung) ist einer der teuersten Fehler im Gebrauchtwagenhandel. 
+          Wenn du § 25a anwendest, obwohl das Fahrzeug regelbesteuert eingekauft wurde, schuldest du dem Finanzamt oft tausende Euro Umsatzsteuer nach.
+        </p>
+      </div>
+
+      <div class="mt-12 bg-[#0b0c10] border border-white/10 rounded-2xl p-8 flex flex-col md:flex-row gap-6 items-center shadow-lg hover:border-primary/50 transition-colors group">
+        <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center shrink-0 text-primary group-hover:scale-110 transition-transform">
+          <Icon name="lucide:book-open" class="w-6 h-6" />
+        </div>
+        <div class="flex-1 text-center md:text-left">
+          <h4 class="text-xl font-bold text-white mb-2">Du willst die Details verstehen?</h4>
+          <p class="text-text-muted text-sm">Lies unseren großen Guide zu den typischen Umsatzsteuerfehlern im Gebrauchtwagenhandel.</p>
+        </div>
+        <a href="/blog/umsatzsteuerfehler-gebrauchtwagenhandel" class="px-6 py-3 bg-white text-black hover:bg-gray-200 font-bold rounded-lg transition-colors whitespace-nowrap">
+          Zum Artikel →
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</MarketingLayout>

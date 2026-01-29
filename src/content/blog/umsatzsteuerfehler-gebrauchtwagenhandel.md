@@ -80,6 +80,11 @@ Wenn du die Differenzbesteuerung anwendest, ist die **Steuerbefreiung für inner
 
 ---
 
+> **Tipp:** Du bist unsicher, ob du ein Fahrzeug differenzbesteuern darfst? 
+> [**Mache hier den kostenlosen §25a Quick-Check**](/differenzbesteuerung-check)
+
+---
+
 ## Risiko 3: Export ohne "echten" Nachweis (MRN)
 
 Du verkaufst einen BMW X5 an einen Kunden in Serbien (Drittland). Der Kunde holt das Auto ab oder schickt eine Spedition.
