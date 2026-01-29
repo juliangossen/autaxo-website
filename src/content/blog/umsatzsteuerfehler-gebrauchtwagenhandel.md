@@ -81,7 +81,7 @@ Wenn du die Differenzbesteuerung anwendest, ist die **Steuerbefreiung für inner
 ---
 
 > **Tipp:** Du bist unsicher, ob du ein Fahrzeug differenzbesteuern darfst? 
-> [**Mache hier den kostenlosen §25a Quick-Check**](/differenzbesteuerung-check)
+> [**Mache hier den kostenlosen §25a Quick-Check**](/tools/differenzbesteuerung-check)
 
 ---
 

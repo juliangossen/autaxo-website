@@ -1,0 +1,146 @@
+---
+import Layout from '../../layouts/Layout.astro'; // Passe den Pfad zu deinem Haupt-Layout an
+
+// Metadaten für SEO
+const pageTitle = "Kfz-Händler Tools & Rechner | Kostenlos für den Autohandel";
+const pageDescription = "Kostenlose Rechner für Gebrauchtwagenhändler: Differenzbesteuerung (§ 25a), Margen-Kalkulator, Finanzierungsrechner und Checklisten. Ohne Anmeldung nutzbar.";
+
+// DAS TOOL-INVENTAR
+// Hier definieren wir die Karten. Wenn du ein neues Tool baust, einfach hier oben ergänzen.
+const tools = [
+  {
+    title: "§ 25a Margen-Rechner",
+    description: "Berechne blitzschnell die abzuführende Umsatzsteuer und deine Netto-Marge bei der Differenzbesteuerung.",
+    icon: "🧮",
+    link: "/tools/differenzbesteuerung-rechner",
+    badge: "Beliebt",
+    category: "Steuern"
+  },
+  {
+    title: "§ 25a vs. Regelbesteuerung Check",
+    description: "Der Entscheidungsbaum als interaktives Tool: Darf ich differenzbesteuern oder muss ich Regelbesteuerung anwenden?",
+    icon: "⚖️",
+    link: "/tools/besteuerungsart-check",
+    badge: null,
+    category: "Compliance"
+  },
+  {
+    title: "Fahrzeug-Verkaufspreis Kalkulator",
+    description: "Rückwärtsrechnung vom gewünschten Rohertrag zum nötigen Verkaufspreis unter Berücksichtigung von Standtagen.",
+    icon: "💰",
+    link: "/tools/preiskalkulator",
+    badge: "Vertrieb",
+    category: "Vertrieb"
+  },
+  {
+    title: "EU-Export Quick-Check",
+    description: "Checkliste für den steuerfreien Verkauf ins Ausland (EU & Drittland). Fehlen MRN oder USt-IdNr?",
+    icon: "🇪🇺",
+    link: "/tools/export-checker",
+    badge: null,
+    category: "Export"
+  },
+  {
+    title: "ZUGFeRD E-Rechnungs Validator",
+    description: "Prüfe, ob deine PDF-Rechnung valide XML-Daten enthält (Simuliert den Eingang beim Steuerberater).",
+    icon: "📄",
+    link: "/tools/xml-validator",
+    badge: "Neu 2025",
+    category: "Technik"
+  },
+  {
+    title: "GoBD-Verfahrensdokumentation Generator",
+    description: "Erstelle ein Basis-Gerüst für deine Verfahrensdokumentation im Autohaus (Muster-Vorlage).",
+    icon: "vn",
+    link: "/tools/gobd-generator",
+    badge: null,
+    category: "Recht"
+  }
+];
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <section class="bg-slate-900 text-white py-20">
+    <div class="container mx-auto px-4 max-w-6xl text-center">
+      <span class="inline-block py-1 px-3 rounded-full bg-blue-600/20 text-blue-300 text-sm font-semibold mb-4 border border-blue-500/30">
+        Toolbox für Händler
+      </span>
+      <h1 class="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
+        Schluss mit <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Excel-Chaos.</span>
+      </h1>
+      <p class="text-lg text-slate-300 max-w-2xl mx-auto mb-10">
+        Professionelle Rechner und Checklisten für den täglichen Gebrauchtwagenhandel. 
+        Aktuell nach § 25a UStG und GoBD 2025.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-gray-50 py-16">
+    <div class="container mx-auto px-4 max-w-6xl">
+      
+      <div class="flex flex-wrap gap-2 mb-8 justify-center">
+         </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {tools.map((tool) => (
+          <a href={tool.link} class="group relative bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
+            
+            {/* Header Area */}
+            <div class="flex justify-between items-start mb-4">
+              <div class="w-12 h-12 bg-blue-50 text-2xl flex items-center justify-center rounded-lg group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                {tool.icon}
+              </div>
+              {tool.badge && (
+                <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2 py-1 rounded-md border border-emerald-200">
+                  {tool.badge}
+                </span>
+              )}
+            </div>
+
+            {/* Content */}
+            <h3 class="text-xl font-bold text-slate-800 mb-2 group-hover:text-blue-600 transition-colors">
+              {tool.title}
+            </h3>
+            <p class="text-gray-600 text-sm mb-6 flex-grow">
+              {tool.description}
+            </p>
+
+            {/* Footer / CTA */}
+            <div class="mt-auto pt-4 border-t border-gray-100 flex justify-between items-center text-sm">
+              <span class="text-gray-400 font-medium">{tool.category}</span>
+              <span class="text-blue-600 font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-1">
+                Starten 
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
+            </div>
+            
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white border-t border-gray-100">
+    <div class="container mx-auto px-4 max-w-4xl text-center">
+      <h2 class="text-2xl font-bold text-slate-900 mb-4">Warum diese Tools?</h2>
+      <p class="text-gray-600 mb-8 leading-relaxed">
+        Im Gebrauchtwagenhandel hängt der Gewinn oft an steuerlichen Details. Ein falscher Klick bei der Differenzbesteuerung oder eine fehlende MRN beim Export kosten schnell die gesamte Marge. Diese Tools basieren auf der Logik unserer <a href="/blog" class="text-blue-600 underline decoration-blue-200 hover:decoration-blue-600">Wissensdatenbank</a> und helfen dir, Fehler im Alltag zu vermeiden.
+      </p>
+      
+      <div class="p-6 bg-blue-50 rounded-xl border border-blue-100 inline-block text-left">
+        <h3 class="font-bold text-blue-900 mb-2 flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" /></svg>
+          Du brauchst mehr als nur einzelne Rechner?
+        </h3>
+        <p class="text-blue-800 text-sm mb-4">
+          Tools sind gut, Automatisierung ist besser. Autaxo integriert all diese Logiken direkt in deinen täglichen Workflow.
+        </p>
+        <a href="https://www.autaxo.de" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors text-sm">
+          Autaxo Software testen
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
