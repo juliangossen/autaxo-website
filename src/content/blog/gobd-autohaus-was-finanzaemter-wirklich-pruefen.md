@@ -144,13 +144,13 @@ GoBD untersagt die Reduzierung der maschinellen Auswertbarkeit.
 
 Wer bei der GoBD-Compliance spart, wettet gegen das Finanzamt. Diese Wette gewinnt am Ende meist der Prüfer.
 
-In der Praxis zeigt sich immer wieder: Die Honorardifferenz zwischen einem „Buchhalter, der nur abtippt“ und einem **[spezialisierten Kfz-Steuerberater](https://www.autaxo.de/partnernetzwerk/steuerberatung/)**, der Prozesse aktiv überwacht, liegt oft nur bei wenigen hundert Euro im Jahr.
+In der Praxis zeigt sich immer wieder: Die Honorardifferenz zwischen einem „Buchhalter, der nur abtippt“ und einem **[spezialisierten Kfz-Steuerberater](/partnernetzwerk/steuerberatung/)**, der Prozesse aktiv überwacht, liegt oft nur bei wenigen hundert Euro im Jahr.
 Eine einzige Hinzuschätzung wegen formeller Mängel (z.B. fehlende Kassensturzfähigkeit oder Nummernlücken) kostet dagegen schnell **fünfstellige Summen**.
 
 **Die Erfolgsformel für ruhigen Schlaf:**
 1.  **Saubere Software (Autaxo):** Sie liefert die technische Hygiene (Unveränderbarkeit, lückenlose Dokumentation, ZM-Meldungen).  
    (ZM/igL-Fehler sind ein häufiges GoBD-„Belegproblem“: [igL-Leitfaden](/blog/innergemeinschaftliche-lieferung-kfz-steuerfrei))
-2.  **Guter Steuerberater:** Er nutzt diese sauberen Daten, um dich im Zweifelsfall verteidigen zu können. (Passende Kanzleien findest du in unserem **[Partnernetzwerk](https://www.autaxo.de/partnernetzwerk/steuerberatung/)**).
+2.  **Guter Steuerberater:** Er nutzt diese sauberen Daten, um dich im Zweifelsfall verteidigen zu können. (Passende Kanzleien findest du in unserem **[Partnernetzwerk](/partnernetzwerk/steuerberatung/)**).
 
 Wenn die Datenbasis (Software) unsauber ist, kann auch der beste Berater in der Prüfung nichts mehr retten. Investiere deshalb in beides: Ein System, das Fehler verhindert, und einen Berater, der das Business versteht.
 
