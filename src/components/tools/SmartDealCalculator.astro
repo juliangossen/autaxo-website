@@ -20,7 +20,7 @@ const selectClass = "w-full bg-black/30 border border-white/10 text-white rounde
     </p>
   </div>
 
-  <div class="grid lg:grid-cols-12 gap-8">
+  <div class="grid lg:grid-cols-12 gap-8 items-stretch">
     
     <div class="lg:col-span-5 space-y-6">
       
@@ -142,8 +142,8 @@ const selectClass = "w-full bg-black/30 border border-white/10 text-white rounde
           <div class="text-xs text-gray-500 mt-1">Verkauf - Einkauf - Kosten</div>
         </div>
 
-        <div id="profit-card" class="bg-[#1a1d26] rounded-xl p-5 border border-white/10 relative overflow-hidden shadow-lg transition-colors duration-300">
-          <p class="text-xs text-gray-400 uppercase font-bold">Netto-Gewinn</p>
+        <div id="profit-card" class="bg-[#1a1d26] rounded-xl p-5 border border-white/10 relative overflow-hidden shadow-lg transition-all duration-300">
+          <p id="profit-label" class="text-xs text-gray-400 uppercase font-bold transition-colors">Netto-Gewinn</p>
           <div class="text-3xl font-bold text-white mt-2 font-mono transition-colors duration-300" id="res-net-profit">0,00 €</div>
           <div class="text-xs text-gray-500 mt-1">Das bleibt dir wirklich.</div>
         </div>
@@ -360,16 +360,21 @@ const selectClass = "w-full bg-black/30 border border-white/10 text-white rounde
     
     const profitEl = document.getElementById('res-net-profit');
     const profitCard = document.getElementById('profit-card');
+    const profitLabel = document.getElementById('profit-label');
     
     profitEl.innerText = fmt(netProfit);
     
-    // FARB-LOGIK
+    // FARB-LOGIK (Komplettes Feld grün/rot)
     if (netProfit < 0) {
+        // Verlust: Rot
         profitEl.className = "text-3xl font-bold text-red-500 mt-2 font-mono transition-colors duration-300";
-        profitCard.className = "bg-[#1a1d26] rounded-xl p-5 border border-red-500/30 relative overflow-hidden shadow-lg transition-all duration-300";
+        profitCard.className = "bg-[#1a1d26] rounded-xl p-5 border border-red-500 relative overflow-hidden shadow-lg shadow-red-500/10 transition-all duration-300";
+        profitLabel.className = "text-xs text-red-500 uppercase font-bold transition-colors";
     } else {
+        // Gewinn: Grün (Emerald)
         profitEl.className = "text-3xl font-bold text-emerald-400 mt-2 font-mono transition-colors duration-300";
-        profitCard.className = "bg-[#1a1d26] rounded-xl p-5 border border-emerald-500/30 relative overflow-hidden shadow-lg transition-all duration-300";
+        profitCard.className = "bg-[#1a1d26] rounded-xl p-5 border border-emerald-500 relative overflow-hidden shadow-lg shadow-emerald-500/10 transition-all duration-300";
+        profitLabel.className = "text-xs text-emerald-500 uppercase font-bold transition-colors";
     }
 
     document.getElementById('invoice-text').innerText = note;
