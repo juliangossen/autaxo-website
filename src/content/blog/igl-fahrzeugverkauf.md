@@ -39,6 +39,11 @@ Dieser Beitrag strukturiert die Anforderungen so, dass sie als **interne Arbeits
 
 ---
 
+> 📚 **Wissensdatenbank:**  
+> **[Wissensdatenbank Gebrauchtwagenhandel – Übersicht & Schnellstart](/blog/wissensdatenbank-gebrauchtwagenhandel)**
+
+---
+
 ## Kernaussagen (Key Facts)
 
 - **„Netto-Rechnung“ ist kein Rechnungsformat, sondern ein Ergebnis:** Steuerfreiheit gilt nur, wenn alle Tatbestands- und Nachweisvoraussetzungen erfüllt sind.

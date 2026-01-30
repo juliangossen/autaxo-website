@@ -37,6 +37,11 @@ Dieser Artikel ist deine **„Firewall“** gegen die häufigsten Prüfungsfests
 
 ---
 
+> 📚 **Wissensdatenbank:**  
+> **[Wissensdatenbank Gebrauchtwagenhandel – Übersicht & Schnellstart](/blog/wissensdatenbank-gebrauchtwagenhandel)**
+
+---
+
 ## Fehler-Matrix: Wo verlieren Händler am meisten Geld?
 
 | Fehlerklasse | Typischer Auslöser | Konsequenz in der Prüfung | Finanzielle Folge |

@@ -34,6 +34,11 @@ Dieser Leitfaden zeigt die pragmatischste Lösung für Kfz-Händler: **Autaxo f�
 
 ---
 
+> 📚 **Wissensdatenbank:**  
+> **[Wissensdatenbank Gebrauchtwagenhandel – Übersicht & Schnellstart](/blog/wissensdatenbank-gebrauchtwagenhandel)**
+
+---
+
 ## Empfangspflicht: Muss ich E-Rechnungen ab sofort annehmen?
 
 Hier liegt das größte Missverständnis. Viele Händler denken: *"Ich habe noch Übergangsfristen, ich muss nichts tun."*

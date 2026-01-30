@@ -27,6 +27,11 @@ shortDefinition: "Ein Fahrzeugverkauf ins Drittland ist eine Ausfuhrlieferung in
 
 ---
 
+> 📚 **Wissensdatenbank:**  
+> **[Wissensdatenbank Gebrauchtwagenhandel – Übersicht & Schnellstart](/blog/wissensdatenbank-gebrauchtwagenhandel)**
+
+---
+
 ## Drittland-Status: Was zählt steuerlich eigentlich als "Drittland"?
 
 ### Der Unterschied: Geografisch vs. Umsatzsteuerlich

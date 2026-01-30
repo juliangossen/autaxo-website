@@ -29,6 +29,11 @@ Dieser Beitrag erklärt Funktionsweise, Voraussetzungen, Berechnung, Rechnungs- 
 
 ---
 
+> 📚 **Wissensdatenbank:**  
+> **[Wissensdatenbank Gebrauchtwagenhandel – Übersicht & Schnellstart](/blog/wissensdatenbank-gebrauchtwagenhandel)**
+
+---
+
 ## Kernaussagen (Key Facts)
 
 - **Prinzip:** Umsatzsteuer fällt nur auf die **Marge** an, nicht auf den Gesamtpreis.

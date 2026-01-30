@@ -30,6 +30,11 @@ Im Autohaus ist das Risiko typischerweise höher als in vielen anderen Branchen,
 
 ---
 
+> 📚 **Wissensdatenbank:**  
+> **[Wissensdatenbank Gebrauchtwagenhandel – Übersicht & Schnellstart](/blog/wissensdatenbank-gebrauchtwagenhandel)**
+
+---
+
 ## Prüfungsfokus 1: Warum sind Rechnungslücken für Prüfer das erste Angriffsziel?
 
 ### Was Prüfer praktisch prüfen
