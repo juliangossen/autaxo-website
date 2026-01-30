@@ -3,12 +3,99 @@ import MarketingLayout from '@/layouts/MarketingLayout.astro';
 import TaxCheck25a from '@/components/tools/TaxCheck25a.astro';
 import { Icon } from 'astro-icon/components';
 
-const title = "§25a Steuer-Check für Autohändler | Differenzbesteuerung Rechner";
-const description = "Darf ich die Differenzbesteuerung anwenden? Mache den schnellen §25a-Check für Gebrauchtwagenhändler. Kostenloses Tool von Autaxo.";
+const title = "§ 25a Check: Darf ich differenzbesteuern? | Kostenloses Tool für Autohändler";
+const description =
+  "Darf ich die Differenzbesteuerung (§ 25a UStG) anwenden? Mache den schnellen §25a-Check für Gebrauchtwagenhändler. Ergebnis in Sekunden – kostenlos von Autaxo.";
+
+// Für strukturierte Daten (SEO/AEO/LLM): Tool + FAQ
+const pageUrl = "https://www.autaxo.de/tools/differenzbesteuerung-check/";
+
+const webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "§ 25a Check (Differenzbesteuerung) – Autaxo Tool",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  isAccessibleForFree: true,
+  offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+  inLanguage: "de-DE",
+  url: pageUrl,
+  description:
+    "Schneller Check, ob § 25a UStG (Differenzbesteuerung) typischerweise anwendbar ist – basierend auf dem Einkaufsstatus (ohne Vorsteuerabzug vs. mit Vorsteuerabzug).",
+  publisher: {
+    "@type": "Organization",
+    name: "Autaxo",
+    url: "https://www.autaxo.de",
+    logo: { "@type": "ImageObject", url: "https://www.autaxo.de/logo.svg" },
+  },
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Wann darf ich im Autohandel die Differenzbesteuerung (§ 25a UStG) anwenden?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text:
+          "Typischerweise, wenn der Ankauf ohne Vorsteuerabzug erfolgt (z. B. Privatperson, Kleinunternehmer nach § 19 UStG oder bereits differenzbesteuerter Ankauf). Maßgeblich ist der Einkaufsstatus.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Wann ist § 25a in der Regel ausgeschlossen?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text:
+          "Wenn im Einkauf Umsatzsteuer offen ausgewiesen ist oder ein Vorsteuerabzug möglich ist. Dann gilt regelmäßig die Regelbesteuerung (mit Steuerausweis im Verkauf).",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Darf ich bei § 25a Umsatzsteuer auf der Rechnung ausweisen?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text:
+          "Nein. Bei Anwendung der Differenzbesteuerung darf keine Umsatzsteuer gesondert ausgewiesen werden. Stattdessen muss ein Hinweis auf die Sonderregelung (§ 25a UStG) enthalten sein.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Kann ich bei einem §25a-Fahrzeug steuerfrei in die EU liefern (igL)?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text:
+          "Nicht gleichzeitig. Bei Anwendung von § 25a ist eine steuerfreie innergemeinschaftliche Lieferung (§ 6a UStG) ausgeschlossen. Je Lieferung kann ggf. ein Verzicht auf § 25a (Option) in Betracht kommen.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Senken Reparatur- oder Aufbereitungskosten die Steuer bei § 25a?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text:
+          "Kosten mindern den Gewinn, verändern aber die umsatzsteuerliche Einzeldifferenz typischerweise nicht. Die Umsatzsteuer wird aus der Marge zwischen Ein- und Verkaufspreis abgeleitet.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Ist das Ergebnis eine steuerliche Beratung?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text:
+          "Nein. Der Check ist ein praxisnahes Orientierungstool für typische Fälle. Bei Sonderkonstellationen (z. B. Ketten-/Reihengeschäfte, Sondergebiete, Grenzfälle) sollte der Einzelfall geprüft werden.",
+      },
+    },
+  ],
+};
 ---
 
 <MarketingLayout title={title} description={description}>
-  
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(webAppSchema)} />
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqSchema)} />
+
   <section class="pt-32 pb-12 lg:pt-48 lg:pb-20">
     <div class="container mx-auto px-4 text-center">
 
@@ -22,7 +109,7 @@ const description = "Darf ich die Differenzbesteuerung anwenden? Mache den schne
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider mb-6">
         Kostenloses Tool
       </div>
-      
+
       <h1 class="text-4xl lg:text-6xl font-extrabold text-white mb-6">
         Darf ich <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500">differenzbesteuern?</span>
       </h1>
@@ -30,6 +117,11 @@ const description = "Darf ich die Differenzbesteuerung anwenden? Mache den schne
       <p class="text-xl text-text-muted max-w-2xl mx-auto mb-10">
         Unsicher, ob Regelbesteuerung oder § 25a UStG gilt? Beantworte 2 Fragen und erhalte sofort das Ergebnis.
       </p>
+
+      <div class="max-w-3xl mx-auto text-sm text-slate-400">
+        Der Check orientiert sich am Kernprinzip: <span class="text-white font-semibold">§ 25a hängt am Einkauf</span> (ohne Vorsteuerabzug).
+        Bei Grenzfällen ersetzt das Tool keine Einzelfallprüfung.
+      </div>
     </div>
 
     <div class="container mx-auto px-4 relative z-10">
@@ -38,28 +130,169 @@ const description = "Darf ich die Differenzbesteuerung anwenden? Mache den schne
   </section>
 
   <section class="py-20 bg-surface border-t border-border">
-    <div class="container mx-auto px-4 max-w-3xl">
+    <div class="container mx-auto px-4 max-w-4xl">
+
       <div class="prose prose-invert mx-auto">
-        <h3>Warum ist dieser Check so wichtig?</h3>
+        <h2>Was prüft der § 25a Check genau?</h2>
         <p>
-          Ein Fehler bei der Klassifizierung (z. B. unberechtigte Anwendung der Differenzbesteuerung) ist einer der teuersten Fehler im Gebrauchtwagenhandel. 
-          Wenn du § 25a anwendest, obwohl das Fahrzeug regelbesteuert eingekauft wurde, schuldest du dem Finanzamt oft tausende Euro Umsatzsteuer nach.
+          Die Differenzbesteuerung (§ 25a UStG) ist im Gebrauchtwagenhandel ein zentraler Hebel – aber nur zulässig,
+          wenn der Ankauf <strong>ohne Vorsteuerabzug</strong> erfolgt ist. Genau hier passieren die teuersten Fehler:
+          Ein falsch klassifizierter Einkauf „infiziert“ den gesamten Verkaufsprozess (Rechnungstext, Steuersatz, Nachweise, Archivierung).
+        </p>
+
+        <h3>So funktioniert der Check</h3>
+        <ol>
+          <li>Du wählst aus, <strong>von wem</strong> das Fahrzeug eingekauft wurde (typischerweise ohne vs. mit Vorsteuerabzug).</li>
+          <li>Du siehst sofort, ob § 25a in diesem Standardfall <strong>typischerweise</strong> anwendbar ist.</li>
+          <li>Du bekommst Hinweise, was als nächster Schritt wichtig ist (z. B. Rechnungshinweis, EU-/Export-Fall prüfen).</li>
+        </ol>
+
+        <h3>Typische Eingänge (Daumenregel)</h3>
+        <ul>
+          <li><strong>Oft § 25a-fähig:</strong> Privatperson, Kleinunternehmer (§ 19), bereits differenzbesteuerter Händlerankauf.</li>
+          <li><strong>Oft nicht § 25a-fähig:</strong> Einkauf mit offen ausgewiesener Umsatzsteuer (Vorsteuerabzug möglich).</li>
+        </ul>
+
+        <p class="text-sm text-text-muted">
+          Hinweis: Sonderkonstellationen (z. B. Ketten-/Reihengeschäfte, Sondergebiete, atypische Beleglagen) sind einzelfallabhängig.
         </p>
       </div>
 
-      <div class="mt-12 bg-[#0b0c10] border border-white/10 rounded-2xl p-8 flex flex-col md:flex-row gap-6 items-center shadow-lg hover:border-primary/50 transition-colors group">
-        <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center shrink-0 text-primary group-hover:scale-110 transition-transform">
-          <Icon name="lucide:book-open" class="w-6 h-6" />
+      <div class="mt-12 grid md:grid-cols-2 gap-6">
+        <div class="bg-[#0b0c10] border border-white/10 rounded-2xl p-7 shadow-lg hover:border-primary/50 transition-colors group">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-11 h-11 bg-primary/20 rounded-full flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+              <Icon name="lucide:file-text" class="w-5 h-5" />
+            </div>
+            <h4 class="text-lg font-bold text-white m-0">Rechnungshinweis absichern</h4>
+          </div>
+          <p class="text-text-muted text-sm m-0">
+            Der häufigste Formfehler: falscher oder fehlender Rechnungstext (igL/§25a/Export). Das ist ein unnötiger Angriffspunkt.
+          </p>
+          <div class="mt-4">
+            <a href="/tools/rechnungstexte-generator/" class="inline-flex items-center gap-2 font-bold text-black bg-white hover:bg-gray-200 px-5 py-2.5 rounded-lg transition-colors">
+              Rechnungstexte-Generator
+              <Icon name="lucide:arrow-right" class="w-4 h-4" />
+            </a>
+          </div>
         </div>
-        <div class="flex-1 text-center md:text-left">
-          <h4 class="text-xl font-bold text-white mb-2">Du willst die Details verstehen?</h4>
-          <p class="text-text-muted text-sm">Lies unseren großen Guide zu den typischen Umsatzsteuerfehlern im Gebrauchtwagenhandel.</p>
+
+        <div class="bg-[#0b0c10] border border-white/10 rounded-2xl p-7 shadow-lg hover:border-primary/50 transition-colors group">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-11 h-11 bg-primary/20 rounded-full flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+              <Icon name="lucide:calculator" class="w-5 h-5" />
+            </div>
+            <h4 class="text-lg font-bold text-white m-0">Deal komplett simulieren</h4>
+          </div>
+          <p class="text-text-muted text-sm m-0">
+            Wenn EU/Export oder „Verzicht auf §25a“ im Raum steht: simuliere Steuerlogik + Netto-Gewinn und erhalte den passenden Rechnungstext.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <a href="/tools/smart-deal-rechner/" class="inline-flex items-center gap-2 font-bold text-black bg-white hover:bg-gray-200 px-5 py-2.5 rounded-lg transition-colors">
+              Smart-Deal-Rechner
+              <Icon name="lucide:arrow-right" class="w-4 h-4" />
+            </a>
+            <a href="/tools/margen-rechner/" class="inline-flex items-center gap-2 font-bold text-white bg-white/10 hover:bg-white/15 px-5 py-2.5 rounded-lg transition-colors border border-white/10">
+              §25a Margen-Rechner
+              <Icon name="lucide:arrow-right" class="w-4 h-4" />
+            </a>
+          </div>
         </div>
-        <a href="/blog/umsatzsteuerfehler-gebrauchtwagenhandel" class="px-6 py-3 bg-white text-black hover:bg-gray-200 font-bold rounded-lg transition-colors whitespace-nowrap">
-          Zum Artikel →
-        </a>
       </div>
 
+      <div class="mt-12 grid md:grid-cols-3 gap-6">
+        <a href="/blog/differenzbesteuerung-kfz-25a-ustg-guide-eu-fallen" class="block bg-[#0b0c10] border border-white/10 rounded-2xl p-6 hover:border-primary/50 transition-colors">
+          <p class="text-xs text-slate-400 font-bold uppercase mb-2">Guide</p>
+          <p class="text-white font-bold mb-1">Differenzbesteuerung (§ 25a) – technischer Leitfaden</p>
+          <p class="text-text-muted text-sm mb-0">Rechnung, Marge, Dokumentation & EU-Dilemma im Detail.</p>
+        </a>
+
+        <a href="/blog/innergemeinschaftliche-lieferung-kfz-steuerfrei" class="block bg-[#0b0c10] border border-white/10 rounded-2xl p-6 hover:border-primary/50 transition-colors">
+          <p class="text-xs text-slate-400 font-bold uppercase mb-2">EU</p>
+          <p class="text-white font-bold mb-1">igL (§ 6a) – Nachweise & ZM</p>
+          <p class="text-text-muted text-sm mb-0">USt-IdNr., ZM, Gelangensbestätigung/CMR – prüfungssicher.</p>
+        </a>
+
+        <a href="/blog/umsatzsteuerfehler-gebrauchtwagenhandel" class="block bg-[#0b0c10] border border-white/10 rounded-2xl p-6 hover:border-primary/50 transition-colors">
+          <p class="text-xs text-slate-400 font-bold uppercase mb-2">Firewall</p>
+          <p class="text-white font-bold mb-1">Typische Umsatzsteuerfehler (Hub)</p>
+          <p class="text-text-muted text-sm mb-0">Die häufigsten Fehlerbilder – mit Checklisten & Praxisfällen.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 border-t border-border">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-white">FAQ zum § 25a Check</h2>
+        <p class="text-text-muted mt-3 max-w-2xl mx-auto">
+          Kurze, prüfungsnahe Antworten auf die häufigsten Fragen – damit du schneller zur richtigen Rechnung und Dokumentation kommst.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        <details class="bg-[#0b0c10] border border-white/10 rounded-2xl p-6 group">
+          <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+            <span class="text-white font-bold">Wann darf ich § 25a typischerweise anwenden?</span>
+            <Icon name="lucide:chevron-down" class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" />
+          </summary>
+          <p class="text-text-muted mt-4">
+            Typischerweise bei Ankauf ohne Vorsteuerabzug (z. B. Privatperson, Kleinunternehmer (§ 19), bereits differenzbesteuerter Ankauf).
+            Maßgeblich ist der Einkaufsstatus – nicht der spätere Verkauf.
+          </p>
+        </details>
+
+        <details class="bg-[#0b0c10] border border-white/10 rounded-2xl p-6 group">
+          <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+            <span class="text-white font-bold">Was ist der häufigste Praxisfehler?</span>
+            <Icon name="lucide:chevron-down" class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" />
+          </summary>
+          <p class="text-text-muted mt-4">
+            Falsche Rechnungstexte oder eine falsche Steuerlogik nach einem fehlerhaften Einkaufstyp.
+            Ein §25a-Einkauf darf im Verkauf nicht mit „steuerfreier igL“ vermischt werden.
+            Für sichere Texte: <a href="/tools/rechnungstexte-generator/" class="text-primary font-semibold hover:underline">Rechnungstexte-Generator</a>.
+          </p>
+        </details>
+
+        <details class="bg-[#0b0c10] border border-white/10 rounded-2xl p-6 group">
+          <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+            <span class="text-white font-bold">Kann ich ein §25a-Fahrzeug steuerfrei in die EU liefern?</span>
+            <Icon name="lucide:chevron-down" class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" />
+          </summary>
+          <p class="text-text-muted mt-4">
+            Bei Anwendung von §25a ist eine steuerfreie innergemeinschaftliche Lieferung (§ 6a UStG) ausgeschlossen.
+            Je Lieferung kann ggf. ein Verzicht auf §25a (Option) in Betracht kommen – das ist wirtschaftlich oft das eigentliche Dilemma.
+            Dafür eignet sich der <a href="/tools/smart-deal-rechner/" class="text-primary font-semibold hover:underline">Smart-Deal-Rechner</a>.
+          </p>
+        </details>
+
+        <details class="bg-[#0b0c10] border border-white/10 rounded-2xl p-6 group">
+          <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+            <span class="text-white font-bold">Darf ich Umsatzsteuer ausweisen, wenn ich §25a anwende?</span>
+            <Icon name="lucide:chevron-down" class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" />
+          </summary>
+          <p class="text-text-muted mt-4">
+            Nein. Bei §25a darf keine Umsatzsteuer gesondert ausgewiesen werden; erforderlich ist ein Hinweis auf die Sonderregelung.
+            Den passenden Hinweis generierst du über <a href="/tools/rechnungstexte-generator/" class="text-primary font-semibold hover:underline">Rechnungstexte-Generator</a>.
+          </p>
+        </details>
+
+        <details class="bg-[#0b0c10] border border-white/10 rounded-2xl p-6 group">
+          <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+            <span class="text-white font-bold">Senken Aufbereitungskosten die Steuer bei §25a?</span>
+            <Icon name="lucide:chevron-down" class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" />
+          </summary>
+          <p class="text-text-muted mt-4">
+            Kosten mindern deinen Gewinn, ändern aber die Einzeldifferenz typischerweise nicht. Für eine realistische Gewinnsicht inkl. Kosten:
+            <a href="/tools/margen-rechner/" class="text-primary font-semibold hover:underline">§25a Margen-Rechner</a>.
+          </p>
+        </details>
+      </div>
+
+      <div class="mt-10 text-center text-sm text-slate-400">
+        Hinweis: Dieses Tool ist ein Orientierungshilfsmittel und ersetzt keine steuerliche Beratung im Einzelfall.
+      </div>
     </div>
   </section>
 
