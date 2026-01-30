@@ -1,0 +1,254 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import { Icon } from 'astro-icon/components';
+
+// 1) METADATEN
+const title = "mobile.de Schnittstelle & Fahrzeugverwaltung | Autaxo DMS";
+const description =
+  "Verwalte deinen Fahrzeugbestand zentral. Importiere Inserate direkt von mobile.de, steuere die Veröffentlichung und nutze die Schnittstelle zu AutoScout24.";
+
+const signupUrl = "https://garage.autaxo.de/auth/sign-up";
+const contactUrl = "/kontakt"; // Oder mailto:support@autaxo.de, je nach Wunsch
+
+// 2) FAQ
+const faqs = [
+  {
+    question: "Muss ich meine Fahrzeuge in Autaxo neu anlegen?",
+    answer:
+      "Nein. Wenn du bereits Inserate auf mobile.de hast, importiert Autaxo deinen kompletten Bestand per Knopfdruck. Bilder, Ausstattungsmerkmale und Texte werden übernommen."
+  },
+  {
+    question: "Werden Änderungen in Autaxo automatisch synchronisiert?",
+    answer:
+      "Ja. Autaxo ist deine Zentrale. Du kannst Inserate direkt aus der Software heraus veröffentlichen, pausieren oder beenden. Der Status wird an mobile.de übertragen."
+  },
+  {
+    question: "Wie funktioniert die Schnittstelle zu AutoScout24?",
+    answer:
+      "Zusätzlich zu mobile.de bietet Autaxo eine Schnittstelle, um deine Fahrzeuge auch an AutoScout24 zu senden. Die Verwaltung erfolgt zentral in Autaxo, um Doppeleingaben zu vermeiden."
+  },
+  {
+    question: "Was passiert, wenn ich ein Auto verkaufe?",
+    answer:
+      "Du nimmst das Fahrzeug in Autaxo offline oder markierst es als verkauft. Die Schnittstelle sorgt dafür, dass das Inserat auf den Plattformen deaktiviert wird."
+  }
+];
+
+// 3) FEATURE STEPS / GRID
+const steps = [
+  {
+    step: "01",
+    title: "Import von mobile.de",
+    text:
+      "Starte sofort ohne manuelle Datenerfassung. Autaxo zieht sich alle aktiven Inserate von deinem mobile.de-Account – inklusive Bilder und Beschreibungen.",
+    icon: "lucide:download-cloud"
+  },
+  {
+    step: "02",
+    title: "Zentrale Steuerung",
+    text:
+      "Nie wieder in mehreren Portalen einloggen. Veröffentliche oder deaktiviere deine Inserate direkt aus der Fahrzeugliste in Autaxo.",
+    icon: "lucide:sliders-horizontal"
+  },
+  {
+    step: "03",
+    title: "AutoScout24 Export",
+    text:
+      "Reichweite maximieren: Nutze die integrierte Schnittstelle, um deine bestandsgepflegten Fahrzeuge auch einfach an AutoScout24 zu übermitteln.",
+    icon: "lucide:share-2"
+  },
+  {
+    step: "04",
+    title: "Keine Doppeleingaben",
+    text:
+      "Ändere Preise oder Daten einmal in Autaxo. Das System dient als deine 'Single Source of Truth' und hält deinen Bestand sauber und organisiert.",
+    icon: "lucide:copy-x"
+  },
+  {
+    step: "05",
+    title: "Bestandsabgleich",
+    text:
+      "Behalte den Überblick. Autaxo zeigt dir genau, welche Fahrzeuge aktuell online, reserviert oder offline sind. So vermeidest du Überverkäufe.",
+    icon: "lucide:list-checks"
+  }
+];
+
+// 4) JSON-LD
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Autaxo",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": description,
+      "featureList": [
+        "Import von mobile.de Inseraten",
+        "Zentrale Inseratssteuerung (An/Aus)",
+        "Schnittstelle zu AutoScout24",
+        "Vermeidung von Doppeleingaben"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faqs.map((f) => ({
+        "@type": "Question",
+        "name": f.question,
+        "acceptedAnswer": { "@type": "Answer", "text": f.answer }
+      }))
+    }
+  ]
+};
+---
+
+<MarketingLayout title={title} description={description}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  </Fragment>
+
+  {/* HERO */}
+  <section class="relative pt-32 pb-20 bg-[#0b0c10] overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-[#0b0c10] to-[#0b0c10]"></div>
+
+    <div class="container mx-auto px-4 relative z-10 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider mb-6">
+        Schnittstellen • mobile.de • AutoScout24
+      </div>
+
+      <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight text-balance">
+        Ein Bestand. Alle Portale. <br/>
+        <span class="text-primary">Maximale Effizienz.</span>
+      </h1>
+
+      <p class="text-xl text-text-muted max-w-3xl mx-auto leading-relaxed mb-10 text-balance">
+        Schluss mit doppeltem Pflegeaufwand. Importiere deinen Bestand von mobile.de und steuere deine Inserate zentral aus Autaxo heraus.
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-4">
+        <a
+          href={signupUrl}
+          class="px-8 py-4 bg-primary hover:bg-primary-hover text-white font-bold rounded-lg transition-all shadow-lg shadow-primary/20"
+        >
+          Kostenlos testen
+        </a>
+      </div>
+
+      {/* LLM/Scanner-Block */}
+      <ul class="mt-10 flex flex-wrap justify-center gap-2 text-sm" aria-label="Kernpunkte">
+        <li class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80">
+          <Icon name="lucide:check" class="w-4 h-4 text-primary" /> mobile.de Import
+        </li>
+        <li class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80">
+          <Icon name="lucide:check" class="w-4 h-4 text-primary" /> AutoScout24 Export
+        </li>
+        <li class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80">
+          <Icon name="lucide:check" class="w-4 h-4 text-primary" /> Zentrale Steuerung
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  {/* DETAILS GRID */}
+  <section id="details" class="py-24 bg-[#0b0c10]">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto text-center mb-16">
+        <h2 class="text-3xl font-bold text-white mb-4">Deine Schaltzentrale für den Verkauf</h2>
+        <p class="text-text-muted">
+          Autaxo verbindet deinen Einkauf und Verkauf. Statt Daten manuell hin und her zu kopieren, importierst und steuerst du alles an einem Ort.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        {/* Normale Steps */}
+        {steps.map((item) => (
+          <div class="relative p-8 rounded-2xl bg-[#15171e] border border-white/10 hover:border-primary/30 transition-all duration-300 group">
+            <div class="flex items-start justify-between mb-6">
+              <div class="w-12 h-12 rounded-lg bg-white/5 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                <Icon name={item.icon} class="w-6 h-6" />
+              </div>
+              <span class="text-4xl font-bold text-white/5 font-mono group-hover:text-white/10 transition-colors">
+                {item.step}
+              </span>
+            </div>
+
+            <h3 class="text-xl font-bold text-white mb-3">{item.title}</h3>
+            <p class="text-text-muted text-sm leading-relaxed">
+              {item.text}
+            </p>
+          </div>
+        ))}
+
+        {/* SPECIAL "MISSING INTERFACE" CARD */}
+        <div class="relative p-8 rounded-2xl bg-gradient-to-br from-[#15171e] to-primary/10 border border-primary/40 flex flex-col justify-center items-center text-center group hover:shadow-lg hover:shadow-primary/5 transition-all">
+          <div class="w-12 h-12 mb-6 rounded-lg bg-primary/20 flex items-center justify-center text-primary">
+            <Icon name="lucide:plug-zap" class="w-6 h-6" />
+          </div>
+          
+          <h3 class="text-xl font-bold text-white mb-3">Dir fehlen Schnittstellen?</h3>
+          <p class="text-white/70 text-sm mb-6 leading-relaxed">
+            Du nutzt weitere Börsen oder Tools? Melde dich bei uns. Wir entwickeln Autaxo nach dem Kaizen-Prinzip ständig weiter und kümmern uns drum.
+          </p>
+          
+          <a
+            href={contactUrl}
+            class="px-6 py-2 bg-white/10 border border-white/20 text-white font-bold rounded hover:bg-white hover:text-black transition-all w-full flex items-center justify-center gap-2"
+          >
+            <Icon name="lucide:message-square" class="w-4 h-4" />
+            Bescheid geben
+          </a>
+        </div>
+
+      </div>
+
+      {/* Interne Verlinkung */}
+      <div class="max-w-3xl mx-auto mt-14 text-center text-sm text-white/70">
+        Passend dazu: <a class="underline hover:text-white" href="/funktionen/ki-assistent">Fahrzeugschein-Scanner (Carlo)</a> ·{" "}
+        <a class="underline hover:text-white" href="/funktionen/differenzbesteuerung-25a-ustg">§25a Steuerlogik</a>
+      </div>
+    </div>
+  </section>
+
+  {/* FAQ */}
+  <section class="py-24 bg-surface border-t border-white/5">
+    <div class="container mx-auto px-4 max-w-3xl">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl font-bold text-white mb-4">Fragen zu den Schnittstellen</h2>
+        <div class="w-16 h-1 bg-primary mx-auto rounded-full"></div>
+      </div>
+
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <details class="group bg-[#0b0c10] border border-white/10 rounded-lg overflow-hidden transition-colors hover:border-white/20">
+            <summary class="flex items-center justify-between p-5 cursor-pointer select-none">
+              <h3 class="font-medium text-white pr-4">{faq.question}</h3>
+              <span class="text-primary transition-transform duration-300 group-open:rotate-180">
+                <Icon name="lucide:chevron-down" class="w-5 h-5" />
+              </span>
+            </summary>
+            <div class="p-5 pt-0 text-text-muted text-sm leading-relaxed border-t border-white/5 mt-2">
+              {faq.answer}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* CTA */}
+  <section class="py-24 text-center bg-[#0b0c10]">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-white mb-6">Fahrzeuge einmal pflegen, überall verkaufen.</h2>
+      <p class="text-text-muted mb-8 max-w-xl mx-auto">
+        Spare dir die doppelte Arbeit. Importiere deinen Bestand und leg sofort los.
+      </p>
+      <a
+        href={signupUrl}
+        class="inline-block px-8 py-4 bg-primary hover:bg-primary-hover text-white font-bold rounded-lg transition-colors shadow-lg shadow-primary/20"
+      >
+        Jetzt Import starten
+      </a>
+    </div>
+  </section>
+</MarketingLayout>
