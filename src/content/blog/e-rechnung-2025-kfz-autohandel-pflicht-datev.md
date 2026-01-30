@@ -23,6 +23,9 @@ Die gute Nachricht: Die Situation ist weniger dramatisch, als viele Berater beha
 
 Dieser Leitfaden zeigt die pragmatischste Lösung für Kfz-Händler: **Autaxo für den perfekten Verkauf** und **DATEV für die sichere Buchhaltung.**
 
+> 🧰 **Tool (Rechnungstexte je Steuerfall):**  
+> **[Rechnungstexte-Generator – richtige Formulierungen je Steuerfall](/tools/rechnungstexte-generator/)**
+
 ---
 
 ## Kurzdefinition: Was ist eigentlich eine "echte" E-Rechnung?
@@ -75,6 +78,7 @@ Du erstellst die Rechnung wie gewohnt in Autaxo. Das Ergebnis ist eine Datei, di
 Damit erfüllst du die E-Rechnungspflicht zu 100 %, ohne dass deine Kunden (oder du) den Prozess ändern müssen.
 
 > **Wichtig für den Autohandel:** Der **Rechnungstext / Steuerfall** hängt am Geschäft (z. B. § 25a vs. igL vs. Export).  
+> **Schnell & prüfbar lösen:** → **[Rechnungstexte-Generator](/tools/rechnungstexte-generator/)**  
 > - § 25a (kein USt-Ausweis): [Differenzbesteuerung (§ 25a) – Guide](/blog/differenzbesteuerung-kfz-25a-ustg-guide-eu-fallen)  
 > - EU-Verkauf (Hinweis „steuerfreie igL“, ZM/Nachweise): [igL-Leitfaden](/blog/innergemeinschaftliche-lieferung-kfz-steuerfrei)  
 > - Drittland-Export (Hinweis „steuerfreie Ausfuhrlieferung“, MRN): [Drittland-Export Leitfaden](/blog/fahrzeugverkauf-ins-drittland-umsatzsteuer-ausfuhrnachweis)  
@@ -117,10 +121,12 @@ Wer E-Rechnungen per E-Mail empfängt und im Posteingang „vergammeln“ lässt
 * [ ] **Schritt 1 (Empfang):** Prüfe mit deinem Steuerberater, ob du Zugang zu DATEV Unternehmen online / E-Rechnungsplattform hast. Falls nein: Beantragen!
 * [ ] **Schritt 2 (E-Mail):** Richte eine zentrale Rechnungs-Mailadresse ein (z. B. `rechnung@autohaus-muster.de`) und leite diese idealerweise direkt an DATEV weiter.
 * [ ] **Schritt 3 (Versand):** Nutze in Autaxo das Format **PDF/A-3 (ZUGFeRD)**. Damit bist du für alle B2B-Kunden zukunftssicher aufgestellt, egal wann die Pflicht für dich greift.
+* [ ] **Bonus (Fehler vermeiden):** Rechnungstexte je Steuerfall vor dem Versand prüfen  
+      → **[Rechnungstexte-Generator](/tools/rechnungstexte-generator/)**
 
 ---
 
-## Weiterführende Artikel in der Autaxo‑Wissensdatenbank
+## Weiterführende Artikel in der Autaxo-Wissensdatenbank
 
 - **GoBD / Archiv / Unveränderbarkeit:** [GoBD im Autohaus: Was Finanzämter wirklich prüfen](/blog/gobd-autohaus-was-finanzaemter-wirklich-pruefen)
 - **§ 25a / Rechnung ohne USt-Ausweis:** [Differenzbesteuerung (§ 25a) – technischer Leitfaden](/blog/differenzbesteuerung-kfz-25a-ustg-guide-eu-fallen)
