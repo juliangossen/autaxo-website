@@ -2,7 +2,14 @@
 slug: "wissensdatenbank-gebrauchtwagenhandel"
 title: "Wissensdatenbank für den Gebrauchtwagenhandel"
 description: "Expertenwissen für Händler: Umsatzsteuer, EU/Export, GoBD und E‑Rechnung – vernetzt, prüfungsnah, praxisorientiert."
-type: "page"
+author: "Julian Alessio Goßen (Bachelor of Taxation)"
+publishedDate: "2026-01-29"
+seoTitle: "Wissensdatenbank Autohandel: Steuern, Export, GoBD & E-Rechnung"
+metaDescription: "Das zentrale Experten-Wiki für Autohändler: Alle Leitfäden zu Differenzbesteuerung (§ 25a), EU-Exporten (MRN), GoBD-Compliance und der E-Rechnungspflicht an einem Ort."
+excerpt: "Schluss mit isoliertem Halbwissen: Diese Wissensdatenbank bündelt die kritischen Praxis-Themen für Gebrauchtwagenhändler. Navigieren Sie zentral durch vernetzte Leitfäden zu Umsatzsteuer-Fallen, Export-Nachweisen und Compliance-Pflichten."
+tags: ["Wissensdatenbank", "Gebrauchtwagenhandel", "Steuerrecht", "Compliance", "Übersicht", "Prozessmanagement"]
+coverImage: "/images/blog/wissensdatenbank-gebrauchtwagenhandel.webp"
+shortDefinition: "Die Wissensdatenbank für den Gebrauchtwagenhandel ist eine strukturierte Sammlung von Expertenwissen. Sie verknüpft isolierte Themenbereiche (wie § 25a UStG, innergemeinschaftliche Lieferung und GoBD) zu einem ganzheitlichen Praxis-Leitfaden, um steuerliche Risiken in Betriebsprüfungen zu minimieren."
 ---
 
 # 📚 Wissensdatenbank für den Gebrauchtwagenhandel
