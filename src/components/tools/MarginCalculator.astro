@@ -89,14 +89,27 @@
       </div>
       
       <div>
-        <label for="input-interest-rate" class="block text-sm font-medium text-slate-400 mb-2">Kalkulatorischer Zinssatz (p.a.)</label>
+        <div class="flex items-center gap-1.5 mb-2">
+            <label for="input-interest-rate" class="block text-sm font-medium text-slate-400">Kalkulatorischer Zinssatz (p.a.)</label>
+            <div class="group relative cursor-help">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-500 hover:text-blue-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                </svg>
+                <div class="hidden group-hover:block absolute bottom-full left-0 mb-2 w-64 bg-slate-800 border border-white/10 text-xs text-slate-300 p-3 rounded-lg shadow-xl z-20">
+                    <strong>Warum Zinsen?</strong><br/>
+                    Das Geld im Auto ist "gebunden". <br/>
+                    1. Nutzt du einen Kredit, zahlst du echte Bankzinsen.<br/>
+                    2. Nutzt du Eigenkapital, entgeht dir Gewinn, den du anderswo erzielt hättest (Opportunitätskosten).
+                </div>
+            </div>
+        </div>
+
         <div class="relative">
              <input type="number" id="input-interest-rate" value="6.0" step="0.1" class="block w-full pl-3 pr-8 py-2 bg-slate-950 border border-slate-700 rounded-lg text-white placeholder-slate-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none text-sm" />
              <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                 <span class="text-slate-500">%</span>
              </div>
         </div>
-        <p class="text-[10px] text-slate-500 mt-1">Zins für gebundenes Kapital (EK + Kosten).</p>
       </div>
 
     </div>

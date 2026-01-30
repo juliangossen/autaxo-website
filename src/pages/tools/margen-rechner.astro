@@ -1,10 +1,10 @@
 ---
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
-// Importiere die Komponente, die wir gerade erstellt haben:
+// Importiere die Komponente:
 import MarginCalculator from '@/components/tools/MarginCalculator.astro';
 
 const pageTitle = "§ 25a Margen-Rechner für Kfz-Händler | Autaxo";
-const pageDescription = "Berechne deine echte Netto-Marge bei der Differenzbesteuerung. Berücksichtigt Umsatzsteueranteil und Standkosten. Kostenlos für Autohändler.";
+const pageDescription = "Berechne deine echte Netto-Marge bei der Differenzbesteuerung. Berücksichtigt Umsatzsteueranteil, Standkosten und ROI. Kostenlos für Autohändler.";
 ---
 
 <MarketingLayout title={pageTitle} description={pageDescription}>
@@ -34,8 +34,9 @@ const pageDescription = "Berechne deine echte Netto-Marge bei der Differenzbeste
 
   <section class="bg-slate-950 py-16 border-t border-white/10">
     <div class="container mx-auto px-4 max-w-3xl">
+      
       <h3 class="text-2xl font-bold text-white mb-6">Die Mathematik hinter der Differenzbesteuerung</h3>
-      <div class="prose prose-invert prose-slate max-w-none">
+      <div class="prose prose-invert prose-slate max-w-none mb-16">
         <p>
           Die größte Falle bei § 25a UStG ist die Annahme, dass Reparaturkosten die Steuerlast senken. 
           Das ist falsch. Die Umsatzsteuer wird rein auf die Differenz zwischen Einkaufs- und Verkaufspreis berechnet.
@@ -51,6 +52,47 @@ const pageDescription = "Berechne deine echte Netto-Marge bei der Differenzbeste
           </p>
         </div>
       </div>
+
+      <h3 class="text-2xl font-bold text-white mb-6">Warum der ROI wichtiger ist als der absolute Gewinn</h3>
+      <div class="prose prose-invert prose-slate max-w-none">
+        <p>
+          Viele Händler schauen nur auf den Euro-Betrag am Ende ("Ich habe 500 € verdient"). Das ist gefährlich. 
+          Der <strong>ROI (Return on Investment)</strong> setzt deinen Gewinn ins Verhältnis zum eingesetzten Kapital. Er beantwortet die Frage: <em>"Wie hart musste mein Geld für diesen Gewinn arbeiten?"</em>
+        </p>
+        
+        <div class="grid md:grid-cols-2 gap-6 my-8 not-prose">
+            <div class="bg-slate-900 rounded-xl border border-emerald-500/30 p-5">
+                <div class="text-emerald-400 font-bold text-sm mb-2 uppercase tracking-wide">Der smarte Deal</div>
+                <div class="space-y-1 text-sm text-slate-300">
+                    <div class="flex justify-between"><span>Einsatz:</span> <span>1.000 €</span></div>
+                    <div class="flex justify-between"><span>Gewinn:</span> <span>500 €</span></div>
+                    <div class="mt-3 pt-3 border-t border-white/10 flex justify-between font-bold text-white">
+                        <span>ROI:</span> <span>50% 🚀</span>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-500 mt-3">Du kannst diesen Deal 10x mit demselben Budget machen.</p>
+            </div>
+
+            <div class="bg-slate-900 rounded-xl border border-red-500/30 p-5">
+                <div class="text-red-400 font-bold text-sm mb-2 uppercase tracking-wide">Die Kapital-Falle</div>
+                <div class="space-y-1 text-sm text-slate-300">
+                    <div class="flex justify-between"><span>Einsatz:</span> <span>50.000 €</span></div>
+                    <div class="flex justify-between"><span>Gewinn:</span> <span>500 €</span></div>
+                    <div class="mt-3 pt-3 border-t border-white/10 flex justify-between font-bold text-white">
+                        <span>ROI:</span> <span>1% 📉</span>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-500 mt-3">Ein einziger kleiner Schaden frisst den gesamten Gewinn auf.</p>
+            </div>
+        </div>
+
+        <p>
+            Ein hoher ROI bedeutet, dass du dein Kapital schnell vermehrst. Unser Rechner berücksichtigt deshalb auch 
+            <strong>Standtage und Zinsen</strong>. Denn ein Auto, das 180 Tage steht, kostet dich jeden Tag Geld (Opportunitätskosten), 
+            auch wenn es nicht in der Buchhaltung steht.
+        </p>
+      </div>
+
     </div>
   </section>
 
