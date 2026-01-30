@@ -18,8 +18,10 @@ const canonicalUrl = (() => {
 })();
 const pageUrl = canonicalUrl.endsWith("/") ? canonicalUrl : `${canonicalUrl}/`;
 
-/** Posts aus Content Collection */
-const entries = await getCollection("blog");
+/** Posts holen und Wissensdatenbank ausblenden */
+const entries = (await getCollection("blog")).filter(
+  (entry) => entry.slug !== "wissensdatenbank-gebrauchtwagenhandel"
+);
 
 // Helper: Datum robust (Date-Objekt oder String)
 function safeDate(value: unknown): Date {
