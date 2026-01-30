@@ -1,6 +1,5 @@
 ---
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
-// Importiere die Komponente:
 import MarginCalculator from '@/components/tools/MarginCalculator.astro';
 
 const pageTitle = "§ 25a Margen-Rechner für Kfz-Händler | Autaxo";
@@ -36,7 +35,7 @@ const pageDescription = "Berechne deine echte Netto-Marge bei der Differenzbeste
     <div class="container mx-auto px-4 max-w-3xl">
       
       <h3 class="text-2xl font-bold text-white mb-6">Die Mathematik hinter der Differenzbesteuerung</h3>
-      <div class="prose prose-invert prose-slate max-w-none mb-16">
+      <div class="prose prose-invert prose-slate max-w-none mb-12">
         <p>
           Die größte Falle bei § 25a UStG ist die Annahme, dass Reparaturkosten die Steuerlast senken. 
           Das ist falsch. Die Umsatzsteuer wird rein auf die Differenz zwischen Einkaufs- und Verkaufspreis berechnet.
@@ -53,8 +52,8 @@ const pageDescription = "Berechne deine echte Netto-Marge bei der Differenzbeste
         </div>
       </div>
 
-      <h3 class="text-2xl font-bold text-white mb-6">Warum der ROI wichtiger ist als der absolute Gewinn</h3>
-      <div class="prose prose-invert prose-slate max-w-none">
+      <h3 class="text-2xl font-bold text-white mb-6">Warum der ROI wichtig ist</h3>
+      <div class="prose prose-invert prose-slate max-w-none mb-12">
         <p>
           Viele Händler schauen nur auf den Euro-Betrag am Ende ("Ich habe 500 € verdient"). Das ist gefährlich. 
           Der <strong>ROI (Return on Investment)</strong> setzt deinen Gewinn ins Verhältnis zum eingesetzten Kapital. Er beantwortet die Frage: <em>"Wie hart musste mein Geld für diesen Gewinn arbeiten?"</em>
@@ -70,7 +69,6 @@ const pageDescription = "Berechne deine echte Netto-Marge bei der Differenzbeste
                         <span>ROI:</span> <span>50% 🚀</span>
                     </div>
                 </div>
-                <p class="text-xs text-slate-500 mt-3">Du kannst diesen Deal 10x mit demselben Budget machen.</p>
             </div>
 
             <div class="bg-slate-900 rounded-xl border border-red-500/30 p-5">
@@ -82,15 +80,34 @@ const pageDescription = "Berechne deine echte Netto-Marge bei der Differenzbeste
                         <span>ROI:</span> <span>1% 📉</span>
                     </div>
                 </div>
-                <p class="text-xs text-slate-500 mt-3">Ein einziger kleiner Schaden frisst den gesamten Gewinn auf.</p>
             </div>
         </div>
+      </div>
 
-        <p>
-            Ein hoher ROI bedeutet, dass du dein Kapital schnell vermehrst. Unser Rechner berücksichtigt deshalb auch 
-            <strong>Standtage und Zinsen</strong>. Denn ein Auto, das 180 Tage steht, kostet dich jeden Tag Geld (Opportunitätskosten), 
-            auch wenn es nicht in der Buchhaltung steht.
-        </p>
+      <div class="mt-16 pt-8 border-t border-white/10">
+        <h4 class="text-white font-bold mb-6 text-lg">Mehr zum Thema § 25a & Export?</h4>
+        
+        <a href="/blog/differenzbesteuerung-kfz-25a-ustg-guide-eu-fallen" class="group relative flex items-center justify-between p-6 rounded-2xl bg-slate-900/50 border border-white/10 hover:border-blue-500/50 hover:bg-slate-900 transition-all duration-300">
+            <div class="flex items-start gap-5">
+                <div class="flex-none w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-2xl group-hover:bg-blue-500 group-hover:text-white transition-all">
+                    📚
+                </div>
+                <div>
+                    <div class="text-white font-bold text-lg group-hover:text-blue-400 transition-colors mb-1">
+                        Der große § 25a Praxis-Guide
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed max-w-md">
+                        Lies alles über die häufigsten Fallstricke, das EU-Dilemma beim Export und wie du deine Rechnungen GoBD-konform schreibst.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex flex-none w-10 h-10 rounded-full border border-white/10 items-center justify-center text-slate-400 group-hover:border-blue-500/50 group-hover:text-blue-400 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+            </div>
+        </a>
       </div>
 
     </div>
