@@ -2,10 +2,10 @@
 // src/components/tools/MarginCalculator.astro
 ---
 
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-8 items-stretch">
         
-  <div class="lg:col-span-5 bg-slate-900/50 rounded-2xl border border-white/10 p-6 md:p-8 backdrop-blur-sm shadow-xl">
-    <div class="flex items-center justify-between mb-6">
+  <div class="xl:col-span-5 bg-slate-900/50 rounded-2xl border border-white/10 p-6 md:p-8 backdrop-blur-sm shadow-xl h-full flex flex-col">
+    <div class="flex items-center justify-between mb-6 flex-none">
       <h2 class="text-xl font-bold text-white flex items-center gap-2">
         <span class="w-8 h-8 rounded-lg bg-blue-600/20 text-blue-400 flex items-center justify-center text-sm">1</span>
         Kalkulation
@@ -15,7 +15,7 @@
       </button>
     </div>
 
-    <div class="space-y-6">
+    <div class="space-y-6 flex-grow">
       <div>
         <label for="input-ek" class="block text-sm font-medium text-slate-400 mb-2">Einkaufspreis (Brutto)</label>
         <div class="relative">
@@ -102,9 +102,9 @@
     </div>
   </div>
 
-  <div class="lg:col-span-7 space-y-6">
+  <div class="xl:col-span-7 flex flex-col h-full gap-6">
     
-    <div class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl border border-white/10 p-8 relative overflow-hidden">
+    <div class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl border border-white/10 p-8 relative overflow-hidden flex-none">
       <div id="glow-bg" class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2 transition-colors duration-500"></div>
       
       <div class="relative z-10">
@@ -123,14 +123,14 @@
       </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 flex-1">
       
-      <div class="bg-slate-900/50 rounded-xl border border-white/5 p-5 flex flex-col justify-between">
+      <div class="bg-slate-900/50 rounded-xl border border-white/5 p-5 flex flex-col justify-between h-full">
         <span class="text-slate-500 text-xs uppercase font-bold">Brutto-Marge (Handelsspanne)</span>
         <div id="output-gross-margin" class="text-2xl font-bold text-white mt-2">0,00 €</div>
       </div>
 
-      <div class="bg-slate-900/50 rounded-xl border border-white/5 p-5 flex flex-col justify-between relative overflow-hidden">
+      <div class="bg-slate-900/50 rounded-xl border border-white/5 p-5 flex flex-col justify-between relative overflow-hidden h-full">
         <div class="absolute inset-y-0 left-0 w-1 bg-red-500/50"></div>
         <span class="text-slate-400 text-xs uppercase font-bold flex items-center gap-1">
           Finanzamt (USt §25a)
@@ -138,19 +138,19 @@
         <div id="output-tax" class="text-2xl font-bold text-red-400 mt-2">0,00 €</div>
       </div>
 
-       <div class="bg-slate-900/50 rounded-xl border border-white/5 p-5 flex flex-col justify-between">
+       <div class="bg-slate-900/50 rounded-xl border border-white/5 p-5 flex flex-col justify-between h-full">
         <span class="text-slate-500 text-xs uppercase font-bold">Kapitalkosten (Zinsen)</span>
         <div id="output-interest" class="text-xl font-semibold text-slate-300 mt-2">- 0,00 €</div>
       </div>
 
-      <div class="bg-slate-900/50 rounded-xl border border-white/5 p-5 flex flex-col justify-between">
+      <div class="bg-slate-900/50 rounded-xl border border-white/5 p-5 flex flex-col justify-between h-full">
         <span class="text-slate-500 text-xs uppercase font-bold">Weitere Kosten (Netto)</span>
         <div id="output-costs" class="text-xl font-semibold text-slate-300 mt-2">- 0,00 €</div>
       </div>
 
     </div>
 
-    <div class="bg-slate-900/30 rounded-xl border border-white/5 p-4">
+    <div class="bg-slate-900/30 rounded-xl border border-white/5 p-4 flex-none">
         <div class="flex justify-between text-[10px] uppercase text-slate-500 mb-2 font-bold">
             <span>Verteilung des Verkaufspreises</span>
         </div>
@@ -208,6 +208,19 @@
 
   const costTypeBtns = document.querySelectorAll('.cost-type-btn');
 
+  // Helper: Format JS Date to YYYY-MM-DD
+  function formatDateToInput(date: Date) {
+      return date.toISOString().split('T')[0];
+  }
+
+  // --- Init ---
+  // Set initial date based on default days (30)
+  if(inputs.days && inputs.days.value) {
+      const initDate = new Date();
+      initDate.setDate(initDate.getDate() - parseInt(inputs.days.value));
+      inputs.date.value = formatDateToInput(initDate);
+  }
+
   // --- Toggle Logic ---
   costTypeBtns.forEach(btn => {
       btn.addEventListener('click', (e) => {
@@ -227,16 +240,30 @@
       });
   });
 
-  // --- Date Logic ---
+  // --- Smart Sync Logic ---
+  
+  // 1. Change Date -> Update Days
   inputs.date?.addEventListener('change', () => {
      if(inputs.date.value) {
         const start = new Date(inputs.date.value);
         const now = new Date();
         const diffTime = Math.abs(now.getTime() - start.getTime());
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-        inputs.days.value = diffDays.toString();
+        // Prevent negative days if future date selected
+        inputs.days.value = diffDays > 0 ? diffDays.toString() : "0";
         calculate();
      }
+  });
+
+  // 2. Change Days -> Update Date
+  inputs.days?.addEventListener('input', () => {
+      if(inputs.days.value) {
+          const days = parseInt(inputs.days.value);
+          const newDate = new Date();
+          newDate.setDate(newDate.getDate() - days);
+          inputs.date.value = formatDateToInput(newDate);
+          calculate();
+      }
   });
 
   function formatCurrency(num: number) {
@@ -269,7 +296,6 @@
     }
 
     // 4. Kalkulatorische Zinskosten
-    // Formel: (Kapital * Zinssatz * Tage) / 360
     const capitalBound = ek + realCost;
     const interestRateDecimal = interestRateVal / 100;
     const interestCost = (capitalBound * interestRateDecimal * days) / 360;
@@ -342,7 +368,12 @@
     inputs.vk.value = "";
     inputs.cost.value = "";
     inputs.days.value = "30";
-    inputs.date.value = "";
+    
+    // Reset Date
+    const resetDate = new Date();
+    resetDate.setDate(resetDate.getDate() - 30);
+    inputs.date.value = formatDateToInput(resetDate);
+
     inputs.interestRate.value = "6.0";
     
     // Reset switch
