@@ -32,6 +32,7 @@
     "@iconify-json/lucide": "^1.2.82",
     "@iconify-json/simple-icons": "^1.2.63",
     "@tailwindcss/typography": "^0.5.19",
+    "@astrojs/partytown": "^2.1.0",
     "astro": "^5.16.6",
     "astro-icon": "^1.1.5",
     "chart.js": "^4.4.0"

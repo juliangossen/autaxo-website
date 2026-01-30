@@ -1,0 +1,74 @@
+---
+// GTM Container ID
+const CONTAINER_ID = 'GTM-KMC8PBKV';
+---
+
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  
+  // Consent Mode v2 Default: Denied
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'wait_for_update': 500
+  });
+  
+  gtag('js', new Date());
+</script>
+
+<script type="text/partytown">
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KMC8PBKV');
+</script>
+
+<div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-slate-900 text-white p-4 z-50 hidden shadow-xl border-t border-slate-700">
+  <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+    <p class="text-sm">Wir nutzen Cookies für maximale Effizienz.</p>
+    <div class="flex gap-2">
+      <button id="btn-decline" class="px-4 py-2 text-sm bg-slate-700 hover:bg-slate-600 rounded hover:cursor-pointer">Ablehnen</button>
+      <button id="btn-accept" class="px-4 py-2 text-sm bg-green-600 hover:bg-green-500 font-bold rounded hover:cursor-pointer">Akzeptieren</button>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  const banner = document.getElementById('cookie-banner');
+  const btnAccept = document.getElementById('btn-accept');
+  const btnDecline = document.getElementById('btn-decline');
+
+  // Check LocalStorage
+  if (!localStorage.getItem('cookie-consent')) {
+    banner.classList.remove('hidden');
+  } else if (localStorage.getItem('cookie-consent') === 'granted') {
+    enableTracking();
+  }
+
+  btnAccept.addEventListener('click', () => {
+    localStorage.setItem('cookie-consent', 'granted');
+    banner.classList.add('hidden');
+    enableTracking();
+  });
+
+  btnDecline.addEventListener('click', () => {
+    localStorage.setItem('cookie-consent', 'denied');
+    banner.classList.add('hidden');
+  });
+
+  function enableTracking() {
+    // Update Consent to Granted
+    window.gtag('consent', 'update', {
+      'ad_storage': 'granted',
+      'ad_user_data': 'granted',
+      'ad_personalization': 'granted',
+      'analytics_storage': 'granted'
+    });
+    // Fire a custom event so GTM knows consent was just given
+    window.dataLayer.push({'event': 'consent_update'});
+  }
+</script>
