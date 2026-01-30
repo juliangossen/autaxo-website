@@ -24,6 +24,10 @@ Im Autohaus ist das Risiko typischerweise höher als in vielen anderen Branchen,
 * **Systemlandschaften:** DMS, Dealer-Management, Kasse, DATEV, Bank erzeugen viele Schnittstellen und Fehlerquellen.
 * **E‑Rechnung ab 2025:** Bringt zusätzliche digitale Spuren und Abgleichmöglichkeiten.
 
+**Wichtig:** GoBD-Probleme entstehen besonders schnell dort, wo Umsatzsteuer-Nachweise „am Vorgang hängen“ (EU-Verkauf/Export).  
+→ EU-Prozesse: [Innergemeinschaftliche Lieferung (§ 6a) – Nachweise & ZM](/blog/innergemeinschaftliche-lieferung-kfz-steuerfrei)  
+→ Drittland-Prozesse: [Fahrzeugverkauf ins Drittland – MRN & Ausfuhrnachweis](/blog/fahrzeugverkauf-ins-drittland-umsatzsteuer-ausfuhrnachweis)
+
 ---
 
 ## Prüfungsfokus 1: Warum sind Rechnungslücken für Prüfer das erste Angriffsziel?
@@ -86,6 +90,9 @@ Die Belegablage wird nach drei Tests bewertet:
 
 Bei Kassenthemen müssen Daten während der Aufbewahrungsfrist jederzeit verfügbar, unverzüglich lesbar und maschinell auswertbar sein.
 
+**Praxis-Hinweis:** Gerade bei „steuerfall-getriebenen“ Vorgängen (z. B. § 25a, igL, Export) ist FIN-basierte Dokumentation der Hebel.  
+→ § 25a / Margenfahrzeuge: [Differenzbesteuerung (§ 25a) – technischer Leitfaden](/blog/differenzbesteuerung-kfz-25a-ustg-guide-eu-fallen)
+
 ---
 
 ## E‑Rechnung ab 2025: Was ändert sich für die GoBD?
@@ -95,6 +102,9 @@ Bei Kassenthemen müssen Daten während der Aufbewahrungsfrist jederzeit verfüg
 * **Format:** Nur strukturierte Formate (z.B. XRechnung) gelten als E-Rechnung; einfaches PDF ist eine „sonstige Rechnung“.
 * **Empfang:** Muss seit 01.01.2025 sichergestellt sein (E-Mail genügt).
 * **Übergang:** Bis Ende 2026 (teils 2027) darf noch „sonstige Rechnung“ genutzt werden.
+
+**Umsetzungsleitfaden (praxisnah, Autohaus-spezifisch):**  
+→ [E‑Rechnung ab 2025 im Autohandel: Pflichten, ZUGFeRD & DATEV-Lösung](/blog/e-rechnung-2025-kfz-autohandel-pflicht-datev)
 
 ### Aufbewahrung: Struktur nicht „kaputtspeichern“
 GoBD untersagt die Reduzierung der maschinellen Auswertbarkeit.
@@ -111,7 +121,7 @@ GoBD untersagt die Reduzierung der maschinellen Auswertbarkeit.
 | **Geldverkehrsrechnung** | Deckt Entnahme die Lebensführung? | „Konnte davon nicht leben“, viele Bareinlagen | Private Einlagen/Darlehen dokumentieren | Hoch |
 | **Unveränderbarkeit** | Änderungsprotokolle | Stapelbuchungen lange offen; Excel-Listen | Festschreibungsrhythmus etablieren | Hoch |
 | **Belegablage** | Vollständigkeit, Zuordnung | Fehlende Eingangsbelege, Chaos | DMS-Index standardisieren | Mittel–Hoch |
-| **E‑Rechnung** | Strukturierte Aufbewahrung | Nur PDF gespeichert, XML fehlt | Prozess: Empfangen + strukturiert archivieren | Hoch |
+| **E‑Rechnung** | Strukturierte Aufbewahrung | Nur PDF gespeichert, XML fehlt | Prozess: Empfangen + strukturiert archivieren (Details: [E‑Rechnung-Guide](/blog/e-rechnung-2025-kfz-autohandel-pflicht-datev)) | Hoch |
 
 ---
 
@@ -121,7 +131,7 @@ GoBD untersagt die Reduzierung der maschinellen Auswertbarkeit.
 * [ ] **Tag 3–4: Bargeld sichern:** Kassenprozess schriftlich fixieren, Bestände plausibilisieren, Unveränderbarkeit sicherstellen (kein Excel!).
 * [ ] **Tag 5–6: Festschreibung:** Monatliche Festschreibung mit Steuerberater vereinbaren.
 * [ ] **Tag 7–8: Verfahrensdokumentation:** „Minimum Viable“ Version erstellen (Ist-Prozess, Systeme, Rollen).
-* [ ] **Tag 9–10: E‑Rechnung-Readiness:** Empfang sicherstellen und strukturierte Archivierung (XML) prüfen.
+* [ ] **Tag 9–10: E‑Rechnung-Readiness:** Empfang sicherstellen und strukturierte Archivierung (XML) prüfen (siehe [E‑Rechnung-Guide](/blog/e-rechnung-2025-kfz-autohandel-pflicht-datev)).
 
 ---
 
@@ -133,7 +143,8 @@ In der Praxis zeigt sich immer wieder: Die Honorardifferenz zwischen einem „Bu
 Eine einzige Hinzuschätzung wegen formeller Mängel (z.B. fehlende Kassensturzfähigkeit oder Nummernlücken) kostet dagegen schnell **fünfstellige Summen**.
 
 **Die Erfolgsformel für ruhigen Schlaf:**
-1.  **Saubere Software (Autaxo):** Sie liefert die technische Hygiene (Unveränderbarkeit, lückenlose Dokumentation, ZM-Meldungen).
+1.  **Saubere Software (Autaxo):** Sie liefert die technische Hygiene (Unveränderbarkeit, lückenlose Dokumentation, ZM-Meldungen).  
+   (ZM/igL-Fehler sind ein häufiges GoBD-„Belegproblem“: [igL-Leitfaden](/blog/innergemeinschaftliche-lieferung-kfz-steuerfrei))
 2.  **Guter Steuerberater:** Er nutzt diese sauberen Daten, um dich im Zweifelsfall verteidigen zu können. (Passende Kanzleien findest du in unserem **[Partnernetzwerk](https://www.autaxo.de/partnernetzwerk/steuerberatung/)**).
 
 Wenn die Datenbasis (Software) unsauber ist, kann auch der beste Berater in der Prüfung nichts mehr retten. Investiere deshalb in beides: Ein System, das Fehler verhindert, und einen Berater, der das Business versteht.
@@ -150,6 +161,16 @@ Im Autohaus entscheidet GoBD-Compliance selten an Detailparagrafen – sondern a
 4.  **Belegablage** vollständig, auffindbar, zuordenbar – inkl. strukturierter E‑Rechnungsdaten.
 
 Wer diese Punkte operationalisiert, reduziert nicht nur Prüfungsstress, sondern verhindert die teuerste Kategorie von Fehlern: formelle Mängel, die Schätzungsdiskussionen überhaupt erst eröffnen.
+
+---
+
+## Weiterführende Artikel in der Autaxo‑Wissensdatenbank
+
+- **E‑Rechnung / DATEV / ZUGFeRD:** [E‑Rechnung ab 2025 im Autohandel](/blog/e-rechnung-2025-kfz-autohandel-pflicht-datev)
+- **Umsatzsteuer-Fallen im Alltag:** [Typische Umsatzsteuerfehler im Gebrauchtwagenhandel](/blog/umsatzsteuerfehler-gebrauchtwagenhandel)
+- **EU-Verkauf / Nachweise / ZM:** [Innergemeinschaftliche Lieferung (§ 6a) – Nachweise & ZM](/blog/innergemeinschaftliche-lieferung-kfz-steuerfrei)
+- **Drittland / MRN / Ausgangsvermerk:** [Fahrzeugverkauf ins Drittland – Exportnachweise](/blog/fahrzeugverkauf-ins-drittland-umsatzsteuer-ausfuhrnachweis)
+- **§ 25a / Margenlogik / Rechnung:** [Differenzbesteuerung (§ 25a) – technischer Leitfaden](/blog/differenzbesteuerung-kfz-25a-ustg-guide-eu-fallen)
 
 ---
 

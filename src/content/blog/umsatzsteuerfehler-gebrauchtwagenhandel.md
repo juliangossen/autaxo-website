@@ -16,10 +16,15 @@ shortDefinition: "Typische Umsatzsteuerfehler im Gebrauchtwagenhandel sind syste
 
 Der Gebrauchtwagenhandel ist umsatzsteuerlich ein Hochrisiko-Spielfeld. Der Grund ist simpel, aber gefährlich: **Der Steuerfall beim Verkauf hängt zu 100 % vom Einkauf ab.**
 
-Hast du das Fahrzeug falsch eingebucht (z. B. Vorsteuer gezogen, obwohl es Differenzbesteuerung war), ist jeder folgende Verkaufsschritt infiziert.
+Hast du das Fahrzeug falsch eingebucht (z. B. Vorsteuer gezogen, obwohl es **[Differenzbesteuerung (§ 25a)](/blog/differenzbesteuerung-kfz-25a-ustg-guide-eu-fallen)** war), ist jeder folgende Verkaufsschritt infiziert.
 Dazu kommt die Internationalisierung: Händler kaufen in Deutschland, verkaufen nach Frankreich oder exportieren nach Serbien.
 
 Dieser Artikel ist deine **„Firewall“** gegen die häufigsten Prüfungsfeststellungen.
+
+> **Deep-Dives (passend zu diesem Beitrag):**
+> - **§ 25a / Marge:** [Differenzbesteuerung im Autohandel – technischer Leitfaden](/blog/differenzbesteuerung-kfz-25a-ustg-guide-eu-fallen)
+> - **EU-Verkauf:** [Innergemeinschaftliche Lieferung (§ 6a) – Nachweise & ZM](/blog/innergemeinschaftliche-lieferung-kfz-steuerfrei)
+> - **Drittland-Export:** [Fahrzeugverkauf ins Drittland – MRN & Ausfuhrnachweis](/blog/fahrzeugverkauf-ins-drittland-umsatzsteuer-ausfuhrnachweis)
 
 ---
 
@@ -37,10 +42,10 @@ Dieser Artikel ist deine **„Firewall“** gegen die häufigsten Prüfungsfests
 | Fehlerklasse | Typischer Auslöser | Konsequenz in der Prüfung | Finanzielle Folge |
 | :--- | :--- | :--- | :--- |
 | **Fehlklassifikation** | „Junger Gebrauchter“ (< 6 Monate) wird wie „normaler Gebrauchter“ behandelt. | Verstoß gegen § 1b UStG (Fahrzeug ist steuerlich „neu“). | Nachversteuerung, Chaos bei EU-Meldungen. |
-| **Differenzbesteuerung** | Ankauf von Privat (ohne VSt) → Verkauf wird aber „steuerfrei igL“ gerechnet ohne Options-Verzicht. | Kollision § 25a vs. § 6a UStG. | Steuerbefreiung wird versagt. |
-| **Aufzeichnungen** | Kein Kfz-Handelsbuch, keine Einzelaufzeichnung pro VIN. | Besteuerungsgrundlagen unklar. | **Schätzung** (§ 162 AO). |
+| **[Differenzbesteuerung](/blog/differenzbesteuerung-kfz-25a-ustg-guide-eu-fallen)** | Ankauf von Privat (ohne VSt) → Verkauf wird aber „steuerfrei igL“ gerechnet ohne Options-Verzicht. | Kollision § 25a vs. § 6a UStG. | Steuerbefreiung wird versagt. |
+| **[Aufzeichnungen/GoBD](/blog/gobd-autohaus-was-finanzaemter-wirklich-pruefen)** | Kein Kfz-Handelsbuch, keine Einzelaufzeichnung pro VIN. | Besteuerungsgrundlagen unklar. | **Schätzung** (§ 162 AO). |
 | **Falsche Rechnung** | Differenzbesteuerung angewendet, aber 19 % USt offen ausgewiesen. | Unberechtigter Steuerausweis (§ 14c UStG). | Händler schuldet die ausgewiesene Steuer zusätzlich. |
-| **Export-Lücke** | Verkauf ins Drittland ohne MRN (nur Speditionsbescheinigung). | Ausfuhr nicht anerkannt. | 19 % USt-Nachforderung aus eigener Tasche. |
+| **[Export-Lücke (MRN)](/blog/fahrzeugverkauf-ins-drittland-umsatzsteuer-ausfuhrnachweis)** | Verkauf ins Drittland ohne MRN (nur Speditionsbescheinigung). | Ausfuhr nicht anerkannt. | 19 % USt-Nachforderung aus eigener Tasche. |
 
 ---
 
@@ -57,7 +62,8 @@ Ein Landfahrzeug gilt als „neu“, wenn:
 Du verkaufst einen Vorführwagen (4 Monate alt, 4.000 km) nach Frankreich. Du behandelst ihn wie einen normalen Gebrauchtwagen.
 **Die Falle:** Da er steuerlich „neu“ ist, gelten im EU-Handel Sonderregeln (innergemeinschaftliche Lieferung neuer Fahrzeuge), auch wenn der Käufer eine Privatperson ist. Hier drohen Meldelücken und falsche Besteuerung.
 
-> **To-Do:** Checke bei jedem Einkauf systematisch Erstzulassung und KM-Stand.
+> **To-Do:** Checke bei jedem Einkauf systematisch Erstzulassung und KM-Stand.  
+> **Vertiefung (EU-Kontext + Neufahrzeug-Sonderfall):** [Innergemeinschaftliche Lieferung im Kfz-Handel (§ 6a) – Steuer, Nachweise & ZM](/blog/innergemeinschaftliche-lieferung-kfz-steuerfrei)
 
 ---
 
@@ -78,10 +84,15 @@ Wenn du die Differenzbesteuerung anwendest, ist die **Steuerbefreiung für inner
 
 **Der Fehler:** Du schreibst "steuerfrei" auf die Rechnung, lässt das Auto aber im System als § 25a laufen. Das ist ein Garant für Prüfungsfeststellungen.
 
+> **Vertiefung:**
+> - **§ 25a technisch (Rechnung, Marge, Doku):** [Differenzbesteuerung im Autohandel – technischer Leitfaden](/blog/differenzbesteuerung-kfz-25a-ustg-guide-eu-fallen)
+> - **igL-Prozess (USt-IdNr., ZM, Gelangensbestätigung):** [Innergemeinschaftliche Lieferung (§ 6a) – Nachweise & ZM](/blog/innergemeinschaftliche-lieferung-kfz-steuerfrei)
+
 ---
 
 > **Tipp:** Du bist unsicher, ob du ein Fahrzeug differenzbesteuern darfst? 
-> [**Mache hier den kostenlosen §25a Quick-Check**](/tools/differenzbesteuerung-check)
+> [**Mache hier den kostenlosen §25a Quick-Check**](/differenzbesteuerung-check)  
+> (Für die „harten Regeln“ inkl. Rechnung/Dokumentation: [§ 25a Guide](/blog/differenzbesteuerung-kfz-25a-ustg-guide-eu-fallen))
 
 ---
 
@@ -96,7 +107,8 @@ Du heftest nur den Frachtbrief oder eine Bestätigung der Spedition ab.
 
 Für eine steuerfreie Ausfuhr verlangt das Finanzamt einen **Ausgangsvermerk** oder einen Alternativnachweis, der zwingend die **MRN (Movement Reference Number)** der Ausfuhranmeldung enthält. Ohne MRN ist der Beweis, dass das Auto die EU verlassen hat, oft nicht zu führen.
 
-> **Lösung:** Keine Export-Rechnung ohne Zollagentur/Ausfuhranmeldung. Die MRN gehört in die Fahrzeugakte.
+> **Lösung:** Keine Export-Rechnung ohne Zollagentur/Ausfuhranmeldung. Die MRN gehört in die Fahrzeugakte.  
+> **Vertiefung (MRN/Ausgangsvermerk/Checkliste):** [Fahrzeugverkauf ins Drittland: Umsatzsteuer & Exportnachweise sauber lösen](/blog/fahrzeugverkauf-ins-drittland-umsatzsteuer-ausfuhrnachweis)
 
 ---
 
@@ -110,18 +122,21 @@ Um diese Fehler systematisch auszuschalten, muss jeder Vorgang diese Checkliste 
 * [ ] **Verkauf EU (B2B):**
     * USt-IdNr. des Käufers **qualifiziert** bestätigt und gespeichert?
     * Kollisions-Check: Ist das Auto § 25a? Wenn ja: **Keine** steuerfreie igL (außer bewusster Verzicht).
+    * **Prozess/Belege (Gelangensbestätigung/ZM):** [igL-Leitfaden](/blog/innergemeinschaftliche-lieferung-kfz-steuerfrei)
 * [ ] **Verkauf Drittland:**
     * Liegt die **MRN** vor?
     * Ist der **Ausgangsvermerk** da?
+    * **Export-Workflow/Belege:** [Drittland-Export Leitfaden](/blog/fahrzeugverkauf-ins-drittland-umsatzsteuer-ausfuhrnachweis)
 * [ ] **Rechnung:**
     * Bei § 25a: Hinweis "Gebrauchtgegenstände/Sonderregelung" (und **kein** USt-Ausweis!).
     * Bei igL/Export: Hinweis "Steuerfreie innergemeinschaftliche Lieferung" bzw. "Ausfuhrlieferung".
+    * **GoBD/Archivierung:** [Was Prüfer wirklich sehen wollen](/blog/gobd-autohaus-was-finanzaemter-wirklich-pruefen)
 
 ---
 
 ## Strategischer Fehler: Dokumentation als "Lästige Pflicht" sehen
 
-Viele Händler sind Weltmeister im Verkauf, aber Amateure in der Dokumentation. Das ist gefährlich. Ein fehlender Nachweis (z.B. Gelangensbestätigung) vernichtet die Marge von fünf verkauften Autos.
+Viele Händler sind Weltmeister im Verkauf, aber Amateure in der Dokumentation. Das ist gefährlich. Ein fehlender Nachweis (z.B. **Gelangensbestätigung**) vernichtet die Marge von fünf verkauften Autos.
 
 **Die Sicherheits-Kombi:**
 1.  **Software (Autaxo):** Zwingt dich in saubere Prozesse. Sie erkennt z.B., wenn du bei einem § 25a-Auto versuchst, eine steuerfreie Rechnung zu schreiben, und warnt dich.
@@ -141,6 +156,16 @@ Ja, aber nur, wenn du auf die Anwendung der Differenzbesteuerung verzichtest (Op
 
 ### Reicht ein CMR-Frachtbrief als Exportnachweis?
 Für Drittland-Exporte: Nein, in der Regel nicht allein. Der Frachtbrief beweist den Transportauftrag, aber nicht die zollamtliche Ausfuhr. Du benötigst den Bezug zur Ausfuhranmeldung (MRN).
+
+---
+
+## Weiterführende Artikel in der Autaxo‑Wissensdatenbank
+
+- **§ 25a / Marge / Rechnung:** [Differenzbesteuerung im Autohandel (§ 25a) – technischer Leitfaden](/blog/differenzbesteuerung-kfz-25a-ustg-guide-eu-fallen)
+- **EU-Verkäufe / Nachweise / ZM:** [Innergemeinschaftliche Lieferung im Kfz-Handel (§ 6a) – Steuer, Nachweise & ZM](/blog/innergemeinschaftliche-lieferung-kfz-steuerfrei)
+- **Drittland / MRN:** [Fahrzeugverkauf ins Drittland: Umsatzsteuer & Exportnachweise sauber lösen](/blog/fahrzeugverkauf-ins-drittland-umsatzsteuer-ausfuhrnachweis)
+- **GoBD / Prüfungsfokus:** [GoBD im Autohaus: Was Finanzämter wirklich prüfen](/blog/gobd-autohaus-was-finanzaemter-wirklich-pruefen)
+- **E‑Rechnung / GoBD-Archiv:** [E‑Rechnung ab 2025 im Autohandel: Pflichten, ZUGFeRD & DATEV](/blog/e-rechnung-2025-kfz-autohandel-pflicht-datev)
 
 ---
 

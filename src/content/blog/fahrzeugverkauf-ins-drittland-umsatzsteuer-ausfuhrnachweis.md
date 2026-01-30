@@ -19,6 +19,12 @@ shortDefinition: "Ein Fahrzeugverkauf ins Drittland ist eine Ausfuhrlieferung in
 * **Der Anker:** In der Praxis ist die **MRN (Movement Reference Number)** aus dem Zollverfahren der zentrale Prüfanker: Sie ermöglicht die Zuordnung und Prüfung des Ausfuhrvorgangs im IT-Verfahren. (Handelskammer Hamburg)
 * **Automatisierung:** Die Rechnung muss einen Hinweis auf die Steuerbefreiung enthalten (z. B. „steuerfreie Ausfuhrlieferung“). Autaxo setzt diesen Hinweis automatisch, sobald ein Drittland als Ziel ausgewählt ist.
 
+> **Wenn du EU statt Drittland verkaufst:** Dort sind Gelangensbestätigung/ZM/USt-IdNr.-Prüfung die kritischen Nachweise.  
+> → [Innergemeinschaftliche Lieferung (§ 6a) – Nachweise & ZM](/blog/innergemeinschaftliche-lieferung-kfz-steuerfrei)
+
+> **Wenn du einen Überblick über typische Umsatzsteuer-Prüfungsfallen suchst:**  
+> → [Typische Umsatzsteuerfehler im Gebrauchtwagenhandel](/blog/umsatzsteuerfehler-gebrauchtwagenhandel)
+
 ---
 
 ## Drittland-Status: Was zählt steuerlich eigentlich als "Drittland"?
@@ -81,6 +87,9 @@ Damit die Dokumentation „prüfbar“ bleibt, müssen Rechnung und Nachweise ko
 * Datum/Ort der Ausfuhr
 * MRN (Zollvorgang)
 
+**GoBD-Hinweis:** Rechnung + MRN/Ausgangsvermerk müssen **unveränderbar und auffindbar** archiviert sein.  
+→ [GoBD im Autohaus: Was Finanzämter wirklich prüfen](/blog/gobd-autohaus-was-finanzaemter-wirklich-pruefen)
+
 ---
 
 ## Risiko-Matrix: Wo lauern die Fehler im Export-Geschäft?
@@ -112,7 +121,8 @@ Damit die Dokumentation „prüfbar“ bleibt, müssen Rechnung und Nachweise ko
 1.  **Zielgebiet klassifizieren:** Ist es zum Verkaufszeitpunkt EU oder Drittland? (Autaxo macht das automatisch).
 2.  **Ausfuhrprozess dokumentieren:** Ausfuhranmeldung so führen, dass eine **MRN** erzeugt wird.
 3.  **Rechnung korrekt ausstellen:** Mit Hinweis „steuerfreie Ausfuhrlieferung“.
-4.  **Dokumentenpaket schnüren:** MRN + Ausgangsvermerk + Rechnung + FIN-Konsistenz in der Fahrzeugakte ablegen (10 Jahre).
+4.  **Dokumentenpaket schnüren:** MRN + Ausgangsvermerk + Rechnung + FIN-Konsistenz in der Fahrzeugakte ablegen (10 Jahre).  
+   (Archivierungs-/Unveränderbarkeitslogik: [GoBD im Autohaus](/blog/gobd-autohaus-was-finanzaemter-wirklich-pruefen); E‑Rechnungs-Originale/Struktur: [E‑Rechnung-Guide](/blog/e-rechnung-2025-kfz-autohandel-pflicht-datev))
 
 ---
 
@@ -142,6 +152,16 @@ Die MRN (Movement Reference Number) ist die Referenznummer der Ausfuhranmeldung.
 
 ### Muss die Rechnung zwingend einen Hinweis auf die Steuerbefreiung enthalten?
 Ja. Beispiele sind „steuerfreie Ausfuhrlieferung“ oder „umsatzsteuerfreie Ausfuhrlieferung“.
+
+---
+
+## Weiterführende Artikel in der Autaxo‑Wissensdatenbank
+
+- **EU-Verkauf / Nachweise / ZM:** [Innergemeinschaftliche Lieferung (§ 6a) – Nachweise & ZM](/blog/innergemeinschaftliche-lieferung-kfz-steuerfrei)
+- **Umsatzsteuer-Fallen (gesamt):** [Typische Umsatzsteuerfehler im Gebrauchtwagenhandel](/blog/umsatzsteuerfehler-gebrauchtwagenhandel)
+- **GoBD / Archiv / Unveränderbarkeit:** [GoBD im Autohaus: Prüfungsfokus](/blog/gobd-autohaus-was-finanzaemter-wirklich-pruefen)
+- **E‑Rechnung / Original-XML:** [E‑Rechnung ab 2025 – Guide](/blog/e-rechnung-2025-kfz-autohandel-pflicht-datev)
+- **§ 25a / Margenfahrzeuge:** [Differenzbesteuerung (§ 25a) – technischer Leitfaden](/blog/differenzbesteuerung-kfz-25a-ustg-guide-eu-fallen)
 
 ---
 

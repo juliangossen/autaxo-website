@@ -18,6 +18,9 @@ Seit dem 01. Januar 2025 ist die E-Rechnung für B2B-Geschäfte in Deutschland g
 
 Die gute Nachricht: Die Situation ist weniger dramatisch, als viele Berater behaupten – wenn man **Eingang (Empfang)** und **Ausgang (Versand)** sauber trennt.
 
+**GoBD ist hier der Rahmen:** Wenn du das Original (XML) „kaputtspeicherst“ oder nur ausdruckst, wird’s in der Prüfung teuer.  
+→ [GoBD im Autohaus: Was Finanzämter wirklich prüfen](/blog/gobd-autohaus-was-finanzaemter-wirklich-pruefen)
+
 Dieser Leitfaden zeigt die pragmatischste Lösung für Kfz-Händler: **Autaxo für den perfekten Verkauf** und **DATEV für die sichere Buchhaltung.**
 
 ---
@@ -66,6 +69,12 @@ Du erstellst die Rechnung wie gewohnt in Autaxo. Das Ergebnis ist eine Datei, di
 
 Damit erfüllst du die E-Rechnungspflicht zu 100 %, ohne dass deine Kunden (oder du) den Prozess ändern müssen.
 
+> **Wichtig für den Autohandel:** Der **Rechnungstext / Steuerfall** hängt am Geschäft (z. B. § 25a vs. igL vs. Export).  
+> - § 25a (kein USt-Ausweis): [Differenzbesteuerung (§ 25a) – Guide](/blog/differenzbesteuerung-kfz-25a-ustg-guide-eu-fallen)  
+> - EU-Verkauf (Hinweis „steuerfreie igL“, ZM/Nachweise): [igL-Leitfaden](/blog/innergemeinschaftliche-lieferung-kfz-steuerfrei)  
+> - Drittland-Export (Hinweis „steuerfreie Ausfuhrlieferung“, MRN): [Drittland-Export Leitfaden](/blog/fahrzeugverkauf-ins-drittland-umsatzsteuer-ausfuhrnachweis)  
+> - Häufige Gesamtfehlerbilder: [Umsatzsteuerfehler im Gebrauchtwagenhandel](/blog/umsatzsteuerfehler-gebrauchtwagenhandel)
+
 ---
 
 ## Der Zeitplan: Welche Fristen gelten für Händler?
@@ -89,6 +98,9 @@ Der häufigste Fehler ist derzeit: *"Ich drucke die E-Rechnung einfach aus und h
 
 Wer E-Rechnungen per E-Mail empfängt und im Posteingang „vergammeln“ lässt, riskiert in der Betriebsprüfung den Vorsteuerabzug.
 
+**GoBD-Praxis-Fokus (Prüfer-Logik):**  
+→ [GoBD im Autohaus: Was Finanzämter wirklich prüfen](/blog/gobd-autohaus-was-finanzaemter-wirklich-pruefen)
+
 **Die saubere Trennung:**
 1.  **Eingang:** Zentralisierung über **DATEV E-Rechnungsplattform**.
 2.  **Ausgang:** Automatisierung über **Autaxo (PDF/A-3)**.
@@ -100,6 +112,16 @@ Wer E-Rechnungen per E-Mail empfängt und im Posteingang „vergammeln“ lässt
 * [ ] **Schritt 1 (Empfang):** Prüfe mit deinem Steuerberater, ob du Zugang zu DATEV Unternehmen online / E-Rechnungsplattform hast. Falls nein: Beantragen!
 * [ ] **Schritt 2 (E-Mail):** Richte eine zentrale Rechnungs-Mailadresse ein (z. B. `rechnung@autohaus-muster.de`) und leite diese idealerweise direkt an DATEV weiter.
 * [ ] **Schritt 3 (Versand):** Nutze in Autaxo das Format **PDF/A-3 (ZUGFeRD)**. Damit bist du für alle B2B-Kunden zukunftssicher aufgestellt, egal wann die Pflicht für dich greift.
+
+---
+
+## Weiterführende Artikel in der Autaxo‑Wissensdatenbank
+
+- **GoBD / Archiv / Unveränderbarkeit:** [GoBD im Autohaus: Was Finanzämter wirklich prüfen](/blog/gobd-autohaus-was-finanzaemter-wirklich-pruefen)
+- **§ 25a / Rechnung ohne USt-Ausweis:** [Differenzbesteuerung (§ 25a) – technischer Leitfaden](/blog/differenzbesteuerung-kfz-25a-ustg-guide-eu-fallen)
+- **EU-Verkauf / Rechnungshinweise / ZM:** [Innergemeinschaftliche Lieferung (§ 6a) – Nachweise & ZM](/blog/innergemeinschaftliche-lieferung-kfz-steuerfrei)
+- **Drittland-Export / Ausfuhrrechnung / MRN:** [Fahrzeugverkauf ins Drittland – Exportnachweise](/blog/fahrzeugverkauf-ins-drittland-umsatzsteuer-ausfuhrnachweis)
+- **Umsatzsteuer-Fallen (gesamt):** [Typische Umsatzsteuerfehler im Gebrauchtwagenhandel](/blog/umsatzsteuerfehler-gebrauchtwagenhandel)
 
 ---
 
