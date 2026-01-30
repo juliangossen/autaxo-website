@@ -17,13 +17,17 @@ shortDefinition: "Ein Fahrzeugverkauf ins Drittland ist eine Ausfuhrlieferung in
 * **Definition:** Drittland bedeutet umsatzsteuerlich: außerhalb des EU-Gemeinschaftsgebiets. Seit dem 31.12.2020 gilt das Vereinigte Königreich grundsätzlich als Drittlandsgebiet; im Warenverkehr gibt es jedoch Sonderregeln für Nordirland. (Bundesministerium der Finanzen)
 * **Risiko:** Betriebsprüfer setzen beim Exportnachweis an. Ohne belastbaren Ausfuhrnachweis darf die Steuerbefreiung nicht genutzt werden; dann wird der Deal umsatzsteuerpflichtig behandelt und die USt wird nachgefordert. (Handelskammer Hamburg)
 * **Der Anker:** In der Praxis ist die **MRN (Movement Reference Number)** aus dem Zollverfahren der zentrale Prüfanker: Sie ermöglicht die Zuordnung und Prüfung des Ausfuhrvorgangs im IT-Verfahren. (Handelskammer Hamburg)
-* **Automatisierung:** Die Rechnung muss einen Hinweis auf die Steuerbefreiung enthalten (z. B. „steuerfreie Ausfuhrlieferung“). Autaxo setzt diesen Hinweis automatisch, sobald ein Drittland als Ziel ausgewählt ist.
+* **Automatisierung:** Die Rechnung muss einen Hinweis auf die Steuerbefreiung enthalten (z. B. „steuerfreie Ausfuhrlieferung“). Autaxo setzt diesen Hinweis automatisch, sobald ein Drittland als Ziel ausgewählt ist.
 
 > **Wenn du EU statt Drittland verkaufst:** Dort sind Gelangensbestätigung/ZM/USt-IdNr.-Prüfung die kritischen Nachweise.  
 > → [Innergemeinschaftliche Lieferung (§ 6a) – Nachweise & ZM](/blog/innergemeinschaftliche-lieferung-kfz-steuerfrei)
 
 > **Wenn du einen Überblick über typische Umsatzsteuer-Prüfungsfallen suchst:**  
 > → [Typische Umsatzsteuerfehler im Gebrauchtwagenhandel](/blog/umsatzsteuerfehler-gebrauchtwagenhandel)
+
+> 🧰 **Tools (sofort anwenden):**  
+> - **[Händler Kalkulator (Smart-Deal-Rechner)](/tools/smart-deal-rechner/)** – simuliert Export vs. Inland/EU, Steuerlogik (0%/19%/§25a), Netto-Gewinn und gibt den passenden Rechnungstext aus.  
+> - **[Rechnungstexte-Generator](/tools/rechnungstexte-generator/)** – korrekte Formulierungen je Steuerfall (u. a. „steuerfreie Ausfuhrlieferung“).
 
 ---
 
@@ -35,7 +39,7 @@ shortDefinition: "Ein Fahrzeugverkauf ins Drittland ist eine Ausfuhrlieferung in
 ## Drittland-Status: Was zählt steuerlich eigentlich als "Drittland"?
 
 ### Der Unterschied: Geografisch vs. Umsatzsteuerlich
-Im Alltag wird „Drittland“ oft als „Land außerhalb der EU“ genutzt (z. B. Schweiz, Ghana, Tunesien). Umsatzsteuerlich zählt jedoch das umsatzsteuerliche Gemeinschaftsgebiet als Referenz: Drittlandsgebiet ist, was nicht zum Gemeinschaftsgebiet gehört.
+Im Alltag wird „Drittland“ oft als „Land außerhalb der EU“ genutzt (z. B. Schweiz, Ghana, Tunesien). Umsatzsteuerlich zählt jedoch das umsatzsteuerliche Gemeinschaftsgebiet als Referenz: Drittlandsgebiet ist, was nicht zum Gemeinschaftsgebiet gehört.
 > **Wichtig:** Diese Abgrenzung ist nicht nur politisch, sondern umsatzsteuerlich geprägt. Daher existieren Sonderfälle (Territorien, die politisch zu EU-Staaten gehören, umsatzsteuerlich aber nicht Teil des Gemeinschaftsgebiets sind). (Bundesministerium der Finanzen)
 
 ### Warum das Verkaufsdatum über den Status entscheidet
@@ -54,7 +58,7 @@ Ein Export ins Drittlandsgebiet kann als Ausfuhrlieferung grundsätzlich steuerf
 
 ### Fallunterscheidung: Beförderung vs. Versendung
 Für den Belegnachweis wird unterschieden:
-1.  **Beförderungsfall:** Fahrzeug wird durch Lieferant oder Abnehmer selbst befördert (z. B. eigener Fahrer/Abholung).
+1.  **Beförderungsfall:** Fahrzeug wird durch Lieferant oder Abnehmer selbst befördert (z. B. eigener Fahrer/Abholung).
 2.  **Versendungsfall:** Transport über einen selbständigen Beauftragten, typischerweise Spediteur.
 
 Diese Unterscheidung ist nicht akademisch: Sie beeinflusst, welche Dokumente typischerweise als Ausfuhrnachweis anerkannt werden und wie häufig die Prüfungspraxis „härter“ wird.
@@ -70,7 +74,7 @@ Im elektronischen Ausfuhrverfahren kann die Ausgangszollstelle den Ausfuhrvorgan
 ### Warum eine Speditionsbescheinigung allein oft scheitert
 In der Praxis kommt es regelmäßig vor, dass Händler nur eine „Speditionsbescheinigung“ oder ein Transportdokument ablegen.
 * **Das Problem:** Ohne Bezug zum Zollvorgang ist das für Prüfer häufig nicht belastbar genug.
-* **Die Regel:** Wenn der Ausgangsvermerk nicht geführt werden kann, müssen die ersatzweise genutzten Belege (z. B. Spediteursbescheinigung) zusätzlich die MRN enthalten. Ein Beleg mit falscher MRN ist nicht als Ausfuhrnachweis anzuerkennen. (Bundesministerium der Finanzen)
+* **Die Regel:** Wenn der Ausgangsvermerk nicht geführt werden kann, müssen die ersatzweise genutzten Belege (z. B. Spediteursbescheinigung) zusätzlich die MRN enthalten. Ein Beleg mit falscher MRN ist nicht als Ausfuhrnachweis anzuerkennen. (Bundesministerium der Finanzen)
 
 ### Fahrzeug-Spezifik: FIN/VIN gehört in den Nachweis
 Für Fahrzeuge, die zum bestimmungsmäßigen Gebrauch im Straßenverkehr einer Zulassung bedürfen, muss der Beleg nach den Vorgaben auch die **Fahrzeug-Identifikationsnummer (FIN/VIN)** enthalten.
@@ -84,6 +88,10 @@ Zusätzlich zu den allgemeinen Rechnungsangaben muss sich auf Rechnungen über A
 * „steuerfreie Ausfuhrlieferung“
 * „umsatzsteuerfreie Ausfuhrlieferung“
 * „Es handelt sich um eine steuerfreie Ausfuhrlieferung …“
+
+**Schnelllösung:** Den passenden Hinweis je Steuerfall (Ausfuhr/igL/§25a) in Sekunden generieren:  
+→ **[Rechnungstexte-Generator](/tools/rechnungstexte-generator/)**  
+Alternativ (inkl. Gewinn-/Steuer-Simulation): **[Händler Kalkulator (Smart-Deal-Rechner)](/tools/smart-deal-rechner/)**
 
 ### Konsistenz-Check: Passt die Rechnung zum Zoll-Beleg?
 Damit die Dokumentation „prüfbar“ bleibt, müssen Rechnung und Nachweise konsistent sein:
@@ -105,7 +113,7 @@ Damit die Dokumentation „prüfbar“ bleibt, müssen Rechnung und Nachweise ko
 | **Ausfuhrnachweis** | Zollunterlagen mit MRN + Ausgangsvermerk | Nur Speditionsbescheinigung **ohne** MRN | Steuerbefreiung wird versagt, USt-Nachforderung | Prüft Nachweise pro Steuerfall |
 | **MRN Qualität** | MRN muss enthalten sein | MRN fehlt oder falsch abgelegt | Nachweis wird nicht anerkannt | Kann MRN als Pflichtfeld erzwingen |
 | **FIN/VIN** | FIN/VIN muss im Belegkontext stehen | FIN nur auf Rechnung, nicht in Nachweisen | Rückfragen / Risiko Versagung | Zentrale Fahrzeugakte (FIN-basiert) |
-| **Rechnungshinweis** | Klarer Hinweis „steuerfreie Ausfuhrlieferung“ | Hinweis fehlt oder ist missverständlich | Formeller Angriffspunkt | Setzt Hinweis automatisch bei Drittland-Wahl |
+| **Rechnungshinweis** | Klarer Hinweis „steuerfreie Ausfuhrlieferung“ | Hinweis fehlt oder ist missverständlich | Formeller Angriffspunkt | Setzt Hinweis automatisch bei Drittland-Wahl (Tool-Shortcut: [Rechnungstexte-Generator](/tools/rechnungstexte-generator/)) |
 | **Archivierung** | Im Besitz des Händlers, 10 Jahre | „Liegt beim Spediteur“ | Beleg fehlt im Prüfungsfall | Bündelt Dokumente in der Fahrzeugakte |
 
 ---
@@ -125,9 +133,11 @@ Damit die Dokumentation „prüfbar“ bleibt, müssen Rechnung und Nachweise ko
 
 1.  **Zielgebiet klassifizieren:** Ist es zum Verkaufszeitpunkt EU oder Drittland? (Autaxo macht das automatisch).
 2.  **Ausfuhrprozess dokumentieren:** Ausfuhranmeldung so führen, dass eine **MRN** erzeugt wird.
-3.  **Rechnung korrekt ausstellen:** Mit Hinweis „steuerfreie Ausfuhrlieferung“.
+3.  **Rechnung korrekt ausstellen:** Mit Hinweis „steuerfreie Ausfuhrlieferung“.  
+    → Textbaustein sichern: **[Rechnungstexte-Generator](/tools/rechnungstexte-generator/)**  
+    → Oder direkt komplett simulieren (Steuer + Netto-Gewinn + Text): **[Händler Kalkulator (Smart-Deal-Rechner)](/tools/smart-deal-rechner/)**
 4.  **Dokumentenpaket schnüren:** MRN + Ausgangsvermerk + Rechnung + FIN-Konsistenz in der Fahrzeugakte ablegen (10 Jahre).  
-   (Archivierungs-/Unveränderbarkeitslogik: [GoBD im Autohaus](/blog/gobd-autohaus-was-finanzaemter-wirklich-pruefen); E‑Rechnungs-Originale/Struktur: [E‑Rechnung-Guide](/blog/e-rechnung-2025-kfz-autohandel-pflicht-datev))
+   (Archivierungs-/Unveränderbarkeitslogik: [GoBD im Autohaus](/blog/gobd-autohaus-was-finanzaemter-wirklich-pruefen); E-Rechnungs-Originale/Struktur: [E-Rechnung-Guide](/blog/e-rechnung-2025-kfz-autohandel-pflicht-datev))
 
 ---
 
@@ -160,12 +170,12 @@ Ja. Beispiele sind „steuerfreie Ausfuhrlieferung“ oder „umsatzsteuerfreie 
 
 ---
 
-## Weiterführende Artikel in der Autaxo‑Wissensdatenbank
+## Weiterführende Artikel in der Autaxo-Wissensdatenbank
 
 - **EU-Verkauf / Nachweise / ZM:** [Innergemeinschaftliche Lieferung (§ 6a) – Nachweise & ZM](/blog/innergemeinschaftliche-lieferung-kfz-steuerfrei)
 - **Umsatzsteuer-Fallen (gesamt):** [Typische Umsatzsteuerfehler im Gebrauchtwagenhandel](/blog/umsatzsteuerfehler-gebrauchtwagenhandel)
 - **GoBD / Archiv / Unveränderbarkeit:** [GoBD im Autohaus: Prüfungsfokus](/blog/gobd-autohaus-was-finanzaemter-wirklich-pruefen)
-- **E‑Rechnung / Original-XML:** [E‑Rechnung ab 2025 – Guide](/blog/e-rechnung-2025-kfz-autohandel-pflicht-datev)
+- **E-Rechnung / Original-XML:** [E-Rechnung ab 2025 – Guide](/blog/e-rechnung-2025-kfz-autohandel-pflicht-datev)
 - **§ 25a / Margenfahrzeuge:** [Differenzbesteuerung (§ 25a) – technischer Leitfaden](/blog/differenzbesteuerung-kfz-25a-ustg-guide-eu-fallen)
 
 ---
