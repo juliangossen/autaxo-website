@@ -1,0 +1,155 @@
+---
+// src/components/tools/MarginCalculator.astro
+---
+
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+  <div class="lg:col-span-5 bg-slate-900/50 rounded-2xl border border-white/10 p-6 md:p-8 backdrop-blur-sm shadow-xl">
+    <h2 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+      <span class="w-8 h-8 rounded-lg bg-blue-600/20 text-blue-400 flex items-center justify-center text-sm">1</span>
+      Fahrzeugdaten eingeben
+    </h2>
+
+    <div class="space-y-6">
+      <div>
+        <label for="input-ek" class="block text-sm font-medium text-slate-400 mb-2">Einkaufspreis (Brutto)</label>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <span class="text-slate-500">€</span>
+          </div>
+          <input type="number" id="input-ek" placeholder="10000" class="block w-full pl-8 pr-4 py-3 bg-slate-950 border border-slate-700 rounded-lg text-white placeholder-slate-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none" />
+        </div>
+      </div>
+
+      <div>
+        <label for="input-vk" class="block text-sm font-medium text-slate-400 mb-2">Geplanter Verkaufspreis (Brutto)</label>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <span class="text-slate-500">€</span>
+          </div>
+          <input type="number" id="input-vk" placeholder="12500" class="block w-full pl-8 pr-4 py-3 bg-slate-950 border border-slate-700 rounded-lg text-white placeholder-slate-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none" />
+        </div>
+      </div>
+
+      <div>
+        <label for="input-cost" class="block text-sm font-medium text-slate-400 mb-2">
+          Kosten (Reparatur, Aufbereitung)
+          <span class="block text-xs text-slate-500 mt-0.5 font-normal">Mindert NICHT die Steuerlast!</span>
+        </label>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <span class="text-slate-500">€</span>
+          </div>
+          <input type="number" id="input-cost" placeholder="500" class="block w-full pl-8 pr-4 py-3 bg-slate-950 border border-slate-700 rounded-lg text-white placeholder-slate-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lg:col-span-7 space-y-4">
+    
+    <div class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl border border-white/10 p-6 md:p-8 relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+      
+      <div class="relative z-10">
+        <span class="text-slate-400 text-sm font-medium uppercase tracking-wider">Dein Reingewinn (Netto)</span>
+        <div class="flex items-baseline gap-2 mt-2">
+          <span id="output-profit" class="text-4xl md:text-5xl font-bold text-emerald-400">0,00 €</span>
+        </div>
+        <p class="text-slate-500 text-sm mt-2">Das bleibt nach Steuern und Kosten tatsächlich übrig.</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      
+      <div class="bg-slate-900/50 rounded-xl border border-white/5 p-5">
+        <span class="text-slate-500 text-xs uppercase font-bold">Brutto-Marge (Handelsspanne)</span>
+        <div id="output-gross-margin" class="text-xl font-bold text-white mt-1">0,00 €</div>
+        <div class="text-xs text-slate-600 mt-1">Verkauf - Einkauf</div>
+      </div>
+
+      <div class="bg-slate-900/50 rounded-xl border border-red-500/20 p-5 relative overflow-hidden group">
+        <div class="absolute inset-0 bg-red-500/5 group-hover:bg-red-500/10 transition-colors"></div>
+        <span class="text-red-400 text-xs uppercase font-bold flex items-center gap-1">
+          Finanzamt (19% aus Differenz)
+        </span>
+        <div id="output-tax" class="text-xl font-bold text-red-400 mt-1">0,00 €</div>
+        <div class="text-xs text-red-400/60 mt-1">Wird nicht vom Käufer gezahlt!</div>
+      </div>
+
+       <div class="bg-slate-900/50 rounded-xl border border-white/5 p-5 opacity-70">
+        <span class="text-slate-500 text-xs uppercase font-bold">Netto-Marge (vor Kosten)</span>
+        <div id="output-net-margin" class="text-xl font-semibold text-slate-300 mt-1">0,00 €</div>
+      </div>
+
+      <div class="bg-slate-900/50 rounded-xl border border-white/5 p-5 opacity-70">
+        <span class="text-slate-500 text-xs uppercase font-bold">Kostenabzug</span>
+        <div id="output-costs" class="text-xl font-semibold text-slate-300 mt-1">- 0,00 €</div>
+        <div class="text-xs text-slate-600 mt-1">Voller Abzug vom Netto</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  // Elements - Wir suchen nur innerhalb dieses Dokuments, IDs sollten unique sein
+  const inputEk = document.getElementById('input-ek') as HTMLInputElement;
+  const inputVk = document.getElementById('input-vk') as HTMLInputElement;
+  const inputCost = document.getElementById('input-cost') as HTMLInputElement;
+
+  const outProfit = document.getElementById('output-profit');
+  const outGrossMargin = document.getElementById('output-gross-margin');
+  const outTax = document.getElementById('output-tax');
+  const outNetMargin = document.getElementById('output-net-margin');
+  const outCosts = document.getElementById('output-costs');
+
+  function formatCurrency(num: number) {
+    return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(num);
+  }
+
+  function calculate() {
+    if(!inputEk || !inputVk || !inputCost) return;
+
+    const ek = parseFloat(inputEk.value) || 0;
+    const vk = parseFloat(inputVk.value) || 0;
+    const cost = parseFloat(inputCost.value) || 0;
+
+    // 1. Brutto Marge
+    const grossMargin = vk - ek;
+
+    // 2. Umsatzsteuer (Nur wenn Marge positiv)
+    let tax = 0;
+    let netMargin = 0;
+
+    if (grossMargin > 0) {
+      // Formel: Marge / 1,19 * 0,19
+      tax = (grossMargin / 1.19) * 0.19;
+      netMargin = grossMargin - tax;
+    } else {
+      // Verlustgeschäft (keine negative Steuererstattung bei §25a auf Marge)
+      tax = 0;
+      netMargin = grossMargin;
+    }
+
+    // 3. Reingewinn
+    const profit = netMargin - cost;
+
+    // Render
+    if(outProfit) {
+        outProfit.textContent = formatCurrency(profit);
+        outProfit.classList.toggle('text-emerald-400', profit >= 0);
+        outProfit.classList.toggle('text-red-400', profit < 0);
+    }
+    
+    if(outGrossMargin) outGrossMargin.textContent = formatCurrency(grossMargin);
+    if(outTax) outTax.textContent = formatCurrency(tax);
+    if(outNetMargin) outNetMargin.textContent = formatCurrency(netMargin);
+    if(outCosts) outCosts.textContent = "- " + formatCurrency(cost);
+  }
+
+  // Event Listeners
+  [inputEk, inputVk, inputCost].forEach(el => {
+    el?.addEventListener('input', calculate);
+  });
+</script>
