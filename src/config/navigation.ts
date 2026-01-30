@@ -20,7 +20,7 @@ export const navigation = {
           { label: 'Buchhaltung & DATEV', href: '/funktionen/buchhaltung' },
           { label: 'Steuerlogik (§25a)', href: '/funktionen/differenzbesteuerung-25a-ustg' },
           { label: 'KI-Assistent Carlo', href: '/funktionen/ki-assistent' },
-          { label: 'Schnittstellen', href: '/funktionen/mobile-schnittstellen' },
+          { label: 'Marktplatzanbindungen', href: '/funktionen/mobile-schnittstellen' },
         ]
       },
       
