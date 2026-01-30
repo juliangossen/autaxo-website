@@ -27,6 +27,10 @@ Wenn du zuerst den Gesamtüberblick über typische Prüfungsfeststellungen suchs
 Für Drittlandgeschäfte (Export) gelten andere Nachweise (MRN/Ausgangsvermerk):  
 → **[Fahrzeugverkauf ins Drittland: Umsatzsteuer & Exportnachweise](/blog/fahrzeugverkauf-ins-drittland-umsatzsteuer-ausfuhrnachweis)**
 
+> 🧰 **Tools (sofort anwendbar):**  
+> - **[Rechnungstexte-Generator](/tools/rechnungstexte-generator/)** – richtige Formulierungen je Steuerfall (igL / §25a / Export), damit der Rechnungshinweis nicht zum Angriffspunkt wird.  
+> - **[Smart-Deal-Rechner (Händler-Kalkulator)](/tools/smart-deal-rechner/)** – simuliert EU-Verkauf inkl. §25a-Kollision („Verzicht?“) und gibt den passenden Rechnungstext aus.
+
 Dieser Beitrag strukturiert die Anforderungen so, dass sie als **interne Arbeitsanweisung** (Vertrieb → Dispo/Logistik → Buchhaltung) nutzbar sind und in einer Betriebsprüfung als **prüfbarer Nachweis-Workflow** funktioniert.
 
 ---
@@ -102,6 +106,11 @@ Nicht jeder EU-Verkauf ist steuerfrei. Die folgende Matrix grenzt die typischen 
 **Achtung (§ 25a-Kollision):**  
 Wird **Differenzbesteuerung nach § 25a UStG** angewendet, ist die **Steuerbefreiung für innergemeinschaftliche Lieferungen (§ 6a UStG)** ausgeschlossen. Wer „steuerfrei“ liefern will, muss (sofern zulässig) **je Lieferung** auf § 25a verzichten (Option zur Regelbesteuerung möglich).
 
+> **Shortcut:** Den passenden Rechnungshinweis je Steuerfall (igL / §25a / Neufahrzeug) sauber generieren:  
+> → **[Rechnungstexte-Generator](/tools/rechnungstexte-generator/)**  
+> Wenn du zusätzlich prüfen willst, ob „Verzicht auf §25a“ im Deal Sinn macht (inkl. Ergebnis + Text):  
+> → **[Smart-Deal-Rechner](/tools/smart-deal-rechner/)**
+
 Interner Kontext:
 - **§25a-Kollision & EU-Dilemma:** [Differenzbesteuerung Kfz (§ 25a) – Guide & EU-Fallen](/blog/differenzbesteuerung-kfz-25a-ustg-guide-eu-fallen)
 
@@ -150,6 +159,11 @@ Eine Gelangensbestätigung muss i. d. R. enthalten:
 **Gegenmaßnahme:** Steuerart ist **Einkaufsstatus-getrieben**: §25a muss im Vorgang die Rechnungslogik determinieren.  
 (Vertiefung: [§ 25a Guide](/blog/differenzbesteuerung-kfz-25a-ustg-guide-eu-fallen))
 
+> **Praxis-Guardrail:** Rechnungshinweise je Steuerfall nicht „aus dem Kopf“ schreiben.  
+> → **[Rechnungstexte-Generator](/tools/rechnungstexte-generator/)**  
+> Bei EU-B2B + §25a-Kollision (Option „Verzicht?“) hilft zusätzlich:  
+> → **[Smart-Deal-Rechner](/tools/smart-deal-rechner/)**
+
 ### Lückenhafte Transportbelege (vor allem Abholfall)
 **Fehlerbild:** Gelangensbestätigung fehlt, Vollmacht fehlt, „irgendwer“ holt ab.  
 **Folge:** Nachweis scheitert, Steuerfreiheit kippt.
@@ -194,7 +208,8 @@ Bei **innergemeinschaftlichen Lieferungen neuer Fahrzeuge** an Abnehmer **ohne U
 - [ ] **Abnehmer validieren:** Unternehmerstatus prüfen, USt-IdNr. qualifiziert bestätigen (BZSt) und Beleg speichern
 - [ ] **Fahrzeugstatus prüfen:** Neufahrzeug (< 6 Monate / < 6.000 km) oder Gebrauchtwagen?
 - [ ] **Steuerart festlegen:** § 25a (keine Steuerfreiheit) oder Regelbesteuerung (igL möglich)?
-- [ ] **Rechnung erstellen:** Nettopreis (0 % USt), Hinweis „Steuerfreie innergemeinschaftliche Lieferung“, beide USt-IdNrn. und FIN angeben
+- [ ] **Rechnung erstellen:** Nettopreis (0 % USt), Hinweis „Steuerfreie innergemeinschaftliche Lieferung“, beide USt-IdNrn. und FIN angeben  
+      → Textbaustein sichern: **[Rechnungstexte-Generator](/tools/rechnungstexte-generator/)**
 - [ ] **Sicherung Abholfall:** Kaution/Deposit (19 %) vereinbaren und dokumentieren
 - [ ] **Transportnachweis vorbereiten:** Gelangensbestätigung (vorausgefüllt) oder Speditionsauftrag/CMR
 - [ ] **Nachlauf überwachen:** Eingang unterschriebener Gelangensbestätigung/Empfangsbelege kontrollieren
@@ -231,7 +246,7 @@ Interne Links:
 - §25a / Differenzbesteuerung: `/funktionen/differenzbesteuerung-25a-ustg`
 - Buchhaltung / DATEV: `/funktionen/buchhaltung`
 - Downloads / Vorlagen: `/downloads`
-- E‑Rechnung (GoBD-konforme Aufbewahrung von XML): [E‑Rechnung ab 2025 – Guide](/blog/e-rechnung-2025-kfz-autohandel-pflicht-datev)
+- E-Rechnung (GoBD-konforme Aufbewahrung von XML): [E-Rechnung ab 2025 – Guide](/blog/e-rechnung-2025-kfz-autohandel-pflicht-datev)
 
 ---
 
@@ -257,13 +272,13 @@ Nein. Bei Anwendung von § 25a UStG ist die Steuerbefreiung für innergemeinscha
 
 ---
 
-## Weiterführende Artikel in der Autaxo‑Wissensdatenbank
+## Weiterführende Artikel in der Autaxo-Wissensdatenbank
 
 - **Typische Fehler/Prüfungsfeststellungen:** [Umsatzsteuerfehler im Gebrauchtwagenhandel](/blog/umsatzsteuerfehler-gebrauchtwagenhandel)
 - **§ 25a / Marge / EU-Dilemma:** [Differenzbesteuerung Kfz (§ 25a) – Guide & EU-Fallen](/blog/differenzbesteuerung-kfz-25a-ustg-guide-eu-fallen)
 - **Drittland-Export / MRN:** [Fahrzeugverkauf ins Drittland – MRN & Ausfuhrnachweis](/blog/fahrzeugverkauf-ins-drittland-umsatzsteuer-ausfuhrnachweis)
 - **GoBD / Archiv / Unveränderbarkeit:** [GoBD im Autohaus: Was Finanzämter wirklich prüfen](/blog/gobd-autohaus-was-finanzaemter-wirklich-pruefen)
-- **E‑Rechnung / XML-Aufbewahrung:** [E‑Rechnung ab 2025 im Autohandel](/blog/e-rechnung-2025-kfz-autohandel-pflicht-datev)
+- **E-Rechnung / XML-Aufbewahrung:** [E-Rechnung ab 2025 im Autohandel](/blog/e-rechnung-2025-kfz-autohandel-pflicht-datev)
 
 ---
 
