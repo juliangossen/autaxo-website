@@ -7,7 +7,6 @@ const CONTAINER_ID = 'GTM-KMC8PBKV';
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   
-  // Consent Mode v2 Default: Denied
   gtag('consent', 'default', {
     'ad_storage': 'denied',
     'ad_user_data': 'denied',
@@ -19,21 +18,46 @@ const CONTAINER_ID = 'GTM-KMC8PBKV';
   gtag('js', new Date());
 </script>
 
-<script type="text/partytown">
+<script type="text/partytown" define:vars={{ CONTAINER_ID }}>
   (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-KMC8PBKV');
+  })(window,document,'script','dataLayer', CONTAINER_ID);
 </script>
 
-<div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-slate-900 text-white p-4 z-50 hidden shadow-xl border-t border-slate-700">
-  <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-    <p class="text-sm">Wir nutzen Cookies für maximale Effizienz.</p>
-    <div class="flex gap-2">
-      <button id="btn-decline" class="px-4 py-2 text-sm bg-slate-700 hover:bg-slate-600 rounded hover:cursor-pointer">Ablehnen</button>
-      <button id="btn-accept" class="px-4 py-2 text-sm bg-green-600 hover:bg-green-500 font-bold rounded hover:cursor-pointer">Akzeptieren</button>
+<div 
+  id="cookie-banner" 
+  class="hidden fixed bottom-4 right-4 z-[9999] w-[calc(100%-2rem)] md:w-96 transform transition-all duration-700 ease-out translate-y-4 opacity-0"
+>
+  <div class="bg-[#0b0c10]/85 backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-2xl ring-1 ring-white/5">
+    
+    <div class="flex items-start justify-between mb-3">
+      <h3 class="text-white font-semibold text-lg tracking-tight">Datenschutz & Speed</h3>
+      <span class="text-xs font-mono text-gray-500 border border-gray-700 rounded px-1.5 py-0.5">KAIZEN</span>
     </div>
+
+    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+      Wir nutzen Tracking nur, um effizienter zu werden. Keine unnötigen Daten, keine Bremse für die Seite. 
+      <a href="/datenschutz" class="text-white underline decoration-gray-600 hover:decoration-white transition-all underline-offset-2">Details ansehen</a>.
+    </p>
+
+    <div class="grid grid-cols-2 gap-3">
+      <button 
+        id="btn-decline" 
+        class="px-4 py-2.5 text-sm font-medium text-gray-400 bg-transparent border border-gray-700 rounded-xl hover:bg-white/5 hover:text-white hover:border-gray-500 transition-all cursor-pointer"
+      >
+        Ablehnen
+      </button>
+      
+      <button 
+        id="btn-accept" 
+        class="px-4 py-2.5 text-sm font-bold text-[#0b0c10] bg-white rounded-xl hover:bg-gray-200 hover:shadow-[0_0_15px_rgba(255,255,255,0.3)] transition-all transform active:scale-95 cursor-pointer"
+      >
+        Akzeptieren
+      </button>
+    </div>
+
   </div>
 </div>
 
@@ -45,30 +69,38 @@ const CONTAINER_ID = 'GTM-KMC8PBKV';
   // Check LocalStorage
   if (!localStorage.getItem('cookie-consent')) {
     banner.classList.remove('hidden');
+    // Animation: Kurz warten, dann sichtbar machen (Slide Up)
+    setTimeout(() => {
+      banner.classList.remove('translate-y-4', 'opacity-0');
+      banner.classList.add('translate-y-0', 'opacity-100');
+    }, 100);
   } else if (localStorage.getItem('cookie-consent') === 'granted') {
     enableTracking();
   }
 
   btnAccept.addEventListener('click', () => {
     localStorage.setItem('cookie-consent', 'granted');
-    banner.classList.add('hidden');
+    // Fade Out Animation beim Schließen
+    banner.classList.remove('opacity-100', 'translate-y-0');
+    banner.classList.add('opacity-0', 'translate-y-4');
+    setTimeout(() => banner.classList.add('hidden'), 500); // Warten bis Animation fertig
     enableTracking();
   });
 
   btnDecline.addEventListener('click', () => {
     localStorage.setItem('cookie-consent', 'denied');
-    banner.classList.add('hidden');
+    banner.classList.remove('opacity-100', 'translate-y-0');
+    banner.classList.add('opacity-0', 'translate-y-4');
+    setTimeout(() => banner.classList.add('hidden'), 500);
   });
 
   function enableTracking() {
-    // Update Consent to Granted
     window.gtag('consent', 'update', {
       'ad_storage': 'granted',
       'ad_user_data': 'granted',
       'ad_personalization': 'granted',
       'analytics_storage': 'granted'
     });
-    // Fire a custom event so GTM knows consent was just given
     window.dataLayer.push({'event': 'consent_update'});
   }
 </script>
