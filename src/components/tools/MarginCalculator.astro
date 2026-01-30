@@ -2,154 +2,284 @@
 // src/components/tools/MarginCalculator.astro
 ---
 
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-8 items-start">
         
-  <div class="lg:col-span-5 bg-slate-900/50 rounded-2xl border border-white/10 p-6 md:p-8 backdrop-blur-sm shadow-xl">
-    <h2 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
-      <span class="w-8 h-8 rounded-lg bg-blue-600/20 text-blue-400 flex items-center justify-center text-sm">1</span>
-      Fahrzeugdaten eingeben
-    </h2>
+  <div class="xl:col-span-4 bg-slate-900/80 rounded-2xl border border-white/10 p-6 backdrop-blur-md shadow-2xl">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-lg font-bold text-white flex items-center gap-2">
+        <span class="w-6 h-6 rounded bg-blue-500/20 text-blue-400 flex items-center justify-center text-xs">1</span>
+        Kalkulation
+      </h2>
+      <button id="btn-reset" class="text-xs text-slate-500 hover:text-white transition-colors cursor-pointer">
+        Zurücksetzen
+      </button>
+    </div>
 
-    <div class="space-y-6">
-      <div>
-        <label for="input-ek" class="block text-sm font-medium text-slate-400 mb-2">Einkaufspreis (Brutto)</label>
-        <div class="relative">
-          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+    <div class="space-y-5">
+      <div class="group">
+        <label for="input-ek" class="block text-xs font-medium text-slate-400 mb-1.5 uppercase tracking-wider">Einkauf (Brutto)</label>
+        <div class="relative transition-all duration-300 focus-within:scale-[1.02]">
+          <input type="number" id="input-ek" placeholder="10000" class="block w-full pl-3 pr-10 py-3 bg-slate-950/50 border border-slate-700 rounded-lg text-white placeholder-slate-600 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 outline-none font-mono" />
+          <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
             <span class="text-slate-500">€</span>
           </div>
-          <input type="number" id="input-ek" placeholder="10000" class="block w-full pl-8 pr-4 py-3 bg-slate-950 border border-slate-700 rounded-lg text-white placeholder-slate-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none" />
         </div>
       </div>
 
-      <div>
-        <label for="input-vk" class="block text-sm font-medium text-slate-400 mb-2">Geplanter Verkaufspreis (Brutto)</label>
-        <div class="relative">
-          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+      <div class="group">
+        <label for="input-vk" class="block text-xs font-medium text-slate-400 mb-1.5 uppercase tracking-wider">Verkauf (Zielpreis)</label>
+        <div class="relative transition-all duration-300 focus-within:scale-[1.02]">
+          <input type="number" id="input-vk" placeholder="13900" class="block w-full pl-3 pr-10 py-3 bg-slate-950/50 border border-slate-700 rounded-lg text-white placeholder-slate-600 focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 outline-none font-mono" />
+          <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
             <span class="text-slate-500">€</span>
           </div>
-          <input type="number" id="input-vk" placeholder="12500" class="block w-full pl-8 pr-4 py-3 bg-slate-950 border border-slate-700 rounded-lg text-white placeholder-slate-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none" />
         </div>
       </div>
 
-      <div>
-        <label for="input-cost" class="block text-sm font-medium text-slate-400 mb-2">
-          Kosten (Reparatur, Aufbereitung)
-          <span class="block text-xs text-slate-500 mt-0.5 font-normal">Mindert NICHT die Steuerlast!</span>
-        </label>
-        <div class="relative">
-          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <span class="text-slate-500">€</span>
+      <div class="h-px bg-white/5 my-2"></div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label for="input-cost" class="block text-xs font-medium text-slate-400 mb-1.5 uppercase tracking-wider">Aufbereitung</label>
+          <div class="relative">
+            <input type="number" id="input-cost" placeholder="500" class="block w-full px-3 py-2 bg-slate-950/50 border border-slate-700 rounded-lg text-white placeholder-slate-600 focus:border-blue-500 outline-none text-sm" />
           </div>
-          <input type="number" id="input-cost" placeholder="500" class="block w-full pl-8 pr-4 py-3 bg-slate-950 border border-slate-700 rounded-lg text-white placeholder-slate-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none" />
+        </div>
+        <div>
+          <label for="input-days" class="block text-xs font-medium text-slate-400 mb-1.5 uppercase tracking-wider">Standtage</label>
+          <div class="relative">
+             <input type="number" id="input-days" value="30" class="block w-full px-3 py-2 bg-slate-950/50 border border-slate-700 rounded-lg text-white placeholder-slate-600 focus:border-blue-500 outline-none text-sm" />
+             <div class="absolute inset-y-0 right-0 pr-2 flex items-center pointer-events-none">
+                <span class="text-[10px] text-slate-600">Tage</span>
+             </div>
+          </div>
         </div>
       </div>
+
+      <div class="text-[10px] text-slate-500 flex items-center gap-1 bg-slate-900 p-2 rounded border border-white/5">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" /></svg>
+        Kalkulatorischer Zins: 6% p.a. auf gebundenes Kapital.
+      </div>
+
     </div>
   </div>
 
-  <div class="lg:col-span-7 space-y-4">
+  <div class="xl:col-span-8 space-y-6">
     
-    <div class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl border border-white/10 p-6 md:p-8 relative overflow-hidden">
-      <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
-      
-      <div class="relative z-10">
-        <span class="text-slate-400 text-sm font-medium uppercase tracking-wider">Dein Reingewinn (Netto)</span>
-        <div class="flex items-baseline gap-2 mt-2">
-          <span id="output-profit" class="text-4xl md:text-5xl font-bold text-emerald-400">0,00 €</span>
-        </div>
-        <p class="text-slate-500 text-sm mt-2">Das bleibt nach Steuern und Kosten tatsächlich übrig.</p>
-      </div>
-    </div>
-
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      
-      <div class="bg-slate-900/50 rounded-xl border border-white/5 p-5">
-        <span class="text-slate-500 text-xs uppercase font-bold">Brutto-Marge (Handelsspanne)</span>
-        <div id="output-gross-margin" class="text-xl font-bold text-white mt-1">0,00 €</div>
-        <div class="text-xs text-slate-600 mt-1">Verkauf - Einkauf</div>
-      </div>
+        
+        <div class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl border border-white/10 p-6 relative overflow-hidden group">
+            <div id="glow-bg" class="absolute top-0 right-0 w-48 h-48 bg-emerald-500/10 rounded-full blur-[60px] transition-all duration-500"></div>
+            
+            <div class="relative z-10">
+            <span class="text-slate-400 text-xs font-bold uppercase tracking-wider">Echter Reingewinn</span>
+            <div class="flex items-baseline gap-3 mt-1">
+                <span id="output-profit" class="text-4xl md:text-5xl font-black text-white tracking-tight">0,00 €</span>
+            </div>
+            
+            <div class="mt-4 flex items-center gap-2">
+                <span id="output-roi-badge" class="bg-slate-700 text-slate-300 text-xs font-bold px-2 py-1 rounded border border-white/10">
+                    ROI: 0.0%
+                </span>
+                <span class="text-[10px] text-slate-500">Rendite auf eingesetztes Kapital</span>
+            </div>
+            </div>
+        </div>
 
-      <div class="bg-slate-900/50 rounded-xl border border-red-500/20 p-5 relative overflow-hidden group">
-        <div class="absolute inset-0 bg-red-500/5 group-hover:bg-red-500/10 transition-colors"></div>
-        <span class="text-red-400 text-xs uppercase font-bold flex items-center gap-1">
-          Finanzamt (19% aus Differenz)
-        </span>
-        <div id="output-tax" class="text-xl font-bold text-red-400 mt-1">0,00 €</div>
-        <div class="text-xs text-red-400/60 mt-1">Wird nicht vom Käufer gezahlt!</div>
-      </div>
+        <div class="bg-slate-900/50 rounded-2xl border border-white/10 p-6 flex flex-col justify-center">
+            <div class="flex justify-between items-end mb-2">
+                <span class="text-slate-400 text-xs uppercase">Brutto Marge</span>
+                <span id="output-gross" class="text-white font-mono font-bold">0 €</span>
+            </div>
+            <div class="w-full bg-slate-800 h-1.5 rounded-full mb-4 overflow-hidden">
+                <div class="h-full bg-blue-500 w-full opacity-50"></div>
+            </div>
 
-       <div class="bg-slate-900/50 rounded-xl border border-white/5 p-5 opacity-70">
-        <span class="text-slate-500 text-xs uppercase font-bold">Netto-Marge (vor Kosten)</span>
-        <div id="output-net-margin" class="text-xl font-semibold text-slate-300 mt-1">0,00 €</div>
-      </div>
-
-      <div class="bg-slate-900/50 rounded-xl border border-white/5 p-5 opacity-70">
-        <span class="text-slate-500 text-xs uppercase font-bold">Kostenabzug</span>
-        <div id="output-costs" class="text-xl font-semibold text-slate-300 mt-1">- 0,00 €</div>
-        <div class="text-xs text-slate-600 mt-1">Voller Abzug vom Netto</div>
-      </div>
-
+            <div class="flex justify-between items-end mb-2">
+                <span class="text-red-400 text-xs uppercase">Steuer (§25a)</span>
+                <span id="output-tax" class="text-red-400 font-mono font-bold">- 0 €</span>
+            </div>
+            <div class="w-full bg-slate-800 h-1.5 rounded-full mb-4 overflow-hidden">
+                <div id="bar-tax" class="h-full bg-red-500 transition-all duration-500" style="width: 0%"></div>
+            </div>
+        </div>
     </div>
+
+    <div class="bg-slate-900/80 rounded-xl border border-white/5 p-5">
+        <h3 class="text-xs text-slate-400 uppercase font-bold mb-4">Wo geht das Geld hin?</h3>
+        
+        <div class="h-8 w-full bg-slate-800 rounded flex overflow-hidden text-[10px] font-bold text-white/90">
+            <div class="bg-slate-700 flex items-center justify-center relative group cursor-help w-[10%]" style="flex-grow: 1">
+                <span class="truncate px-1">Einkauf</span>
+                <div class="absolute bottom-full mb-2 hidden group-hover:block bg-black text-xs p-2 rounded border border-white/10 whitespace-nowrap">Der Wagen</div>
+            </div>
+            <div id="vis-cost" class="bg-orange-500/80 flex items-center justify-center relative group cursor-help transition-all duration-500" style="width: 0%">
+                <span class="truncate px-1">Kosten</span>
+                <div class="absolute bottom-full mb-2 hidden group-hover:block bg-black text-xs p-2 rounded border border-white/10 whitespace-nowrap">Werkstatt & Aufbereitung</div>
+            </div>
+             <div id="vis-interest" class="bg-purple-500/80 flex items-center justify-center relative group cursor-help transition-all duration-500" style="width: 0%">
+                <span class="truncate px-1">Zins</span>
+                <div class="absolute bottom-full mb-2 hidden group-hover:block bg-black text-xs p-2 rounded border border-white/10 whitespace-nowrap">Standtage-Kosten</div>
+            </div>
+            <div id="vis-tax" class="bg-red-500/80 flex items-center justify-center relative group cursor-help transition-all duration-500" style="width: 0%">
+                <span class="truncate px-1">USt</span>
+                 <div class="absolute bottom-full mb-2 hidden group-hover:block bg-black text-xs p-2 rounded border border-white/10 whitespace-nowrap">Finanzamt</div>
+            </div>
+            <div id="vis-profit" class="bg-emerald-500 flex items-center justify-center relative group cursor-help transition-all duration-500" style="width: 0%">
+                <span class="truncate px-1">Gewinn</span>
+            </div>
+        </div>
+        
+        <div class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4 text-xs text-slate-400">
+             <div>
+                <span class="block text-[10px] uppercase">Zinsbelastung</span>
+                <span id="output-interest" class="text-white font-mono">- 0,00 €</span>
+             </div>
+             <div>
+                <span class="block text-[10px] uppercase">Netto Marge</span>
+                <span id="output-net" class="text-slate-300 font-mono">0,00 €</span>
+             </div>
+        </div>
+    </div>
+
   </div>
 </div>
 
 <script>
-  // Elements - Wir suchen nur innerhalb dieses Dokuments, IDs sollten unique sein
-  const inputEk = document.getElementById('input-ek') as HTMLInputElement;
-  const inputVk = document.getElementById('input-vk') as HTMLInputElement;
-  const inputCost = document.getElementById('input-cost') as HTMLInputElement;
+  // Elements
+  const inputs = {
+    ek: document.getElementById('input-ek') as HTMLInputElement,
+    vk: document.getElementById('input-vk') as HTMLInputElement,
+    cost: document.getElementById('input-cost') as HTMLInputElement,
+    days: document.getElementById('input-days') as HTMLInputElement,
+  };
 
-  const outProfit = document.getElementById('output-profit');
-  const outGrossMargin = document.getElementById('output-gross-margin');
-  const outTax = document.getElementById('output-tax');
-  const outNetMargin = document.getElementById('output-net-margin');
-  const outCosts = document.getElementById('output-costs');
+  const outputs = {
+    profit: document.getElementById('output-profit'),
+    roiBadge: document.getElementById('output-roi-badge'),
+    gross: document.getElementById('output-gross'),
+    tax: document.getElementById('output-tax'),
+    interest: document.getElementById('output-interest'),
+    net: document.getElementById('output-net'),
+    
+    // Bars
+    barTax: document.getElementById('bar-tax'),
+    
+    // Visualization Segments
+    visCost: document.getElementById('vis-cost'),
+    visInterest: document.getElementById('vis-interest'),
+    visTax: document.getElementById('vis-tax'),
+    visProfit: document.getElementById('vis-profit'),
+    
+    glowBg: document.getElementById('glow-bg'),
+  };
+
+  const INTEREST_RATE = 0.06; // 6% Kalkulatorischer Zins p.a.
 
   function formatCurrency(num: number) {
     return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(num);
   }
 
   function calculate() {
-    if(!inputEk || !inputVk || !inputCost) return;
+    const ek = parseFloat(inputs.ek.value) || 0;
+    const vk = parseFloat(inputs.vk.value) || 0;
+    const cost = parseFloat(inputs.cost.value) || 0;
+    const days = parseFloat(inputs.days.value) || 0;
 
-    const ek = parseFloat(inputEk.value) || 0;
-    const vk = parseFloat(inputVk.value) || 0;
-    const cost = parseFloat(inputCost.value) || 0;
+    if (ek === 0 || vk === 0) return;
 
     // 1. Brutto Marge
     const grossMargin = vk - ek;
 
-    // 2. Umsatzsteuer (Nur wenn Marge positiv)
+    // 2. Umsatzsteuer (§25a: aus der Marge herausgerechnet)
     let tax = 0;
-    let netMargin = 0;
-
     if (grossMargin > 0) {
-      // Formel: Marge / 1,19 * 0,19
       tax = (grossMargin / 1.19) * 0.19;
-      netMargin = grossMargin - tax;
-    } else {
-      // Verlustgeschäft (keine negative Steuererstattung bei §25a auf Marge)
-      tax = 0;
-      netMargin = grossMargin;
     }
 
-    // 3. Reingewinn
-    const profit = netMargin - cost;
+    // 3. Kalkulatorische Zinskosten (Standtage)
+    // Formel: (Kapitaleinsatz * Zinssatz * Tage) / 360
+    // Kapitaleinsatz ist EK + Kosten (da diese schon ausgegeben wurden)
+    const capitalBound = ek + cost;
+    const interestCost = (capitalBound * INTEREST_RATE * days) / 360;
 
-    // Render
-    if(outProfit) {
-        outProfit.textContent = formatCurrency(profit);
-        outProfit.classList.toggle('text-emerald-400', profit >= 0);
-        outProfit.classList.toggle('text-red-400', profit < 0);
+    // 4. Netto Marge (Operativ)
+    const netMargin = grossMargin - tax;
+
+    // 5. Reingewinn (EBIT Äquivalent für das Auto)
+    const profit = netMargin - cost - interestCost;
+
+    // 6. ROI (Return on Invest)
+    // Gewinn / Gesamtkosten * 100
+    const totalInvest = ek + cost + interestCost + tax; // Tax is pass-through but binds liquidity briefly
+    let roi = 0;
+    if (totalInvest > 0) {
+        roi = (profit / totalInvest) * 100;
     }
+
+    // --- RENDER ---
+
+    // Text Updates
+    if(outputs.profit) outputs.profit.textContent = formatCurrency(profit);
+    if(outputs.gross) outputs.gross.textContent = formatCurrency(grossMargin);
+    if(outputs.tax) outputs.tax.textContent = "- " + formatCurrency(tax);
+    if(outputs.interest) outputs.interest.textContent = "- " + formatCurrency(interestCost);
+    if(outputs.net) outputs.net.textContent = formatCurrency(netMargin);
+
+    // ROI Badge Color Logic
+    if(outputs.roiBadge) {
+        outputs.roiBadge.textContent = `ROI: ${roi.toFixed(1)}%`;
+        if (roi < 0) {
+            outputs.roiBadge.className = "bg-red-500/20 text-red-400 text-xs font-bold px-2 py-1 rounded border border-red-500/30";
+            outputs.glowBg?.classList.replace('bg-emerald-500/10', 'bg-red-500/10');
+            outputs.profit?.classList.remove('text-white', 'text-emerald-400');
+            outputs.profit?.classList.add('text-red-500');
+        } else if (roi < 5) {
+            outputs.roiBadge.className = "bg-yellow-500/20 text-yellow-400 text-xs font-bold px-2 py-1 rounded border border-yellow-500/30";
+            outputs.glowBg?.classList.replace('bg-red-500/10', 'bg-yellow-500/10');
+            outputs.profit?.classList.remove('text-red-500', 'text-emerald-400');
+            outputs.profit?.classList.add('text-white');
+        } else {
+            outputs.roiBadge.className = "bg-emerald-500/20 text-emerald-400 text-xs font-bold px-2 py-1 rounded border border-emerald-500/30";
+            outputs.glowBg?.classList.replace('bg-yellow-500/10', 'bg-emerald-500/10');
+            outputs.glowBg?.classList.replace('bg-red-500/10', 'bg-emerald-500/10');
+            outputs.profit?.classList.remove('text-red-500', 'text-white');
+            outputs.profit?.classList.add('text-emerald-400');
+        }
+    }
+
+    // Visualization Logic (The Bar)
+    // Wir berechnen Anteile am Gesamtumsatz (VK) für die Visualisierung
+    const percentCost = (cost / vk) * 100;
+    const percentInterest = (interestCost / vk) * 100;
+    const percentTax = (tax / vk) * 100;
+    const percentProfit = (profit > 0) ? (profit / vk) * 100 : 0; // Negative profits not shown in bar
+
+    if(outputs.visCost) outputs.visCost.style.width = `${percentCost}%`;
+    if(outputs.visInterest) outputs.visInterest.style.width = `${percentInterest}%`;
+    if(outputs.visTax) outputs.visTax.style.width = `${percentTax}%`;
+    if(outputs.visProfit) outputs.visProfit.style.width = `${percentProfit}%`;
     
-    if(outGrossMargin) outGrossMargin.textContent = formatCurrency(grossMargin);
-    if(outTax) outTax.textContent = formatCurrency(tax);
-    if(outNetMargin) outNetMargin.textContent = formatCurrency(netMargin);
-    if(outCosts) outCosts.textContent = "- " + formatCurrency(cost);
+    // Tax Bar relative to Gross Margin
+    const taxShareOfMargin = (grossMargin > 0) ? (tax / grossMargin) * 100 : 0;
+    if(outputs.barTax) outputs.barTax.style.width = `${taxShareOfMargin}%`;
+
   }
 
   // Event Listeners
-  [inputEk, inputVk, inputCost].forEach(el => {
+  Object.values(inputs).forEach(el => {
     el?.addEventListener('input', calculate);
   });
+
+  document.getElementById('btn-reset')?.addEventListener('click', () => {
+    inputs.ek.value = "";
+    inputs.vk.value = "";
+    inputs.cost.value = "";
+    inputs.days.value = "30";
+    calculate();
+    // Reset visual state
+    if(outputs.profit) outputs.profit.textContent = "0,00 €";
+    if(outputs.roiBadge) outputs.roiBadge.textContent = "ROI: 0.0%";
+  });
+
 </script>
