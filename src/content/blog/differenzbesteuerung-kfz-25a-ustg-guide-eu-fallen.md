@@ -21,6 +21,10 @@ Wenn du zuerst die häufigsten Fehlerbilder im „Gesamt-System Umsatzsteuer“ 
 
 Dieser Beitrag erklärt Funktionsweise, Voraussetzungen, Berechnung, Rechnungs- und Dokumentationspflichten – und das häufig unterschätzte **EU-Dilemma** (igL vs. Marge).
 
+> 🧰 **Tools (schnell prüfen & rechnen):**  
+> - **[Differenzbesteuerungs-Check – Darf ich differenzbesteuern?](/tools/differenzbesteuerung-check/)**  
+> - **[§ 25a Margen-Rechner – Wie viel Gewinn habe ich wirklich (inkl. Kosten)?](/tools/margen-rechner/)**
+
 ---
 
 ## Kurzdefinition: Was ist die Differenzbesteuerung (§ 25a UStG)?
@@ -109,6 +113,9 @@ Die Differenzbesteuerung ist an den Status des Einkaufs gebunden.
    - Ankauf von Kleinunternehmern (§ 19 UStG)
    - Ankauf von Händlern, die bereits § 25a angewendet haben
 
+**Praxis:** Wenn du unsicher bist, ob dein konkreter Einkaufstyp § 25a zulässt, nutze den  
+→ **[Differenzbesteuerungs-Check](/tools/differenzbesteuerung-check/)**
+
 **Warnung:** Liegt eine Eingangsrechnung mit offen ausgewiesener USt vor (z. B. Firmenfahrzeug, Leasingrückläufer mit USt-Ausweis), ist § 25a grundsätzlich **nicht** zulässig.
 
 ---
@@ -123,6 +130,9 @@ Im Kfz-Handel wird regelmäßig die **Einzeldifferenz** je Fahrzeug gebildet. Ve
 3. Umsatzsteueranteil = Bruttomarge – Bemessungsgrundlage
 
 **Wichtig:** Reparaturkosten erhöhen nicht den Einkaufspreis. Sie sind Betriebsausgaben und verändern die Bemessungsgrundlage der Differenzbesteuerung nicht.
+
+**Praxis:** Wenn du Marge *und* Kosten (z. B. Aufbereitung, Transport, Inserate) sauber einbeziehen willst, nutze den  
+→ **[§ 25a Margen-Rechner](/tools/margen-rechner/)**
 
 ---
 
@@ -150,9 +160,11 @@ Für jedes Fahrzeug müssen mindestens nachvollziehbar sein:
 
 Interne Links:
 - Funktionsseite §25a: /funktionen/differenzbesteuerung-25a-ustg  
+- **Tool: Differenzbesteuerungs-Check:** /tools/differenzbesteuerung-check/  
+- **Tool: § 25a Margen-Rechner:** /tools/margen-rechner/  
 - Buchhaltung/DATEV: /funktionen/buchhaltung  
 - Downloads/Vorlagen: /downloads  
-- E‑Rechnung/Archiv (XML-Aufbewahrung): [E‑Rechnung ab 2025 – Guide](/blog/e-rechnung-2025-kfz-autohandel-pflicht-datev)
+- E-Rechnung/Archiv (XML-Aufbewahrung): [E-Rechnung ab 2025 – Guide](/blog/e-rechnung-2025-kfz-autohandel-pflicht-datev)
 
 ---
 
@@ -175,7 +187,10 @@ Weil dadurch im Zielmarkt die Margenfähigkeit für den B2C-Weiterverkauf entfal
 
 ## Checkliste: Prüfungsfester Verkauf
 
-- [ ] Einkauf prüfen: sicher Privat/Kleinunternehmer/§25a-Ankauf? (Belege/Kaufvertrag)
+- [ ] Einkauf prüfen: sicher Privat/Kleinunternehmer/§25a-Ankauf? (Belege/Kaufvertrag)  
+      → Schnelltest: **[Differenzbesteuerungs-Check](/tools/differenzbesteuerung-check/)**
+- [ ] Marge plausibilisieren: Verkauf – Einkauf, Steueranteil, Kostenwirkung (Aufbereitung/Transport/Inserate)  
+      → **[§ 25a Margen-Rechner](/tools/margen-rechner/)**
 - [ ] Systempflege: Merkmal „§25a“ korrekt im System gesetzt
 - [ ] EU-Strategie: igL (netto) vs. Marge (brutto) vorab klären, Preis ggf. anpassen
 - [ ] Rechnung: kein Steuerausweis, Hinweis auf §25a gesetzt
@@ -183,13 +198,13 @@ Weil dadurch im Zielmarkt die Margenfähigkeit für den B2C-Weiterverkauf entfal
 
 ---
 
-## Weiterführende Artikel in der Autaxo‑Wissensdatenbank
+## Weiterführende Artikel in der Autaxo-Wissensdatenbank
 
 - **EU-Verkauf / ZM / Nachweise:** [Innergemeinschaftliche Lieferung (§ 6a) – Nachweise & ZM](/blog/innergemeinschaftliche-lieferung-kfz-steuerfrei)
 - **Umsatzsteuer-Fallen (gesamt):** [Typische Umsatzsteuerfehler im Gebrauchtwagenhandel](/blog/umsatzsteuerfehler-gebrauchtwagenhandel)
 - **GoBD / Dokumentation / Festschreibung:** [GoBD im Autohaus: Was Finanzämter wirklich prüfen](/blog/gobd-autohaus-was-finanzaemter-wirklich-pruefen)
 - **Drittland-Export / MRN:** [Fahrzeugverkauf ins Drittland – Exportnachweise](/blog/fahrzeugverkauf-ins-drittland-umsatzsteuer-ausfuhrnachweis)
-- **E‑Rechnung / XML-Aufbewahrung:** [E‑Rechnung ab 2025 – Guide](/blog/e-rechnung-2025-kfz-autohandel-pflicht-datev)
+- **E-Rechnung / XML-Aufbewahrung:** [E-Rechnung ab 2025 – Guide](/blog/e-rechnung-2025-kfz-autohandel-pflicht-datev)
 
 ---
 
