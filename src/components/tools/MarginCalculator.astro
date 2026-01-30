@@ -2,143 +2,151 @@
 // src/components/tools/MarginCalculator.astro
 ---
 
-<div class="grid grid-cols-1 xl:grid-cols-12 gap-8 items-start">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-  <div class="xl:col-span-4 bg-slate-900/80 rounded-2xl border border-white/10 p-6 backdrop-blur-md shadow-2xl">
+  <div class="lg:col-span-5 bg-slate-900/50 rounded-2xl border border-white/10 p-6 md:p-8 backdrop-blur-sm shadow-xl">
     <div class="flex items-center justify-between mb-6">
-      <h2 class="text-lg font-bold text-white flex items-center gap-2">
-        <span class="w-6 h-6 rounded bg-blue-500/20 text-blue-400 flex items-center justify-center text-xs">1</span>
+      <h2 class="text-xl font-bold text-white flex items-center gap-2">
+        <span class="w-8 h-8 rounded-lg bg-blue-600/20 text-blue-400 flex items-center justify-center text-sm">1</span>
         Kalkulation
       </h2>
-      <button id="btn-reset" class="text-xs text-slate-500 hover:text-white transition-colors cursor-pointer">
-        Zurücksetzen
+      <button id="btn-reset" class="text-xs text-slate-500 hover:text-white transition-colors cursor-pointer underline decoration-slate-700">
+        Alles zurücksetzen
       </button>
     </div>
 
-    <div class="space-y-5">
-      <div class="group">
-        <label for="input-ek" class="block text-xs font-medium text-slate-400 mb-1.5 uppercase tracking-wider">Einkauf (Brutto)</label>
-        <div class="relative transition-all duration-300 focus-within:scale-[1.02]">
-          <input type="number" id="input-ek" placeholder="10000" class="block w-full pl-3 pr-10 py-3 bg-slate-950/50 border border-slate-700 rounded-lg text-white placeholder-slate-600 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 outline-none font-mono" />
-          <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+    <div class="space-y-6">
+      <div>
+        <label for="input-ek" class="block text-sm font-medium text-slate-400 mb-2">Einkaufspreis (Brutto)</label>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <span class="text-slate-500">€</span>
           </div>
+          <input type="number" id="input-ek" placeholder="10000" class="block w-full pl-8 pr-4 py-3 bg-slate-950 border border-slate-700 rounded-lg text-white placeholder-slate-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none" />
         </div>
       </div>
 
-      <div class="group">
-        <label for="input-vk" class="block text-xs font-medium text-slate-400 mb-1.5 uppercase tracking-wider">Verkauf (Zielpreis)</label>
-        <div class="relative transition-all duration-300 focus-within:scale-[1.02]">
-          <input type="number" id="input-vk" placeholder="13900" class="block w-full pl-3 pr-10 py-3 bg-slate-950/50 border border-slate-700 rounded-lg text-white placeholder-slate-600 focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 outline-none font-mono" />
-          <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+      <div>
+        <label for="input-vk" class="block text-sm font-medium text-slate-400 mb-2">Geplanter Verkaufspreis (Brutto)</label>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <span class="text-slate-500">€</span>
           </div>
+          <input type="number" id="input-vk" placeholder="13900" class="block w-full pl-8 pr-4 py-3 bg-slate-950 border border-slate-700 rounded-lg text-white placeholder-slate-600 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all outline-none" />
         </div>
       </div>
 
-      <div class="h-px bg-white/5 my-2"></div>
+      <div class="border-t border-white/5 pt-4"></div>
 
-      <div class="grid grid-cols-2 gap-4">
-        <div>
-          <label for="input-cost" class="block text-xs font-medium text-slate-400 mb-1.5 uppercase tracking-wider">Aufbereitung</label>
-          <div class="relative">
-            <input type="number" id="input-cost" placeholder="500" class="block w-full px-3 py-2 bg-slate-950/50 border border-slate-700 rounded-lg text-white placeholder-slate-600 focus:border-blue-500 outline-none text-sm" />
-          </div>
-        </div>
-        <div>
-          <label for="input-days" class="block text-xs font-medium text-slate-400 mb-1.5 uppercase tracking-wider">Standtage</label>
-          <div class="relative">
-             <input type="number" id="input-days" value="30" class="block w-full px-3 py-2 bg-slate-950/50 border border-slate-700 rounded-lg text-white placeholder-slate-600 focus:border-blue-500 outline-none text-sm" />
-             <div class="absolute inset-y-0 right-0 pr-2 flex items-center pointer-events-none">
-                <span class="text-[10px] text-slate-600">Tage</span>
+      <div class="grid grid-cols-12 gap-4">
+        <div class="col-span-8">
+           <label for="input-cost" class="block text-sm font-medium text-slate-400 mb-2">Weitere Kosten</label>
+           <div class="relative">
+             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+               <span class="text-slate-500">€</span>
              </div>
-          </div>
+             <input type="number" id="input-cost" placeholder="500" class="block w-full pl-8 pr-4 py-3 bg-slate-950 border border-slate-700 rounded-l-lg text-white placeholder-slate-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none" />
+           </div>
+        </div>
+        
+        <div class="col-span-4">
+            <label class="block text-sm font-medium text-slate-400 mb-2">Eingabe ist</label>
+            <div class="relative h-[50px] bg-slate-950 border border-slate-700 rounded-r-lg flex p-1">
+                <button type="button" class="cost-type-btn flex-1 rounded text-xs font-bold transition-all bg-slate-700 text-white" data-type="netto">Netto</button>
+                <button type="button" class="cost-type-btn flex-1 rounded text-xs font-medium text-slate-500 hover:text-white transition-all" data-type="brutto">Brutto</button>
+            </div>
+            <input type="hidden" id="input-cost-type" value="netto">
         </div>
       </div>
-
-      <div class="text-[10px] text-slate-500 flex items-center gap-1 bg-slate-900 p-2 rounded border border-white/5">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" /></svg>
-        Kalkulatorischer Zins: 6% p.a. auf gebundenes Kapital.
+      
+      <div>
+        <label for="input-days" class="block text-sm font-medium text-slate-400 mb-2">
+            Standtage bis Verkauf
+            <span class="text-[10px] text-slate-500 ml-2 font-normal">(Kalk. Zins: 6%)</span>
+        </label>
+        <div class="relative">
+          <input type="number" id="input-days" value="30" class="block w-full px-4 py-3 bg-slate-950 border border-slate-700 rounded-lg text-white placeholder-slate-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none" />
+          <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+            <span class="text-xs text-slate-500">Tage</span>
+          </div>
+        </div>
       </div>
 
     </div>
   </div>
 
-  <div class="xl:col-span-8 space-y-6">
+  <div class="lg:col-span-7 space-y-6">
     
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        
-        <div class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl border border-white/10 p-6 relative overflow-hidden group">
-            <div id="glow-bg" class="absolute top-0 right-0 w-48 h-48 bg-emerald-500/10 rounded-full blur-[60px] transition-all duration-500"></div>
-            
-            <div class="relative z-10">
-            <span class="text-slate-400 text-xs font-bold uppercase tracking-wider">Echter Reingewinn</span>
-            <div class="flex items-baseline gap-3 mt-1">
-                <span id="output-profit" class="text-4xl md:text-5xl font-black text-white tracking-tight">0,00 €</span>
+    <div class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl border border-white/10 p-8 relative overflow-hidden">
+      <div id="glow-bg" class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2 transition-colors duration-500"></div>
+      
+      <div class="relative z-10">
+        <div class="flex justify-between items-start">
+            <div>
+                <span class="text-slate-400 text-sm font-medium uppercase tracking-wider">Dein Reingewinn (Netto)</span>
+                <div class="flex items-baseline gap-2 mt-2">
+                <span id="output-profit" class="text-5xl font-bold text-emerald-400 transition-colors">0,00 €</span>
+                </div>
+                <p class="text-slate-500 text-sm mt-3">Nach Steuern, Kosten und Zinsen.</p>
             </div>
-            
-            <div class="mt-4 flex items-center gap-2">
-                <span id="output-roi-badge" class="bg-slate-700 text-slate-300 text-xs font-bold px-2 py-1 rounded border border-white/10">
-                    ROI: 0.0%
-                </span>
-                <span class="text-[10px] text-slate-500">Rendite auf eingesetztes Kapital</span>
-            </div>
+            <div id="output-roi-badge" class="bg-slate-800 text-slate-400 text-sm font-bold px-3 py-1.5 rounded border border-white/5">
+                ROI: 0.0%
             </div>
         </div>
-
-        <div class="bg-slate-900/50 rounded-2xl border border-white/10 p-6 flex flex-col justify-center">
-            <div class="flex justify-between items-end mb-2">
-                <span class="text-slate-400 text-xs uppercase">Brutto Marge</span>
-                <span id="output-gross" class="text-white font-mono font-bold">0 €</span>
-            </div>
-            <div class="w-full bg-slate-800 h-1.5 rounded-full mb-4 overflow-hidden">
-                <div class="h-full bg-blue-500 w-full opacity-50"></div>
-            </div>
-
-            <div class="flex justify-between items-end mb-2">
-                <span class="text-red-400 text-xs uppercase">Steuer (§25a)</span>
-                <span id="output-tax" class="text-red-400 font-mono font-bold">- 0 €</span>
-            </div>
-            <div class="w-full bg-slate-800 h-1.5 rounded-full mb-4 overflow-hidden">
-                <div id="bar-tax" class="h-full bg-red-500 transition-all duration-500" style="width: 0%"></div>
-            </div>
-        </div>
+      </div>
     </div>
 
-    <div class="bg-slate-900/80 rounded-xl border border-white/5 p-5">
-        <h3 class="text-xs text-slate-400 uppercase font-bold mb-4">Wo geht das Geld hin?</h3>
-        
-        <div class="h-8 w-full bg-slate-800 rounded flex overflow-hidden text-[10px] font-bold text-white/90">
-            <div class="bg-slate-700 flex items-center justify-center relative group cursor-help w-[10%]" style="flex-grow: 1">
-                <span class="truncate px-1">Einkauf</span>
-                <div class="absolute bottom-full mb-2 hidden group-hover:block bg-black text-xs p-2 rounded border border-white/10 whitespace-nowrap">Der Wagen</div>
-            </div>
-            <div id="vis-cost" class="bg-orange-500/80 flex items-center justify-center relative group cursor-help transition-all duration-500" style="width: 0%">
-                <span class="truncate px-1">Kosten</span>
-                <div class="absolute bottom-full mb-2 hidden group-hover:block bg-black text-xs p-2 rounded border border-white/10 whitespace-nowrap">Werkstatt & Aufbereitung</div>
-            </div>
-             <div id="vis-interest" class="bg-purple-500/80 flex items-center justify-center relative group cursor-help transition-all duration-500" style="width: 0%">
-                <span class="truncate px-1">Zins</span>
-                <div class="absolute bottom-full mb-2 hidden group-hover:block bg-black text-xs p-2 rounded border border-white/10 whitespace-nowrap">Standtage-Kosten</div>
-            </div>
-            <div id="vis-tax" class="bg-red-500/80 flex items-center justify-center relative group cursor-help transition-all duration-500" style="width: 0%">
-                <span class="truncate px-1">USt</span>
-                 <div class="absolute bottom-full mb-2 hidden group-hover:block bg-black text-xs p-2 rounded border border-white/10 whitespace-nowrap">Finanzamt</div>
-            </div>
-            <div id="vis-profit" class="bg-emerald-500 flex items-center justify-center relative group cursor-help transition-all duration-500" style="width: 0%">
-                <span class="truncate px-1">Gewinn</span>
-            </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      
+      <div class="bg-slate-900/50 rounded-xl border border-white/5 p-5 flex flex-col justify-between">
+        <span class="text-slate-500 text-xs uppercase font-bold">Brutto-Marge (Handelsspanne)</span>
+        <div id="output-gross-margin" class="text-2xl font-bold text-white mt-2">0,00 €</div>
+      </div>
+
+      <div class="bg-slate-900/50 rounded-xl border border-white/5 p-5 flex flex-col justify-between relative overflow-hidden">
+        <div class="absolute inset-y-0 left-0 w-1 bg-red-500/50"></div>
+        <span class="text-slate-400 text-xs uppercase font-bold flex items-center gap-1">
+          Finanzamt (USt §25a)
+        </span>
+        <div id="output-tax" class="text-2xl font-bold text-red-400 mt-2">0,00 €</div>
+      </div>
+
+       <div class="bg-slate-900/50 rounded-xl border border-white/5 p-5 flex flex-col justify-between">
+        <span class="text-slate-500 text-xs uppercase font-bold">Kapitalkosten (Zinsen)</span>
+        <div id="output-interest" class="text-xl font-semibold text-slate-300 mt-2">- 0,00 €</div>
+      </div>
+
+      <div class="bg-slate-900/50 rounded-xl border border-white/5 p-5 flex flex-col justify-between">
+        <span class="text-slate-500 text-xs uppercase font-bold">Werkstatt & Teile (Netto)</span>
+        <div id="output-costs" class="text-xl font-semibold text-slate-300 mt-2">- 0,00 €</div>
+      </div>
+
+    </div>
+
+    <div class="bg-slate-900/30 rounded-xl border border-white/5 p-4">
+        <div class="flex justify-between text-[10px] uppercase text-slate-500 mb-2 font-bold">
+            <span>Verteilung des Verkaufspreises</span>
         </div>
-        
-        <div class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4 text-xs text-slate-400">
-             <div>
-                <span class="block text-[10px] uppercase">Zinsbelastung</span>
-                <span id="output-interest" class="text-white font-mono">- 0,00 €</span>
-             </div>
-             <div>
-                <span class="block text-[10px] uppercase">Netto Marge</span>
-                <span id="output-net" class="text-slate-300 font-mono">0,00 €</span>
-             </div>
+        <div class="h-4 w-full bg-slate-800 rounded-full flex overflow-hidden">
+             <div class="bg-slate-600 h-full w-[10%]" title="Einkauf" style="flex-grow:1"></div>
+             <div id="vis-cost" class="bg-orange-500/70 h-full transition-all duration-500" style="width: 0%" title="Kosten"></div>
+             <div id="vis-tax" class="bg-red-500/70 h-full transition-all duration-500" style="width: 0%" title="Steuer"></div>
+             <div id="vis-interest" class="bg-purple-500/70 h-full transition-all duration-500" style="width: 0%" title="Zins"></div>
+             <div id="vis-profit" class="bg-emerald-500 h-full transition-all duration-500" style="width: 0%" title="Gewinn"></div>
+        </div>
+        <div class="flex gap-4 mt-2 justify-end">
+            <div class="flex items-center gap-1.5">
+                <div class="w-2 h-2 rounded-full bg-orange-500/70"></div>
+                <span class="text-[10px] text-slate-400">Kosten</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+                <div class="w-2 h-2 rounded-full bg-red-500/70"></div>
+                <span class="text-[10px] text-slate-400">Steuer</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+                <div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+                <span class="text-[10px] text-slate-400">Gewinn</span>
+            </div>
         </div>
     </div>
 
@@ -152,18 +160,16 @@
     vk: document.getElementById('input-vk') as HTMLInputElement,
     cost: document.getElementById('input-cost') as HTMLInputElement,
     days: document.getElementById('input-days') as HTMLInputElement,
+    costType: document.getElementById('input-cost-type') as HTMLInputElement,
   };
 
   const outputs = {
     profit: document.getElementById('output-profit'),
     roiBadge: document.getElementById('output-roi-badge'),
-    gross: document.getElementById('output-gross'),
+    grossMargin: document.getElementById('output-gross-margin'),
     tax: document.getElementById('output-tax'),
     interest: document.getElementById('output-interest'),
-    net: document.getElementById('output-net'),
-    
-    // Bars
-    barTax: document.getElementById('bar-tax'),
+    costs: document.getElementById('output-costs'),
     
     // Visualization Segments
     visCost: document.getElementById('vis-cost'),
@@ -174,7 +180,32 @@
     glowBg: document.getElementById('glow-bg'),
   };
 
-  const INTEREST_RATE = 0.06; // 6% Kalkulatorischer Zins p.a.
+  const costTypeBtns = document.querySelectorAll('.cost-type-btn');
+
+  // Logic Constants
+  const INTEREST_RATE = 0.06; // 6% p.a.
+
+  // --- Toggle Logic ---
+  costTypeBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+          const target = e.target as HTMLElement;
+          const type = target.dataset.type;
+          
+          // Update Hidden Input
+          inputs.costType.value = type || 'netto';
+          
+          // Update UI Styles
+          costTypeBtns.forEach(b => {
+             b.classList.remove('bg-slate-700', 'text-white', 'font-bold');
+             b.classList.add('text-slate-500', 'font-medium');
+          });
+          target.classList.add('bg-slate-700', 'text-white', 'font-bold');
+          target.classList.remove('text-slate-500', 'font-medium');
+
+          calculate(); // Recalculate immediately
+      });
+  });
+
 
   function formatCurrency(num: number) {
     return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(num);
@@ -183,91 +214,96 @@
   function calculate() {
     const ek = parseFloat(inputs.ek.value) || 0;
     const vk = parseFloat(inputs.vk.value) || 0;
-    const cost = parseFloat(inputs.cost.value) || 0;
+    let costInput = parseFloat(inputs.cost.value) || 0;
     const days = parseFloat(inputs.days.value) || 0;
+    const costType = inputs.costType.value;
 
     if (ek === 0 || vk === 0) return;
 
-    // 1. Brutto Marge
+    // 1. Kosten Normalisierung (Wir rechnen intern immer Netto für den Gewinn)
+    // Wenn Händler "Brutto" eingibt, gehen wir davon aus, er zieht VSt (B2B Standard).
+    // Wenn er Brutto eingibt, ist der echte Kostenfaktor für die Firma: Eingabe / 1.19
+    let realCost = costInput;
+    if (costType === 'brutto') {
+        realCost = costInput / 1.19;
+    }
+
+    // 2. Brutto Marge
     const grossMargin = vk - ek;
 
-    // 2. Umsatzsteuer (§25a: aus der Marge herausgerechnet)
+    // 3. Umsatzsteuer (§25a: aus der Marge herausgerechnet)
     let tax = 0;
     if (grossMargin > 0) {
       tax = (grossMargin / 1.19) * 0.19;
     }
 
-    // 3. Kalkulatorische Zinskosten (Standtage)
-    // Formel: (Kapitaleinsatz * Zinssatz * Tage) / 360
-    // Kapitaleinsatz ist EK + Kosten (da diese schon ausgegeben wurden)
-    const capitalBound = ek + cost;
+    // 4. Kalkulatorische Zinskosten (Standtage)
+    // Kapitaleinsatz = EK + RealCost
+    const capitalBound = ek + realCost;
     const interestCost = (capitalBound * INTEREST_RATE * days) / 360;
 
-    // 4. Netto Marge (Operativ)
+    // 5. Netto Marge (Operativ)
     const netMargin = grossMargin - tax;
 
-    // 5. Reingewinn (EBIT Äquivalent für das Auto)
-    const profit = netMargin - cost - interestCost;
+    // 6. Reingewinn
+    const profit = netMargin - realCost - interestCost;
 
-    // 6. ROI (Return on Invest)
-    // Gewinn / Gesamtkosten * 100
-    const totalInvest = ek + cost + interestCost + tax; // Tax is pass-through but binds liquidity briefly
+    // 7. ROI
+    const totalInvest = ek + realCost + interestCost + tax; 
     let roi = 0;
     if (totalInvest > 0) {
         roi = (profit / totalInvest) * 100;
     }
 
     // --- RENDER ---
-
-    // Text Updates
-    if(outputs.profit) outputs.profit.textContent = formatCurrency(profit);
-    if(outputs.gross) outputs.gross.textContent = formatCurrency(grossMargin);
+    if(outputs.profit) {
+        outputs.profit.textContent = formatCurrency(profit);
+        if(profit < 0) {
+            outputs.profit.classList.remove('text-emerald-400');
+            outputs.profit.classList.add('text-red-400');
+        } else {
+            outputs.profit.classList.add('text-emerald-400');
+            outputs.profit.classList.remove('text-red-400');
+        }
+    }
+    
+    if(outputs.grossMargin) outputs.grossMargin.textContent = formatCurrency(grossMargin);
     if(outputs.tax) outputs.tax.textContent = "- " + formatCurrency(tax);
     if(outputs.interest) outputs.interest.textContent = "- " + formatCurrency(interestCost);
-    if(outputs.net) outputs.net.textContent = formatCurrency(netMargin);
+    if(outputs.costs) outputs.costs.textContent = "- " + formatCurrency(realCost);
 
-    // ROI Badge Color Logic
+    // ROI Badge Colors
     if(outputs.roiBadge) {
         outputs.roiBadge.textContent = `ROI: ${roi.toFixed(1)}%`;
+        outputs.roiBadge.className = "text-sm font-bold px-3 py-1.5 rounded border border-white/5 transition-colors";
+        
         if (roi < 0) {
-            outputs.roiBadge.className = "bg-red-500/20 text-red-400 text-xs font-bold px-2 py-1 rounded border border-red-500/30";
-            outputs.glowBg?.classList.replace('bg-emerald-500/10', 'bg-red-500/10');
-            outputs.profit?.classList.remove('text-white', 'text-emerald-400');
-            outputs.profit?.classList.add('text-red-500');
+            outputs.roiBadge.classList.add('bg-red-500/20', 'text-red-400', 'border-red-500/30');
+            outputs.glowBg?.classList.replace('bg-emerald-500/5', 'bg-red-500/10');
         } else if (roi < 5) {
-            outputs.roiBadge.className = "bg-yellow-500/20 text-yellow-400 text-xs font-bold px-2 py-1 rounded border border-yellow-500/30";
+            outputs.roiBadge.classList.add('bg-yellow-500/20', 'text-yellow-400', 'border-yellow-500/30');
             outputs.glowBg?.classList.replace('bg-red-500/10', 'bg-yellow-500/10');
-            outputs.profit?.classList.remove('text-red-500', 'text-emerald-400');
-            outputs.profit?.classList.add('text-white');
         } else {
-            outputs.roiBadge.className = "bg-emerald-500/20 text-emerald-400 text-xs font-bold px-2 py-1 rounded border border-emerald-500/30";
-            outputs.glowBg?.classList.replace('bg-yellow-500/10', 'bg-emerald-500/10');
-            outputs.glowBg?.classList.replace('bg-red-500/10', 'bg-emerald-500/10');
-            outputs.profit?.classList.remove('text-red-500', 'text-white');
-            outputs.profit?.classList.add('text-emerald-400');
+            outputs.roiBadge.classList.add('bg-emerald-500/20', 'text-emerald-400', 'border-emerald-500/30');
+            outputs.glowBg?.classList.replace('bg-yellow-500/10', 'bg-emerald-500/5');
+            outputs.glowBg?.classList.replace('bg-red-500/10', 'bg-emerald-500/5');
         }
     }
 
-    // Visualization Logic (The Bar)
-    // Wir berechnen Anteile am Gesamtumsatz (VK) für die Visualisierung
-    const percentCost = (cost / vk) * 100;
+    // Vis Bars
+    const percentCost = (realCost / vk) * 100;
     const percentInterest = (interestCost / vk) * 100;
     const percentTax = (tax / vk) * 100;
-    const percentProfit = (profit > 0) ? (profit / vk) * 100 : 0; // Negative profits not shown in bar
+    const percentProfit = (profit > 0) ? (profit / vk) * 100 : 0;
 
     if(outputs.visCost) outputs.visCost.style.width = `${percentCost}%`;
     if(outputs.visInterest) outputs.visInterest.style.width = `${percentInterest}%`;
     if(outputs.visTax) outputs.visTax.style.width = `${percentTax}%`;
     if(outputs.visProfit) outputs.visProfit.style.width = `${percentProfit}%`;
-    
-    // Tax Bar relative to Gross Margin
-    const taxShareOfMargin = (grossMargin > 0) ? (tax / grossMargin) * 100 : 0;
-    if(outputs.barTax) outputs.barTax.style.width = `${taxShareOfMargin}%`;
-
   }
 
   // Event Listeners
-  Object.values(inputs).forEach(el => {
+  [inputs.ek, inputs.vk, inputs.cost, inputs.days].forEach(el => {
     el?.addEventListener('input', calculate);
   });
 
@@ -276,10 +312,16 @@
     inputs.vk.value = "";
     inputs.cost.value = "";
     inputs.days.value = "30";
+    // Reset switch to Netto visually
+    inputs.costType.value = "netto";
+    costTypeBtns.forEach(b => {
+        b.classList.remove('bg-slate-700', 'text-white', 'font-bold');
+        b.classList.add('text-slate-500', 'font-medium');
+        if(b.dataset.type === 'netto') {
+            b.classList.add('bg-slate-700', 'text-white', 'font-bold');
+            b.classList.remove('text-slate-500', 'font-medium');
+        }
+    });
     calculate();
-    // Reset visual state
-    if(outputs.profit) outputs.profit.textContent = "0,00 €";
-    if(outputs.roiBadge) outputs.roiBadge.textContent = "ROI: 0.0%";
   });
-
 </script>
