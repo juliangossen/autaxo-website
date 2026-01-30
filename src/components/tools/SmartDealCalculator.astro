@@ -20,7 +20,7 @@ const selectClass = "w-full bg-black/30 border border-white/10 text-white rounde
     </p>
   </div>
 
-  <div class="grid lg:grid-cols-12 gap-8 items-start">
+  <div class="grid lg:grid-cols-12 gap-8">
     
     <div class="lg:col-span-5 space-y-6">
       
@@ -127,14 +127,13 @@ const selectClass = "w-full bg-black/30 border border-white/10 text-white rounde
       </div>
     </div>
 
-    <div class="lg:col-span-7 flex flex-col gap-6 sticky top-8">
+    <div class="lg:col-span-7 flex flex-col gap-6 sticky top-8 h-full">
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div class="bg-black/40 rounded-xl p-5 border border-white/10 relative overflow-hidden group">
           <p class="text-xs text-gray-400 uppercase font-bold">Abzuführende USt.</p>
           <div class="text-2xl font-bold text-red-400 mt-2 font-mono" id="res-tax">0,00 €</div>
           <div class="text-xs text-gray-500 mt-1" id="res-tax-detail">auf Marge</div>
-          <div class="absolute inset-0 border border-red-500/0 group-hover:border-red-500/20 rounded-xl transition-all"></div>
         </div>
 
          <div class="bg-black/40 rounded-xl p-5 border border-white/10 relative overflow-hidden">
@@ -143,10 +142,10 @@ const selectClass = "w-full bg-black/30 border border-white/10 text-white rounde
           <div class="text-xs text-gray-500 mt-1">Verkauf - Einkauf - Kosten</div>
         </div>
 
-        <div class="bg-primary/10 rounded-xl p-5 border border-primary/30 relative overflow-hidden shadow-[0_0_30px_rgba(var(--color-primary),0.15)]">
-          <p class="text-xs text-primary uppercase font-bold">Netto-Gewinn</p>
-          <div class="text-3xl font-bold text-white mt-2 font-mono" id="res-net-profit">0,00 €</div>
-          <div class="text-xs text-primary/60 mt-1">Das bleibt dir wirklich.</div>
+        <div id="profit-card" class="bg-[#1a1d26] rounded-xl p-5 border border-white/10 relative overflow-hidden shadow-lg transition-colors duration-300">
+          <p class="text-xs text-gray-400 uppercase font-bold">Netto-Gewinn</p>
+          <div class="text-3xl font-bold text-white mt-2 font-mono transition-colors duration-300" id="res-net-profit">0,00 €</div>
+          <div class="text-xs text-gray-500 mt-1">Das bleibt dir wirklich.</div>
         </div>
       </div>
 
@@ -214,9 +213,9 @@ const selectClass = "w-full bg-black/30 border border-white/10 text-white rounde
     const costPrice = parseFloat(document.getElementById('cost-price').value) || 0;
     const sellPrice = parseFloat(document.getElementById('sell-price').value) || 0;
     
-    const source = document.getElementById('buy-source').value; // privat, klein, händler_25a, regel
-    const target = document.getElementById('sell-target').value; // de, eu_b2b, eu_b2c, export
-    const optRule = document.getElementById('opt-rule').checked; // Checkbox
+    const source = document.getElementById('buy-source').value;
+    const target = document.getElementById('sell-target').value;
+    const optRule = document.getElementById('opt-rule').checked;
 
     // Elemente
     const badge = document.getElementById('badge-method');
@@ -233,17 +232,16 @@ const selectClass = "w-full bg-black/30 border border-white/10 text-white rounde
     const kText = document.getElementById('knowledge-text');
     const kHref = document.getElementById('knowledge-href');
 
-    // UI Logic: Neufahrzeug nur bei EU anzeigen (sonst irrelevant für USt-Art, da in DE immer 19% außer Export)
-    // Vereinfachung: Wir zeigen es immer, wenn EU/Export gewählt ist, da es dort kritisch ist.
+    // UI Logic
     if (['eu_b2b', 'eu_b2c'].includes(target)) {
         newCarWrapper.classList.remove('hidden');
     } else {
         newCarWrapper.classList.add('hidden');
     }
 
-    // 2. LOGIK: EINKAUF (Ist §25a möglich?)
+    // 2. LOGIK: EINKAUF
     let is25aCapable = false;
-    let purchaseVatDeductible = false; // Kann ich VSt ziehen?
+    let purchaseVatDeductible = false;
 
     if (source === 'regel' || source === 'eu') {
       is25aCapable = false;
@@ -255,40 +253,35 @@ const selectClass = "w-full bg-black/30 border border-white/10 text-white rounde
       buyHint.innerHTML = '<span class="text-green-400 flex items-center gap-1"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Automatische Erkennung: §25a möglich.</span>';
     }
 
-    // 3. LOGIK: VERFAHREN BESTIMMEN
+    // 3. LOGIK: VERFAHREN
     let method = is25aCapable ? '25a' : 'regel'; 
     let taxAmount = 0;
     let note = "";
     
-    // Link Defaults (Falls kein spezieller Fall greift)
     let linkUrl = "/blog/umsatzsteuerfehler-gebrauchtwagenhandel";
     let linkLabel = "Vermeide typische Umsatzsteuerfehler";
 
-    // Sichtbarkeit der "Option zur Regelbesteuerung" Checkbox
     if (is25aCapable && (target === 'eu_b2b' || target === 'export')) {
         optionWrapper.classList.remove('hidden');
-        if (optRule) method = 'regel'; // User erzwingt Regelbesteuerung (igL)
+        if (optRule) method = 'regel';
     } else {
         optionWrapper.classList.add('hidden');
     }
 
-    // Sonderfall: Neufahrzeug (bricht §25a)
     if (is25aCapable && isNew && ['eu_b2b', 'eu_b2c'].includes(target)) {
         method = 'regel'; 
     }
 
-    // 4. BERECHNUNG STEUER & TEXTE
+    // 4. BERECHNUNG STEUER
     warningBox.classList.add('hidden'); 
 
     if (method === '25a') {
-        // DIFFERENZBESTEUERUNG
         badge.innerText = "Differenzbesteuerung (§ 25a)";
         badge.className = "px-3 py-1 bg-green-500/20 text-green-400 text-xs font-bold rounded border border-green-500/30";
         
         let margin = sellPrice - buyPrice;
         if (margin < 0) margin = 0;
         
-        // USt aus Marge herausrechnen
         let taxBase = margin / 1.19;
         taxAmount = margin - taxBase;
 
@@ -311,19 +304,14 @@ const selectClass = "w-full bg-black/30 border border-white/10 text-white rounde
         }
 
     } else {
-        // REGELBESTEUERUNG (oder Netto/Steuerfrei)
-        
+        // REGELBESTEUERUNG
         if (target === 'de') {
-            // Inland 19%
             badge.innerText = "Regelbesteuerung (19%)";
             badge.className = "px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-bold rounded border border-blue-500/30";
             taxAmount = sellPrice - (sellPrice / 1.19);
             note = "Rechnungsbetrag enthält 19% Umsatzsteuer.";
-            linkUrl = "/blog/gobd-autohaus-was-finanzaemter-wirklich-pruefen";
-            linkLabel = "Rechnungs-Pflichtangaben nach GoBD prüfen";
         } 
         else if (target === 'eu_b2b' || target === 'export') {
-            // Steuerfrei
             badge.innerText = "Steuerfrei (0%)";
             badge.className = "px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-bold rounded border border-purple-500/30";
             taxAmount = 0;
@@ -332,8 +320,6 @@ const selectClass = "w-full bg-black/30 border border-white/10 text-white rounde
                 note = "Steuerfreie innergemeinschaftliche Lieferung (§ 4 Nr. 1b i.V.m. § 6a UStG).";
                 linkUrl = "/blog/innergemeinschaftliche-lieferung-kfz-steuerfrei";
                 linkLabel = "Checkliste: Innergemeinschaftliche Lieferung";
-                
-                // Warnung bei Neufahrzeug an EU (falls manuelle Regelwahl ohne Neufahrzeug Flag, hier eher selten, aber sicher ist sicher)
                 if(isNew) note = "Steuerfreie innergemeinschaftliche Lieferung eines neuen Fahrzeugs.";
             }
             if (target === 'export') {
@@ -343,9 +329,7 @@ const selectClass = "w-full bg-black/30 border border-white/10 text-white rounde
             }
         }
         else if (target === 'eu_b2c') {
-            // Privat EU 
              if (isNew) {
-                 // Neuwagen an Privat = Steuerfrei (Erwerbsteuer drüben)
                  badge.innerText = "Steuerfrei (Neufahrzeug)";
                  badge.className = "px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-bold rounded border border-purple-500/30";
                  taxAmount = 0;
@@ -353,7 +337,6 @@ const selectClass = "w-full bg-black/30 border border-white/10 text-white rounde
                  linkUrl = "/blog/innergemeinschaftliche-lieferung-kfz-steuerfrei";
                  linkLabel = "Meldepflicht bei Neufahrzeugen";
              } else {
-                 // Gebrauchtwagen an Privat = Deutsche USt (vereinfacht)
                  badge.innerText = "Regelbesteuerung (19%)";
                  badge.className = "px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-bold rounded border border-blue-500/30";
                  taxAmount = sellPrice - (sellPrice / 1.19);
@@ -362,38 +345,36 @@ const selectClass = "w-full bg-black/30 border border-white/10 text-white rounde
         }
     }
 
-    // 5. ERGEBNISSE ZUSAMMENFASSEN
-    
-    // Netto Einkauf berechnen für Gewinn
+    // 5. ERGEBNISSE & FARBLOGIK
     let netBuyPrice = buyPrice;
     if (purchaseVatDeductible) {
-        netBuyPrice = buyPrice / 1.19; // Wir bekommen VSt zurück
+        netBuyPrice = buyPrice / 1.19;
     }
 
-    let grossResult = sellPrice - buyPrice - costPrice; // Cashflow
-    
-    // Netto-Gewinn = (Verkauf_Netto) - (Einkauf_Netto) - Kosten
+    let grossResult = sellPrice - buyPrice - costPrice;
     let netSellPrice = sellPrice - taxAmount;
     let netProfit = netSellPrice - netBuyPrice - costPrice;
 
-    // UI Updates
     document.getElementById('res-tax').innerText = fmt(taxAmount);
     document.getElementById('res-gross-margin').innerText = fmt(grossResult);
     
     const profitEl = document.getElementById('res-net-profit');
+    const profitCard = document.getElementById('profit-card');
+    
     profitEl.innerText = fmt(netProfit);
     
-    // Färbung bei Verlust
+    // FARB-LOGIK
     if (netProfit < 0) {
-        profitEl.className = "text-3xl font-bold text-red-500 mt-2 font-mono";
+        profitEl.className = "text-3xl font-bold text-red-500 mt-2 font-mono transition-colors duration-300";
+        profitCard.className = "bg-[#1a1d26] rounded-xl p-5 border border-red-500/30 relative overflow-hidden shadow-lg transition-all duration-300";
     } else {
-        profitEl.className = "text-3xl font-bold text-white mt-2 font-mono";
+        profitEl.className = "text-3xl font-bold text-emerald-400 mt-2 font-mono transition-colors duration-300";
+        profitCard.className = "bg-[#1a1d26] rounded-xl p-5 border border-emerald-500/30 relative overflow-hidden shadow-lg transition-all duration-300";
     }
 
     document.getElementById('invoice-text').innerText = note;
     document.getElementById('res-tax-detail').innerText = (method === '25a') ? "Anteilig aus Marge" : "Aus Verkaufspreis";
 
-    // Link Update
     kLink.classList.remove('hidden');
     kText.innerText = linkLabel;
     kLink.onclick = () => window.location.href = linkUrl;
@@ -404,6 +385,5 @@ const selectClass = "w-full bg-black/30 border border-white/10 text-white rounde
     navigator.clipboard.writeText(document.getElementById('invoice-text').innerText);
   }
 
-  // Init
   document.addEventListener('DOMContentLoaded', calc);
 </script>
